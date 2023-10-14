@@ -1,0 +1,52 @@
+name: Test Server Pull-request                  # Workflow 이름
+
+on:
+  pull_request:
+    branches: [ "test" ]
+
+jobs:
+  build-and-comment:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Check branch
+        run: |
+          echo "Head branch is: ${{ github.head_ref }}"
+          echo "Base branch is: ${{ github.base_ref }}"
+          if [[ "${{ github.head_ref }}" != "dev" ]]; then
+            echo "dev 브랜치가 아님"
+            exit 1
+          fi
+
+      - name: close PR
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '브랜치 확인!!'
+            });
+            
+            github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: 'closed'
+            });
+
+      - name: Auto approve pull request
+        if: success()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: 'APPROVE'
+            });
