@@ -1,0 +1,56 @@
+name: Dev Server Pull-request                  # Workflow 이름
+on: 
+  pull_request:   #pr이벤트를 감지
+    branches:
+      - dev  #dev 브랜치에 한해서                    
+jobs:                                # Job 설정
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.   # Repo checkout
+        uses: actions/checkout@v3
+
+      - name: Check Node v            # Node v 확인
+        run: node -v
+        
+      - name: Install dependencies    # 의존 파일 설치
+        run: npm install
+
+      - name: Set .env from secrets
+        run: |
+          echo "PORT=${{ secrets.DEV_PORT }}" > .env
+          echo "WDS_SOCKET_PORT=0" >> .env
+          echo "NODE_PATH=src/" >> .env
+          echo "REACT_APP_API_ROOT=${{ secrets.DEV_REACT_APP_API_ROOT }}" >> .env
+          echo "REACT_APP_HOME_URL=${{ secrets.DEV_REACT_APP_HOME_URL }}" >> .env
+
+      - name: cat env file
+        run: cat .env
+      
+      - name: Generate build          # React Build
+        run: npm run build
+        
+      - name: Compress build          # 압축
+        run: tar -czvf build.tar.gz build/
+
+      - name: Upload compressed build to S3   #압축 파일 올리기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
+          ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
+        run: |
+          aws s3 cp build.tar.gz s3://$BUCKET_NAME/build.tar.gz \
+            --endpoint-url $ENDPOINT_URL
+
+      - name: Discordbot alert         # 디스코드 알림
+        uses: sarisia/actions-status-discord@v1.13.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          content: ${{ (github.actor == 'marinesnow34' && '<@392607023495118862>') || 
+            (github.actor == '1223v' && '<@368775981667844098>') ||
+            (github.actor == 'imi21123' && '<@999337351799128115>') ||
+            (github.actor == 'marina-yhm' && '<@946431150614794240>') ||
+            (github.actor == 'hhhhyelim' && '<@1076887091427946496>') }}
+        if: always()
