@@ -1,9 +1,9 @@
-name: Dev Server Pull-request                  # Workflow 이름
-on: 
-  pull_request:   #pr이벤트를 감지
-    branches:
-      - dev  #dev 브랜치에 한해서                    
-jobs:                                # Job 설정
+name: Test Server Merge
+on:
+  push:
+    branches: [ "test" ]
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -18,22 +18,33 @@ jobs:                                # Job 설정
 
       - name: Set .env from secrets
         run: |
-          echo "PORT=${{ secrets.DEV_PORT }}" > .env
+          echo "PORT=${{ secrets.TEST_PORT }}" > .env
           echo "WDS_SOCKET_PORT=0" >> .env
           echo "NODE_PATH=src/" >> .env
-          echo "REACT_APP_API_ROOT=${{ secrets.DEV_REACT_APP_API_ROOT }}" >> .env
-          echo "REACT_APP_HOME_URL=${{ secrets.DEV_REACT_APP_HOME_URL }}" >> .env
+          echo "REACT_APP_API_ROOT=${{ secrets.TEST_REACT_APP_API_ROOT }}" >> .env
+          echo "REACT_APP_HOME_URL=${{ secrets.TEST_REACT_APP_HOME_URL }}" >> .env
 
       - name: cat env file
         run: cat .env
       
       - name: Generate build          # React Build
         run: npm run build
-        
-      - name: Compress build          # 압축
-        run: tar -czvf build.tar.gz build/
-
-      - name: Upload compressed build to S3   #압축 파일 올리기
+      
+      - name: file copy
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: file download
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+      - name: Upload to Cloudflare
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_SECRET_ACCESS_KEY }}
@@ -41,9 +52,30 @@ jobs:                                # Job 설정
           BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
           ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
         run: |
-          aws s3 cp build.tar.gz s3://$BUCKET_NAME/build.tar.gz \
+          aws s3 sync build s3://$BUCKET_NAME/build \
             --endpoint-url $ENDPOINT_URL
 
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
+          ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          timeout: 40s  # 30초 기본        
+          script: |
+            aws s3 sync s3://$BUCKET_NAME/build ./docker/react/build \
+            --endpoint-url $ENDPOINT_URL
+  after:
+    if: always() # Ensures this job always runs after 'build'
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions: write-all
+    
+    steps:
       - name: Discordbot alert         # 디스코드 알림
         uses: sarisia/actions-status-discord@v1.13.0
         with:
@@ -53,4 +85,4 @@ jobs:                                # Job 설정
             (github.actor == 'imi21123' && '<@999337351799128115>') ||
             (github.actor == 'marina-yhm' && '<@946431150614794240>') ||
             (github.actor == 'hhhhyelim' && '<@1076887091427946496>') }}
-        if: always()
+        if: always()  

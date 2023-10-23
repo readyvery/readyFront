@@ -5,21 +5,49 @@ on:
     branches: [ "test" ]
 
 jobs:
-  build-and-comment:
+  build:
     runs-on: ubuntu-latest
-    permissions: write-all
     steps:
-      - name: Check branch
-        run: |
-          echo "Head branch is: ${{ github.head_ref }}"
-          echo "Base branch is: ${{ github.base_ref }}"
-          if [[ "${{ github.head_ref }}" != "dev" ]]; then
-            echo "dev 브랜치가 아님"
-            exit 1
-          fi
+      - name: Checkout source code.   # Repo checkout
+        uses: actions/checkout@v3
 
-      - name: close PR
-        if: failure()
+      - name: Check Node v            # Node v 확인
+        run: node -v
+        
+      - name: Install dependencies    # 의존 파일 설치
+        run: npm install
+
+      - name: Set .env from secrets
+        run: |
+          echo "PORT=${{ secrets.TEST_PORT }}" > .env
+          echo "WDS_SOCKET_PORT=0" >> .env
+          echo "NODE_PATH=src/" >> .env
+          echo "REACT_APP_API_ROOT=${{ secrets.TEST_REACT_APP_API_ROOT }}" >> .env
+          echo "REACT_APP_HOME_URL=${{ secrets.TEST_REACT_APP_HOME_URL }}" >> .env
+
+      - name: cat env file
+        run: cat .env
+      
+      - name: Generate build          # React Build
+        run: npm run build
+
+  after:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    - name: Discordbot alert         # 디스코드 알림
+        uses: sarisia/actions-status-discord@v1.13.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          content: ${{ (github.actor == 'marinesnow34' && '<@392607023495118862>') || 
+            (github.actor == '1223v' && '<@368775981667844098>') ||
+            (github.actor == 'imi21123' && '<@999337351799128115>') ||
+            (github.actor == 'marina-yhm' && '<@946431150614794240>') ||
+            (github.actor == 'hhhhyelim' && '<@1076887091427946496>') }}
+        if: always()
+    - name: Comment on failure and close PR
+        if: needs.build.result == 'failure'
         uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
@@ -28,7 +56,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '브랜치 확인!!'
+              body: '빌드 실패'
             });
             
             github.rest.pulls.update({
@@ -39,7 +67,7 @@ jobs:
             });
 
       - name: Auto approve pull request
-        if: success()
+        if: needs.build.result == 'success'
         uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
