@@ -1,0 +1,72 @@
+name: Main Server Merge
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.   # Repo checkout
+        uses: actions/checkout@v3
+
+      - name: Check Node v            # Node v 확인
+        run: node -v
+        
+      - name: Install dependencies    # 의존 파일 설치
+        run: npm install
+
+      - name: Set .env from secrets
+        run: |
+          echo "PORT=${{ secrets.MAIN_PORT }}" > .env
+          echo "WDS_SOCKET_PORT=0" >> .env
+          echo "NODE_PATH=src/" >> .env
+          echo "REACT_APP_API_ROOT=${{ secrets.MAIN_REACT_APP_API_ROOT }}" >> .env
+          echo "REACT_APP_HOME_URL=${{ secrets.MAIN_REACT_APP_HOME_URL }}" >> .env
+
+      - name: cat env file
+        run: cat .env
+      
+      - name: Generate build          # React Build
+        run: npm run build
+      
+      - name: file copy
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: file download
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+      - name: Upload to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_MAIN_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_MAIN_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-2
+          BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+        run: |
+          aws s3 sync build s3://$BUCKET_NAME/build
+      # - name: Cloufront cache invalidation
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: us-east-1
+      #     DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+      #   run: |
+      #     aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+      - name: Discordbot alert         # 디스코드 알림
+        uses: sarisia/actions-status-discord@v1.13.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          content: ${{ (github.actor == 'marinesnow34' && '<@392607023495118862>') || 
+            (github.actor == '1223v' && '<@368775981667844098>') ||
+            (github.actor == 'imi21123' && '<@999337351799128115>') ||
+            (github.actor == 'marina-yhm' && '<@946431150614794240>') ||
+            (github.actor == 'hhhhyelim' && '<@1076887091427946496>') }}
+        if: always()
