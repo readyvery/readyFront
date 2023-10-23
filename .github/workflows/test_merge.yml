@@ -57,9 +57,6 @@ jobs:
 
       - name: SSH and deploy
         uses: appleboy/ssh-action@v1.0.0
-        env:
-          BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
-          ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -67,8 +64,8 @@ jobs:
           port: ${{ secrets.PORT }}
           timeout: 40s  # 30초 기본        
           script: |
-            aws s3 sync s3://$BUCKET_NAME/build ./docker/react/build \
-            --endpoint-url $ENDPOINT_URL
+            aws s3 sync s3://readyvery-dev-server/build ./docker/react/build \
+            --endpoint-url https://29c6e4b55b1ddb8d2b6e69df21141caa.r2.cloudflarestorage.com
       - name: Discordbot alert         # 디스코드 알림
         uses: sarisia/actions-status-discord@v1.13.0
         with:
