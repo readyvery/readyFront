@@ -51,7 +51,7 @@ jobs:
           AWS_DEFAULT_REGION: ap-northeast-2
           BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
         run: |
-          aws s3 sync build s3://$BUCKET_NAME/
+          aws s3 sync build s3://$BUCKET_NAME/ --delete
       # - name: Cloufront cache invalidation
       #   env:
       #     AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
