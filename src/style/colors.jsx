@@ -3,7 +3,7 @@ export const colors = {
   black: "#000",
   gray: "#4F4F4F",
   ligthgray: "#838383",
-  pink: "#FFF1F5",
+  pink: "#FFE2ED",
   red: "#EC0000",
   green: "#038C56",
   line: "#DADADA",
