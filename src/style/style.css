@@ -1,0 +1,28 @@
+@import "./colors.jsx";
+
+/* 일반 스타일 */
+body {
+  /* font-family: Arial, sans-serif; */
+  color: white;
+}
+
+/* 360px 이하일 때의 스타일(갤럭시 - S21, S22 울트라) */
+@media (max-width: 360px) {
+  body {
+    background-color: white;
+  }
+}
+
+/* 393px 이하일 때의 스타일(아이폰 - 14pro, 15, 15pro) */
+@media (max-width: 393px) {
+  body {
+    background-color: white;
+  }
+}
+
+/* 428px보다 큰 경우의 스타일(아이폰 - 12 pro max, 13 pro max) */
+@media (min-width: 428px) {
+  body {
+    background-color: white;
+  }
+}

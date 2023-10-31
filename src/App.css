@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "Bold";
+  src: url("./assets/font/Pretendard-Bold.otf");
+}
+
+@font-face {
+  font-family: "ExtraBold";
+  src: url("./assets/font/Pretendard-ExtraBold.otf");
+}
+
+@font-face {
+  font-family: "ExtraLight";
+  src: url("./assets/font/Pretendard-ExtraLight.otf");
+}
+
+@font-face {
+  font-family: "Light";
+  src: url("./assets/font/Pretendard-Light.otf");
+}
+
+@font-face {
+  font-family: "Medium";
+  src: url("./assets/font/Pretendard-Medium.otf");
+}
+
+@font-face {
+  font-family: "Regular";
+  src: url("./assets/font/Pretendard-Regular.otf");
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url("./assets/font/Pretendard-SemiBold.otf");
+}
