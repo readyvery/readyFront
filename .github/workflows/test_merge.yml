@@ -67,6 +67,7 @@ jobs:
             aws s3 sync s3://readyvery-dev-server/build ./docker/react/build \
             --endpoint-url https://29c6e4b55b1ddb8d2b6e69df21141caa.r2.cloudflarestorage.com \
             --delete --exact-timestamps
+
       - name: Discordbot alert         # 디스코드 알림
         uses: sarisia/actions-status-discord@v1.13.0
         with:
