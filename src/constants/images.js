@@ -9,4 +9,5 @@ export const IMAGES = {
   list_icon: require("../assets/images/icon_list.png"),
   mypage_icon: require("../assets/images/icon_mypage.png"),
   home_icon: require("../assets/images/icon_home.png"),
+  home_logo: require("../assets/images/home_logo.png"),
 };

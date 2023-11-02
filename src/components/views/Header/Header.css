@@ -1,0 +1,19 @@
+/* Header 상단 고정 및 세로길이 설정 */
+.top_header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5.5rem;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.header-link {
+  margin-left: 1.5rem;
+}
+
+.header-logo {
+  margin-top: 2.8125rem;
+}
