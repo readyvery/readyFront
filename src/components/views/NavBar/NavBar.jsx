@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import { IMAGES } from "../../../constants/images";
-
+import heart_icon from "../../../assets/images/icon_heart.svg";
+import home_icon from "../../../assets/images/icon_home.svg";
+import list_icon from "../../../assets/images/icon_list.svg";
+import mypage_icon from "../../../assets/images/icon_mypage.svg";
+import search_icon from "../../../assets/images/icon_search.svg";
 import "./NavBar.css";
+
 const NavBar = () => {
   const [activeNav, setActiveNav] = useState(1);
 
@@ -18,10 +22,13 @@ const NavBar = () => {
       >
         <NavColor>
           <img
-            src={IMAGES.search_icon}
+            src={search_icon}
             alt="SearchIcon"
             className={activeNav === 1 ? "nav-item active" : "nav-item"}
           />
+          <div className={activeNav === 1 ? "nav-item active" : "nav-item"}>
+            카페검색
+          </div>
         </NavColor>
       </Link>
 
@@ -34,10 +41,13 @@ const NavBar = () => {
       >
         <NavColor>
           <img
-            src={IMAGES.list_icon}
+            src={list_icon}
             alt="ListIcon"
             className={activeNav === 2 ? "nav-item active" : "nav-item"}
           />
+          <div className={activeNav === 2 ? "nav-item active" : "nav-item"}>
+            주문내역
+          </div>
         </NavColor>
       </Link>
 
@@ -50,10 +60,17 @@ const NavBar = () => {
       >
         <NavColor>
           <img
-            src={IMAGES.home_icon}
+            src={home_icon}
             alt="HomeIcon"
             className={activeNav === 3 ? "nav-item active" : "nav-item"}
           />
+          <div
+            className={
+              activeNav === 3 ? "nav-item-home active" : "nav-item-home"
+            }
+          >
+            Home
+          </div>
         </NavColor>
       </Link>
 
@@ -66,10 +83,13 @@ const NavBar = () => {
       >
         <NavColor>
           <img
-            src={IMAGES.heart_icon}
+            src={heart_icon}
             alt="HeartIcon"
             className={activeNav === 4 ? "nav-item active" : "nav-item"}
           />
+          <div className={activeNav === 4 ? "nav-item active" : "nav-item"}>
+            바로주문
+          </div>
         </NavColor>
       </Link>
 
@@ -81,7 +101,14 @@ const NavBar = () => {
         }}
       >
         <NavColor>
-          <img src={IMAGES.mypage_icon} alt="MypageIcon" className="nav-item" />
+          <img
+            src={mypage_icon}
+            alt="MypageIcon"
+            className={activeNav === 5 ? "nav-item active" : "nav-item"}
+          />
+          <div className={activeNav === 5 ? "nav-item active" : "nav-item"}>
+            마이페이지
+          </div>
         </NavColor>
       </Link>
     </nav>
