@@ -14,8 +14,19 @@ nav {
   overflow: hidden;
 }
 
+.nav-item {
+  margin-bottom: 0.25rem;
+}
+
+.nav-item-home {
+  color: #d82356;
+  margin-top: -1.6rem;
+  font-size: 0.625rem;
+  text-decoration: none;
+}
+
 .nav-link img[alt="HomeIcon"] {
-  margin-top: -5px;
+  margin-top: -1rem; /* -1.3125rem; */
 }
 /* nav태그 아래의 div태그들을 수평정렬 및 세로길이 설정 */
 .nav-link {
@@ -28,4 +39,15 @@ nav {
 
   /*세로 길이 설정*/
   margin-top: 0.6875rem;
+  font-size: 0.625rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-color:active {
+  border-radius: 100%;
+  background-color: #f1f3f5;
+  margin: auto;
+  width: 70%;
+  height: 100%;
 }
