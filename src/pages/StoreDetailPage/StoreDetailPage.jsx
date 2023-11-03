@@ -1,4 +1,3 @@
-import { TEXT } from "../../constants/text";
 import caffeeBanner from "../../assets/images/caffee_banner.svg";
 import "./style.css";
 
