@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "../src/pages/HomePage/Homepage";
+import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
 
@@ -24,7 +25,7 @@ function App() {
         {/* 테스트 페이지 - 이벤트*/}
         <Route path="/event" element={<TestPage />} />
         {/* 테스트 페이지 - 각 카페 디테일*/}
-        <Route path="/cafeDetail" element={<TestPage />} />
+        <Route path="/storeDetail" element={<StoreDetailPage />} />
       </Routes>
     </div>
   );
