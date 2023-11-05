@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "../src/pages/HomePage/Homepage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
-import StoreDetailPage from "./pages/StoreDetailPage/StoreDetailPage";
 
 function App() {
   return (
@@ -20,9 +19,12 @@ function App() {
         <Route path="/ready" element={<TestPage />} />
         {/* 테스트 페이지 - 마이페이지*/}
         <Route path="/mypage" element={<TestPage />} />
-
-        {/* 카페 상세페이지 */}
-        <Route path="/cafe/:cafeId" element={<StoreDetailPage />} />
+        {/* 테스트 페이지 - 로그인*/}
+        <Route path="/login" element={<TestPage />} />
+        {/* 테스트 페이지 - 이벤트*/}
+        <Route path="/event" element={<TestPage />} />
+        {/* 테스트 페이지 - 각 카페 디테일*/}
+        <Route path="/cafeDetail" element={<TestPage />} />
       </Routes>
     </div>
   );
