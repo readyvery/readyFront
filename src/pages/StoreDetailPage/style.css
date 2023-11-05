@@ -95,3 +95,84 @@
   letter-spacing: -0.00875rem;
   text-align: left;
 }
+
+.store-detail-page__menuCategory {
+  display: flex;
+  width: 100%;
+  max-width: 100vw; /* 화면 너비 이내에서만 확장됩니다. */
+  height: fit-content;
+  overflow-x: auto;
+}
+
+.store-detail-page__menuCategory::-webkit-scrollbar {
+  display: none;
+}
+
+.store-detail-page__menuCategory__item {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  color: rgba(216, 35, 86, 0.6);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.store-detail-page__menuCategory__item.selected {
+  font-weight: bold; /* 선택된 아이템의 글꼴을 진하게 설정 */
+  color: #d82356; /* 선택된 아이템의 색상을 변경합니다. */
+  border-bottom: 1px solid #d82356;
+}
+
+.store-detail-page__menuList {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.store-detail-page__menuList::-webkit-scrollbar {
+  display: none;
+}
+
+.store-detail-page__menuList__item {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1.56rem;
+  padding-top: 1.31rem;
+  padding-bottom: 1.31rem;
+  border-bottom: 1px solid #dadada;
+}
+
+.store-detail-page__menuList__item__name {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+}
+
+.store-detail-page__menuList__item__price {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
+}
