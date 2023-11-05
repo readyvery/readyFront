@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import cardi_cafe from "../../assets/images/cafe1.svg";
 import milda_cafe from "../../assets/images/cafe2.svg";
@@ -82,24 +82,25 @@ function Homepage() {
   //   }
   // }, [isLoggedIn]);
 
-  // useEffect(() => {
-  //   // 서버에서 로그인 상태를 확인하는 비동기 함수
-  //   const checkLoginStatus = async () => {
-  //     try {
-  //       // axios를 사용하여 서버로 HTTP GET 요청 보내기
-  //       const response = await axios.get(""); /* http://localhost:8080/ */
+  useEffect(() => {
+    // 서버에서 로그인 상태를 확인하는 비동기 함수
+    // const checkLoginStatus = async () => {
+    //   try {
+    //     // axios를 사용하여 서버로 HTTP GET 요청 보내기
+    //     const response = await axios.get(""); /* http://localhost:8080/ */
 
-  //       // 서버 응답 데이터에서 로그인 상태를 가져와 업데이트
-  //       setIsLoggedIn(response.data.isLoggedIn);
-  //     } catch (error) {
-  //       // 에러 처리
-  //       console.error("로그인 상태 확인 중 에러 발생:", error);
-  //     }
-  //   };
+    //     // 서버 응답 데이터에서 로그인 상태를 가져와 업데이트
+    //     setIsLoggedIn(response.data.isLoggedIn);
+    //   } catch (error) {
+    //     // 에러 처리
+    //     console.error("로그인 상태 확인 중 에러 발생:", error);
+    //   }
+    // };
 
-  //   // 초기 로딩 시에 서버에서 로그인 상태 확인
-  //   checkLoginStatus();
-  // }, []);
+    // // 초기 로딩 시에 서버에서 로그인 상태 확인
+    // checkLoginStatus();
+    setIsLoggedIn(false); //false-로그아웃, ture-로그인
+  }, []);
 
   return (
     <div>
