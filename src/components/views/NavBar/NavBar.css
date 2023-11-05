@@ -6,7 +6,19 @@
   right: 0;
   height: 4.625rem; /*60px*/
   background-color: #d82356;
+  z-index: 100;
+  -webkit-tap-highlight-color: transparent; /*모바일 크롬 브라우저에서 클릭시 하이라이트 제거*/
+}
+
+.bottom_navbar_2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6rem; /*60px*/
+  background-color: #00000000;
   z-index: 3;
+
   -webkit-tap-highlight-color: transparent; /*모바일 크롬 브라우저에서 클릭시 하이라이트 제거*/
 }
 
@@ -14,20 +26,24 @@ nav {
   overflow: hidden;
 }
 
-.nav-item {
-  margin-bottom: 0.25rem;
-}
+.link-instead {
+  position: relative;
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 0px 0px;
 
-.nav-item-home {
-  color: #d82356;
-  margin-top: -1.6rem;
+  /*세로 길이 설정*/
+  margin-top: 0.6875rem;
   font-size: 0.625rem;
   text-decoration: none;
+
+  font-family: "Regular";
+}
+.nav-link img[alt="HomeIcon"] {
+  margin-top: -0.7rem;
 }
 
-.nav-link img[alt="HomeIcon"] {
-  margin-top: -1rem; /* -1.3125rem; */
-}
 /* nav태그 아래의 div태그들을 수평정렬 및 세로길이 설정 */
 .nav-link {
   /* 수평정렬, 5개 버튼 20% width 만큼 할당*/
@@ -42,12 +58,25 @@ nav {
   font-size: 0.625rem;
   text-decoration: none;
   color: #fff;
+  font-family: "Regular";
 }
 
-.nav-color:active {
-  border-radius: 100%;
-  background-color: #f1f3f5;
-  margin: auto;
-  width: 70%;
-  height: 100%;
+.nav-item-home {
+  color: black;
+  font-size: 0.625rem;
+  font-weight: 400;
+  margin-top: 10rem;
+  font-family: "Regular";
+}
+
+.nav-item-home2 {
+  color: black;
+  font-size: 0.625rem;
+  font-weight: 400;
+  font-family: "Regular";
+  margin-top: -1.3125rem;
+}
+
+.nav-item-text {
+  padding: 0.25rem;
 }

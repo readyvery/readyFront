@@ -1,0 +1,140 @@
+.homepage-div {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* 바로 주문 */
+
+.quick-order {
+  height: 8.375rem;
+  padding-left: 1.5625rem;
+}
+
+.quick-order-text {
+  /* 글자 */
+  font-family: "Bold";
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding-top: 1rem;
+}
+
+.quick-order-list {
+  display: flex;
+  height: 5.75rem;
+  flex-direction: row;
+}
+
+/* 바로주문 - 로그인 되어 있을 때*/
+.login-box {
+  display: flex;
+  flex-direction: column;
+
+  width: 10.375rem;
+
+  padding-top: 0.95rem;
+  margin-right: 0.69rem;
+  text-decoration: none;
+  color: black; /* 글자색 */
+  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 0.5rem;
+}
+.quick-order-item {
+  flex-direction: row;
+  height: 2.1875rem;
+}
+
+.item-name {
+  padding-left: 0.87rem;
+
+  color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.item-address {
+  padding-left: 0.87rem;
+  padding-top: 0.66rem;
+
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+
+.item-detail {
+  padding-left: 0.87rem;
+
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+
+/* 바로주문 - 로그인 안 되어 있을 때*/
+.not-login-box {
+  display: flex; /* Flexbox를 사용해 가로 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  width: 21.5625rem;
+  height: 5.75rem;
+
+  text-decoration: none;
+  color: black; /* 글자색 */
+  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 0.5rem;
+}
+
+.profile-icon {
+  margin-left: 1.19rem;
+}
+
+.not-loggedIn {
+  margin-left: 0.87rem;
+  font-size: 1.25rem;
+  font-family: "Bold";
+  font-weight: 600;
+}
+
+/* event */
+
+.event {
+  height: 7.375rem;
+  padding-left: 1.5rem;
+  padding-top: 0.6875rem;
+}
+
+/* very pick */
+
+.very-pick {
+  padding-left: 1.5625rem;
+  padding-bottom: 4.625rem;
+}
+
+.very-pick-text {
+  height: 2.1875rem;
+
+  /* 글자 */
+  font-family: "Bold";
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.very-pick-item {
+  height: 13.0625rem;
+  text-decoration: none;
+}
+
+.pick-name {
+  font-size: 1.0625rem;
+  font-family: "Medium";
+  font-weight: 500;
+  color: black;
+}
+
+.pick-address {
+  margin-top: 0;
+  font-size: 0.75rem;
+  font-family: "Regular";
+  font-weight: 40;
+  color: #838383;
+}
