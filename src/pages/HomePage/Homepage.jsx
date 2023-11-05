@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import cardi_cafe from "../../assets/images/cafe1.svg";
 import milda_cafe from "../../assets/images/cafe2.svg";
@@ -12,11 +11,12 @@ import "./Homepage.css";
 
 function Homepage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [quickOrderItems, setQuickOrderItems] = useState([
-    { id: 1, name: "커피파로스" },
-    { id: 2, name: "오르다" },
-    // 추가 아이템들
-  ]);
+  // const [quickOrderItems, setQuickOrderItems] = useState([
+  //   { id: 1, name: "커피파로스" },
+  //   { id: 2, name: "오르다" },
+  //   // 추가 아이템들
+  // ]);
+
   let eventCase = {
     event1: {
       img: event_icon,
@@ -66,40 +66,40 @@ function Homepage() {
     },
   ];
 
-  useEffect(() => {
-    // Axios를 사용하여 Quick Order 목록을 가져오는 부분
-    if (isLoggedIn) {
-      axios
-        .get("") /* http://localhost:8080/ */
-        .then((response) => {
-          // 데이터 가져오기 성공 시, Quick Order 목록 업데이트
-          setQuickOrderItems(response.data);
-        })
-        .catch((error) => {
-          // 에러 처리
-          console.error("Quick Order 목록을 가져오는 중 에러 발생:", error);
-        });
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   // Axios를 사용하여 Quick Order 목록을 가져오는 부분
+  //   if (isLoggedIn) {
+  //     axios
+  //       .get("") /* http://localhost:8080/ */
+  //       .then((response) => {
+  //         // 데이터 가져오기 성공 시, Quick Order 목록 업데이트
+  //         setQuickOrderItems(response.data);
+  //       })
+  //       .catch((error) => {
+  //         // 에러 처리
+  //         console.error("Quick Order 목록을 가져오는 중 에러 발생:", error);
+  //       });
+  //   }
+  // }, [isLoggedIn]);
 
-  useEffect(() => {
-    // 서버에서 로그인 상태를 확인하는 비동기 함수
-    const checkLoginStatus = async () => {
-      try {
-        // axios를 사용하여 서버로 HTTP GET 요청 보내기
-        const response = await axios.get(""); /* http://localhost:8080/ */
+  // useEffect(() => {
+  //   // 서버에서 로그인 상태를 확인하는 비동기 함수
+  //   const checkLoginStatus = async () => {
+  //     try {
+  //       // axios를 사용하여 서버로 HTTP GET 요청 보내기
+  //       const response = await axios.get(""); /* http://localhost:8080/ */
 
-        // 서버 응답 데이터에서 로그인 상태를 가져와 업데이트
-        setIsLoggedIn(response.data.isLoggedIn);
-      } catch (error) {
-        // 에러 처리
-        console.error("로그인 상태 확인 중 에러 발생:", error);
-      }
-    };
+  //       // 서버 응답 데이터에서 로그인 상태를 가져와 업데이트
+  //       setIsLoggedIn(response.data.isLoggedIn);
+  //     } catch (error) {
+  //       // 에러 처리
+  //       console.error("로그인 상태 확인 중 에러 발생:", error);
+  //     }
+  //   };
 
-    // 초기 로딩 시에 서버에서 로그인 상태 확인
-    checkLoginStatus();
-  }, []);
+  //   // 초기 로딩 시에 서버에서 로그인 상태 확인
+  //   checkLoginStatus();
+  // }, []);
 
   return (
     <div>
