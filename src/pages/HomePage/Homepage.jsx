@@ -160,7 +160,7 @@ function Homepage() {
           <div className="very-pick-list">
             <div className="very-pick-items">
               {dummyVeryPickItems.map((item) => (
-                <Link to="/cafeDetail" className="very-pick-item">
+                <Link to="/storeDetail" className="very-pick-item">
                   <React.Fragment>
                     <div className="pick-name">{item.name}</div>
                     <div className="pick-address">{item.address}</div>
