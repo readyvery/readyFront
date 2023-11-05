@@ -1,12 +1,9 @@
 import caffeeBanner from "../../assets/images/caffee_banner.svg";
-import Header from "../../components/views/Header/Header";
-import NavBar from "../../components/views/NavBar/NavBar";
 import "./style.css";
 
 const StoreDetailPage = () => {
   return (
     <div className="store-detail-page">
-      <Header />
       <div className="store-detail-page__banner">
         <img
           className="store-detail-page__bannerImg"
@@ -50,7 +47,6 @@ const StoreDetailPage = () => {
           </text>
         </div>
       </div>
-      <NavBar />
     </div>
   );
 };
