@@ -41,10 +41,11 @@ const StoreDetailPage = () => {
     { name: "자바 칩 크림 프라푸치노", price: "5,500원" },
   ];
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(menuCategoryItem[0]);
 
   return (
     <div className="store-detail-page">
+      <Header />
       <div className="store-detail-page__banner">
         <img
           className="store-detail-page__bannerImg"
