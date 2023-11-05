@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -12,7 +11,6 @@
 /* iphone 14 Pro */
 @media only screen and (max-width: 400px) {
   .App {
-    text-align: center;
     max-width: 390px;
     height: 94vh;
     background-color: white;
@@ -22,6 +20,11 @@
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
+  .bottom_navbar2 {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
+  }
+
   .top_header {
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
@@ -30,13 +33,17 @@
 
 @media (min-width: 800px) {
   .App {
-    text-align: center;
     width: 600px;
     height: 94vh;
     background-color: white;
     padding-top: 2.75rem;
   }
   .bottom_navbar {
+    left: calc(50% - 300px); /* Center the navbar */
+    right: calc(50% - 300px); /* Center the navbar */
+  }
+
+  .bottom_navbor2 {
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
   }
