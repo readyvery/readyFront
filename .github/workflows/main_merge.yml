@@ -69,5 +69,6 @@ jobs:
             (github.actor == '1223v' && '<@368775981667844098>') ||
             (github.actor == 'imi21123' && '<@999337351799128115>') ||
             (github.actor == 'marina-yhm' && '<@946431150614794240>') ||
-            (github.actor == 'hhhhyelim' && '<@1076887091427946496>') }}
+            (github.actor == 'hhhhyelim' && '<@1076887091427946496>') ||
+            (github.actor == 'hhbb0081' && '<@739857755271200892>') }}
         if: always()
