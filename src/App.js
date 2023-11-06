@@ -3,6 +3,7 @@ import HomePage from "../src/pages/HomePage/Homepage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
+import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 
 function App() {
   return (
@@ -24,8 +25,10 @@ function App() {
         <Route path="/login" element={<TestPage />} />
         {/* 테스트 페이지 - 이벤트*/}
         <Route path="/event" element={<TestPage />} />
-        {/* 테스트 페이지 - 각 카페 디테일*/}
+        {/* 카페 상세 페이지*/}
         <Route path="/storeDetail" element={<StoreDetailPage />} />
+        {/* 포장 여부 선택 페이지 */}
+        <Route path="/packagingStatus" element={<PackagingStatusPage />} />
       </Routes>
     </div>
   );
