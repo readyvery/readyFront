@@ -7,7 +7,6 @@ import "./style.css";
 import { Link, useLocation } from "react-router-dom";
 
 const PackagingStatusPage = () => {
-  const takeoutStatus = "";
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
