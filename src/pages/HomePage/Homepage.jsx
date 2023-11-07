@@ -19,11 +19,13 @@ function Homepage() {
 
   let eventCase = {
     event1: {
-      img: event_icon,
+      idx: 1,
+      imgUrl: event_icon,
       title: "inviteCoupon",
     },
     event2: {
-      img: "이미지2의 URL",
+      idx: 2,
+      imgUrl: "이미지2의 URL",
     },
     // 다른 이벤트들...
   };
@@ -99,83 +101,95 @@ function Homepage() {
 
     // // 초기 로딩 시에 서버에서 로그인 상태 확인
     // checkLoginStatus();
-    setIsLoggedIn(false); //false-로그아웃, ture-로그인
+    setIsLoggedIn(true); //false-로그아웃, ture-로그인
   }, []);
 
   return (
-    <div>
+    <div className="homepage">
       <Header />
 
-      {/* 바로주문 div / url : /quickorder */}
-      <div className="homepage-div">
-        <div className="quick-order">
-          <div className="quick-order-text">바로 주문</div>
-          <div className="quick-order-list">
-            {isLoggedIn ? (
-              // 로그인한 경우 Quick Order 목록을 렌더링
-              // quickOrderItems.map((item) => (
-              //   <React.Fragment key={item.id} className="quick-order-item">
-              //     <div className="item-name">{item.name}</div>
-              //     <div className="item-address">{item.address}</div>
-              //     <div className="item-detail">{item.detail}</div>
-              //   </React.Fragment>
-              // ))
-              dummyQuickOrderItems.map((item) => (
-                <Link to="/ready" className="login-box">
-                  <React.Fragment key={item.id} className="quick-order-item">
-                    <div className="item-name">{item.name}</div>
-                    <div className="item-address">{item.address}</div>
-                    <div className="item-detail">{item.detail}</div>
-                  </React.Fragment>
-                </Link>
-              ))
-            ) : (
-              // 로그인하지 않은 경우 다른 내용을 렌더링
-              <Link to="/login" className="not-login-box">
-                <img
-                  src={profile_icon}
-                  alt="SearchIcon"
-                  className="profile-icon"
-                />
-                <div className="not-loggedIn">로그인하고 시작하기</div>
+      <div className="quick-order">
+        <div className="quick-order-text">바로 주문</div>
+        <div className="quick-order-list">
+          {isLoggedIn ? (
+            // 로그인한 경우 Quick Order 목록을 렌더링
+            // quickOrderItems.map((item) => (
+            //   <React.Fragment key={item.id} className="quick-order-item">
+            //     <div className="item-name">{item.name}</div>
+            //     <div className="item-address">{item.address}</div>
+            //     <div className="item-detail">{item.detail}</div>
+            //   </React.Fragment>
+            // ))
+            dummyQuickOrderItems.map((item) => (
+              <Link to="/ready" className="login-box">
+                <React.Fragment key={item.id} className="quick-order-item">
+                  <div className="item-name">{item.name}</div>
+                  <div className="item-address">{item.address}</div>
+                  <div className="item-detail">{item.detail}</div>
+                </React.Fragment>
               </Link>
-            )}
-          </div>
+            ))
+          ) : (
+            // 로그인하지 않은 경우 다른 내용을 렌더링
+            <Link to="/login" className="not-login-box">
+              <img
+                src={profile_icon}
+                alt="ProfileIcon"
+                className="profile-icon"
+              />
+              <div className="not-loggedIn">로그인하고 시작하기</div>
+            </Link>
+          )}
         </div>
+      </div>
 
-        {/* 이벤트 div */}
-        <div className="event">
-          <Link to="/event" className="event-item">
-            <img
-              src={eventCase.event1.img}
-              alt={eventCase.event1.title}
-              className="event-icon"
-            />
-          </Link>
-        </div>
+      {/* 이벤트 div */}
+      <div className="event">
+        <Link to="/event" className="event-link">
+          <img
+            src={eventCase.event1.imgUrl}
+            alt={eventCase.event1.title}
+            className="event-icon"
+          />
+        </Link>
+      </div>
 
-        {/* 베리pick div */}
-        <div className="very-pick">
-          <div className="very-pick-text">베리 PICK</div>
-          <div className="very-pick-list">
-            <div className="very-pick-items">
-              {dummyVeryPickItems.map((item) => (
-                <Link to="/storeDetail" className="very-pick-item">
-                  <React.Fragment>
-                    <div className="pick-name">{item.name}</div>
-                    <div className="pick-address">{item.address}</div>
-                    <img
-                      src={item.img}
-                      alt="veryPickimg"
-                      className="pick-detail"
-                    />
-                  </React.Fragment>
-                </Link>
-              ))}
-            </div>
+      {/* 베리pick div */}
+      <div className="very-pick">
+        <div className="very-pick-text">베리 PICK</div>
+        <div className="very-pick-list">
+          <div className="very-pick-items">
+            {dummyVeryPickItems.map((item) => (
+              <Link to="/storeDetail" className="very-pick-item">
+                <React.Fragment>
+                  <div className="pick-name">{item.name}</div>
+                  <div className="pick-address">{item.address}</div>
+                  <img
+                    src={item.img}
+                    alt="veryPickimg"
+                    className="pick-detail"
+                  />
+                </React.Fragment>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
+      {/* 사업자 정보 */}
+      <div className="business-info">
+        <div className="business-name">ReadyVery</div>
+        <div className="business-list">
+          <div>상호명: 레디베리</div>
+          <div>사업자등록번호: 738-32-01406</div>
+          <div>대표: 오남택 &nbsp;|&nbsp; 고객센터: 010-9295-5340</div>
+          <div>
+            주소: 서울특별시 서대문구 세검정로1길 95, 115동 203호(홍은동,
+            벽산아파트)
+          </div>
+          <div>E-Mail: ohnt0307@gmail.com</div>
+        </div>
+      </div>
+
       <NavBar2 />
       <NavBar />
     </div>
