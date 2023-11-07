@@ -1,0 +1,182 @@
+.mypage-div {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.mypage-profile-head {
+  width: 90%;
+  height: 13%;
+  margin: 0 auto;
+  border-bottom: 10px solid #f3f3f3;
+}
+
+.mypage-profile-list {
+  margin-top: 1rem;
+  height: 100%;
+}
+/* 로그인 한 경우 */
+.login-box2 {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex; /* Flexbox를 사용해 가로 정렬 */
+  align-items: center;
+}
+
+.profile-icon2 {
+  margin: 0 5%;
+}
+
+.profile-name {
+  width: 20%;
+  margin: 0 1%;
+  font-size: 1.25rem;
+  font-family: "Bold";
+}
+
+.profile-detailBtn {
+  width: 20%;
+  margin: 0 18%;
+  border: 1px solid #838383;
+  border-radius: 2rem;
+  font-size: 0.8125rem;
+  font-family: "ExtraLight";
+  color: #838383;
+  padding: 0 1px;
+}
+
+/* 로그인하지 않은 경우 */
+.not-login-box2 {
+  width: 100%;
+  height: 100%;
+  display: flex; /* Flexbox를 사용해 가로 정렬 */
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.not-loggedIn2 {
+  margin: 0 0.87rem 0 0.87rem;
+  font-size: 1.25rem;
+  font-family: "Bold";
+}
+
+/* 주문 및 결제 */
+.mypage-order {
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 10px solid #f3f3f3;
+}
+
+.mypage-order-text {
+  margin: 1rem 0;
+  width: 100%;
+  font-family: "ExtraLight";
+  font-size: 0.9375rem;
+  color: #4f4f4f;
+}
+
+.mypage-order-list-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-order-list {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
+
+.mypage-order-type-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-order-type {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
+
+.mypage-order-coupon-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-order-coupon {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
+
+/* 문의 및 알림 */
+.mypage-etc {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.mypage-etc-text {
+  margin: 1rem 0;
+  width: 100%;
+  font-family: "ExtraLight";
+  font-size: 0.9375rem;
+  color: #4f4f4f;
+}
+
+.mypage-etc-event-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-etc-event {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
+
+.mypage-etc-policy-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-etc-policy {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
+
+.mypage-etc-sos-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-etc-sos {
+  width: 70%;
+  height: 100%;
+  margin: 3% auto;
+  font-family: "Light";
+  font-size: 1.125rem;
+}
