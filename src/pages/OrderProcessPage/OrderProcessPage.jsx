@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { useState } from "react";
+import React from "react";
 import Header from "../../components/views/Header/Header";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 
