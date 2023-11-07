@@ -25,7 +25,10 @@ const PackagingStatusPage = () => {
         alt="promotion"
       />
 
-      <Link to={`/storeDetail?storeId=${storeId}&inout=2`}>
+      <Link
+        to={`/storeDetail?storeId=${storeId}&inout=2`}
+        style={{ textDecoration: "none" }}
+      >
         <div className="packaging-status-page__btn">
           <img
             className="packaging-status-page__btn__img"
@@ -36,7 +39,10 @@ const PackagingStatusPage = () => {
         </div>
       </Link>
 
-      <Link to={`/storeDetail?storeId=${storeId}&inout=1`}>
+      <Link
+        to={`/storeDetail?storeId=${storeId}&inout=1`}
+        style={{ textDecoration: "none" }}
+      >
         <div className="packaging-status-page__btn">
           <img
             className="packaging-status-page__btn__img"
