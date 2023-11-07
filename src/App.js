@@ -4,6 +4,7 @@ import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
+import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 
 function App() {
   return (
@@ -26,9 +27,11 @@ function App() {
         {/* 테스트 페이지 - 이벤트*/}
         <Route path="/event" element={<TestPage />} />
         {/* 카페 상세 페이지*/}
-        <Route path="/storeDetail" element={<StoreDetailPage />} />
+        <Route path="/store" element={<StoreDetailPage />} />
         {/* 포장 여부 선택 페이지 */}
         <Route path="/packagingStatus" element={<PackagingStatusPage />} />
+        {/* 주문 과정 페이지 */}
+        <Route path="/order" element={<OrderProcessPage />} />
       </Routes>
     </div>
   );
