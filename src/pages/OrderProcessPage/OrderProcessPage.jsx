@@ -50,11 +50,11 @@ const OrderProcessPage = () => {
     ],
   };
 
-  const [isToggled, setIsToggled] = useState(false);
+  //   const [isToggled, setIsToggled] = useState(false);
 
-  const toggle = () => {
-    setIsToggled(!isToggled);
-  };
+  //   const toggle = () => {
+  //     setIsToggled(!isToggled);
+  //   };
 
   return (
     <div>
