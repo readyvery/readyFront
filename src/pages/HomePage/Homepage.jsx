@@ -123,10 +123,12 @@ function Homepage() {
             // ))
             dummyQuickOrderItems.map((item) => (
               <Link to="/ready" className="login-box">
-                <React.Fragment key={item.id} className="quick-order-item">
-                  <div className="item-name">{item.name}</div>
-                  <div className="item-address">{item.address}</div>
-                  <div className="item-detail">{item.detail}</div>
+                <React.Fragment key={item.id}>
+                  <div className="quick-order-item">
+                    <div className="item-name">{item.name}</div>
+                    <div className="item-address">{item.address}</div>
+                    <div className="item-detail">{item.detail}</div>
+                  </div>
                 </React.Fragment>
               </Link>
             ))
