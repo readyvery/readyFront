@@ -11,6 +11,7 @@ import "./Homepage.css";
 
 function Homepage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   // const [quickOrderItems, setQuickOrderItems] = useState([
   //   { id: 1, name: "커피파로스" },
   //   { id: 2, name: "오르다" },
@@ -160,7 +161,10 @@ function Homepage() {
           <div className="very-pick-list">
             <div className="very-pick-items">
               {dummyVeryPickItems.map((item) => (
-                <Link to="/storeDetail" className="very-pick-item">
+                <Link
+                  to={`/packagingStatus?storeId=${item.id}`}
+                  className="very-pick-item"
+                >
                   <React.Fragment>
                     <div className="pick-name">{item.name}</div>
                     <div className="pick-address">{item.address}</div>
