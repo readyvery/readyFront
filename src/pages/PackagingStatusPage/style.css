@@ -42,6 +42,7 @@
   border: 1px solid #dadada;
   background: #fff;
   flex-direction: row;
+  text-decoration: none;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.44rem;
