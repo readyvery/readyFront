@@ -37,7 +37,7 @@ const NavBar = () => {
       </Link>
 
       <Link
-        to="/status"
+        to="/storage"
         className="nav-link"
         onClick={() => {
           setActiveNav(2);
