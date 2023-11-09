@@ -1,0 +1,66 @@
+
+.status-progressbar-wrapper{
+    margin: 12% 0 18% 0;
+}
+
+.progressbar-wrapper{
+    position: relative;
+}
+
+.status-progressbar{
+    display: flex;
+    flex-direction: row;
+    gap: calc((100% - 4.8rem) / 3);
+
+    width: 95%;
+    height: 1.2rem;
+    background-color: #FFE2ED;
+    border-radius: 0.8rem;
+    margin: 0 auto;
+
+}
+
+.status-progressbar-degree-wrapper{
+    width: 100%;
+    margin: 0 auto;
+
+    position: absolute;
+    top: 0;
+    left: calc((100% - 95%) / 2);
+    z-index: 1;
+}
+
+.status-progressbar-degree{
+    /* width: calc(100% * 0.1); */
+    height: 1.2rem;
+    background-color: #D82356;
+    border-radius: 0.8rem;
+    z-index: 101;
+}
+
+.status-progressbar-circle{
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: rgba(216, 35, 86, 0.2);
+    border-radius: 8.33rem;
+}
+
+.status-explain-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: calc((100% - 12.965rem) / 3);
+}
+
+.status-explain{
+    font-size: 0.9375rem;
+    color: #FFE2ED;
+    font-family: "bold";
+    flex-shrink: 0;
+}
+
+.status-explain.selected{
+    font-size: 0.9375rem;
+    color: #D82356;
+    font-family: "bold";
+    flex-shrink: 0;
+}
