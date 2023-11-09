@@ -31,6 +31,28 @@
   }
 }
 
+@media only screen and (min-width: 400px) and (max-width: 800px) {
+  .App {
+    max-width: 430px;
+    height: 94vh;
+    background-color: white;
+    padding-top: 2.75rem;
+  }
+  .bottom_navbar {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
+  }
+  .bottom_navbar2 {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
+  }
+
+  .top_header {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
+  }
+}
+
 @media (min-width: 800px) {
   .App {
     width: 600px;
@@ -87,4 +109,9 @@
 @font-face {
   font-family: "SemiBold";
   src: url("./assets/font/Pretendard-SemiBold.otf");
+}
+
+@font-face {
+  font-family: "KBold";
+  src: url("./assets/font/Kotrahope-Bold.otf");
 }
