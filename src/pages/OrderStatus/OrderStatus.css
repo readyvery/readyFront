@@ -1,0 +1,299 @@
+.status-container{
+    width: 100%;
+    height: 94vh;
+    /* box-sizing: border-box; */
+    /* overflow: hidden; */
+}
+
+.status-nav-bar__wrapper{
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.status-nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 90%;
+    margin: 0 auto;
+}
+
+.status-time-wrapper{
+    position: absolute;
+    top: 2.125rem;
+    right: calc(5% + 6.3125rem * 0.16);
+    /* width: 6.3125rem; */
+    height: 1.5rem;
+}
+
+.status-time{
+    display: flex;
+    border: 1.5px solid #d82356;
+    border-radius: 1.25rem;
+    width: 100%;
+    padding: 5% 8%;
+
+    font-size: 0.625rem;
+    font-family: "Bold";
+}
+
+.status-time span{
+    text-align: center;
+    line-height: 1.0625rem;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.status-time-img__wrapper{
+    display: flex;
+    align-items: center;
+    margin-right: 3%;
+}
+
+.status-main-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 90%;
+    height: 93%;
+    margin: 0 auto;
+}
+
+.status-top-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 40%;
+}
+
+.status-top-wrapper.space{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: calc(40% + 1.25rem);
+}
+
+.status-title-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 60%;
+}
+
+.status-number-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 60%;
+    margin: 0 auto;
+}
+
+.logo-img-wrapper{}
+
+.logo-img-wrapper.center{
+    text-align: center;
+}
+
+.logo-img{
+    width: 2.875rem;
+    height: 2.875rem;
+    margin: 0 auto;
+}
+
+
+.status-title{
+    color: #4f4f4f;
+    font-size: 1.875rem;
+    font-family: "bold";
+}
+
+.status-number{
+    color: #4f4f4f;
+    font-size: 3.125rem;
+    font-family: "bold";
+    margin: 0 auto;
+}
+
+/* 진행바 */
+.status-progressbar-wrapper{
+    margin: 12% 0 18% 0;
+}
+
+.progressbar-wrapper{
+    position: relative;
+    height: 40%;
+}
+
+.status-progressbar{
+    display: flex;
+    flex-direction: row;
+    gap: calc((100% - 4.8rem) / 3);
+
+    width: 95%;
+    height: 1.2rem;
+    background-color: #FFE2ED;
+    border-radius: 0.8rem;
+    margin: 0 auto;
+
+}
+
+.status-progressbar-degree-wrapper{
+    width: 100%;
+    margin: 0 auto;
+
+    position: absolute;
+    top: 0;
+    left: calc((100% - 95%) / 2);
+    z-index: 1;
+}
+
+.status-progressbar-degree{
+    width: calc(100% * 0.1);
+    height: 1.2rem;
+    background-color: #D82356;
+    border-radius: 0.8rem;
+    z-index: 101;
+}
+
+.status-progressbar-circle{
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: rgba(216, 35, 86, 0.2);
+    border-radius: 8.33rem;
+}
+
+.status-explain-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: calc((100% - 12.965rem) / 3);
+}
+
+.status-explain{
+    font-size: 0.9375rem;
+    color: #D82356;
+    font-family: "bold";
+    flex-shrink: 0;
+}
+
+/* 주문 매장, 내역 */
+.status-content-container{
+    width: 95%;
+    height: 60%;
+    margin: 0 auto;
+}
+
+.status-content-wrapper{
+    display: flex;
+    flex-direction: row;
+    /* padding: 0.5rem 0; */
+    height: 2.125rem;
+    line-height: 2.125rem;
+}
+
+.status-content-subtitle{
+    color: #000;
+    font-size: 0.8125rem;
+    font-family: "bold";
+    width: 27%;
+}
+
+.status-content{
+    display: flex;
+    flex-direction: row;
+
+    color: #838383;
+    font-size: 0.9375rem;
+    font-family: "bold";
+    width: 63%;
+}
+
+.status-detail{
+    font-size: 0.625rem;
+    font-family: "medium";
+    border-radius: 0.625rem;
+    border: 1px solid #838383;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin: calc((1.5em - 2px) / 2) 0.9375rem;;
+    padding: 1% 4%;
+}
+
+/* 주문 취소 */
+.btn-wrapper{
+    width: 30%;
+    /* height: 5%; */
+    text-align: center;
+    margin: 0 auto;
+}
+
+.cancle-btn{
+    color: #838383;
+    border: 1px solid #dadada;
+    border-radius: 0.625rem;
+    padding: 3% 5%;
+}
+
+/* 주문 완료 */
+.compelete-wrapper{
+    height: 50%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+.compelete-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 17.5625rem;
+    height: 14.125rem;
+    background-color: #e6e6e6;
+    margin: 0 auto;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.25);
+}
+
+.compelete-text{
+    font-size: 1.875rem;
+    font-family: "KBold";
+    color: #4f4f4f;
+    text-align: center;
+}
+
+.compelete-img-gradation{
+    /* width: 17.5625rem;
+    height: 0.9375rem; */
+    width: 300px;
+    height: 25px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    /* background: radial-gradient(circle, rgba(58, 58, 58, 0), rgba(58, 58, 58, 0.3)); */
+    /* backdrop-filter: blur(50px);  */
+    /* -webkit-backdrop-filter: blur(50px); */
+    margin: 0 auto;
+
+    position: absolute;
+    top: 14.125rem;
+    
+} 
+
+.compelete-btn{
+    width: 21.5625rem;
+    height: 2.6875rem;
+    line-height: 2.6875rem;
+    background-color: #D82356;
+    color: #fff;
+    border-radius: 0.9375rem;
+    text-align: center;
+    font-size: 1.5625rem;
+    font-family: "SemiBold";
+}
