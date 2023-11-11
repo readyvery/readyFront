@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./OrderStorage.css";
 
-import Header from "../../components/views/Header/Header";
+import Header from "../../components/views/Header/Header2";
 import StateBox from "../../components/views/StateBox/StateBox";
 
 import empty from "../../assets/images/storage_empty.svg";
@@ -41,13 +41,11 @@ function OrderStatus () {
         }
     ];
 
-    // const state = ["취소완료", "진행중", "취소완료"];
-
     // const storageList = [];
 
     return(
         <section className="main-container">
-            <Header />
+            <Header pageName={"주문내역"} isClose={false}/>
             <main className="content-container">
                 {storageList.length ? (
                     storageList.map((e) => (
@@ -65,7 +63,7 @@ function OrderStatus () {
                         <div className="empty-img-wrapper">
                             <img src={empty} className="empty-img" alt={empty}/>
                         </div>
-                        <div className="empty-text">주문 내역이 없습니다</div>
+                        <span className="empty-text">주문 내역이 없습니다</span>
                     </div>
                 )}
                 

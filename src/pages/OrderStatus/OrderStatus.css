@@ -5,6 +5,13 @@
     /* overflow: hidden; */
 }
 
+.status-nav-bar__wrapper{
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
 .status-nav-bar{
     display: flex;
     flex-direction: row;
@@ -14,13 +21,45 @@
     margin: 0 auto;
 }
 
+.status-time-wrapper{
+    position: absolute;
+    top: 2.125rem;
+    right: calc(5% + 6.3125rem * 0.16);
+    /* width: 6.3125rem; */
+    height: 1.5rem;
+}
+
+.status-time{
+    display: flex;
+    border: 1.5px solid #d82356;
+    border-radius: 1.25rem;
+    width: 100%;
+    padding: 5% 8%;
+
+    font-size: 0.625rem;
+    font-family: "Bold";
+}
+
+.status-time span{
+    text-align: center;
+    line-height: 1.0625rem;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.status-time-img__wrapper{
+    display: flex;
+    align-items: center;
+    margin-right: 3%;
+}
+
 .status-main-wrapper{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     width: 90%;
-    height: 95%;
+    height: 93%;
     margin: 0 auto;
 }
 
@@ -37,7 +76,7 @@
     flex-direction: column;
     justify-content: center;
 
-    height: 40%;
+    height: calc(40% + 1.25rem);
 }
 
 .status-title-wrapper{
@@ -221,6 +260,7 @@
     height: 14.125rem;
     background-color: #e6e6e6;
     margin: 0 auto;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.25);
 }
 
 .compelete-text{
@@ -231,17 +271,20 @@
 }
 
 .compelete-img-gradation{
-    width: 17.5625rem;
-    height: 0.9375rem;
-    background: radial-gradient(circle, rgba(58, 58, 58, 0), rgba(58, 58, 58, 0.3));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* width: 17.5625rem;
+    height: 0.9375rem; */
+    width: 300px;
+    height: 25px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    /* background: radial-gradient(circle, rgba(58, 58, 58, 0), rgba(58, 58, 58, 0.3)); */
+    /* backdrop-filter: blur(50px);  */
+    /* -webkit-backdrop-filter: blur(50px); */
     margin: 0 auto;
 
     position: absolute;
     top: 14.125rem;
     
-}
+} 
 
 .compelete-btn{
     width: 21.5625rem;

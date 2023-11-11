@@ -8,10 +8,10 @@ const Progressbar = ({degree}) => {
         <div className="status-progressbar-wrapper">
             <div className="progressbar-wrapper">
                 <div className="status-progressbar">
-                    <div className="status-progressbar-circle"></div>
-                    <div className="status-progressbar-circle"></div>
-                    <div className="status-progressbar-circle"></div>
-                    <div className="status-progressbar-circle"></div>
+                    <span className="status-progressbar-circle"></span>
+                    <span className="status-progressbar-circle"></span>
+                    <span className="status-progressbar-circle"></span>
+                    <span className="status-progressbar-circle"></span>
                 </div>
                 <div className="status-progressbar-degree-wrapper">
                     <div className="status-progressbar-degree" style={{ width: `calc(95% * ${percent[degree]})`}}></div>
