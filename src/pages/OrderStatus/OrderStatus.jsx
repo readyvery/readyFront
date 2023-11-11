@@ -11,12 +11,14 @@ import Progressbar from "../../components/views/ProgressBar/ProgressBar";
 function OrderStatus (){
     const [degree, setDegree] = useState(0);
     
+    const refreshDegree = () => setDegree((prev) => (prev !== 3 ? prev + 1 : 0));
+
     return(
         <section className="status-container">
             <div className="status-nav-bar__wrapper">
                 <div className="status-nav-bar">
                     <Link to="/storage"><img src={close} className="close-btn" alt={close}/></Link>
-                    <img src={refresh} className="refresh-btn" alt={refresh}/>
+                    <img src={refresh} className="refresh-btn" alt={refresh} onClick={refreshDegree}/>
                 </div>
                 <div className="status-time-wrapper">
                     <div className="status-time">
