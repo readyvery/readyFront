@@ -19,10 +19,10 @@
     display: flex;
     flex-direction: row;
 
-    width: 95%;
+    /* width: calc(100% - 3rem); */
+    width: 94%;
     height: 2rem;
     margin: 0 auto;
-    /* margin: 1% auto 0 auto; */
     
     justify-content: space-between;
 }
@@ -58,7 +58,8 @@
     display: flex;
     flex-direction: row;
 
-    width: 95%;
+    /* width: calc(100% - 3rem); */
+    width: 94%;
     height: 70%;
     margin: 0 auto;
 }
