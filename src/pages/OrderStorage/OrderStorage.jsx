@@ -49,7 +49,7 @@ function OrderStatus () {
             <main className="content-container">
                 {storageList.length ? (
                     storageList.map((e) => (
-                    <Link to="/status">
+                    <Link to="/status" style={{ textDecoration: "none"}}>
                         <StateBox 
                             id={e.id}
                             date={e.date}

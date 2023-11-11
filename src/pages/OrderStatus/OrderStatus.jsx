@@ -17,17 +17,19 @@ function OrderStatus (){
         <section className="status-container">
             <div className="status-nav-bar__wrapper">
                 <div className="status-nav-bar">
-                    <Link to="/storage"><img src={close} className="close-btn" alt={close}/></Link>
+                    <Link to="/storage" style={{ textDecoration: "none"}}><img src={close} className="close-btn" alt={close}/></Link>
                     <img src={refresh} className="refresh-btn" alt={refresh} onClick={refreshDegree}/>
                 </div>
-                <div className="status-time-wrapper">
-                    <div className="status-time">
-                        <div className="status-time-img__wrapper">
-                            <img src={clock} alt={clock}/>
+                {degree !== 0 && (
+                    <div className="status-time-wrapper">
+                        <div className="status-time">
+                            <div className="status-time-img__wrapper">
+                                <img src={clock} alt={clock}/>
+                            </div>
+                            <span><span style={{'color' : "#D82356"}}>2분 후</span> 수령 가능!</span>
                         </div>
-                        <span><span style={{'color' : "#D82356"}}>2분 후</span> 수령 가능!</span>
                     </div>
-                </div>
+                )}
             </div>
             <div className="status-main-wrapper">
                 {degree === 0 ? (
@@ -66,7 +68,7 @@ function OrderStatus (){
                                 <div className="status-content">
                                     <span className="status-history">레몬에이드 외 3잔</span>
                                     <div className="status-detail">
-                                        <Link to="/">
+                                        <Link to="/" style={{ textDecoration: "none"}}>
                                             주문상세
                                         </Link>
                                     </div>
@@ -85,9 +87,8 @@ function OrderStatus (){
                         <div className="compelete-img">
                             <span className="compelete-text">"소중한 주문"</span>
                             <span className="compelete-text">감사합니다!</span>
-                            {/* <div className="compelete-img-gradation"></div> */}
                         </div>
-                        <div className="compelete-btn">확인</div>
+                        <Link to="/storage" style={{ textDecoration: "none"}}><div className="compelete-btn">확인</div></Link>
                     </div>
                 )}
             </div>
