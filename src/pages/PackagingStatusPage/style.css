@@ -1,0 +1,70 @@
+.packaging-status-page__title {
+  display: flex;
+  color: #000;
+  text-align: center;
+  font-family: "Bold";
+  font-size: 1.875rem;
+  line-height: 130%; /* 2.4375rem */
+  letter-spacing: -0.01875rem;
+  margin-top: 8.62rem;
+  margin-left: 1.69rem;
+  margin-right: 5.19rem;
+}
+
+.packaging-status-page__content__title {
+  display: flex;
+  color: #4f4f4f;
+  text-align: center;
+  font-family: "Semibold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  white-space: nowrap;
+  margin-top: 0.44rem;
+  margin-left: 1.69rem;
+  margin-right: 13.81rem;
+  margin-bottom: 2rem;
+}
+
+.packaging-status-page__promotion {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.packaging-status-page__btn {
+  display: flex;
+  width: 21.5625rem;
+  height: 3.0625rem;
+  flex-shrink: 0;
+  border-radius: 0.1875rem;
+  border: 1px solid #dadada;
+  background: #fff;
+  flex-direction: row;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.44rem;
+}
+
+.packaging-status-page__btn__img {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 1.44rem;
+  margin-right: 1.12rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.packaging-status-page__text {
+  color: #000;
+  text-align: center;
+  font-family: "Semibold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
