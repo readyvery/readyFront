@@ -1,0 +1,71 @@
+.myprofile-div {
+  width: 100%;
+  height: 100%;
+  background-color: #ffe2ed;
+}
+
+.myprofile-head {
+  width: 100%;
+  height: 18.9%;
+  margin: 0 auto;
+  display: flex; /* 내부 요소를 가로로 정렬하기 위한 Flexbox 사용 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+.myprofile-icon {
+  margin: 0 auto;
+}
+
+/* 프로필 내용 */
+.myprofile-list {
+  width: 100%;
+  height: 78%;
+  margin: 0 auto;
+  padding: 2rem 0 0 0;
+  border-radius: 1.875rem 1.875rem 0rem 0rem;
+  background-color: white;
+}
+
+.myprofile-text {
+  width: 90%;
+  font-size: 1.125rem;
+  font-family: "Bold";
+  margin: 0 2rem 2rem 2rem;
+}
+
+.myprofile-detail {
+  width: 100%;
+  font-size: 1.125rem;
+  font-family: "Regular";
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.detail-box {
+  width: 90%;
+  display: flex; /* 내부 요소를 가로로 배치 */
+  margin: 0.75rem 2rem; /* 위아래 간격을 조절 (원하는 간격으로 조절 가능) */
+}
+
+.detail-item-name {
+  width: 30%;
+}
+
+.detail-item {
+  width: 70%;
+  font-size: 0.9375rem;
+  font-family: "Light";
+  margin: 0 5rem;
+}
+
+.myprofile-bye {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #838383;
+  font-size: 0.9375rem;
+  font-family: "Regular";
+  margin-top: 97%;
+}

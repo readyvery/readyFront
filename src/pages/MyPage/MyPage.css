@@ -44,6 +44,7 @@
   font-family: "ExtraLight";
   color: #838383;
   padding: 0 1px;
+  text-decoration: none;
 }
 
 /* 로그인하지 않은 경우 */
