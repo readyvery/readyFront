@@ -23,6 +23,7 @@ jobs:
           echo "NODE_PATH=src/" >> .env
           echo "REACT_APP_API_ROOT=${{ secrets.TEST_REACT_APP_API_ROOT }}" >> .env
           echo "REACT_APP_HOME_URL=${{ secrets.TEST_REACT_APP_HOME_URL }}" >> .env
+          echo "REACT_APP_KAKAO_LOGIN=${{ secrets.TEST_REACT_APP_KAKAO_LOGIN }}" >> .env
 
       - name: cat env file
         run: cat .env
