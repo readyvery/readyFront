@@ -91,37 +91,52 @@
 
 @font-face {
   font-family: "Bold";
-  src: url("./assets/font/Pretendard-Bold.otf");
-}
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-Bold.woff2") format("woff2");
+unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
+  }
 
 @font-face {
   font-family: "ExtraBold";
-  src: url("./assets/font/Pretendard-ExtraBold.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-ExtraBold.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "ExtraLight";
-  src: url("./assets/font/Pretendard-ExtraLight.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-ExtraLight.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Light";
-  src: url("./assets/font/Pretendard-Light.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-Light.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Medium";
-  src: url("./assets/font/Pretendard-Medium.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-Medium.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Regular";
-  src: url("./assets/font/Pretendard-Regular.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "SemiBold";
-  src: url("./assets/font/Pretendard-SemiBold.otf");
+  font-display: swap;
+  src: local("Pretendard"),
+    url("./assets/font/Pretendard-SemiBold.woff2") format("woff2");
 }
 
 @font-face {
