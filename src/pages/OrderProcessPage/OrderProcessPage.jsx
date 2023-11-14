@@ -4,11 +4,19 @@ import Header from "../../components/views/Header/Header";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
+// import { Link, useLocation } from "react-router-dom";
 
 const OrderProcessPage = () => {
+  // const location = useLocation();
+  // const params = new URLSearchParams(location.search);
+  // const storeId = params.get("storeId");
+  // const inout = params.get("inout");
+  // const foodie_id = params.get("foodie_id");
+
   const foodOptionInfo = {
     name: "아메리카노",
     imgUrl: "adfs",
+    price: 3000,
     category: [
       [
         {
@@ -52,13 +60,15 @@ const OrderProcessPage = () => {
     ],
   };
 
-  let totalAmount = 0;
-
   const [activeToggles, setActiveToggles] = useState(
     foodOptionInfo.category[0].map(() => false)
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState(
     foodOptionInfo.category[0].map(() => "")
+  );
+  const [totalAmount, setTotalAmount] = useState(foodOptionInfo.price);
+  const [prevRadioPrice, setPrevRadioPrice] = useState(
+    foodOptionInfo.category[0].map(() => 0)
   );
 
   const handleToggle = (index) => {
@@ -69,11 +79,19 @@ const OrderProcessPage = () => {
     });
   };
 
-  const handleRadioChange = (index, text) => {
+  const handleRadioChange = (index, text, price) => {
     setSelectedRadioTexts((prevTexts) => {
       const texts = [...prevTexts];
       texts[index] = text;
       return texts;
+    });
+
+    setTotalAmount((prevAmount) => prevAmount - prevRadioPrice[index] + price);
+
+    setPrevRadioPrice((prevPrices) => {
+      const prices = [...prevPrices];
+      prices[index] = price;
+      return prices;
     });
   };
 
@@ -128,7 +146,10 @@ const OrderProcessPage = () => {
                       type="radio"
                       name={`radio_${index}`}
                       value={optionIndex}
-                      onChange={() => handleRadioChange(index, option.name)}
+                      checked={selectedRadioTexts[index] === option.name}
+                      onChange={() =>
+                        handleRadioChange(index, option.name, option.price)
+                      }
                     />
                     <label htmlFor={`radio_${index}_${optionIndex}`}>
                       {option.name}
@@ -148,7 +169,7 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      <div className="order-process-page__btn">주문하기</div>
+      <div className="order-process-page__btn">장바구니 담기</div>
     </div>
   );
 };
