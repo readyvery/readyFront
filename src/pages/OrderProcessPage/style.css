@@ -125,4 +125,13 @@
   background: #d82356;
   margin-left: auto;
   margin-right: auto;
+  color: #fff;
+  text-align: center;
+  font-family: "Bold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.38rem;
 }
