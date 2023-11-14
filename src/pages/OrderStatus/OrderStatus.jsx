@@ -68,7 +68,7 @@ function OrderStatus (){
                                 <div className="status-content">
                                     <span className="status-history">레몬에이드 외 3잔</span>
                                     <div className="status-detail">
-                                        <Link to="/" style={{ textDecoration: "none"}}>
+                                        <Link to="/orderDetail" style={{ textDecoration: "none"}}>
                                             주문상세
                                         </Link>
                                     </div>
