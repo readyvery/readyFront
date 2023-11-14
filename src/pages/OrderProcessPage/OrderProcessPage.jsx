@@ -4,7 +4,7 @@ import Header from "../../components/views/Header/Header";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const OrderProcessPage = () => {
   const location = useLocation();
