@@ -1,6 +1,7 @@
 .detail-container{
     width: 100%;
     height: 100%;
+    
 }
 
 .detail-content__wrapper{
@@ -9,7 +10,8 @@
     justify-content: flex-end;
 
     width: 100%;
-    height: 100%;
+    margin-top: 0.625rem;
+    /* height: 100%; */
 }
 
 .detail-content{
@@ -20,7 +22,7 @@
     box-shadow: 0 1px 12px rgba(0,0,0,0.25);
     border-radius: 1.875rem 1.875rem 0 0;
     padding: 1.9375rem 0;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .detail-content::-webkit-scrollbar {
