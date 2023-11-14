@@ -4,14 +4,14 @@ import Header from "../../components/views/Header/Header";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
-import { useLocation } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
 
 const OrderProcessPage = () => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const storeId = params.get("storeId");
-  const inout = params.get("inout");
-  const foodie_id = params.get("foodie_id");
+  // const location = useLocation();
+  // const params = new URLSearchParams(location.search);
+  // const storeId = params.get("storeId");
+  // const inout = params.get("inout");
+  // const foodie_id = params.get("foodie_id");
 
   const foodOptionInfo = {
     name: "아메리카노",
