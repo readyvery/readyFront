@@ -29,15 +29,11 @@
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
-  .top_header2 {
-    left: 0;
-    right: 0;
-  }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 800px) {
   .App {
-    /* max-width: 430px; */
+    max-width: 430px;
     height: 94vh;
     background-color: white;
     padding-top: 2.75rem;
@@ -55,15 +51,12 @@
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
-  .top_header2 {
-    left: 0;
-    right: 0;
-  }
+
 }
 
 @media (min-width: 800px) {
   .App {
-    /* width: 600px; */
+    width: 600px;
     height: 94vh;
     background-color: white;
     padding-top: 2.75rem;
@@ -81,11 +74,6 @@
   .top_header {
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
-  }
-
-  .top_header2 {
-    left: 0;
-    right: 0;
   }
 }
 

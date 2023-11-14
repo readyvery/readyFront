@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./OrderStorage.css";
 
-import Header from "../../components/views/Header/Header2";
+import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";
 
 import empty from "../../assets/images/storage_empty.svg";
@@ -45,11 +45,11 @@ function OrderStatus () {
 
     return(
         <section className="main-container">
-            <Header pageName={"주문내역"} isClose={false}/>
+            <Header headerProps={{pageName:"주문내역", isClose:"false", linkTo:"/"}}/>
             <main className="content-container">
                 {storageList.length ? (
                     storageList.map((e) => (
-                    <Link to="/status">
+                    <Link to={e.state === 1 ? "/status" : "/orderDetail"} style={{ textDecoration: "none"}}>
                         <StateBox 
                             id={e.id}
                             date={e.date}
