@@ -10,8 +10,8 @@
   align-items: center;
 }
 
-.top_header2 {
-  position: fixed;
+.top_header.page {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

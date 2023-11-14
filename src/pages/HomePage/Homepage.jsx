@@ -107,7 +107,7 @@ function Homepage() {
 
   return (
     <div className="homepage">
-      <Header />
+      <Header headerProps={null}/>
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
