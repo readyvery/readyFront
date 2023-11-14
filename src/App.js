@@ -5,6 +5,7 @@ import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
+import OrderDetail from "./pages/OrderDetail/OrderDetail";
 import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
@@ -24,6 +25,8 @@ function App() {
         <Route path="/storage" element={<OrderStorage />} />
         {/* 주문상태 페이지 - 추후 병합 예정*/}
         <Route path="/status" element={<OrderStatus />} />
+        {/* 주문상세 페이지 - 추후 병합 예정*/}
+        <Route path="/orderDetail" element={<OrderDetail />} />
         {/* 테스트 페이지 - 바로주문*/}
         <Route path="/ready" element={<TestPage />} />
         {/* 테스트 페이지 - 마이페이지*/}
