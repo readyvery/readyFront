@@ -1,0 +1,128 @@
+.order-process-page {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.order-process-page__menu__img {
+  display: flex;
+  width: 8.62838rem;
+  height: 10.25rem;
+  padding: 0rem 0.62838rem 0rem 0.625rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.15);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+}
+
+.order-process-page__menu__name {
+  color: var(--Dark, #1e232c);
+  width: fit-content;
+  font-family: "Bold";
+  font-size: 1.25rem;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.62rem;
+  margin-bottom: 1.13rem;
+}
+
+.order-process-page__toggle {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.order-process-page__toggle__container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0px 3px 3px 0px rgba(164, 164, 164, 0.25);
+  padding-bottom: 0.63rem;
+}
+
+.order-process-page__toggle__header {
+  display: flex;
+  height: 2.875rem;
+  flex-shrink: 0;
+  background: #fff;
+  color: #000;
+  font-family: "SemiBold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: 0.0225rem;
+  padding-left: 1.44rem;
+  padding-right: 1.32rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-process-page__selected-radio {
+  margin-right: 1.4rem;
+}
+
+.order-process-page__toggle__body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.56rem;
+  padding-bottom: 1.91rem;
+  padding-left: 3.5rem;
+  align-items: center;
+}
+
+.order-process-page__toggle__body__radio {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  font-family: "Medium";
+  font-size: 1.125rem;
+  line-height: normal;
+  align-items: center;
+}
+
+.order-process-page__toggle__body__radio label {
+  display: flex;
+}
+
+.order-process-page__total-amount {
+  display: flex;
+  color: #000;
+  text-align: right;
+  font-family: "Semibold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: 0.0225rem;
+  margin-top: 2rem;
+  margin-bottom: 2.38rem;
+  margin-left: 14.31rem;
+  margin-right: 1.5rem;
+}
+
+.order-process-page__total-amount__name {
+  margin-right: 1.37rem;
+  white-space: nowrap;
+}
+
+.order-process-page__total-amount__price {
+  white-space: nowrap;
+}
+
+.order-process-page__btn {
+  display: flex;
+  width: 17.8505rem;
+  height: 3.1875rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #d82356;
+  margin-left: auto;
+  margin-right: auto;
+}

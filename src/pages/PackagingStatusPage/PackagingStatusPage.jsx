@@ -25,18 +25,10 @@ const PackagingStatusPage = () => {
         alt="promotion"
       />
 
-      <Link to={`/storeDetail?storeId=${storeId}&inout=2`}>
-        <div className="packaging-status-page__btn">
-          <img
-            className="packaging-status-page__btn__img"
-            src={takeOut}
-            alt="takeOut"
-          />
-          <span className="packaging-status-page__text">가져갈게요</span>
-        </div>
-      </Link>
-
-      <Link to={`/storeDetail?storeId=${storeId}&inout=1`}>
+      <Link
+        to={`/store?storeId=${storeId}&inout=1`}
+        style={{ textDecoration: "none" }}
+      >
         <div className="packaging-status-page__btn">
           <img
             className="packaging-status-page__btn__img"
@@ -44,6 +36,20 @@ const PackagingStatusPage = () => {
             alt="takeOut"
           />
           <span className="packaging-status-page__text">먹고갈게요</span>
+        </div>
+      </Link>
+
+      <Link
+        to={`/store?storeId=${storeId}&inout=2`}
+        style={{ textDecoration: "none" }}
+      >
+        <div className="packaging-status-page__btn">
+          <img
+            className="packaging-status-page__btn__img"
+            src={takeOut}
+            alt="takeOut"
+          />
+          <span className="packaging-status-page__text">가져갈게요</span>
         </div>
       </Link>
     </div>

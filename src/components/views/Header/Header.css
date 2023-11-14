@@ -10,6 +10,36 @@
   align-items: center;
 }
 
+.top_header.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.6875rem;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
 .header-link {
   margin-left: 1.5rem;
+}
+
+.header-main__warpper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 94%;
+  margin: 0 auto;
+}
+
+.header-main__warpper span{
+  color: #000;
+  font-size: 1.25rem;
+  font-family: "Bold";
+}
+
+.header-main__warpper div{
+  width: 1.5rem;
 }

@@ -11,23 +11,20 @@ import "./Homepage.css";
 
 function Homepage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // const [quickOrderItems, setQuickOrderItems] = useState([
-  //   { id: 1, name: "커피파로스" },
-  //   { id: 2, name: "오르다" },
-  //   // 추가 아이템들
-  // ]);
+  // const [quickOrderItems, setQuickOrderItems] = useState([]); // 바로주문
+  // const [eventImages, setEventImages] = useState([]); // evetn 배너
+  // const [storeData, setsStoreData] = useState([]); // verypick
 
   let eventCase = {
     event1: {
       idx: 1,
       imgUrl: event_icon,
-      title: "inviteCoupon",
     },
     event2: {
       idx: 2,
       imgUrl: "이미지2의 URL",
     },
+
     // 다른 이벤트들...
   };
 
@@ -45,6 +42,7 @@ function Homepage() {
       address: "부천, 역곡동",
       detail: "(ICE) 아이스아메리카노",
     },
+
     // 추가 아이템들
   ];
 
@@ -69,6 +67,7 @@ function Homepage() {
     },
   ];
 
+  // {/* 바로주문 */}
   // useEffect(() => {
   //   // Axios를 사용하여 Quick Order 목록을 가져오는 부분
   //   if (isLoggedIn) {
@@ -84,6 +83,32 @@ function Homepage() {
   //       });
   //   }
   // }, [isLoggedIn]);
+
+  // {/* 이벤트 배너 */}
+  // useEffect(() => {
+  //   // 서버에서 이벤트 배너 이미지 데이터 가져오기
+  //   axios
+  //     .get("/api/v1/event/banner")
+  //     .then((response) => {
+  //       setEventImages(response.data.imgs);
+  //     })
+  //     .catch((error) => {
+  //       console.error("이벤트 배너 데이터를 가져오는 중 에러 발생:", error);
+  //     });
+  // }, []);
+
+  // {/* verypick 가게 정보 */}
+  // useEffect(() => {
+  //   // 서버에서 가게 정보 데이터 가져오기
+  //   axios
+  //     .get("/api/v1/board")
+  //     .then((response) => {
+  //       setStoreData(response.data.stores);
+  //     })
+  //     .catch((error) => {
+  //       console.error("가게 정보 데이터를 가져오는 중 에러 발생:", error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     // 서버에서 로그인 상태를 확인하는 비동기 함수
@@ -102,12 +127,12 @@ function Homepage() {
 
     // // 초기 로딩 시에 서버에서 로그인 상태 확인
     // checkLoginStatus();
-    setIsLoggedIn(true); //false-로그아웃, ture-로그인
+    setIsLoggedIn(false); //false-로그아웃, ture-로그인
   }, []);
 
   return (
     <div className="homepage">
-      <Header />
+      <Header headerProps={null}/>
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
@@ -122,17 +147,20 @@ function Homepage() {
             //   </React.Fragment>
             // ))
             dummyQuickOrderItems.map((item) => (
+              //to={`/ready?quickId=${item.id}`}
               <Link to="/ready" className="login-box">
-                <React.Fragment key={item.id} className="quick-order-item">
-                  <div className="item-name">{item.name}</div>
-                  <div className="item-address">{item.address}</div>
-                  <div className="item-detail">{item.detail}</div>
+                <React.Fragment key={item.id}>
+                  <div className="quick-order-item">
+                    <div className="item-name">{item.name}</div>
+                    <div className="item-address">{item.address}</div>
+                    <div className="item-detail">{item.detail}</div>
+                  </div>
                 </React.Fragment>
               </Link>
             ))
           ) : (
             // 로그인하지 않은 경우 다른 내용을 렌더링
-            <Link to="/login" className="not-login-box">
+            <Link to="/kakaologin" className="not-login-box">
               <img
                 src={profile_icon}
                 alt="ProfileIcon"
@@ -146,10 +174,15 @@ function Homepage() {
 
       {/* 이벤트 div */}
       <div className="event">
+        {/* {eventImages.map((image, index) => (
+          <Link to="/event" className="event-link" key={image.idx}>
+            <img src={image.imgUrl} alt={`Event ${index}`} className="event-icon" />
+          </Link>
+        ))} */}
         <Link to="/event" className="event-link">
           <img
             src={eventCase.event1.imgUrl}
-            alt={eventCase.event1.title}
+            alt="eventImg"
             className="event-icon"
           />
         </Link>
@@ -160,6 +193,21 @@ function Homepage() {
         <div className="very-pick-text">베리 PICK</div>
         <div className="very-pick-list">
           <div className="very-pick-items">
+            {/* {storeData.map((store) => (
+              <Link
+                to={`/packagingStatus?storeId=${store.idx}`}
+                className="very-pick-item"
+                key={store.idx}
+              >
+                <div className="pick-name">{store.name}</div>
+                <div className="pick-address">{store.address}</div>
+                <img
+                  src={store.imgUrl}
+                  alt={`Store ${store.idx}`}
+                  className="pick-detail"
+                />
+              </Link>
+            ))} */}
             {dummyVeryPickItems.map((item) => (
               <Link
                 to={`/packagingStatus?storeId=${item.id}`}

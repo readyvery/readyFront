@@ -26,11 +26,13 @@ function Mypage() {
                 className="profile-icon2"
               />
               <div className="profile-name">강짱구</div>
-              <div className="profile-detailBtn">프로필보기</div>
+              <Link to="/myprofile" className="profile-detailBtn">
+                프로필보기
+              </Link>
             </div>
           ) : (
             // 로그인 안 한 경우 로그인 버튼 나오게
-            <Link to="/login" className="not-login-box2">
+            <Link to="/kakaologin" className="not-login-box2">
               <img
                 src={profile_icon}
                 alt="ProfileIcon2"
@@ -46,19 +48,19 @@ function Mypage() {
       <div className="mypage-order">
         <div className="mypage-order-text">주문 및 결제</div>
         <Link
-          to={isLoggedIn ? "/status" : "/login"}
+          to={isLoggedIn ? "/status" : "/kakaologin"}
           className="mypage-order-list-link"
         >
           <div className="mypage-order-list">주문내역</div>
         </Link>
         <Link
-          to={isLoggedIn ? "/" : "/login"}
+          to={isLoggedIn ? "/" : "/kakaologin"}
           className="mypage-order-type-link"
         >
           <div className="mypage-order-type">결제 수단 등록</div>
         </Link>
         <Link
-          to={isLoggedIn ? "/coupon" : "/login"}
+          to={isLoggedIn ? "/coupon" : "/kakaologin"}
           className="mypage-order-coupon-link"
         >
           <div className="mypage-order-coupon">할인쿠폰</div>
@@ -68,22 +70,13 @@ function Mypage() {
       {/* mypage etc*/}
       <div className="mypage-etc">
         <div className="mypage-etc-text">문의 및 알림</div>
-        <Link
-          to={isLoggedIn ? "/status" : "/login"}
-          className="mypage-etc-event-link"
-        >
+        <Link to="/eventing" className="mypage-etc-event-link">
           <div className="mypage-etc-event">진행 중인 이벤트</div>
         </Link>
-        <Link
-          to={isLoggedIn ? "/" : "/login"}
-          className="mypage-etc-policy-link"
-        >
+        <Link to="/policy" className="mypage-etc-policy-link">
           <div className="mypage-etc-policy">약관 및 정책</div>
         </Link>
-        <Link
-          to={isLoggedIn ? "/coupon" : "/login"}
-          className="mypage-etc-sos-link"
-        >
+        <Link to="/" className="mypage-etc-sos-link">
           <div className="mypage-etc-sos">고객센터</div>
         </Link>
       </div>
