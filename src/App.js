@@ -53,6 +53,9 @@ function App() {
         <Route path="/eventing" element={<EventingPage />} />
         {/* 마이페이지-약관정책 페이지 */}
         <Route path="/policy" element={<PolicyPage />} />
+        {/* 장바구니 페이지 */}
+        <Route path="/cart" element={<CartPage />} />
+        {/* 결제 페이지 */}
       </Routes>
     </div>
   );

@@ -382,7 +382,13 @@ const StoreDetailPage = () => {
 
   return (
     <div className="store-detail-page">
-      <Header />
+      <Header
+        headerProps={{
+          pageName: "",
+          isClose: false,
+          linkTo: "/packagingStatus",
+        }}
+      />
       <div className="store-detail-page__banner">
         <img
           className="store-detail-page__bannerImg"

@@ -4,13 +4,13 @@ import Header from "../../components/views/Header/Header";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
-// import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const OrderProcessPage = () => {
-  // const location = useLocation();
-  // const params = new URLSearchParams(location.search);
-  // const storeId = params.get("storeId");
-  // const inout = params.get("inout");
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const storeId = params.get("storeId");
+  const inout = params.get("inout");
   // const foodie_id = params.get("foodie_id");
 
   const foodOptionInfo = {
@@ -97,7 +97,9 @@ const OrderProcessPage = () => {
 
   return (
     <div className="order-process-page">
-      <Header />
+      <Header
+        headerProps={{ pageName: "", isClose: false, linkTo: "/store" }}
+      />
 
       <div className="order-process-page__menu__img">
         <img src={noImageMenu} alt="no_image_menu" />
@@ -169,7 +171,12 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      <div className="order-process-page__btn">장바구니 담기</div>
+      <Link
+        to={`/cart?storeId=${storeId}&inout=${inout}`}
+        style={{ textDecoration: "none" }}
+      >
+        <div className="order-process-page__cart__btn">장바구니 담기</div>
+      </Link>
     </div>
   );
 };
