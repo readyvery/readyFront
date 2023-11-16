@@ -15,7 +15,9 @@ const StateBox = ( {id, date, name, menu, state} ) => {
                 </div>
             </div>
             <div className="order-content">
-                <img src={cafe} alt={cafe}/>
+                <div className="cafe-img-box">
+                    <img src={cafe} alt={cafe}/>
+                </div>
                 <div className="cafe-box">
                     <div className="cafe-name">{name}</div>
                     <div className="menu-name">{menu}</div>

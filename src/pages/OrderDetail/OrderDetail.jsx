@@ -65,6 +65,44 @@ const OrderDetail = () => {
                                 <span>3,500원</span>
                             </div>
                         </div>
+
+                        <div className="detail-order__box">
+                            <div className="detail-order-left__box">
+                                <div className="detail-menu-img__wrapper"><img src={americano} alt="americano"/></div>
+                                <div className="detail-order-menu__wrapper">
+                                    <span className="detail-order-menu__title">아메리카노</span>
+                                    <span className="detail-order-menu-option">ICE / LARGE / 1</span>
+                                </div>
+                            </div>
+                            <div className="detail-order-right__box">
+                                <span>3,500원</span>
+                            </div>
+                        </div>
+
+                        <div className="detail-order__box">
+                            <div className="detail-order-left__box">
+                                <div className="detail-menu-img__wrapper"><img src={americano} alt="americano"/></div>
+                                <div className="detail-order-menu__wrapper">
+                                    <span className="detail-order-menu__title">아메리카노</span>
+                                    <span className="detail-order-menu-option">ICE / LARGE / 1</span>
+                                </div>
+                            </div>
+                            <div className="detail-order-right__box">
+                                <span>3,500원</span>
+                            </div>
+                        </div>
+                        <div className="detail-order__box">
+                            <div className="detail-order-left__box">
+                                <div className="detail-menu-img__wrapper"><img src={americano} alt="americano"/></div>
+                                <div className="detail-order-menu__wrapper">
+                                    <span className="detail-order-menu__title">아메리카노</span>
+                                    <span className="detail-order-menu-option">ICE / LARGE / 1</span>
+                                </div>
+                            </div>
+                            <div className="detail-order-right__box">
+                                <span>3,500원</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="detail-line"></div>
                     <div className="detail-bottom__wrapper">
