@@ -3,6 +3,7 @@ import "./style.css";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
+import menuDelete from "../../assets/images/menu_delete.svg";
 
 const PaymentPage = () => {
   const location = useLocation();
@@ -120,6 +121,7 @@ const PaymentPage = () => {
                 <div className="payment-page__order-info__item__name">
                   {item.name}
                 </div>
+                <img src={menuDelete} alt="X" />
                 <div className="payment-page__order-info__item__option">
                   {item.options.map((option) => (
                     <div>•{option.name}</div>
