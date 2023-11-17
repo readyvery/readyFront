@@ -14,6 +14,7 @@ import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
         <Route path="/eventing" element={<EventingPage />} />
         {/* 마이페이지-약관정책 페이지 */}
         <Route path="/policy" element={<PolicyPage />} />
+        {/* 장바구니 페이지 */}
+        <Route path="/cart" element={<CartPage />} />
+        {/* 결제 페이지 */}
       </Routes>
     </div>
   );
