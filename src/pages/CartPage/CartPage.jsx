@@ -1,3 +1,5 @@
+import Header from "../../components/views/Header/Header";
+
 const CartPage = () => {
   // const { cartItems, setCartItems } = useContext(CartContext);
 
@@ -8,13 +10,13 @@ const CartPage = () => {
 
   return (
     <div className="cart-page">
-      {/* <Header
+      <Header
         headerProps={{
           pageName: "장바구니",
           isClose: false,
           linkTo: "/store",
         }}
-      /> */}
+      />
       {/* <h1>Cart</h1>
       <div className="cart-items">
         {cartItems.map((item) => (

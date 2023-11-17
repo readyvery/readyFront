@@ -14,6 +14,7 @@ import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
