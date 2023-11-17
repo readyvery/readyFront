@@ -98,11 +98,15 @@ const OrderProcessPage = () => {
   return (
     <div className="order-process-page">
       <Header
-        headerProps={{ pageName: "", isClose: false, linkTo: "/store" }}
+        headerProps={{
+          pageName: "",
+          isClose: false,
+          linkTo: `/store?storeId=${storeId}&inout=${inout}`,
+        }}
       />
 
       <div className="order-process-page__menu__img">
-        <img src={noImageMenu} alt="no_image_menu" />
+        <img src={foodOptionInfo.imgUrl || noImageMenu} />
       </div>
 
       <div className="order-process-page__menu__name">

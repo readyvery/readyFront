@@ -386,7 +386,7 @@ const StoreDetailPage = () => {
         headerProps={{
           pageName: "",
           isClose: false,
-          linkTo: "/packagingStatus",
+          linkTo: `/packagingStatus?storeId=${storeId}`,
         }}
       />
       <div className="store-detail-page__banner">
