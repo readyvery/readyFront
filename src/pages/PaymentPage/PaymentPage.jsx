@@ -1,6 +1,6 @@
 import Header from "../../components/views/Header/Header";
 import "./style.css";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import menuDelete from "../../assets/images/menu_delete.svg";
@@ -53,40 +53,40 @@ const PaymentPage = () => {
     couponId: 12,
   };
 
-  const buttonRef = useRef();
+  //   const buttonRef = useRef();
 
-  useEffect(() => {
-    const loadTossPayments = async () => {
-      try {
-        // 토스페이먼츠 라이브러리 비동기로 로드
-        const TossPayments = await import(
-          "https://js.tosspayments.com/v1/payment"
-        );
+  //   useEffect(() => {
+  //     const loadTossPayments = async () => {
+  //       try {
+  //         // 토스페이먼츠 라이브러리 비동기로 로드
+  //         const TossPayments = await import(
+  //           "https://js.tosspayments.com/v1/payment"
+  //         );
 
-        // 클라이언트 키로 객체 초기화
-        const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
-        const tossPayments = TossPayments.default(clientKey);
+  //         // 클라이언트 키로 객체 초기화
+  //         const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
+  //         const tossPayments = TossPayments.default(clientKey);
 
-        // 버튼에 클릭 이벤트 추가
-        buttonRef.current.addEventListener("click", () => {
-          // 결제창 띄우기
-          tossPayments.requestPayment("card", {
-            amount: 20,
-            orderId: "2ab88b105d-8bd1-436a-ab52-731396a352bda",
-            orderName: "포인트 충전",
-            customerName: "첫번째",
-            customerEmail: "test1@gmail.com",
-            successUrl: "http://localhost:8080/api/v1/payments/toss/success",
-            failUrl: "http://localhost:8080/api/v1/payments/toss/fail",
-          });
-        });
-      } catch (error) {
-        console.error("Failed to load TossPayments:", error);
-      }
-    };
+  //         // 버튼에 클릭 이벤트 추가
+  //         buttonRef.current.addEventListener("click", () => {
+  //           // 결제창 띄우기
+  //           tossPayments.requestPayment("card", {
+  //             amount: 20,
+  //             orderId: "2ab88b105d-8bd1-436a-ab52-731396a352bda",
+  //             orderName: "포인트 충전",
+  //             customerName: "첫번째",
+  //             customerEmail: "test1@gmail.com",
+  //             successUrl: "http://localhost:8080/api/v1/payments/toss/success",
+  //             failUrl: "http://localhost:8080/api/v1/payments/toss/fail",
+  //           });
+  //         });
+  //       } catch (error) {
+  //         console.error("Failed to load TossPayments:", error);
+  //       }
+  //     };
 
-    loadTossPayments();
-  }, []);
+  //     loadTossPayments();
+  //   }, []);
 
   return (
     <div className="payment-page">
@@ -137,10 +137,9 @@ const PaymentPage = () => {
         ))}
       </div>
 
-      {/* 버튼에 ref 추가 */}
-      <div className="payment-page__btn" ref={buttonRef}>
+      {/* <div className="payment-page__btn" ref={buttonRef}>
         결제하기
-      </div>
+      </div> */}
     </div>
   );
 };
