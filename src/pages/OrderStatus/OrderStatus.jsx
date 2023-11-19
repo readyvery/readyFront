@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/berry.png";
+import berry from "../../assets/images/berry.svg";
 import clock from "../../assets/images/icon_clock.svg";
 import close from "../../assets/images/icon_close.svg";
 import refresh from "../../assets/images/icon_refresh.svg";
@@ -10,8 +11,13 @@ import Progressbar from "../../components/views/ProgressBar/ProgressBar";
 
 function OrderStatus (){
     const [degree, setDegree] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
     
     const refreshDegree = () => setDegree((prev) => (prev !== 3 ? prev + 1 : 0));
+
+    const handleCancle = () => {
+        setIsOpen(!isOpen);
+    };
 
     return(
         <section className="status-container">
@@ -78,7 +84,7 @@ function OrderStatus (){
                     )}
                 {degree === 0 && (
                     <div className="btn-wrapper">
-                        <div className="cancle-btn">주문 취소</div>
+                        <div className="cancle-btn" onClick={handleCancle}>주문 취소</div>
                     </div>
                 )}
 
@@ -92,6 +98,20 @@ function OrderStatus (){
                     </div>
                 )}
             </div>
+
+            {isOpen && (
+                <div className="modal-wrapper">
+                    <div className="modal-box">
+                        <div><img src={berry} alt="berry"/></div>
+                        <div className="modal-title">주문을 취소하시겠습니까?</div>
+                        <div className="modal-subtitle">확인 버튼을 누르시면, 주문이 취소됩니다.</div>
+                        <div className="modal-btn__wrapper">
+                            <span className="modal-cancle-btn" onClick={handleCancle}>취소</span>
+                            <span className="modal-check-btn" onClick={handleCancle}>확인</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

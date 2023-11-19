@@ -54,7 +54,6 @@
 .status-main-wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     width: 90%;
     height: 93%;
@@ -238,10 +237,10 @@
     justify-content: flex-end;
     width: 30%;
     /* height: 5%; */
-    height: 50%;
+    /* height: 50%; */
 
     text-align: center;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
 
 .cancle-btn{
@@ -311,4 +310,77 @@
     text-align: center;
     font-size: 1.5625rem;
     font-family: "SemiBold";
+}
+
+/* 모달창 */
+.modal-wrapper{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box{
+    position: absolute;
+    top: calc(50% - 8.5rem);
+    left: calc(50% - 10.15625rem);
+
+    display: flex;
+    flex-direction: column;
+    width: 20.3125rem;
+    height: 15rem;
+    background-color: #fff;
+    border-radius: 0.625rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-title{
+    font-family: "Bold";
+    font-size: 1.125rem;
+    margin: 0.75rem 0 0.375rem 0;
+}
+
+.modal-subtitle{
+    font-family: "Regular";
+    font-size: 0.8125rem;
+    margin: 0.375rem 0 0.75rem 0;
+}
+
+.modal-btn__wrapper{
+    display: flex;
+    margin: 1.25rem auto;
+}
+
+.modal-cancle-btn{
+    width: 7.875rem;
+    height: 1.875rem;
+    text-align: center;
+    line-height: 1.875rem;
+    border: 0.0625rem solid #838383;
+    border-radius: 0.625rem;
+    
+    font-family: "Bold";
+    font-size: 1.125rem;
+    color: #838383;
+    margin: 0 0.3125rem;
+}
+
+.modal-check-btn{
+    width: 7.875rem;
+    height: 1.875rem;
+    text-align: center;
+    line-height: 1.875rem;
+    border: 0.0625rem solid #D82356;
+    border-radius: 0.625rem;
+    background-color: #D82356;
+    
+    font-family: "Bold";
+    font-size: 1.125rem;
+    color: #fff;
+    margin: 0 0.3125rem;
 }
