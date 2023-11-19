@@ -73,11 +73,30 @@
 .order-process-page__toggle__body {
   display: flex;
   flex-direction: column;
-  padding-top: 1.56rem;
+  /* padding-top: 1.56rem;
   padding-bottom: 1.91rem;
   padding-left: 3.5rem;
   align-items: center;
+  box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25); */
+  padding-top: 0; /* 초기 상태에서는 0으로 설정 */
+  padding-bottom: 0; /* 초기 상태에서는 0으로 설정 */
+  padding-left: 3.5rem;
+  align-items: center;
   box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease; /* transition 추가 */
+}
+
+.order-process-page__toggle__body.isOpen{
+  display: flex;
+  flex-direction: column;
+  padding-left: 3.5rem;
+  align-items: center;
+  box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease; /* transition 추가 */
 }
 
 .order-process-page__toggle__body__radio {

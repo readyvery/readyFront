@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
@@ -7,89 +8,119 @@ import Header from "../../components/views/Header/Header";
 import "./style.css";
 
 const OrderProcessPage = () => {
+  const baseUrl = 'https://test.readyvery.com';
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   // const foodie_id = params.get("foodie_id");
+  
+  const fetchData = async () => {
+    try{
+      const response = axios.get(
+        `${baseUrl}/api/v1/order/${storeId}?foody_id=1&inout=${inout}`,
+        {withCredentials: true}
+      );
+      console.log(response);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // const [cookies, setCookie] = useCookies(['accessToken']);
-  // console.log(cookies);
-  
-  // const fetchData = async () => {
-  //   try{
-  //     const response = axios.get(
-  //       baseUrl + `/order/${storeId}?foody_id=2&inout=${inout}`,
-  //       {withCredentials: true}
-  //     );
-  //     console.log(response);
-  //   } catch(error) {
-  //     console.log(error);
-  //   }
-  // }
-  
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  // const foodOptionInfo = {
+  //   name: "아메리카노",
+  //   imgUrl: "adfs",
+  //   price: 3000,
+  //   category: [
+  //     [
+  //       {
+  //         name: "ICE/HOT",
+  //         essential: false,
+  //         options: [
+  //           {
+  //             idx: 1,
+  //             name: "ICE",
+  //             price: 1000,
+  //           },
+  //           {
+  //             idx: 2,
+  //             name: "HOT",
+  //             price: 0,
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         name: "사이즈",
+  //         essential: true,
+  //         options: [
+  //           {
+  //             idx: 32,
+  //             name: "작은거",
+  //             price: 1000,
+  //           },
+  //           {
+  //             idx: 34,
+  //             name: "큰거",
+  //             price: 1000,
+  //           },
+  //           {
+  //             idx: 44,
+  //             name: "아주 큰거",
+  //             price: 3000,
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   ],
+  // };
 
   const foodOptionInfo = {
-    name: "아메리카노",
-    imgUrl: "adfs",
-    price: 3000,
-    category: [
-      [
-        {
-          name: "ICE/HOT",
-          essential: false,
-          options: [
-            {
-              idx: 1,
-              name: "ICE",
-              price: 1000,
-            },
-            {
-              idx: 2,
-              name: "HOT",
-              price: 0,
-            },
-          ],
-        },
-        {
-          name: "사이즈",
-          essential: true,
-          options: [
-            {
-              idx: 32,
-              name: "작은거",
-              price: 1000,
-            },
-            {
-              idx: 34,
-              name: "큰거",
-              price: 1000,
-            },
-            {
-              idx: 44,
-              name: "아주 큰거",
-              price: 3000,
-            },
-          ],
-        },
-      ],
-    ],
+    name:"에스프레소",
+    imgUrl:null,
+    price:2500,
+    category:
+    [
+      {
+        name:"HOT/ICE",
+        essential:true,
+        options:[
+          {"idx":1,"name":"HOT","price":0},
+          {"idx":2,"name":"ICE","price":500}
+        ]
+      },
+      {
+        name:"샷추가",
+        essential:true,
+        options:[
+          {"idx":3,"name":"연하게","price":0},
+          {"idx":4,"name":"1샷 추가","price":500}
+        ]
+      },
+      {
+        name:"휘핑",
+        essential:false,
+        options:[
+          {"idx":6,"name":"휘핑추가","price":1000}
+        ]
+      }
+    ]
   };
 
   const [activeToggles, setActiveToggles] = useState(
-    foodOptionInfo.category[0].map(() => false)
+    foodOptionInfo.category.map((_, i) => i === 0)
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState(
-    foodOptionInfo.category[0].map((e) => `${e.options[0].name}`)
+    foodOptionInfo.category.map((e) => `${e.options[0].name}`)
   );
   const [totalAmount, setTotalAmount] = useState(
-    foodOptionInfo.price + parseInt(foodOptionInfo.category[0].map((e) => parseInt(e.options[0].price)).reduce((prev, curr) => prev + curr, 0))
+    foodOptionInfo.price + parseInt(foodOptionInfo.category.map((e) => parseInt(e.options[0].price)).reduce((prev, curr) => prev + curr, 0))
   );
   const [prevRadioPrice, setPrevRadioPrice] = useState(
-    foodOptionInfo.category[0].map(() => 0)
+    foodOptionInfo.category.map(() => 0)
   );
 
   const handleToggle = (index) => {
@@ -135,7 +166,7 @@ const OrderProcessPage = () => {
       </div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo.category[0].map((category, index) => (
+        {foodOptionInfo.category.map((category, index) => (
           <div className="order-process-page__toggle__container" key={index}>
             <div
               className="order-process-page__toggle__header"
@@ -159,7 +190,14 @@ const OrderProcessPage = () => {
             </div>
 
             {activeToggles[index] && (
-              <div className="order-process-page__toggle__body">
+              <div 
+                className={`order-process-page__toggle__body ${activeToggles[index] && "open"}`}
+                style={{
+                  maxHeight: "100%",
+                  paddingTop: "1.56rem",
+                  paddingBottom: "1.91rem",
+                }}
+              >
                 {category.options.map((option, optionIndex) => (
                   <div
                     className="order-process-page__toggle__body__radio"
