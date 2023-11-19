@@ -1,6 +1,6 @@
+import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import "./style.css";
-import { Link, useLocation } from "react-router-dom";
 
 const CartPage = () => {
   const location = useLocation();
@@ -24,22 +24,6 @@ const CartPage = () => {
           linkTo: `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />
-      {/* <h1>Cart</h1>
-      <div className="cart-items">
-        {cartItems.map((item) => (
-          <div className="cart-item" key={item.id}>
-            <img src={item.image} alt={item.title} />
-            <div className="item-details">
-              <h3>{item.title}</h3>
-              <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-              <button onClick={() => handleRemoveFromCart(item.id)}>
-                Remove
-              </button>
-            </div>
-          </div>
-        ))}
-      </div> */}
       <Link
         to={`/payment?storeId=${storeId}&inout=${inout}`}
         style={{ display: "flex", textDecoration: "none" }}
