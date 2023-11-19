@@ -3,3 +3,19 @@
   height: 100%;
   margin: 0 auto;
 }
+
+.myprofile-head {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.terms-of-use,
+.personal-info {
+  text-decoration: none;
+  color: black;
+  font-family: "Medium";
+  font-size: 1.125rem;
+  align-self: flex-start;
+  margin: 3% 0;
+}

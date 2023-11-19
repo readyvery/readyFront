@@ -94,8 +94,8 @@
   font-display: swap;
   src: local("Pretendard"),
     url("./assets/font/Pretendard-Bold.woff2") format("woff2");
-unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
-  }
+  unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
+}
 
 @font-face {
   font-family: "ExtraBold";
