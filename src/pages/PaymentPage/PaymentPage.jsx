@@ -1,9 +1,7 @@
-import Header from "../../components/views/Header/Header";
-import "./style.css";
 import React from "react";
 import { useLocation } from "react-router-dom";
-import noImageMenu from "../../assets/images/no_image_menu.svg";
-import menuDelete from "../../assets/images/menu_delete.svg";
+import Header from "../../components/views/Header/Header";
+import "./style.css";
 
 const PaymentPage = () => {
   const location = useLocation();
@@ -109,35 +107,7 @@ const PaymentPage = () => {
         </text>
       </div>
 
-      <div className="payment-page__order-info">
-        {paymentData.carts.map((item) => (
-          <div>
-            <div className="payment-page__order-info__item">
-              <img
-                className="payment-page__order-info__item__img"
-                src={item.imgUrl || noImageMenu}
-                alt="menuImg"
-              ></img>
-
-              <div>
-                <div className="payment-page__order-info__item__name">
-                  {item.name}
-                </div>
-                <img src={menuDelete} alt="X" />
-                <div className="payment-page__order-info__item__option">
-                  {item.options.map((option) => (
-                    <div>•{option.name}</div>
-                  ))}
-                </div>
-                <div className="payment-page__order-info__item__price">
-                  {item.price}
-                </div>
-              </div>
-            </div>
-            <div className="payment-page__order-info__item__line"></div>
-          </div>
-        ))}
-      </div>
+       
 
       {/* <div className="payment-page__btn" ref={buttonRef}>
         결제하기

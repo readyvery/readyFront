@@ -1,10 +1,11 @@
-import "./style.css";
 import React, { useState } from "react";
-import Header from "../../components/views/Header/Header";
-import noImageMenu from "../../assets/images/no_image_menu.svg";
-import toggleUp from "../../assets/images/toggle_up.svg";
-import toggleDown from "../../assets/images/toggle_down.svg";
+import { useCookies } from "react-cookie";
 import { Link, useLocation } from "react-router-dom";
+import noImageMenu from "../../assets/images/no_image_menu.svg";
+import toggleDown from "../../assets/images/toggle_down.svg";
+import toggleUp from "../../assets/images/toggle_up.svg";
+import Header from "../../components/views/Header/Header";
+import "./style.css";
 
 const OrderProcessPage = () => {
   const location = useLocation();
@@ -12,6 +13,25 @@ const OrderProcessPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   // const foodie_id = params.get("foodie_id");
+
+  const [cookies, setCookie] = useCookies(['accessToken']);
+  console.log(cookies);
+  
+  // const fetchData = async () => {
+  //   try{
+  //     const response = axios.get(
+  //       baseUrl + `/order/${storeId}?foody_id=2&inout=${inout}`,
+  //       {withCredentials: true}
+  //     );
+  //     console.log(response);
+  //   } catch(error) {
+  //     console.log(error);
+  //   }
+  // }
+  
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const foodOptionInfo = {
     name: "아메리카노",
@@ -64,9 +84,11 @@ const OrderProcessPage = () => {
     foodOptionInfo.category[0].map(() => false)
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState(
-    foodOptionInfo.category[0].map(() => "")
+    foodOptionInfo.category[0].map((e) => `${e.options[0].name}`)
   );
-  const [totalAmount, setTotalAmount] = useState(foodOptionInfo.price);
+  const [totalAmount, setTotalAmount] = useState(
+    foodOptionInfo.price + parseInt(foodOptionInfo.category[0].map((e) => parseInt(e.options[0].price)).reduce((prev, curr) => prev + curr, 0))
+  );
   const [prevRadioPrice, setPrevRadioPrice] = useState(
     foodOptionInfo.category[0].map(() => 0)
   );
