@@ -6,11 +6,7 @@ import noImageMenu from "../../assets/images/no_image_menu.svg";
 // import menuDelete from "../../assets/images/menu_delete.svg";
 // import takeIn from "../../assets/images/take_in.svg";
 // import takeOut from "../../assets/images/take_out.svg";
-import {
-  PaymentWidgetInstance,
-  loadPaymentWidget,
-  ANONYMOUS,
-} from "@tosspayments/payment-widget-sdk";
+import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 
 const clientKey = "test_ck_oEjb0gm23PWEKPJK1yRp8pGwBJn5";
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
