@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import search_cafe1 from "../../assets/images/search_cafe1.svg";
 import search_cafe2 from "../../assets/images/search_cafe2.svg";
 import search_cafe3 from "../../assets/images/search_cafe3.svg";
-import Header from "../../components/views/Header/Header2";
+import Header from "../../components/views/Header/Header";
 import "./CafeSearch.css";
 
 function CafeSearch() {

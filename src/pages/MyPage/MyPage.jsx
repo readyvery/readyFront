@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profile_icon from "../../assets/images/profile_icon.svg";
-import Header from "../../components/views/Header/Header2";
+import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
 function Mypage() {

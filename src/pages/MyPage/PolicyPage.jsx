@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/views/Header/Header2";
+import Header from "../../components/views/Header/Header";
 import "./PolicyPage.css";
 
 function PolicyPage() {
