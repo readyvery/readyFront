@@ -121,7 +121,7 @@ function Homepage() {
 
   return (
     <div className="homepage">
-      <Header headerProps={null}/>
+      <Header headerProps={null} />
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
@@ -168,13 +168,12 @@ function Homepage() {
             <img src={image.imgUrl} alt={`Event ${index}`} className="event-icon" />
           </Link>
         ))} */}
-        <Link to="/event" className="event-link">
-          <img
-            src={eventCase.event1.imgUrl}
-            alt="eventImg"
-            className="event-icon"
-          />
-        </Link>
+
+        <img
+          src={eventCase.event1.imgUrl}
+          alt="eventImg"
+          className="event-icon"
+        />
       </div>
 
       {/* 베리pick div */}

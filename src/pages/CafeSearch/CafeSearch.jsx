@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import search_cafe1 from "../../assets/images/search_cafe1.svg";
-import search_cafe2 from "../../assets/images/search_cafe2.svg";
-import search_cafe3 from "../../assets/images/search_cafe3.svg";
+import search_cafedream from "../../assets/images/search_cafedream.svg";
+import search_harang from "../../assets/images/search_harang.svg";
+import search_orda from "../../assets/images/search_orda.svg";
 import Header from "../../components/views/Header/Header";
 import "./CafeSearch.css";
 
@@ -14,7 +14,7 @@ function CafeSearch() {
       address: "경기도 부천시 지봉로 1",
       status: "영업중",
       time: "23:00에 영업종료",
-      imgUrl: search_cafe1,
+      imgUrl: search_orda,
     },
     {
       idx: 2,
@@ -22,7 +22,7 @@ function CafeSearch() {
       address: "경기도 부천시 지봉로 2",
       status: "영업종료",
       time: "09:00에 영업시작",
-      imgUrl: search_cafe2,
+      imgUrl: search_harang,
     },
     {
       idx: 3,
@@ -30,13 +30,19 @@ function CafeSearch() {
       address: "경기도 부천시 지봉로 3",
       status: "영업중",
       time: "22:00에 영업종료",
-      imgUrl: search_cafe3,
+      imgUrl: search_cafedream,
     },
   ];
 
   return (
     <div className="search-container">
-      <Header pageName={"카페검색"} isClose={false} />
+      <Header
+        headerProps={{
+          pageName: "카페 검색",
+          isClose: false,
+          linkTo: "/",
+        }}
+      />
       <div className="search-list">
         {dummyStoreItems.map((item) => (
           <div className="search-detail-wrapper">

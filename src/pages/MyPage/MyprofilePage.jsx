@@ -30,7 +30,13 @@ function MyprofilePage() {
 
   return (
     <div className="myprofile-div">
-      <Header />
+      <Header
+        headerProps={{
+          pageName: "나의 프로필",
+          isClose: false,
+          linkTo: "/mypage",
+        }}
+      />
       <div className="myprofile-head">
         <img
           src={profile_icon}

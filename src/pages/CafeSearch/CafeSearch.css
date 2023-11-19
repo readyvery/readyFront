@@ -9,9 +9,22 @@
   flex-direction: column;
 }
 
+.search-detail-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.15px 0.1rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 0.5rem;
+  margin: 1.5% 0;
+}
+
 .search-link {
   text-decoration: none;
   color: black;
+}
+
+.search-img {
+  margin: 0 2%;
 }
 
 .search-details {
