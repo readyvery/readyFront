@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "../src/pages/HomePage/Homepage";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
-import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
 import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
 import CartPage from "./pages/CartPage/CartPage";
