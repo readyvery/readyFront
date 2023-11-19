@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/views/Header/Header";
+import Header from "../../../components/views/Header/Header";
 import "./CouponPage.css";
 
 function CouponPage() {

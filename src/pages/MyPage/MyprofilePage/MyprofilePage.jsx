@@ -1,6 +1,6 @@
 import React from "react";
-import profile_icon from "../../assets/images/profile_icon.svg";
-import Header from "../../components/views/Header/Header";
+import profile_icon from "../../../assets/images/profile_icon.svg";
+import Header from "../../../components/views/Header/Header";
 import "./MyprofilePage.css";
 
 function MyprofilePage() {

@@ -8,7 +8,7 @@ function Mypage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(true);
 
     // Axios.get("http://localhost:8080/api/v1/auth", {
     //   withCredentials: true, // default
