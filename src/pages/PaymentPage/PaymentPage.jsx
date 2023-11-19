@@ -66,7 +66,7 @@ const PaymentPage = () => {
 
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
-  const [price, setPrice] = useState(50000);
+  const [price, setPrice] = useState(paymentData.totalPrice);
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -97,7 +97,7 @@ const PaymentPage = () => {
       paymentWidgetRef.current = paymentWidget;
       paymentMethodsWidgetRef.current = paymentMethodsWidget;
     })();
-  }, []);
+  }, [price]);
 
   useEffect(() => {
     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
@@ -201,8 +201,8 @@ const PaymentPage = () => {
               successUrl: "http://localhost:8080/success",
               failUrl: "http://localhost:8080/fail",
               customerEmail: "customer123@gmail.com",
-              customerName: "김토스",
-              amount: 5000,
+              customerName: paymentData.name,
+              amount: paymentData.totalPrice,
             });
           } catch (error) {
             // 에러 처리하기
