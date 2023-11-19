@@ -1,9 +1,15 @@
-import Header from "../../components/views/Header/Header";
-import "./style.css";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
-import menuDelete from "../../assets/images/menu_delete.svg";
+import Header from "../../components/views/Header/Header";
+import "./style.css";
+// import menuDelete from "../../assets/images/menu_delete.svg";
+// import takeIn from "../../assets/images/take_in.svg";
+// import takeOut from "../../assets/images/take_out.svg";
+import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
+
+const clientKey = "test_ck_oEjb0gm23PWEKPJK1yRp8pGwBJn5";
+const customerKey = "OSlBWOomTvjxwqJTcNtEB";
 
 const PaymentPage = () => {
   const location = useLocation();
@@ -14,21 +20,24 @@ const PaymentPage = () => {
   const paymentData = {
     name: "카페 오르다",
     imgUrl: "/주소",
+    totalPrice: 30000,
     carts: [
       {
         idx: 141, // 장바구니 idx
         name: "아메리카노",
         imgUrl: "/주주소소",
-        price: 2500,
+        totalPrice: 2500,
         count: 4,
         options: [
           {
             idx: 1, // 옵션 테이블 인덱스
             name: "ICE",
+            price: 500,
           },
           {
             idx: 114, // 옵션 테이블 인덱스
             name: "샷추가",
+            price: 500,
           },
         ],
       },
@@ -36,16 +45,18 @@ const PaymentPage = () => {
         idx: 143, // 장바구니 idx
         name: "카페라떼",
         imgUrl: null,
-        price: 4500,
+        totalPrice: 4500,
         count: 3,
         options: [
           {
             idx: 1, // 옵션 테이블 인덱스
             name: "ICE",
+            price: 500,
           },
           {
             idx: 114, // 옵션 테이블 인덱스
             name: "샷추가",
+            price: 500,
           },
         ],
       },
@@ -53,40 +64,53 @@ const PaymentPage = () => {
     couponId: 12,
   };
 
-  //   const buttonRef = useRef();
+  const paymentWidgetRef = useRef(null);
+  const paymentMethodsWidgetRef = useRef(null);
+  const [price, setPrice] = useState(paymentData.totalPrice);
+  useEffect(() => {
+    (async () => {
+      // ------  결제위젯 초기화 ------
+      // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
+      const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
+      // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS)  // 비회원 결제
 
-  //   useEffect(() => {
-  //     const loadTossPayments = async () => {
-  //       try {
-  //         // 토스페이먼츠 라이브러리 비동기로 로드
-  //         const TossPayments = await import(
-  //           "https://js.tosspayments.com/v1/payment"
-  //         );
+      // ------  결제 UI 렌더링 ------
+      // 결제 UI를 렌더링할 위치를 지정합니다. `#payment-method`와 같은 CSS 선택자와 결제 금액 객체를 추가하세요.
+      // DOM이 생성된 이후에 렌더링 메서드를 호출하세요.
+      // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
+      const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+        "#payment-page__payment-widget",
+        { value: price },
+        // 렌더링하고 싶은 결제 UI의 variantKey
+        // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
+        // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
+        { variantKey: "DEFAULT" }
+      );
 
-  //         // 클라이언트 키로 객체 초기화
-  //         const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
-  //         const tossPayments = TossPayments.default(clientKey);
+      // ------  이용약관 UI 렌더링 ------
+      // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
+      // https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
+      paymentWidget.renderAgreement(
+        "#payment-page__payment-agreement",
+        { variantKey: "AGREEMENT" } // 기본 이용약관 UI 렌더링
+      );
+      paymentWidgetRef.current = paymentWidget;
+      paymentMethodsWidgetRef.current = paymentMethodsWidget;
+    })();
+  }, [price]);
 
-  //         // 버튼에 클릭 이벤트 추가
-  //         buttonRef.current.addEventListener("click", () => {
-  //           // 결제창 띄우기
-  //           tossPayments.requestPayment("card", {
-  //             amount: 20,
-  //             orderId: "2ab88b105d-8bd1-436a-ab52-731396a352bda",
-  //             orderName: "포인트 충전",
-  //             customerName: "첫번째",
-  //             customerEmail: "test1@gmail.com",
-  //             successUrl: "http://localhost:8080/api/v1/payments/toss/success",
-  //             failUrl: "http://localhost:8080/api/v1/payments/toss/fail",
-  //           });
-  //         });
-  //       } catch (error) {
-  //         console.error("Failed to load TossPayments:", error);
-  //       }
-  //     };
+  useEffect(() => {
+    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
 
-  //     loadTossPayments();
-  //   }, []);
+    if (paymentMethodsWidget == null) {
+      return;
+    }
+
+    // ------ 금액 업데이트 ------
+    // 새로운 결제 금액을 넣어주세요.
+    // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
+    paymentMethodsWidget.updateAmount(price);
+  }, [price]);
 
   return (
     <div className="payment-page">
@@ -123,14 +147,16 @@ const PaymentPage = () => {
                 <div className="payment-page__order-info__item__name">
                   {item.name}
                 </div>
-                <img src={menuDelete} alt="X" />
+                {/* <img src={menuDelete} alt="X" /> */}
                 <div className="payment-page__order-info__item__option">
                   {item.options.map((option) => (
-                    <div>•{option.name}</div>
+                    <div>
+                      •{option.name} (+{option.price}원)
+                    </div>
                   ))}
                 </div>
                 <div className="payment-page__order-info__item__price">
-                  {item.price}
+                  {item.totalPrice}원
                 </div>
               </div>
             </div>
@@ -139,53 +165,54 @@ const PaymentPage = () => {
         ))}
       </div>
 
-      {/* <div className="payment-page__btn" ref={buttonRef}>
+      <div className="payment-page__line"></div>
+
+      <div className="payment-page__packaging-status">수령방식</div>
+
+      <div className="payment-page__packaging-status__content"></div>
+
+      <div id="payment-page__payment-widget" />
+      <div id="payment-page__payment-agreement" />
+
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            onChange={(event) => {
+              setPrice(event.target.checked ? price - 5000 : price + 5000);
+            }}
+          />
+          5,000원 할인 쿠폰 적용
+        </label>
+      </div>
+
+      <div
+        className="payment-page__payment-btn"
+        onClick={async () => {
+          const paymentWidget = paymentWidgetRef.current;
+
+          try {
+            // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+            // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
+            // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
+            await paymentWidget?.requestPayment({
+              orderId: "aAD8aZDpbzXs4EddQa-UkIX6",
+              orderName: "아메리카노 외 3건",
+              successUrl: "http://localhost:8080/success",
+              failUrl: "http://localhost:8080/fail",
+              customerEmail: "customer123@gmail.com",
+              customerName: paymentData.name,
+              amount: paymentData.totalPrice,
+            });
+          } catch (error) {
+            // 에러 처리하기
+            console.error(error);
+          }
+        }}
+      >
         결제하기
-      </div> */}
+      </div>
     </div>
   );
 };
-// const PaymentPage = () => {
-//   const [paymentMethod, setPaymentMethod] = useState("PayPal");
-
-//   const dispatch = useDispatch();
-
-//   const cart = useSelector((state) => state.cart);
-//   const { shippingAddress } = cart;
-
-//   if (!shippingAddress.address) {
-//     history.push("/shipping");
-//   }
-
-//   const submitHandler = (e) => {
-//     e.preventDefault();
-//     dispatch(savePaymentMethod(paymentMethod));
-//     history.push("/placeorder");
-//   };
-
-//   return (
-//     <div className="payment-page">
-//       {/* <div className="payment-page__title">어떻게 결제할까요?</div>
-//             <div className="payment-page__content__title">
-//                 결제방식을 선택해주세요
-//             </div>
-//             <div className="payment-page__btn">
-//                 <img
-//                     className="payment-page__btn__img"
-//                     src={takeIn}
-//                     alt="takeOut"
-//                 />
-//                 <span className="payment-page__text">먹고갈게요</span>
-//             </div>
-//             <div className="payment-page__btn">
-//                 <img
-//                     className="payment-page__btn__img"
-//                     src={takeOut}
-//                     alt="takeOut"
-//                 />
-//                 <span className="payment-page__text">가져갈게요</span>
-//             </div> */}
-//     </div>
-//   );
-// };
 export default PaymentPage;
