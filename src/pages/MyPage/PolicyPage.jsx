@@ -6,7 +6,7 @@ import "./PolicyPage.css";
 function PolicyPage() {
   return (
     <div className="policy-div">
-      <Header />
+      <Header pageName={"약관 및 정책"} isClose={false} />
       <div className="myprofile-head">
         <Link to="/" alt="서비스 이용약관" className="terms-of-use">
           <div>서비스 이용약관</div>

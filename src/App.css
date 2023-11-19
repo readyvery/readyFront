@@ -14,7 +14,7 @@
     max-width: 390px;
     height: 94vh;
     background-color: white;
-    padding-top: 2.75rem;
+    padding-top: 3.5rem;
   }
   .bottom_navbar {
     left: calc(50% - 207px); /* Center the navbar */
@@ -36,7 +36,7 @@
     max-width: 430px;
     height: 94vh;
     background-color: white;
-    padding-top: 2.75rem;
+    padding-top: 3.5rem;
   }
   .bottom_navbar {
     left: calc(50% - 215px); /* Center the navbar */
@@ -51,7 +51,6 @@
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
   }
-
 }
 
 @media (min-width: 800px) {
@@ -59,7 +58,7 @@
     width: 600px;
     height: 94vh;
     background-color: white;
-    padding-top: 2.75rem;
+    padding-top: 3.5rem;
   }
   .bottom_navbar {
     left: calc(50% - 300px); /* Center the navbar */
@@ -82,8 +81,8 @@
   font-display: swap;
   src: local("Pretendard"),
     url("./assets/font/Pretendard-Bold.woff2") format("woff2");
-unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
-  }
+  unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
+}
 
 @font-face {
   font-family: "ExtraBold";
