@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2.6875rem;
+  height: 3.5rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2.6875rem;
+  height: 3.5rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   margin-left: 1.5rem;
 }
 
-.header-main__warpper{
+.header-main__warpper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,12 +34,12 @@
   margin: 0 auto;
 }
 
-.header-main__warpper span{
+.header-main__warpper span {
   color: #000;
   font-size: 1.25rem;
   font-family: "Bold";
 }
 
-.header-main__warpper div{
+.header-main__warpper div {
   width: 1.5rem;
 }

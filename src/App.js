@@ -15,6 +15,7 @@ import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 import CartPage from "./pages/CartPage/CartPage";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         {/* 장바구니 페이지 */}
         <Route path="/cart" element={<CartPage />} />
         {/* 결제 페이지 */}
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
     </div>
   );
