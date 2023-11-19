@@ -102,6 +102,7 @@ const PaymentPage = () => {
         <img
           className="payment-page__cafe-info__img"
           src={paymentData.imgUrl}
+          alt="cafeImg"
         ></img>
         <text className="payment-page__cafe-info__name">
           {paymentData.name}
@@ -115,6 +116,7 @@ const PaymentPage = () => {
               <img
                 className="payment-page__order-info__item__img"
                 src={item.imgUrl || noImageMenu}
+                alt="menuImg"
               ></img>
 
               <div>
