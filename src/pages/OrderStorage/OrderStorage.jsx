@@ -45,7 +45,7 @@ function OrderStatus () {
 
     return(
         <section className="main-container">
-            <Header headerProps={{pageName:"주문내역", isClose:"false", linkTo:"/"}}/>
+            <Header headerProps={{pageName:"주문내역", isClose:false, linkTo:"/"}}/>
             <main className="content-container">
                 {storageList.length ? (
                     storageList.map((e) => (

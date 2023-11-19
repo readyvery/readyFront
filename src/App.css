@@ -39,17 +39,17 @@
     padding-top: 2.75rem;
   }
   .bottom_navbar {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+    left: calc(50% - 215px); /* Center the navbar */
+    right: calc(50% - 215px); /* Center the navbar */
   }
   .bottom_navbar2 {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+    left: calc(50% - 215px); /* Center the navbar */
+    right: calc(50% - 215px); /* Center the navbar */
   }
 
   .top_header {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+    left: calc(50% - 215px); /* Center the navbar */
+    right: calc(50% - 215px); /* Center the navbar */
   }
 
 }
