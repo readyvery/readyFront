@@ -9,11 +9,19 @@ function Mypage() {
 
   useEffect(() => {
     setIsLoggedIn(true);
+
+    // Axios.get("http://localhost:8080/api/v1/auth", {
+    //   withCredentials: true, // default
+    // }).then((response) => {
+    //   if (response.data) {
+    //     console.log(response.data);
+    //   }
+    // });
   }, []);
 
   return (
     <div className="mypage-div">
-      <Header />
+      <Header pageName={"마이페이지"} isClose={false} />
 
       <div className="mypage-profile-head">
         <div className="mypage-profile-list">
