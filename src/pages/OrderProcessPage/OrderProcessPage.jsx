@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useCookies } from "react-cookie";
 import { Link, useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
@@ -14,8 +13,8 @@ const OrderProcessPage = () => {
   const inout = params.get("inout");
   // const foodie_id = params.get("foodie_id");
 
-  const [cookies, setCookie] = useCookies(['accessToken']);
-  console.log(cookies);
+  // const [cookies, setCookie] = useCookies(['accessToken']);
+  // console.log(cookies);
   
   // const fetchData = async () => {
   //   try{

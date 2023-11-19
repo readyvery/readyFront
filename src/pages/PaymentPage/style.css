@@ -84,7 +84,27 @@
   margin-right: auto;
 }
 
-.payment-page__btn {
+.payment-page__line {
+  display: flex;
+  width: 100%;
+  height: 0.25rem;
+  flex-shrink: 0;
+  background: #dadada;
+  margin-top: 1rem;
+  margin-bottom: 1.44rem;
+}
+
+.payment-page__packaging-status {
+  display: flex;
+  color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-left: 1.62rem;
+}
+
+.payment-page__payment-btn {
   display: flex;
   width: 23.4375rem;
   height: 3.6875rem;
