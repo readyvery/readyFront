@@ -1,0 +1,59 @@
+.search-container {
+  width: 100%;
+}
+
+.search-list {
+  width: 90%;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-link {
+  text-decoration: none;
+  color: black;
+}
+
+.search-details {
+  display: flex;
+  flex-direction: row;
+  margin: 2% 0;
+  align-items: center;
+}
+
+.search-detail {
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+
+.search-status-time {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+
+.search-name {
+  color: #000;
+  font-family: "Bold";
+  font-size: 0.875rem;
+}
+
+.search-status {
+  color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 0.75rem;
+}
+
+.search-time {
+  color: #000;
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+  margin-top: 1.5%;
+}
+
+.search-address {
+  color: #838383;
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+}
