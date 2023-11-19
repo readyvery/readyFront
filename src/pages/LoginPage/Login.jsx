@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Kakaologo from "../../assets/images/kakao_logo.png";
+import Kakaologo from "../../assets/images/kakao_logo.svg";
 import loginpagelogo from "../../assets/images/login_logo.svg";
 
 const Container = styled.div`

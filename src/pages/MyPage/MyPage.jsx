@@ -21,7 +21,13 @@ function Mypage() {
 
   return (
     <div className="mypage-div">
-      <Header pageName={"마이페이지"} isClose={false} />
+      <Header
+        headerProps={{
+          pageName: "마이페이지",
+          isClose: false,
+          linkTo: "/",
+        }}
+      />
 
       <div className="mypage-profile-head">
         <div className="mypage-profile-list">

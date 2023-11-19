@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/views/Header/Header";
+import Header from "../../../components/views/Header/Header";
 import "./CouponPage.css";
 
 function CouponPage() {
@@ -24,7 +24,13 @@ function CouponPage() {
 
   return (
     <div className="coupon-div">
-      <Header pageName={"할인쿠폰"} isClose={false} />
+      <Header
+        headerProps={{
+          pageName: "할인쿠폰",
+          isClose: false,
+          linkTo: "/mypage",
+        }}
+      />
 
       <div className="coupon-list">
         <div className="coupon-list-box">

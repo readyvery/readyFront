@@ -1,6 +1,6 @@
 import React from "react";
-import profile_icon from "../../assets/images/profile_icon.svg";
-import Header from "../../components/views/Header/Header";
+import profile_icon from "../../../assets/images/profile_icon.svg";
+import Header from "../../../components/views/Header/Header";
 import "./MyprofilePage.css";
 
 function MyprofilePage() {
@@ -30,7 +30,13 @@ function MyprofilePage() {
 
   return (
     <div className="myprofile-div">
-      <Header />
+      <Header
+        headerProps={{
+          pageName: "나의 프로필",
+          isClose: false,
+          linkTo: "/mypage",
+        }}
+      />
       <div className="myprofile-head">
         <img
           src={profile_icon}
