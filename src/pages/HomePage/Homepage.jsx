@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import orda_cafe from "../../assets/images/cafe1.svg";
-import harang_cafe from "../../assets/images/cafe2.svg";
-import dream_cafe from "../../assets/images/cafe3.svg";
 import event_icon from "../../assets/images/event_icon.svg";
+import home_cafedream from "../../assets/images/home_cafedream.svg";
+import home_harang from "../../assets/images/home_harang.svg";
+import home_orda from "../../assets/images/home_orda.svg";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
@@ -56,14 +56,14 @@ function Homepage() {
       id: 1,
       name: "카페오르다",
       address: "경기 부천시 지봉로 46 백호빌딩 2층",
-      img: orda_cafe,
+      img: home_orda,
       eventText: "테이크아웃 시 아메리카노 1,700원",
     },
     {
       id: 2,
       name: "카페하랑 부천점",
       address: "경기도 부천시 지봉로 43",
-      img: harang_cafe,
+      img: home_harang,
       eventText: "강의실에서 주문하고, 바로 가져가세요!",
     },
     {
@@ -71,7 +71,7 @@ function Homepage() {
       name: "카페드림 가톨릭대학교 성심교정 중앙도서관점",
       address:
         "경기도 부천시 지봉로 43 가톨릭대학교 중앙도서관 1층 15베리타스관",
-      img: dream_cafe,
+      img: home_cafedream,
       eventText: "기말고사 화이팅!",
     },
   ];
@@ -121,7 +121,7 @@ function Homepage() {
 
   return (
     <div className="homepage">
-      <Header headerProps={null}/>
+      <Header headerProps={null} />
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
@@ -168,13 +168,12 @@ function Homepage() {
             <img src={image.imgUrl} alt={`Event ${index}`} className="event-icon" />
           </Link>
         ))} */}
-        <Link to="/event" className="event-link">
-          <img
-            src={eventCase.event1.imgUrl}
-            alt="eventImg"
-            className="event-icon"
-          />
-        </Link>
+
+        <img
+          src={eventCase.event1.imgUrl}
+          alt="eventImg"
+          className="event-icon"
+        />
       </div>
 
       {/* 베리pick div */}
