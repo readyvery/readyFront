@@ -37,8 +37,6 @@ const KakaoButton = styled.button`
 function KaKaoLoginBtn() {
   const handleKakaoLogin = () => {
     window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
-    //console.log(`${process.env.REACT_APP_KAKAO_LOGIN}`);
-    console.log(document.cookie);
   };
 
   return (

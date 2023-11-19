@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./OrderStorage.css";
+import "./ReadyPage.css";
 
 import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";
 
 import empty from "../../assets/images/storage_empty.svg";
 
-
-function OrderStatus () {
-
+const ReadyPage = () => {
     const storageList = [
         {
             id: 1,
@@ -45,7 +43,7 @@ function OrderStatus () {
 
     return(
         <section className="main-container">
-            <Header headerProps={{pageName:"주문내역", isClose:false, linkTo:"/"}}/>
+            <Header headerProps={{pageName:"바로주문", isClose:false, linkTo:"/"}}/>
             <main className="content-container">
                 {storageList.length ? (
                     storageList.map((e) => (
@@ -72,4 +70,4 @@ function OrderStatus () {
     );
 }
 
-export default OrderStatus;
+export default ReadyPage;

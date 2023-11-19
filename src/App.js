@@ -5,6 +5,7 @@ import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import TestPage from "../src/pages/TestPage/TestPage";
 import "./App.css";
 import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
+import CartPage from "./pages/CartPage/CartPage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
 import CouponPage from "./pages/MyPage/CouponPage";
 import EventingPage from "./pages/MyPage/EventingPage";
@@ -15,8 +16,8 @@ import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
-import CartPage from "./pages/CartPage/CartPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import ReadyPage from "./pages/ReadyPage/ReadyPage";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         {/* 주문상세 페이지 - 추후 병합 예정*/}
         <Route path="/orderDetail" element={<OrderDetail />} />
         {/* 테스트 페이지 - 바로주문*/}
-        <Route path="/ready" element={<TestPage />} />
+        <Route path="/ready" element={<ReadyPage />} />
         {/* 테스트 페이지 - 마이페이지*/}
         <Route path="/mypage" element={<MyPage />} />
         {/* 테스트 페이지 - 로그인*/}
