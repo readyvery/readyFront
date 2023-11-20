@@ -22,6 +22,7 @@ const StoreDetailPage = () => {
       }
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -41,6 +42,7 @@ const StoreDetailPage = () => {
       .catch((error) => {
         console.error("Error fetching store data:", error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
   const handleCategoryClick = (category) => {
