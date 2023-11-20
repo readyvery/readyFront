@@ -15,17 +15,17 @@ const OrderProcessPage = () => {
   // const foodie_id = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
-  
+
   useEffect(() => {
     const fetchData = async () => {
-      try{
+      try {
         const response = await axios.get(
           `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=7&inout=${inout}`,
           {withCredentials: true}
         );
         console.log(response.data);
         setFoodOptionInfo(response.data);
-      } catch(error) {
+      } catch (error) {
         console.log(error);
       }
     };
@@ -37,7 +37,8 @@ const OrderProcessPage = () => {
     foodOptionInfo?.category?.map(() => false)
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState(
-    foodOptionInfo && foodOptionInfo.category?.map((e) => `${e.options[0]?.name}`)
+    foodOptionInfo &&
+      foodOptionInfo.category?.map((e) => `${e.options[0]?.name}`)
   );
   const [totalAmount, setTotalAmount] = useState(foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price);
   const [prevRadioPrice, setPrevRadioPrice] = useState(
@@ -67,7 +68,10 @@ const OrderProcessPage = () => {
       return texts;
     });
 
-    setTotalAmount((prevAmount) => prevAmount - prevRadioPrice[index] + price);
+    setTotalAmount(
+      (prevAmount) =>
+        prevAmount - prevRadioPrice?.length && prevRadioPrice[index] + price
+    );
 
     setPrevRadioPrice((prevPrices) => {
       const prices = [...prevPrices];
@@ -124,15 +128,25 @@ const OrderProcessPage = () => {
                 )}
                 <img
                   className="order-process-page__toggle__header__img"
-                  src={(activeToggles?.length && activeToggles[index]) ? toggleUp : toggleDown}
-                  alt={(activeToggles?.length && activeToggles[index]) ? "Toggle Up" : "Toggle Down"}
+                  src={
+                    activeToggles?.length && activeToggles[index]
+                      ? toggleUp
+                      : toggleDown
+                  }
+                  alt={
+                    activeToggles?.length && activeToggles[index]
+                      ? "Toggle Up"
+                      : "Toggle Down"
+                  }
                 />
               </span>
             </div>
 
             {activeToggles?.length && activeToggles[index] && (
-              <div 
-                className={`order-process-page__toggle__body ${activeToggles?.length && activeToggles[index] && "open"}`}
+              <div
+                className={`order-process-page__toggle__body ${
+                  activeToggles?.length && activeToggles[index] && "open"
+                }`}
                 style={{
                   maxHeight: "100%",
                   paddingTop: "1.56rem",
@@ -152,7 +166,10 @@ const OrderProcessPage = () => {
                       type="radio"
                       name={`radio_${index}`}
                       value={optionIndex}
-                      checked={selectedRadioTexts?.length && selectedRadioTexts[index] === option.name}
+                      checked={
+                        selectedRadioTexts?.length &&
+                        selectedRadioTexts[index] === option.name
+                      }
                       onChange={() =>
                         handleRadioChange(index, option.name, option.price)
                       }
