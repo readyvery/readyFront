@@ -7,6 +7,7 @@ import "./style.css";
 // import takeIn from "../../assets/images/take_in.svg";
 // import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
+import axios from "axios";
 
 const clientKey = "test_ck_oEjb0gm23PWEKPJK1yRp8pGwBJn5";
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
@@ -16,53 +17,24 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const apiRoot = process.env.REACT_APP_API_ROOT;
 
-  const paymentData = {
-    name: "카페 오르다",
-    imgUrl: "/주소",
-    totalPrice: 30000,
-    carts: [
-      {
-        idx: 141, // 장바구니 idx
-        name: "아메리카노",
-        imgUrl: "/주주소소",
-        totalPrice: 2500,
-        count: 4,
-        options: [
-          {
-            idx: 1, // 옵션 테이블 인덱스
-            name: "ICE",
-            price: 500,
-          },
-          {
-            idx: 114, // 옵션 테이블 인덱스
-            name: "샷추가",
-            price: 500,
-          },
-        ],
-      },
-      {
-        idx: 143, // 장바구니 idx
-        name: "카페라떼",
-        imgUrl: null,
-        totalPrice: 4500,
-        count: 3,
-        options: [
-          {
-            idx: 1, // 옵션 테이블 인덱스
-            name: "ICE",
-            price: 500,
-          },
-          {
-            idx: 114, // 옵션 테이블 인덱스
-            name: "샷추가",
-            price: 500,
-          },
-        ],
-      },
-    ],
-    couponId: 12,
-  };
+  const [paymentData, setPaymentData] = useState(null);
+  useEffect(() => {
+    // API 엔드포인트
+    const apiUrl = `${apiRoot}/api/v1/order/cart?inout={inout}`;
+
+    // axios 라이브러리를 사용하여 API에 GET 요청 보내기
+    axios
+      .get(apiUrl, { withCredential: true })
+      .then((response) => {
+        // API 응답을 상태에 저장
+        setPaymentData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching store data:", error);
+      });
+  }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
