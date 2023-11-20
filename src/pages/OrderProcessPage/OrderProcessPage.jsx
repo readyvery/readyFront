@@ -51,7 +51,6 @@ const OrderProcessPage = () => {
     setTotalAmount(foodOptionInfo?.price + parseInt(foodOptionInfo?.category?.map((e) => parseInt(e?.options[0]?.price)).reduce((prev, curr) => prev + curr, 0)));
     setPrevRadioPrice(foodOptionInfo?.category?.map((e) => e?.options[0]?.price));
     setOptionIdx(foodOptionInfo?.category?.filter((el) => el?.essential).map((e) => e?.options[0]?.idx))
-    console.log(optionIdx);  
   }, [foodOptionInfo]);
 
   const handleToggle = (index) => {
@@ -79,6 +78,7 @@ const OrderProcessPage = () => {
       prices[index] = price;
       return prices;
     });
+    console.log(optionIdx);
   };
 
   // const handleOptionChange = (idx, text, price) => {
