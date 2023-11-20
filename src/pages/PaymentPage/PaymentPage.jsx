@@ -96,7 +96,6 @@ const PaymentPage = () => {
       })
       .then((res) => {
         console.log(res.data);
-        setTosspayment(res.data);
 
         const paymentWidget = paymentWidgetRef.current;
 
