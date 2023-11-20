@@ -66,6 +66,23 @@
   align-items: center;
 }
 
+.order-process-page__toggle__header.option {
+  display: flex;
+  height: 2.875rem;
+  flex-shrink: 0;
+  background: #fff;
+  color: #000;
+  font-family: "SemiBold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: 0.0225rem;
+  padding-left: 1.44rem;
+  padding-right: 1.32rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .order-process-page__selected-radio {
   margin-right: 1.4rem;
 }
