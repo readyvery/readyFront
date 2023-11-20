@@ -13,21 +13,18 @@ const StoreDetailPage = () => {
 
   const [caffeeInfo, setCaffeeInfo] = useState(null);
   useEffect(() => {
-    // API 엔드포인트
-    const apiUrl = `${apiRoot}/api/v1/store/${storeId}`;
-
-    // axios 라이브러리를 사용하여 API에 GET 요청 보내기
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        // API 응답을 상태에 저장
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${apiRoot}/api/v1/store/${storeId}`);
         setCaffeeInfo(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching store data:", error);
-      });
-  }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
+  const [selectedCategory, setSelectedCategory] = useState([]);
   const [menu, setMenu] = useState(null);
   useEffect(() => {
     // API 엔드포인트
@@ -39,13 +36,12 @@ const StoreDetailPage = () => {
       .then((response) => {
         // API 응답을 상태에 저장
         setMenu(response.data);
+        setSelectedCategory(response.data.menu[0]);
       })
       .catch((error) => {
         console.error("Error fetching store data:", error);
       });
   }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
-
-  const [selectedCategory, setSelectedCategory] = useState(menu[0]);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -60,7 +56,6 @@ const StoreDetailPage = () => {
           linkTo: `/packagingStatus?storeId=${storeId}`,
         }}
       />
-
       <div className="store-detail-page__banner">
         <img
           className="store-detail-page__bannerImg"
@@ -68,10 +63,9 @@ const StoreDetailPage = () => {
           alt="caffee banner"
         />
       </div>
-
       <div className="store-detail-page__caffeeInfo">
         <div className="store-detail-page__caffeeInfo__title">
-          {caffeeInfo.name}
+          {caffeeInfo?.name}
         </div>
 
         <div className="store-detail-page__caffeeInfo__list">
@@ -79,7 +73,7 @@ const StoreDetailPage = () => {
             {"연락처"}
           </text>
           <text className="store-detail-page__caffeeInfo__contact">
-            {caffeeInfo.phone}
+            {caffeeInfo?.phone}
           </text>
         </div>
 
@@ -91,7 +85,7 @@ const StoreDetailPage = () => {
             {"주소"}
           </text>
           <text className="store-detail-page__caffeeInfo__address">
-            {caffeeInfo.address}
+            {caffeeInfo?.address}
           </text>
         </div>
 
@@ -103,42 +97,52 @@ const StoreDetailPage = () => {
             {"영업 시간"}
           </text>
           <text className="store-detail-page__caffeeInfo__time">
-            {caffeeInfo.openTime}
+            {caffeeInfo?.openTime}
           </text>
         </div>
       </div>
 
       <div className="store-detail-page__menuCategory">
-        {menu.map((category, index) => (
-          <span
-            key={index}
-            className={`store-detail-page__menuCategory__item ${
-              selectedCategory.categoryId === category.categoryId
-                ? "selected"
-                : ""
-            }`}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category.category}
-          </span>
-        ))}
+        {menu && menu.menu && Array.isArray(menu.menu) ? (
+          menu.menu.map((category, index) => (
+            <span
+              key={index}
+              className={`store-detail-page__menuCategory__item ${
+                selectedCategory?.categoryId === category?.categoryId
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category?.category}
+            </span>
+          ))
+        ) : (
+          <p>Loading menu...</p>
+        )}
       </div>
 
       <div className="store-detail-page__menuList">
-        {selectedCategory.foodies.map((item, index) => (
-          <Link
-            to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}`}
-            key={index}
-            className="store-detail-page__menuList__item"
-          >
-            <div className="store-detail-page__menuList__item__name">
-              {item.name}
-            </div>
-            <div className="store-detail-page__menuList__item__price">
-              {String(item.price) + "원"}
-            </div>
-          </Link>
-        ))}
+        {selectedCategory &&
+        selectedCategory.menuItems &&
+        Array.isArray(selectedCategory.menuItems) ? (
+          selectedCategory.menuItems.map((item, index) => (
+            <Link
+              to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}`}
+              key={index}
+              className="store-detail-page__menuList__item"
+            >
+              <div className="store-detail-page__menuList__item__name">
+                {item?.name}
+              </div>
+              <div className="store-detail-page__menuList__item__price">
+                {String(item?.price) + "원"}
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>Loading menu items...</p>
+        )}
       </div>
     </div>
   );

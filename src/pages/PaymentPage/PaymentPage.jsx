@@ -21,24 +21,39 @@ const PaymentPage = () => {
 
   const [paymentData, setPaymentData] = useState(null);
   useEffect(() => {
-    // API 엔드포인트
-    const apiUrl = `${apiRoot}/api/v1/order/cart?inout={inout}`;
-
-    // axios 라이브러리를 사용하여 API에 GET 요청 보내기
-    axios
-      .get(apiUrl, { withCredential: true })
-      .then((response) => {
-        // API 응답을 상태에 저장
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          { withCredentials: true }
+        );
         setPaymentData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching store data:", error);
-      });
-  }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+  // useEffect(() => {
+  //   // API 엔드포인트
+  //   const apiUrl = `${apiRoot}/api/v1/order/cart?inout=${inout}`;
+
+  //   // axios 라이브러리를 사용하여 API에 GET 요청 보내기
+  //   axios
+  //     .get(apiUrl, { withCredential: true })
+  //     .then((response) => {
+  //       // API 응답을 상태에 저장
+  //       setPaymentData(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching store data:", error);
+  //     });
+  // }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
-  const [price, setPrice] = useState(paymentData.totalPrice);
+  const [price, setPrice] = useState(paymentData?.totalPrice);
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -97,16 +112,16 @@ const PaymentPage = () => {
       <div className="payment-page__cafe-info">
         <img
           className="payment-page__cafe-info__img"
-          src={paymentData.imgUrl}
+          src={paymentData?.imgUrl}
           alt="cafeImg"
         ></img>
         <text className="payment-page__cafe-info__name">
-          {paymentData.name}
+          {paymentData?.name}
         </text>
       </div>
 
       <div className="payment-page__order-info">
-        {paymentData.carts.map((item) => (
+        {paymentData?.carts.map((item) => (
           <div>
             <div className="payment-page__order-info__item">
               <img
