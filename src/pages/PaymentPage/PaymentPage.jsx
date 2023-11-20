@@ -34,6 +34,7 @@ const PaymentPage = () => {
     };
     fetchData();
   }, []);
+
   // useEffect(() => {
   //   // API 엔드포인트
   //   const apiUrl = `${apiRoot}/api/v1/order/cart?inout=${inout}`;
