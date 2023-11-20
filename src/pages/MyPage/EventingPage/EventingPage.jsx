@@ -20,7 +20,7 @@ const StyleSlider = styled(Slider)`
   }
 `;
 
-const EventImg = styled.img`
+const EventingImg = styled.img`
   width: 284px;
   height: 449px;
 `;
@@ -66,7 +66,7 @@ function EventingPage() {
       <div className="eventing-img">
         <StyleSlider {...settings}>
           {dummyEventingItems[0].events.map((event) => (
-            <EventImg src={event.imgUrl} alt="eventing" />
+            <EventingImg src={event.imgUrl} alt="eventing" />
           ))}
         </StyleSlider>
       </div>
