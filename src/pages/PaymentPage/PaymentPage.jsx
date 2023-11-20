@@ -9,7 +9,7 @@ import "./style.css";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import axios from "axios";
 
-const clientKey = "test_ck_oEjb0gm23PWEKPJK1yRp8pGwBJn5";
+const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
 
 const PaymentPage = () => {
@@ -18,8 +18,11 @@ const PaymentPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const apiRoot = process.env.REACT_APP_API_ROOT;
-
+  const paymentWidgetRef = useRef(null);
+  const paymentMethodsWidgetRef = useRef(null);
   const [paymentData, setPaymentData] = useState(null);
+  const [price, setPrice] = useState(paymentData?.totalPrice);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,6 +31,7 @@ const PaymentPage = () => {
           { withCredentials: true }
         );
         setPaymentData(response.data);
+        setPrice(response.data.totalPrice);
       } catch (error) {
         console.error(error);
       }
@@ -36,26 +40,7 @@ const PaymentPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   // API 엔드포인트
-  //   const apiUrl = `${apiRoot}/api/v1/order/cart?inout=${inout}`;
-
-  //   // axios 라이브러리를 사용하여 API에 GET 요청 보내기
-  //   axios
-  //     .get(apiUrl, { withCredential: true })
-  //     .then((response) => {
-  //       // API 응답을 상태에 저장
-  //       setPaymentData(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching store data:", error);
-  //     });
-  // }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
-
-  const paymentWidgetRef = useRef(null);
-  const paymentMethodsWidgetRef = useRef(null);
-  const [price, setPrice] = useState(paymentData?.totalPrice);
+  const [Tosspayment, setTosspayment] = useState([]);
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -100,6 +85,35 @@ const PaymentPage = () => {
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
     paymentMethodsWidget.updateAmount(price);
   }, [price]);
+
+  const paymentRequest = async () => {
+    let body = {
+      inout: inout,
+    };
+
+    await axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/toss`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setTosspayment(res.data);
+
+        const paymentWidget = paymentWidgetRef.current;
+
+        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+        // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
+        // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
+        paymentWidget?.requestPayment(res.data);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+      });
+  };
 
   return (
     <div className="payment-page">
@@ -175,30 +189,7 @@ const PaymentPage = () => {
         </label>
       </div>
 
-      <div
-        className="payment-page__payment-btn"
-        onClick={async () => {
-          const paymentWidget = paymentWidgetRef.current;
-
-          try {
-            // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-            // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
-            // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
-            await paymentWidget?.requestPayment({
-              orderId: "aAD8aZDpbzXs4EddQa-UkIX6",
-              orderName: "아메리카노 외 3건",
-              successUrl: "http://localhost:8080/success",
-              failUrl: "http://localhost:8080/fail",
-              customerEmail: "customer123@gmail.com",
-              customerName: paymentData.name,
-              amount: paymentData.totalPrice,
-            });
-          } catch (error) {
-            // 에러 처리하기
-            console.error(error);
-          }
-        }}
-      >
+      <div className="payment-page__payment-btn" onClick={paymentRequest}>
         결제하기
       </div>
     </div>

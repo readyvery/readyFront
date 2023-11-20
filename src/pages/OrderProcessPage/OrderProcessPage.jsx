@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
@@ -8,18 +8,19 @@ import Header from "../../components/views/Header/Header";
 import "./style.css";
 
 const OrderProcessPage = () => {
+  let navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
-  // const foodie_id = params.get("foodie_id");
+  const foodie_id = params.get("foodie_id");
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=13&inout=${inout}`,
+          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=7&inout=${inout}`,
           { withCredentials: true }
         );
         console.log(response.data);
@@ -31,6 +32,38 @@ const OrderProcessPage = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleCartReset = () => {
+    let body = {
+      storeId: storeId,
+      foodieId: 7,
+      options: [7, 9],
+      count: 1,
+    };
+    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+
+    // Axios를 사용한 DELETE 요청
+    const response = axios.delete(apiUrl, { withCredentials: true });
+
+    // 성공적으로 처리된 경우에 대한 로직
+    console.log("Cart reset successful", response.data);
+    axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/payment?storeId=${storeId}&inout=${inout}`);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+
+        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+      });
+  };
 
   // const foodOptionInfo = {
   //   name: "아메리카노",
@@ -271,12 +304,16 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      <Link
+      {/* <Link
         to={`/cart?storeId=${storeId}&inout=${inout}`}
         style={{ textDecoration: "none" }}
       >
         <div className="order-process-page__cart__btn">장바구니 담기</div>
-      </Link>
+      </Link> */}
+
+      <div className="order-process-page__cart__btn" onClick={handleCartReset}>
+        주문하기
+      </div>
     </div>
   );
 };
