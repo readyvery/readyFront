@@ -40,7 +40,6 @@ const PaymentPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [Tosspayment, setTosspayment] = useState([]);
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------

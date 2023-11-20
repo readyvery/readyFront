@@ -13,7 +13,7 @@ const OrderProcessPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
-  const foodie_id = params.get("foodie_id");
+  // const foodie_id = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
 
