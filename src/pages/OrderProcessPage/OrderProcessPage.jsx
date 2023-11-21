@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
-import "./style.css";
+import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -13,7 +13,7 @@ const OrderProcessPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
-  const foodie_id = params.get("foodie_id");
+  const foodieId = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
 
@@ -21,8 +21,8 @@ const OrderProcessPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=${foodie_id}&inout=${inout}`,
-          {withCredentials: true}
+          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
+          { withCredentials: true }
         );
         console.log(response.data);
         setFoodOptionInfo(response.data);
@@ -37,11 +37,10 @@ const OrderProcessPage = () => {
   const handleCartReset = () => {
     let body = {
       storeId: storeId,
-      foodieId: foodie_id,
+      foodieId: foodieId,
       options: optionIdx,
       count: 1,
     };
-    console.log(body);
     const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
     // Axios를 사용한 DELETE 요청
@@ -72,7 +71,9 @@ const OrderProcessPage = () => {
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState(
     foodOptionInfo &&
-      foodOptionInfo.category?.filter((el) => el?.essential).map((e) => `${e.options[0]?.name}`)
+      foodOptionInfo.category
+        ?.filter((el) => el?.essential)
+        .map((e) => `${e.options[0]?.name}`)
   );
   const [totalAmount, setTotalAmount] = useState(
     foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price
@@ -82,11 +83,33 @@ const OrderProcessPage = () => {
   );
   const [optionIdx, setOptionIdx] = useState([]);
   useEffect(() => {
-    setActiveToggles(foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false));
-    setSelectedRadioTexts(foodOptionInfo.category?.filter((el) => el?.essential).map((e) => `${e.options[0]?.name}`));
-    setTotalAmount(foodOptionInfo?.price + parseInt(foodOptionInfo?.category?.filter((el) => el?.essential).map((e) => parseInt(e?.options[0]?.price)).reduce((prev, curr) => prev + curr, 0)));
-    setPrevRadioPrice(foodOptionInfo?.category?.filter((el) => el?.essential).map((e) => e?.options[0]?.price));
-    setOptionIdx(foodOptionInfo?.category?.filter((el) => el?.essential).map((e) => e?.options[0]?.idx))
+    setActiveToggles(
+      foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false)
+    );
+    setSelectedRadioTexts(
+      foodOptionInfo.category
+        ?.filter((el) => el?.essential)
+        .map((e) => `${e.options[0]?.name}`)
+    );
+    setTotalAmount(
+      foodOptionInfo?.price +
+        parseInt(
+          foodOptionInfo?.category
+            ?.filter((el) => el?.essential)
+            .map((e) => parseInt(e?.options[0]?.price))
+            .reduce((prev, curr) => prev + curr, 0)
+        )
+    );
+    setPrevRadioPrice(
+      foodOptionInfo?.category
+        ?.filter((el) => el?.essential)
+        .map((e) => e?.options[0]?.price)
+    );
+    setOptionIdx(
+      foodOptionInfo?.category
+        ?.filter((el) => el?.essential)
+        .map((e) => e?.options[0]?.idx)
+    );
   }, [foodOptionInfo]);
 
   const handleToggle = (index) => {
@@ -108,10 +131,7 @@ const OrderProcessPage = () => {
       return texts;
     });
 
-    setTotalAmount(
-      (prevAmount) =>
-        prevAmount - prevRadioPrice[index] + price
-    );
+    setTotalAmount((prevAmount) => prevAmount - prevRadioPrice[index] + price);
 
     setPrevRadioPrice((prevPrices) => {
       const prices = [...prevPrices];
@@ -121,9 +141,13 @@ const OrderProcessPage = () => {
   };
 
   const handleOptionChange = (idx, price, e) => {
-    e.target.checked ? setTotalAmount((prevAmount) => prevAmount + price) : setTotalAmount((prevAmount) => prevAmount - price);
-    e.target.checked ? setOptionIdx((prev) => [...prev, idx]) : setOptionIdx((prev) => prev.filter((e) => e !== idx));
-  }
+    e.target.checked
+      ? setTotalAmount((prevAmount) => prevAmount + price)
+      : setTotalAmount((prevAmount) => prevAmount - price);
+    e.target.checked
+      ? setOptionIdx((prev) => [...prev, idx])
+      : setOptionIdx((prev) => prev.filter((e) => e !== idx));
+  };
 
   // const submitOrder = () => {
   //   console.log(optionIdx);
@@ -148,134 +172,150 @@ const OrderProcessPage = () => {
       </div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo && foodOptionInfo.category && foodOptionInfo.category
-          .filter((c, i) => c?.essential)
-          .map((category, index) => (
-          <div className="order-process-page__toggle__container" key={index}>
-            <div
-              className={`order-process-page__toggle__header ${activeToggles?.length && activeToggles[index] && "open"}`}
-              onClick={() => handleToggle(index)}
-            >
-              <span className="order-process-page__toggle__name">
-                {category.name}
-              </span>
-              <span className="order-process-page__toggle__btn">
-                {selectedRadioTexts?.length && selectedRadioTexts[index] && (
-                  <span className="order-process-page__selected-radio">
-                    {selectedRadioTexts[index]}
-                  </span>
-                )}
-                <img
-                  className="order-process-page__toggle__header__img"
-                  src={
-                    activeToggles?.length && activeToggles[index]
-                      ? toggleUp
-                      : toggleDown
-                  }
-                  alt={
-                    activeToggles?.length && activeToggles[index]
-                      ? "Toggle Up"
-                      : "Toggle Down"
-                  }
-                />
-              </span>
-            </div>
-
-            {activeToggles?.length && activeToggles[index] && (
+        {foodOptionInfo &&
+          foodOptionInfo.category &&
+          foodOptionInfo.category
+            .filter((c, i) => c?.essential)
+            .map((category, index) => (
               <div
                 className="order-process-page__toggle__container"
                 key={index}
               >
-                {category?.options?.map((option, optionIndex) => (
-                  <div
-                    className="order-process-page__toggle__body__radio"
-                    key={optionIndex}
-                  >
-                    <label htmlFor={`radio_${index}_${optionIndex}`}>
-                      <input
-                        type="radio"
-                        id={`radio_${index}_${optionIndex}`}
-                        name={`radio_${index}_${optionIndex}`}
-                        value={optionIndex}
-                        checked={
-                          selectedRadioTexts?.length &&
-                          selectedRadioTexts[index] === option.name
-                        }
-                        onChange={() =>
-                          handleRadioChange(index, option.name, option.price)
-                        }
-                      />
-                      <span>
-                        {option.name}
-                      </span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          
-        ))}
-        {foodOptionInfo?.category?.filter((e) => !e?.essential).length ?
-          (<div className="order-process-page__toggle__container">
-            <div
-              className={`order-process-page__toggle__header ${optionOpen && "open"}`}
-              onClick={() => setOptionOpen((prev) => !prev)}
-            >
-              <span className="order-process-page__toggle__name">
-                추가옵션
-              </span>
-              <img
-                  className="order-process-page__toggle__header__img"
-                  src={optionOpen ? toggleUp : toggleDown}
-                  alt={optionOpen ? "Toggle Up" : "Toggle Down"}
-                />
-            </div>
-            
-            <div 
-                className={`order-process-page__toggle__body ${optionOpen && "open"}`}
-                style={{
-                  maxHeight: "100%",
-                  paddingTop: "1.56rem",
-                  paddingBottom: "1.91rem",
-                }}
-              >
-            {optionOpen && foodOptionInfo && foodOptionInfo.category && foodOptionInfo.category
-                .filter((c, i) => !c.essential)
-                .map((category, index) => (
-                  <React.Fragment key={index}>
-                  {index !== 0 && <div className="option__line"></div>}
-                  <span className="order-process-page__option__title__wrapper">
-                    <span className="order-process-page__option__title">
-                      {category.name}
-                    </span>
+                <div
+                  className={`order-process-page__toggle__header ${
+                    activeToggles?.length && activeToggles[index] && "open"
+                  }`}
+                  onClick={() => handleToggle(index)}
+                >
+                  <span className="order-process-page__toggle__name">
+                    {category.name}
                   </span>
-                  {category?.options?.map((option, i) => (
-                    <React.Fragment key={option.idx}>
-                      <div className="option__checkbox__wrapper">
-                        <label htmlFor={`option_${option.idx}`}>
-                          <input 
-                          type="checkbox" 
-                          id={`option_${option.idx}`}
-                          name={`option_${option.idx}`}
-                          onChange={(e) =>
-                            handleOptionChange(option.idx, option.price, e)
-                          }
+                  <span className="order-process-page__toggle__btn">
+                    {selectedRadioTexts?.length &&
+                      selectedRadioTexts[index] && (
+                        <span className="order-process-page__selected-radio">
+                          {selectedRadioTexts[index]}
+                        </span>
+                      )}
+                    <img
+                      className="order-process-page__toggle__header__img"
+                      src={
+                        activeToggles?.length && activeToggles[index]
+                          ? toggleUp
+                          : toggleDown
+                      }
+                      alt={
+                        activeToggles?.length && activeToggles[index]
+                          ? "Toggle Up"
+                          : "Toggle Down"
+                      }
+                    />
+                  </span>
+                </div>
+
+                {activeToggles?.length && activeToggles[index] && (
+                  <div
+                    className="order-process-page__toggle__container"
+                    key={index}
+                  >
+                    {category?.options?.map((option, optionIndex) => (
+                      <div
+                        className="order-process-page__toggle__body__radio"
+                        key={optionIndex}
+                      >
+                        <label htmlFor={`radio_${index}_${optionIndex}`}>
+                          <input
+                            type="radio"
+                            id={`radio_${index}_${optionIndex}`}
+                            name={`radio_${index}_${optionIndex}`}
+                            value={optionIndex}
+                            checked={
+                              selectedRadioTexts?.length &&
+                              selectedRadioTexts[index] === option.name
+                            }
+                            onChange={() =>
+                              handleRadioChange(
+                                index,
+                                option.name,
+                                option.price
+                              )
+                            }
                           />
                           <span>{option.name}</span>
                         </label>
                       </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+        {foodOptionInfo?.category?.filter((e) => !e?.essential).length ? (
+          <div className="order-process-page__toggle__container">
+            <div
+              className={`order-process-page__toggle__header ${
+                optionOpen && "open"
+              }`}
+              onClick={() => setOptionOpen((prev) => !prev)}
+            >
+              <span className="order-process-page__toggle__name">추가옵션</span>
+              <img
+                className="order-process-page__toggle__header__img"
+                src={optionOpen ? toggleUp : toggleDown}
+                alt={optionOpen ? "Toggle Up" : "Toggle Down"}
+              />
+            </div>
+
+            <div
+              className={`order-process-page__toggle__body ${
+                optionOpen && "open"
+              }`}
+              style={{
+                maxHeight: "100%",
+                paddingTop: "1.56rem",
+                paddingBottom: "1.91rem",
+              }}
+            >
+              {optionOpen &&
+                foodOptionInfo &&
+                foodOptionInfo.category &&
+                foodOptionInfo.category
+                  .filter((c, i) => !c.essential)
+                  .map((category, index) => (
+                    <React.Fragment key={index}>
+                      {index !== 0 && <div className="option__line"></div>}
+                      <span className="order-process-page__option__title__wrapper">
+                        <span className="order-process-page__option__title">
+                          {category.name}
+                        </span>
+                      </span>
+                      {category?.options?.map((option, i) => (
+                        <React.Fragment key={option.idx}>
+                          <div className="option__checkbox__wrapper">
+                            <label htmlFor={`option_${option.idx}`}>
+                              <input
+                                type="checkbox"
+                                id={`option_${option.idx}`}
+                                name={`option_${option.idx}`}
+                                onChange={(e) =>
+                                  handleOptionChange(
+                                    option.idx,
+                                    option.price,
+                                    e
+                                  )
+                                }
+                              />
+                              <span>{option.name}</span>
+                            </label>
+                          </div>
+                        </React.Fragment>
+                      ))}
                     </React.Fragment>
                   ))}
-                  
-              </React.Fragment>
-              ))}
             </div>
           </div>
-          ) : (
-            <div></div>
-          )
-        }
+        ) : (
+          <div></div>
+        )}
       </div>
 
       <div className="order-process-page__total-amount">
@@ -285,12 +325,22 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      <Link
+      {/* <Link
         to={`/payment?storeId=${storeId}&inout=${inout}`}
-        style={{ display: "flex", textDecoration: "none", marginBottom: '2rem' }}
+        style={{
+          display: "flex",
+          textDecoration: "none",
+          marginBottom: "2rem",
+        }}
       >
-        <div className="order-btn" onClick={handleCartReset}>주문하기</div>
-      </Link>
+        <div className="order-btn" onClick={handleCartReset}>
+          주문하기
+        </div>
+      </Link> */}
+
+      <div className="order-process-page__cart__btn" onClick={handleCartReset}>
+        주문하기
+      </div>
     </div>
   );
 };

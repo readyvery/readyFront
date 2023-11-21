@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
-import "./style.css";
+import "./CartPage.css";
 
 const CartPage = () => {
   const location = useLocation();
