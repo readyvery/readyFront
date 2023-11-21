@@ -19,6 +19,8 @@ import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
+import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
+import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 
 function App() {
   return (
@@ -62,6 +64,10 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         {/* 결제 페이지 */}
         <Route path="/payment" element={<PaymentPage />} />
+        {/* 결제 성공 리다이렉트 페이지 */}
+        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+        {/* 결제 실패 리다이렉트 페이지 */}
+        <Route path="/payment/fail" element={<PaymentFailPage />} />
       </Routes>
     </div>
   );
