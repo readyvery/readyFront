@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../../components/views/Header/Header";
-import takeOut from "../../assets/images/take_out.svg";
-import takeIn from "../../assets/images/take_in.svg";
-import promotion from "../../assets/images/promotion.svg";
-import "./style.css";
 import { Link, useLocation } from "react-router-dom";
+import promotion from "../../assets/images/promotion.svg";
+import takeIn from "../../assets/images/take_in.svg";
+import takeOut from "../../assets/images/take_out.svg";
+import Header from "../../components/views/Header/Header";
+import "./PackagingStatusPage.css";
 
 const PackagingStatusPage = () => {
   const location = useLocation();
