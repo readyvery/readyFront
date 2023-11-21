@@ -5,7 +5,7 @@ import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
-import "./style.css";
+import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -13,7 +13,7 @@ const OrderProcessPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
-  // const foodie_id = params.get("foodie_id");
+  const foodieId = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
 
@@ -21,7 +21,7 @@ const OrderProcessPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=7&inout=${inout}`,
+          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
           { withCredentials: true }
         );
         console.log(response.data);

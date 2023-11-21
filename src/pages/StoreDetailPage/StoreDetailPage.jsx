@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/views/Header/Header";
-import "./style.css";
+import "./StoreDetailPage.css";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
