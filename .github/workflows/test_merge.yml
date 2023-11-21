@@ -18,12 +18,7 @@ jobs:
 
       - name: Set .env from secrets
         run: |
-          echo "PORT=${{ secrets.TEST_PORT }}" > .env
-          echo "WDS_SOCKET_PORT=0" >> .env
-          echo "NODE_PATH=src/" >> .env
-          echo "REACT_APP_API_ROOT=${{ secrets.TEST_REACT_APP_API_ROOT }}" >> .env
-          echo "REACT_APP_HOME_URL=${{ secrets.TEST_REACT_APP_HOME_URL }}" >> .env
-          echo "REACT_APP_KAKAO_LOGIN=${{ secrets.TEST_REACT_APP_KAKAO_LOGIN }}" >> .env
+          echo "PORT=${{ secrets.TEST_ENV }}" > .env
 
       - name: cat env file
         run: cat .env
