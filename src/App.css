@@ -59,6 +59,7 @@
     height: 94vh;
     background-color: white;
     padding-top: 3.5rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
   }
   .bottom_navbar {
     left: calc(50% - 300px); /* Center the navbar */
