@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  /* height: 100%; */
 }
 
 .order-process-page__menu__img {
@@ -64,6 +65,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 3px 3px 0px rgba(164, 164, 164, 0.25);
+}
+
+.order-process-page__toggle__header.open{
+  box-shadow: none;
 }
 
 .order-process-page__toggle__header.option {
@@ -88,27 +94,13 @@
 }
 
 .order-process-page__toggle__body {
-  display: flex;
-  flex-direction: column;
-  /* padding-top: 1.56rem;
-  padding-bottom: 1.91rem;
-  padding-left: 3.5rem;
-  align-items: center;
-  box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25); */
-  padding-top: 0; /* 초기 상태에서는 0으로 설정 */
-  padding-bottom: 0; /* 초기 상태에서는 0으로 설정 */
-  padding-left: 3.5rem;
-  align-items: center;
-  box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease; /* transition 추가 */
+  display: none;
 }
 
-.order-process-page__toggle__body.isOpen{
+.order-process-page__toggle__body.open{
   display: flex;
   flex-direction: column;
-  padding-left: 3.5rem;
+  padding: 0 1.75rem;
   align-items: center;
   box-shadow: 0 0.1875rem 0.1875rem rgba(164, 164, 164, 0.25);
   max-height: 0;
@@ -118,16 +110,97 @@
 
 .order-process-page__toggle__body__radio {
   display: flex;
-  width: 100%;
-  height: fit-content;
+  width: 85%;
+  margin: 0 auto 1.56rem auto;
+  /* height: fit-content; */
   font-family: "Medium";
   font-size: 1.125rem;
   line-height: normal;
   align-items: center;
+  margin-bottom: 1.56rem;
+}
+
+.order-process-page__toggle__body__radio input[type="radio"]{
+  display: flex;
+  appearance: none;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  border: 0.125rem solid #000;
+  border-radius: 3.125rem;
+}
+
+.order-process-page__toggle__body__radio input[type="radio"]:checked{
+  border: 0.125rem solid #000;
+  background-color: #d82356;
+  background-size: 100% 100%;
+  background-position: 50%;
+  background-repeat: no-repeat;
 }
 
 .order-process-page__toggle__body__radio label {
   display: flex;
+  align-items: center;
+  font-family: "Medium";
+  font-size: 1.125rem;
+}
+
+.order-process-page__toggle__body__radio label span {
+  margin-left: 0.5rem;
+}
+
+.order-process-page__option__title__wrapper{
+  text-align: left;
+  width: 100%;
+}
+
+.order-process-page__option__title{
+  font-family: "Bold";
+  font-size: 1.125rem;
+  color: #000;
+}
+
+.option__checkbox__wrapper{
+  width: 85%;
+  margin: 1rem auto 0 auto;
+  text-align: left;
+}
+
+.option__checkbox__wrapper input[type="checkbox"]{
+  display: flex;
+  appearance: none;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  border: 0.125rem solid #000;
+  border-radius: 3.125rem;
+}
+
+
+.option__checkbox__wrapper input[type="checkbox"]:checked {
+  border: 0.125rem solid #000;
+  background-color: #d82356;
+  background-size: 100% 100%;
+  background-position: 100%;
+  background-repeat: no-repeat;
+}
+
+.option__checkbox__wrapper label{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.option__checkbox__wrapper label span{
+  font-family: "Medium";
+  font-size: 1.125rem;
+  margin-left: 0.5rem;
+}
+
+.option__line{
+  height: 0.125rem;
+  width: 100%;
+  background-color: #dadada;
+  margin: 1rem 0;
 }
 
 .order-process-page__quantity {
