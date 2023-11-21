@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
@@ -8,6 +8,7 @@ import Header from "../../components/views/Header/Header";
 import "./style.css";
 
 const OrderProcessPage = () => {
+  let navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
@@ -33,6 +34,39 @@ const OrderProcessPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleCartReset = () => {
+    let body = {
+      storeId: storeId,
+      foodieId: foodie_id,
+      options: optionIdx,
+      count: 1,
+    };
+    console.log(body);
+    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+
+    // Axios를 사용한 DELETE 요청
+    const response = axios.delete(apiUrl, { withCredentials: true });
+
+    // 성공적으로 처리된 경우에 대한 로직
+    console.log("Cart reset successful", response.data);
+    axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/payment?storeId=${storeId}&inout=${inout}`);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+
+        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+      });
+  };
+
   const [activeToggles, setActiveToggles] = useState(
     foodOptionInfo?.category?.filter((el) => el?.essential).map(() => false)
   );
@@ -40,12 +74,13 @@ const OrderProcessPage = () => {
     foodOptionInfo &&
       foodOptionInfo.category?.filter((el) => el?.essential).map((e) => `${e.options[0]?.name}`)
   );
-  const [totalAmount, setTotalAmount] = useState(foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price);
+  const [totalAmount, setTotalAmount] = useState(
+    foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price
+  );
   const [prevRadioPrice, setPrevRadioPrice] = useState(
     foodOptionInfo?.category?.map(() => 0)
   );
   const [optionIdx, setOptionIdx] = useState([]);
-  // const [activeToggleIndex, setActiveToggleIndex] = useState(null);
   useEffect(() => {
     setActiveToggles(foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false));
     setSelectedRadioTexts(foodOptionInfo.category?.filter((el) => el?.essential).map((e) => `${e.options[0]?.name}`));
@@ -90,9 +125,9 @@ const OrderProcessPage = () => {
     e.target.checked ? setOptionIdx((prev) => [...prev, idx]) : setOptionIdx((prev) => prev.filter((e) => e !== idx));
   }
 
-  const submitOrder = () => {
-    console.log(optionIdx);
-  }
+  // const submitOrder = () => {
+  //   console.log(optionIdx);
+  // }
 
   return (
     <div className="order-process-page">
@@ -148,14 +183,8 @@ const OrderProcessPage = () => {
 
             {activeToggles?.length && activeToggles[index] && (
               <div
-                className={`order-process-page__toggle__body ${
-                  activeToggles?.length && activeToggles[index] && "open"
-                }`}
-                style={{
-                  maxHeight: "100%",
-                  paddingTop: "1.56rem",
-                  paddingBottom: "1.91rem",
-                }}
+                className="order-process-page__toggle__container"
+                key={index}
               >
                 {category?.options?.map((option, optionIndex) => (
                   <div
@@ -185,6 +214,7 @@ const OrderProcessPage = () => {
               </div>
             )}
           </div>
+          
         ))}
         {foodOptionInfo?.category?.filter((e) => !e?.essential).length ?
           (<div className="order-process-page__toggle__container">
@@ -259,7 +289,7 @@ const OrderProcessPage = () => {
         to={`/payment?storeId=${storeId}&inout=${inout}`}
         style={{ display: "flex", textDecoration: "none", marginBottom: '2rem' }}
       >
-        <div className="order-btn" onClick={submitOrder}>주문하기</div>
+        <div className="order-btn" onClick={handleCartReset}>주문하기</div>
       </Link>
     </div>
   );
