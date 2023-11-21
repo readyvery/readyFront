@@ -18,7 +18,7 @@ jobs:
 
       - name: Set .env from secrets
         run: |
-          echo "PORT=${{ secrets.TEST_ENV }}" > .env
+          echo "${{ secrets.TEST_ENV }}" > .env
 
       - name: cat env file
         run: cat .env
