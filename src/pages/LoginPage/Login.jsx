@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Kakaologo from "../../assets/images/kakao_logo.png";
+import Kakaologo from "../../assets/images/kakao_logo.svg";
 import loginpagelogo from "../../assets/images/login_logo.svg";
 
 const Container = styled.div`
@@ -37,7 +37,6 @@ const KakaoButton = styled.button`
 function KaKaoLoginBtn() {
   const handleKakaoLogin = () => {
     window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
-    //console.log(`${process.env.REACT_APP_KAKAO_LOGIN}`);
   };
 
   return (

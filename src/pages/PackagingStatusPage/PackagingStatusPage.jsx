@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../../components/views/Header/Header";
-import takeOut from "../../assets/images/take_out.svg";
-import takeIn from "../../assets/images/take_in.svg";
-import promotion from "../../assets/images/promotion.svg";
-import "./style.css";
 import { Link, useLocation } from "react-router-dom";
+import promotion from "../../assets/images/promotion.svg";
+import takeIn from "../../assets/images/take_in.svg";
+import takeOut from "../../assets/images/take_out.svg";
+import Header from "../../components/views/Header/Header";
+import "./PackagingStatusPage.css";
 
 const PackagingStatusPage = () => {
   const location = useLocation();
@@ -13,7 +13,7 @@ const PackagingStatusPage = () => {
 
   return (
     <div className="packaging-status-page">
-      <Header />
+      <Header headerProps={{ pageName: "", isClose: false, linkTo: "/" }} />
       <div className="packaging-status-page__title">어떻게 준비해드릴까요?</div>
       <div className="packaging-status-page__content__title">
         수령방식을 선택해주세요

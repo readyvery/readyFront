@@ -1,0 +1,71 @@
+.search-container {
+  width: 100%;
+}
+
+.search-list {
+  width: 90%;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-detail-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.15px 0.1rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 0.5rem;
+  margin: 1.5% 0;
+}
+
+.search-link {
+  text-decoration: none;
+  color: black;
+}
+
+.search-img {
+  margin: 0 2%;
+}
+
+.search-details {
+  display: flex;
+  flex-direction: row;
+  margin: 2% 0;
+  align-items: center;
+}
+
+.search-detail {
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+
+.search-status-time {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+
+.search-name {
+  color: #000;
+  font-family: "Bold";
+  font-size: 0.875rem;
+}
+
+.search-status {
+  color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 0.75rem;
+}
+
+.search-time {
+  color: #000;
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+}
+
+.search-address {
+  color: #838383;
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+}

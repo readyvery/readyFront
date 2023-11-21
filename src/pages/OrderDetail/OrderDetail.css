@@ -10,20 +10,19 @@
     justify-content: flex-end;
 
     width: 100%;
-    margin-top: 0.625rem;
-    /* height: 100%; */
+    margin-top: 1.5625rem;
 }
 
 .detail-content{
     width: 95%;
-    height: 85%;
+    height: 100%;
     margin: 0 auto;
-    /* background-color: #d9d9d9; */
     box-shadow: 0 1px 12px rgba(0,0,0,0.25);
     border-radius: 1.875rem 1.875rem 0 0;
     padding: 1.9375rem 0;
-    /* overflow-y: auto; */
 }
+
+.detail-scroll-content{}
 
 .detail-content::-webkit-scrollbar {
     display: none;

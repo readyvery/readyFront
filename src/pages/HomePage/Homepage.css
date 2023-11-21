@@ -75,14 +75,9 @@
 /* event */
 .event {
   width: 90%;
-  height: 10%;
   margin: 0 auto;
 }
 
-.event-link {
-  width: 100%;
-  height: 100%;
-}
 .event-icon {
   width: 100%;
 }
@@ -96,6 +91,8 @@
 .very-pick-text {
   width: 100%;
   font-family: "Bold";
+  margin-top: 4%;
+  margin-bottom: 2.5%;
   font-size: 1.25rem;
 }
 
@@ -106,11 +103,32 @@
 .very-pick-item {
   width: 100%;
   text-decoration: none;
+  overflow: hidden;
+}
+
+.pick-detail-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.pick-detail {
+  width: 100%; /* Set the fixed width for the image */
+  height: 7.625rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.pick-info {
+  height: 5rem;
+  margin: 0.62rem 0.69rem;
 }
 
 .pick-name {
   width: 100%;
-  margin: 0.5rem 0 0 0;
   font-size: 1.0625rem;
   font-family: "Medium";
   color: black;
@@ -119,11 +137,28 @@
 .pick-address {
   width: 100%;
   font-size: 0.75rem;
+  margin-top: 0.2rem;
   font-family: "Regular";
   color: #838383;
 }
-.pick-detail {
+
+.pick-event-info {
+  display: flex;
+  margin-top: 0.7rem;
+}
+
+.pick-eventTextIcon {
+  width: 1rem; /* Set a fixed width for the icon if needed */
+  height: 1.125rem;
+  margin-right: 0.5rem; /* Adjust margin as needed */
+}
+
+.pick-eventText {
   width: 100%;
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  font-family: "Bold";
+  color: #d82356;
 }
 
 /* 사업자 정보 */

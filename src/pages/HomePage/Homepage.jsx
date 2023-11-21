@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import cardi_cafe from "../../assets/images/cafe1.svg";
-import milda_cafe from "../../assets/images/cafe2.svg";
+import { useRecoilValue } from "recoil";
 import event_icon from "../../assets/images/event_icon.svg";
+import home_cafedream from "../../assets/images/home_cafedream.svg";
+import home_harang from "../../assets/images/home_harang.svg";
+import home_orda from "../../assets/images/home_orda.svg";
+import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
+import { loginState } from "../../recoil/user";
 import "./Homepage.css";
 
 function Homepage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [quickOrderItems, setQuickOrderItems] = useState([]); // 바로주문
   // const [eventImages, setEventImages] = useState([]); // evetn 배너
   // const [storeData, setsStoreData] = useState([]); // verypick
+  const isLoggedIn = useRecoilValue(loginState);
 
   let eventCase = {
     event1: {
@@ -49,21 +54,25 @@ function Homepage() {
   const dummyVeryPickItems = [
     {
       id: 1,
-      name: "까르디에스프레소바",
-      address: "경기 부천시 부일로 705 1층 101호(역곡동, 역곡동 50-6)",
-      img: cardi_cafe,
+      name: "카페오르다",
+      address: "경기 부천시 지봉로 46 백호빌딩 2층",
+      img: home_orda,
+      eventText: "테이크아웃 시 아메리카노 1,700원",
     },
     {
       id: 2,
-      name: "밀다",
-      address: "경기도 부천시 지봉로71",
-      img: milda_cafe,
+      name: "카페하랑 부천점",
+      address: "경기도 부천시 지봉로 43",
+      img: home_harang,
+      eventText: "강의실에서 주문하고, 바로 가져가세요!",
     },
     {
       id: 3,
-      name: "까르디에스프레소바",
-      address: "경기 부천시 부일로 705 1층 101호(역곡동, 역곡동 50-6)",
-      img: cardi_cafe,
+      name: "카페드림 가톨릭대학교 성심교정 중앙도서관점",
+      address:
+        "경기도 부천시 지봉로 43 가톨릭대학교 중앙도서관 1층 15베리타스관",
+      img: home_cafedream,
+      eventText: "기말고사 화이팅!",
     },
   ];
 
@@ -110,29 +119,9 @@ function Homepage() {
   //     });
   // }, []);
 
-  useEffect(() => {
-    // 서버에서 로그인 상태를 확인하는 비동기 함수
-    // const checkLoginStatus = async () => {
-    //   try {
-    //     // axios를 사용하여 서버로 HTTP GET 요청 보내기
-    //     const response = await axios.get(""); /* http://localhost:8080/ */
-
-    //     // 서버 응답 데이터에서 로그인 상태를 가져와 업데이트
-    //     setIsLoggedIn(response.data.isLoggedIn);
-    //   } catch (error) {
-    //     // 에러 처리
-    //     console.error("로그인 상태 확인 중 에러 발생:", error);
-    //   }
-    // };
-
-    // // 초기 로딩 시에 서버에서 로그인 상태 확인
-    // checkLoginStatus();
-    setIsLoggedIn(false); //false-로그아웃, ture-로그인
-  }, []);
-
   return (
     <div className="homepage">
-      <Header headerProps={null}/>
+      <Header headerProps={null} />
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
@@ -179,13 +168,12 @@ function Homepage() {
             <img src={image.imgUrl} alt={`Event ${index}`} className="event-icon" />
           </Link>
         ))} */}
-        <Link to="/event" className="event-link">
-          <img
-            src={eventCase.event1.imgUrl}
-            alt="eventImg"
-            className="event-icon"
-          />
-        </Link>
+
+        <img
+          src={eventCase.event1.imgUrl}
+          alt="eventImg"
+          className="event-icon"
+        />
       </div>
 
       {/* 베리pick div */}
@@ -213,14 +201,26 @@ function Homepage() {
                 to={`/packagingStatus?storeId=${item.id}`}
                 className="very-pick-item"
               >
-                <React.Fragment>
-                  <div className="pick-name">{item.name}</div>
-                  <div className="pick-address">{item.address}</div>
-                  <img
-                    src={item.img}
-                    alt="veryPickimg"
-                    className="pick-detail"
-                  />
+                <React.Fragment key={item.id}>
+                  <div className="pick-detail-wrapper">
+                    <img
+                      src={item.img}
+                      alt="veryPickimg"
+                      className="pick-detail"
+                    />
+                    <div className="pick-info">
+                      <div className="pick-name">{item.name}</div>
+                      <div className="pick-address">{item.address}</div>
+                      <div className="pick-event-info">
+                        <img
+                          src={eventTextIcon}
+                          alt="eventTextIcon"
+                          className="pick-eventTextIcon"
+                        />
+                        <div className="pick-eventText">{item.eventText}</div>
+                      </div>
+                    </div>
+                  </div>
                 </React.Fragment>
               </Link>
             ))}

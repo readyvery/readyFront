@@ -83,7 +83,7 @@ const NavBar = () => {
       </Link>
 
       <Link
-        to="/quickorder"
+        to="/ready"
         className="nav-link"
         onClick={() => {
           setActiveNav(4);
