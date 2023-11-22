@@ -43,7 +43,7 @@ const OrderProcessPage = () => {
       storeId: storeId,
       foodieId: foodieId,
       options: optionIdx,
-      count: 1,
+      count: orderCnt,
     };
     const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
@@ -96,7 +96,7 @@ const OrderProcessPage = () => {
         .map((e) => `${e.options[0]?.name}`)
     );
     setTotalAmount(
-      orderCnt * (
+      orderCnt && orderCnt * (
       foodOptionInfo?.price +
         parseInt(
           foodOptionInfo?.category
@@ -116,6 +116,7 @@ const OrderProcessPage = () => {
         ?.filter((el) => el?.essential)
         .map((e) => e?.options[0]?.idx)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
 
   const handleToggle = (index) => {
