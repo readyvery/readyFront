@@ -18,12 +18,7 @@ jobs:
 
       - name: Set .env from secrets
         run: |
-          echo "PORT=${{ secrets.TEST_PORT }}" > .env
-          echo "WDS_SOCKET_PORT=0" >> .env
-          echo "NODE_PATH=src/" >> .env
-          echo "REACT_APP_API_ROOT=${{ secrets.TEST_REACT_APP_API_ROOT }}" >> .env
-          echo "REACT_APP_HOME_URL=${{ secrets.TEST_REACT_APP_HOME_URL }}" >> .env
-          echo "REACT_APP_KAKAO_LOGIN=${{ secrets.TEST_REACT_APP_KAKAO_LOGIN }}" >> .env
+          echo "${{ secrets.TEST_ENV }}" > .env
 
       - name: cat env file
         run: cat .env
@@ -31,20 +26,20 @@ jobs:
       - name: Generate build          # React Build
         run: npm run build
       
-      - name: file copy
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: file download
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
+  #     - name: file copy
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: build
+  #         path: build
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: file download
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: build
+  #         path: build
       - name: Upload to Cloudflare
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}

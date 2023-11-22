@@ -20,6 +20,8 @@ import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
+import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
   const NewCouponPage = Auth(CouponPage, true);
   const NewCartPage = Auth(CartPage, true);
   const NewPaymentPage = Auth(PaymentPage, true);
+  const NewPaymentSuccessPage = Auth(PaymentSuccessPage, true);
+  const NewPaymentFailPage = Auth(PaymentFailPage, true);
 
   return (
     <div className="App">
@@ -83,6 +87,10 @@ function App() {
         <Route path="/cart" element={<NewCartPage />} />
         {/* 결제 페이지 */}
         <Route path="/payment" element={<NewPaymentPage />} />
+        {/* 결제 성공 리다이렉트 페이지 */}
+        <Route path="/payment/success" element={<NewPaymentSuccessPage />} />
+        {/* 결제 실패 리다이렉트 페이지 */}
+        <Route path="/payment/fail" element={<NewPaymentFailPage />} />
       </Routes>
     </div>
   );

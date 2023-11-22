@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
-import "./style.css";
+import "./PaymentPage.css";
 // import menuDelete from "../../assets/images/menu_delete.svg";
 // import takeIn from "../../assets/images/take_in.svg";
 // import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
+import axios from "axios";
 
-const clientKey = "test_ck_oEjb0gm23PWEKPJK1yRp8pGwBJn5";
+const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
 
 const PaymentPage = () => {
@@ -16,57 +17,29 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
-
-  const paymentData = {
-    name: "카페 오르다",
-    imgUrl: "/주소",
-    totalPrice: 30000,
-    carts: [
-      {
-        idx: 141, // 장바구니 idx
-        name: "아메리카노",
-        imgUrl: "/주주소소",
-        totalPrice: 2500,
-        count: 4,
-        options: [
-          {
-            idx: 1, // 옵션 테이블 인덱스
-            name: "ICE",
-            price: 500,
-          },
-          {
-            idx: 114, // 옵션 테이블 인덱스
-            name: "샷추가",
-            price: 500,
-          },
-        ],
-      },
-      {
-        idx: 143, // 장바구니 idx
-        name: "카페라떼",
-        imgUrl: null,
-        totalPrice: 4500,
-        count: 3,
-        options: [
-          {
-            idx: 1, // 옵션 테이블 인덱스
-            name: "ICE",
-            price: 500,
-          },
-          {
-            idx: 114, // 옵션 테이블 인덱스
-            name: "샷추가",
-            price: 500,
-          },
-        ],
-      },
-    ],
-    couponId: 12,
-  };
-
+  const apiRoot = process.env.REACT_APP_API_ROOT;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
-  const [price, setPrice] = useState(paymentData.totalPrice);
+  const [paymentData, setPaymentData] = useState(null);
+  const [price, setPrice] = useState(paymentData?.totalPrice);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          { withCredentials: true }
+        );
+        setPaymentData(response.data);
+        setPrice(response.data.totalPrice);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -112,6 +85,34 @@ const PaymentPage = () => {
     paymentMethodsWidget.updateAmount(price);
   }, [price]);
 
+  const paymentRequest = async () => {
+    let body = {
+      inout: inout,
+    };
+
+    await axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/toss`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        const paymentWidget = paymentWidgetRef.current;
+
+        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+        // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
+        // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
+        paymentWidget?.requestPayment(res.data);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+      });
+  };
+
   return (
     <div className="payment-page">
       <Header
@@ -125,16 +126,16 @@ const PaymentPage = () => {
       <div className="payment-page__cafe-info">
         <img
           className="payment-page__cafe-info__img"
-          src={paymentData.imgUrl}
+          src={paymentData?.imgUrl}
           alt="cafeImg"
         ></img>
         <text className="payment-page__cafe-info__name">
-          {paymentData.name}
+          {paymentData?.name}
         </text>
       </div>
 
       <div className="payment-page__order-info">
-        {paymentData.carts.map((item) => (
+        {paymentData?.carts.map((item) => (
           <div>
             <div className="payment-page__order-info__item">
               <img
@@ -186,30 +187,7 @@ const PaymentPage = () => {
         </label>
       </div>
 
-      <div
-        className="payment-page__payment-btn"
-        onClick={async () => {
-          const paymentWidget = paymentWidgetRef.current;
-
-          try {
-            // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-            // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
-            // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
-            await paymentWidget?.requestPayment({
-              orderId: "aAD8aZDpbzXs4EddQa-UkIX6",
-              orderName: "아메리카노 외 3건",
-              successUrl: "http://localhost:8080/success",
-              failUrl: "http://localhost:8080/fail",
-              customerEmail: "customer123@gmail.com",
-              customerName: paymentData.name,
-              amount: paymentData.totalPrice,
-            });
-          } catch (error) {
-            // 에러 처리하기
-            console.error(error);
-          }
-        }}
-      >
+      <div className="payment-page__payment-btn" onClick={paymentRequest}>
         결제하기
       </div>
     </div>

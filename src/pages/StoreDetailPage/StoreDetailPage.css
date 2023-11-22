@@ -1,0 +1,170 @@
+.store-detail-page {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.store-detail-page__banner {
+  display: flex;
+  width: 100%;
+  height: 13.875rem;
+  flex-shrink: 0;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  align-items: center;
+}
+
+.store-detail-page__banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.store-detail-page__caffeeInfo {
+  display: flex;
+  width: auto;
+  height: fit-content;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.store-detail-page__caffeeInfo__title {
+  display: flex;
+  width: fit-content;
+  color: #000;
+  font-family: "Bold";
+  font-size: 1.25rem;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin-bottom: 0.7rem;
+}
+
+.store-detail-page__caffeeInfo__list {
+  display: flex;
+}
+
+.store-detail-page__caffeeInfo__list__title {
+  display: flex;
+  width: 3.25rem;
+  height: fit-content;
+  color: #4f4f4f;
+  font-family: "Regular";
+  font-size: 0.875rem;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+  white-space: nowrap;
+  margin-right: 1.5rem;
+}
+
+.store-detail-page__caffeeInfo__contact {
+  display: flex;
+  color: #838383;
+  font-family: "Regular";
+  font-size: 0.875rem;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+}
+
+.store-detail-page__caffeeInfo__address {
+  display: flex;
+  color: #838383;
+  font-family: "Regular";
+  font-size: 0.875rem;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+}
+
+.store-detail-page__caffeeInfo__time {
+  display: flex;
+  color: #838383;
+  font-family: "Regular";
+  font-size: 0.875rem;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+  text-align: left;
+}
+
+.store-detail-page__menuCategory {
+  display: flex;
+  width: 100%;
+  max-width: 100vw; /* 화면 너비 이내에서만 확장됩니다. */
+  height: fit-content;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
+}
+
+.store-detail-page__menuCategory::-webkit-scrollbar {
+  display: none;
+}
+
+.store-detail-page__menuCategory__item {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  color: rgba(216, 35, 86, 0.6);
+  font-family: "Regular";
+  font-size: 0.875rem;
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+  white-space: nowrap;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.store-detail-page__menuCategory__item.selected {
+  font-family: "SemiBold";
+  line-height: 130%; /* 1.1375rem */
+  letter-spacing: -0.00875rem;
+  color: #d82356; /* 선택된 아이템의 색상을 변경합니다. */
+  white-space: nowrap;
+  border-bottom: 1px solid #d82356;
+}
+
+.store-detail-page__menuList {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.store-detail-page__menuList::-webkit-scrollbar {
+  display: none;
+}
+
+.store-detail-page__menuList__item {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1.56rem;
+  padding-top: 1.31rem;
+  padding-bottom: 1.31rem;
+  border-bottom: 1px solid #dadada;
+  text-decoration: none;
+}
+
+.store-detail-page__menuList__item__name {
+  color: #000;
+  font-family: "Semibold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+}
+
+.store-detail-page__menuList__item__price {
+  color: #000;
+  font-family: "Medium";
+  font-size: 0.8125rem;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
+}
