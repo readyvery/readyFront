@@ -10,6 +10,7 @@
   flex-direction: column;
 }
 
+.personal-3rd,
 .terms-of-use,
 .personal-info {
   text-decoration: none;
@@ -17,5 +18,5 @@
   font-family: "Medium";
   font-size: 1.125rem;
   align-self: flex-start;
-  margin: 3% 10%;
+  margin: 3% 2%;
 }

@@ -63,10 +63,6 @@ function MyprofilePage() {
         </div>
         <div className="myprofile-bye">
           <div className="myprofile-logout">로그아웃</div>
-          <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </div>
-          <div className="myprofile-unregister">회원탈퇴</div>
         </div>
       </div>
     </div>

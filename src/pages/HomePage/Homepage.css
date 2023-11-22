@@ -69,8 +69,8 @@
 
 /* 로그인 되어있지 않을 때 */
 .not-login-box {
-  width: 100%;
-  height: 100%;
+  width: 99%;
+  height: 95%;
   display: flex; /* Flexbox를 사용해 가로 정렬 */
   align-items: center;
   box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */

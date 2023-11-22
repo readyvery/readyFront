@@ -270,6 +270,18 @@ function Homepage() {
             벽산아파트)
           </div>
           <div>E-Mail: ohnt0307@gmail.com</div>
+          <div
+            style={{
+              marginTop: "10px",
+              fontSize: "11px",
+              fontFamily: "Regular",
+            }}
+          >
+            레디베리는 통신판매중개자이며, 통신판매의 당사자가 아닙니다.
+          </div>
+          <div style={{ fontSize: "11px", fontFamily: "Regular" }}>
+            따라서 레디베리는 상품거래 정보 및 거래에 대한 책임을 지지않습니다.
+          </div>
         </div>
       </div>
 
