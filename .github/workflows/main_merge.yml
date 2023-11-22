@@ -25,20 +25,20 @@ jobs:
       - name: Generate build          # React Build
         run: npm run build
       
-      - name: file copy
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: file download
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
+  #     - name: file copy
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: build
+  #         path: build
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: file download
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: build
+  #         path: build
       - name: Upload to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_MAIN_ACCESS_KEY_ID }}
