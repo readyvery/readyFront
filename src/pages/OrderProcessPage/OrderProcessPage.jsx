@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import minus from "../../assets/images/icon_minus.png";
+import minusDisabled from "../../assets/images/icon_minus_disabled.png";
+import plus from "../../assets/images/icon_plus.png";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
@@ -16,6 +19,7 @@ const OrderProcessPage = () => {
   const foodieId = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
+  const [orderCnt, setOrderCnt] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +43,7 @@ const OrderProcessPage = () => {
       storeId: storeId,
       foodieId: foodieId,
       options: optionIdx,
-      count: 1,
+      count: orderCnt,
     };
     const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
@@ -92,6 +96,7 @@ const OrderProcessPage = () => {
         .map((e) => `${e.options[0]?.name}`)
     );
     setTotalAmount(
+      orderCnt && orderCnt * (
       foodOptionInfo?.price +
         parseInt(
           foodOptionInfo?.category
@@ -99,6 +104,7 @@ const OrderProcessPage = () => {
             .map((e) => parseInt(e?.options[0]?.price))
             .reduce((prev, curr) => prev + curr, 0)
         )
+      )
     );
     setPrevRadioPrice(
       foodOptionInfo?.category
@@ -110,6 +116,7 @@ const OrderProcessPage = () => {
         ?.filter((el) => el?.essential)
         .map((e) => e?.options[0]?.idx)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
 
   const handleToggle = (index) => {
@@ -149,9 +156,17 @@ const OrderProcessPage = () => {
       : setOptionIdx((prev) => prev.filter((e) => e !== idx));
   };
 
-  // const submitOrder = () => {
-  //   console.log(optionIdx);
-  // }
+  const handleCntUp = () => {
+    const newOrderCnt = orderCnt + 1;
+    setOrderCnt(newOrderCnt);
+    setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
+  }
+
+  const handleCntDown = () => {
+    const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
+    orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
+    setOrderCnt((prev) => prev === 1 ? 1 : newOrderCnt);
+  }
 
   return (
     <div className="order-process-page">
@@ -319,6 +334,25 @@ const OrderProcessPage = () => {
         ) : (
           <div></div>
         )}
+
+        <div className="order-process-page__toggle__container">
+          <div
+            className="order-process-page__toggle__header"
+          >
+            <span className="order-process-page__toggle__name">
+              수량
+            </span>
+            <div className="order-process-page-quantity__wrapper">
+              <span className="order-process-page__img__wrapper" onClick={handleCntDown}>
+                <img src={orderCnt === 1 ? minusDisabled : minus} alt={orderCnt === 1 ? "minusDisabled" : "minus"}/>
+              </span>
+              <span className="order-process-page-quantity__txt">{orderCnt}</span>
+              <span className="order-process-page__img__wrapper" onClick={handleCntUp}>
+                <img src={plus} alt="plus"/>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="order-process-page__total-amount">
