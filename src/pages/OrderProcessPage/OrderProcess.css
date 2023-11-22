@@ -203,6 +203,26 @@
   margin: 1rem 0;
 }
 
+.order-process-page-quantity__wrapper{
+  display: flex;
+  gap: 0.625rem;
+}
+
+.order-process-page__img__wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.order-process-page__img__wrapper img{
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.order-process-page-quantity__txt{
+  width: 1rem;
+  text-align: center;
+}
+
 .order-process-page__quantity {
   display: flex;
 }
