@@ -4,7 +4,6 @@ import Kakaologo from "../../assets/images/kakao_logo.svg";
 import loginpagelogo from "../../assets/images/login_logo.svg";
 
 const Container = styled.div`
-  height: 100%;
   width: 100%;
 `;
 
@@ -19,11 +18,10 @@ const LogoImage = styled.img`
 `;
 
 const LoginContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30%;
+  margin-top: 10px;
 `;
 
 const KakaoButton = styled.button`
@@ -32,6 +30,7 @@ const KakaoButton = styled.button`
   padding: 0;
   cursor: pointer;
   outline: none;
+  margin-bottom: 80px;
 `;
 
 function KaKaoLoginBtn() {

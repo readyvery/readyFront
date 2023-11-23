@@ -43,7 +43,7 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
         .catch((error) => {
           navigate("/kakaologin", { replace: true });
         });
-    }, []);
+    }, [navigate]);
 
     return <SpecificComponent />;
   }

@@ -41,6 +41,7 @@ function App() {
   const NewPaymentPage = Auth(PaymentPage, true);
   const NewPaymentSuccessPage = Auth(PaymentSuccessPage, true);
   const NewPaymentFailPage = Auth(PaymentFailPage, true);
+  const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   return (
     <div className="App">
@@ -78,7 +79,7 @@ function App() {
         {/* 마이페이지-마이프로필 확인 페이지 */}
         <Route path="/myprofile" element={<NewMyprofilePage />} />
         {/* 포장 여부 선택 페이지 */}
-        <Route path="/packagingStatus" element={<PackagingStatusPage />} />
+        <Route path="/packagingStatus" element={<NewPackagingStatusPage />} />
         {/* 주문 과정 페이지 */}
         <Route path="/order" element={<NewOrderProcessPage />} />
         {/* 마이페이지-쿠폰 확인 페이지 */}
