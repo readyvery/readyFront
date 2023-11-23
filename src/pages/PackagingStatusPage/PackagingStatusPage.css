@@ -1,3 +1,8 @@
+.packaging-status-page {
+  /* width: 100%; */
+  height: 94vh;
+}
+
 .packaging-status-page__title {
   display: flex;
   color: #000;
@@ -6,7 +11,7 @@
   font-size: 1.875rem;
   line-height: 130%; /* 2.4375rem */
   letter-spacing: -0.01875rem;
-  margin-top: 8.62rem;
+  margin-top: 6.5rem;
   margin-left: 1.69rem;
   margin-right: 5.19rem;
 }

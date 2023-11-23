@@ -24,20 +24,6 @@ import "./Homepage.css";
 //`;
 
 function Homepage() {
-  //const settings = {
-  // dots: false,
-  // infinite: true,
-  // speed: 500,
-  // slidesToShow: 1,
-  // slidesToScroll: 1,
-  // centerMode: true,
-  // autoplay: true,
-  // autoplaySpeed: 4000,
-  //};
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [quickOrderItems, setQuickOrderItems] = useState([]); // 바로주문
-  // const [eventImages, setEventImages] = useState([]); // evetn 배너
-  // const [storeData, setsStoreData] = useState([]); // verypick
   const isLoggedIn = useRecoilValue(loginState);
 
   const eventCase = [
@@ -89,14 +75,14 @@ function Homepage() {
       eventText: "테이크아웃 시 아메리카노 1,700원",
     },
     {
-      id: 2,
+      id: 3,
       name: "카페하랑 부천점",
       address: "경기도 부천시 지봉로 43",
       img: home_harang,
       eventText: "강의실에서 주문하고, 바로 가져가세요!",
     },
     {
-      id: 3,
+      id: 2,
       name: "카페드림 가톨릭대학교 성심교정 중앙도서관점",
       address:
         "경기도 부천시 지봉로 43 가톨릭대학교 중앙도서관 1층 15베리타스관",

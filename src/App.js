@@ -11,6 +11,7 @@ import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
 import MyprofilePage from "./pages/MyPage/MyprofilePage/MyprofilePage";
 import PolicyPage from "./pages/MyPage/PolicyPage/PolicyPage";
+import PositionpolicyPage from "./pages/MyPage/PolicyPage/PositionpolicyPage";
 import PrivacyPolicy from "./pages/MyPage/PolicyPage/PrivacypolicyPage";
 import TermsOfUse from "./pages/MyPage/PolicyPage/TermsofusePage";
 import ThirdpartyPage from "./pages/MyPage/PolicyPage/ThirdpartyPage";
@@ -25,6 +26,13 @@ import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage"
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
 
 function App() {
+  // const navigate = useNavigate();
+  // // const [isLoggedIn, setisLoggedIn] = useRecoilState(isAuthenticatedState); // 인증 상태 (로그인이 되어있으면 true, 아니면 false)
+  // // 토큰 받아서 시간관리
+  // const [cookies, setCookie, removeCookies] = useCookies([
+  //   "refreshAccessToken",
+  // ]);
+
   //false : 로그인 한 유저 못들어감
   const NewLoginPage = Auth(KakaoLoginPage, false); // 로그인 페이지
 
@@ -43,6 +51,44 @@ function App() {
   const NewPaymentFailPage = Auth(PaymentFailPage, true);
   const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
+  // const minute = 1000 * 60 * 60 * 24; // 24시간
+  // // 주기적으로 실행되는 함수
+  // useInterval(() => {
+  //   // 리프레시 토큰이 존재하고, 비어 있지 않은 경우
+  //   if (
+  //     cookies.refreshToken !== "undefined" &&
+  //     cookies.refreshToken !== undefined &&
+  //     cookies.refreshToken
+  //   ) {
+  //     // http 요청에 사용될 헤더 설정과 함께 서버에 토큰 갱신 요청
+  //     let config = {
+  //       headers: {
+  //         Authorization: `${cookies.refreshToken}`,
+  //       },
+  //       withCredentials: true,
+  //     };
+  //     axios
+  //       .get(`${process.env.REACT_APP_API_ROOT}/api/v1/refresh/token`, config)
+  //       .then((response) => {
+  //         // 현재 쿠키 삭제
+  //         removeCookies();
+
+  //         // 서버에서 받은 새로운 리프레시 토큰을 쿠키에 저장
+  //         setCookie("refreshToken", response.data.refreshToken);
+
+  //         // 홈 화면으로 이동
+  //         navigate("/");
+  //       })
+
+  //       .catch((error) => {
+  //         navigate("/kakaologin");
+  //       });
+  //   } else {
+  //     // 리프레시 토큰이 존재하지 않거나 비어 있으면 쿠키 제거
+  //     removeCookies();
+  //   }
+  // }, minute - 60000); // 24시간 주기에서 1분을 뺀 주기로 주기적 실행
+
   return (
     <div className="App">
       <Routes>
@@ -60,6 +106,7 @@ function App() {
         <Route path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/thirdparty" element={<ThirdpartyPage />} />
+        <Route path="/position" element={<PositionpolicyPage />} />
         {/* 마이페이지-이벤트 페이지 */}
         <Route path="/eventing" element={<EventingPage />} />
         {/* 카페 상세 페이지*/}
