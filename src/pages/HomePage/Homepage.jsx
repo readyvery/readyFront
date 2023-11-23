@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import event_icon from "../../assets/images/event_icon.svg";
 import home_cafedream from "../../assets/images/home_cafedream.svg";
 import home_harang from "../../assets/images/home_harang.svg";
@@ -13,41 +15,68 @@ import NavBar2 from "../../components/views/NavBar/NavBar2";
 import { loginState } from "../../recoil/user";
 import "./Homepage.css";
 
+//const EventSlider = styled(Slider)`
+// width: 100%;
+//`;
+
+//const EventImg = styled.img`
+//  height: 100%;
+//`;
+
 function Homepage() {
+  //const settings = {
+  // dots: false,
+  // infinite: true,
+  // speed: 500,
+  // slidesToShow: 1,
+  // slidesToScroll: 1,
+  // centerMode: true,
+  // autoplay: true,
+  // autoplaySpeed: 4000,
+  //};
   //const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [quickOrderItems, setQuickOrderItems] = useState([]); // 바로주문
   // const [eventImages, setEventImages] = useState([]); // evetn 배너
   // const [storeData, setsStoreData] = useState([]); // verypick
   const isLoggedIn = useRecoilValue(loginState);
 
-  let eventCase = {
-    event1: {
-      idx: 1,
-      imgUrl: event_icon,
+  const eventCase = [
+    {
+      events: [
+        {
+          idx: 1,
+          imgUrl: event_icon,
+        },
+      ],
     },
-    event2: {
-      idx: 2,
-      imgUrl: "이미지2의 URL",
-    },
-
-    // 다른 이벤트들...
-  };
+  ];
 
   // 연습
   const dummyQuickOrderItems = [
     {
       id: 1,
-      name: "커피 파로스",
-      address: "부천, 역곡동",
-      detail: "(ICE) 더블크림 라떼",
-    },
-    {
-      id: 2,
       name: "오르다",
       address: "부천, 역곡동",
       detail: "(ICE) 아이스아메리카노",
     },
-
+    {
+      id: 2,
+      name: "카페하랑 부천점",
+      address: "부천, 역곡동",
+      detail: "(ICE) 아이스카페라떼",
+    },
+    {
+      id: 3,
+      name: "카페드림 가톨릭대점",
+      address: "부천, 역곡동",
+      detail: "(ICE) 아이스아메리카노",
+    },
+    {
+      id: 4,
+      name: "오르다",
+      address: "부천, 역곡동",
+      detail: "(ICE) 아이스아메리카노",
+    },
     // 추가 아이템들
   ];
 
@@ -168,12 +197,14 @@ function Homepage() {
             <img src={image.imgUrl} alt={`Event ${index}`} className="event-icon" />
           </Link>
         ))} */}
-
-        <img
-          src={eventCase.event1.imgUrl}
-          alt="eventImg"
-          className="event-icon"
-        />
+        {eventCase[0].events.map((event) => (
+          <img src={event.imgUrl} alt="event" className="event-icon" />
+        ))}
+        {/* <EventSlider {...settings}>
+          {eventCase[0].events.map((event) => (
+            <EventImg src={event.imgUrl} alt="event" />
+          ))}
+        </EventSlider> */}
       </div>
 
       {/* 베리pick div */}
@@ -239,6 +270,24 @@ function Homepage() {
             벽산아파트)
           </div>
           <div>E-Mail: ohnt0307@gmail.com</div>
+
+          <div
+            style={{
+              marginTop: "10px",
+              fontSize: "11px",
+              fontFamily: "Regular",
+            }}
+          >
+            레디베리는 통신판매중개자이며, 통신판매의 당사자가 아닙니다.
+          </div>
+          <div
+            style={{
+              fontSize: "11px",
+              fontFamily: "Regular",
+            }}
+          >
+            따라서 레디베리는 상품거래 정보 및 거래에 대한 책임을 지지않습니다.
+          </div>
         </div>
       </div>
 
