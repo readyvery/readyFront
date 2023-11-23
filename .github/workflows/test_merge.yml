@@ -40,16 +40,28 @@ jobs:
   #       with:
   #         name: build
   #         path: build
+      # - name: Upload to Cloudflare
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: us-east-1
+      #     BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
+      #     ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
+      #   run: |
+      #     aws s3 sync build s3://$BUCKET_NAME/build \
+      #       --endpoint-url $ENDPOINT_URL --delete --exact-timestamps
       - name: Upload to Cloudflare
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with: 
+          args: --delete --exact-timestamps
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.CF_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
-          BUCKET_NAME: ${{ secrets.CF_BUCKET_NAME }}
-          ENDPOINT_URL: ${{ secrets.CF_ENDPOINT_URL }}
-        run: |
-          aws s3 sync build s3://$BUCKET_NAME/build \
-            --endpoint-url $ENDPOINT_URL --delete --exact-timestamps
+          AWS_S3_ENDPOINT: ${{ secrets.CF_ENDPOINT_URL }}
+          AWS_REGION: us-east-1
+          AWS_S3_BUCKET: ${{ secrets.CF_BUCKET_NAME }}
+          SOURCE_DIR: 'build'
+          DEST_DIR: 'build'
 
       - name: SSH and deploy
         uses: appleboy/ssh-action@v1.0.0
