@@ -74,6 +74,41 @@
   margin-bottom: 0.31rem;
 }
 
+.payment-page__order-info__item__control {
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+}
+
+.payment-page__order-info__item__delete {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-bottom: auto;
+}
+
+.payment-page__order-info__item__count {
+  display: flex;
+  width: 3.6875rem;
+  height: 1.0625rem;
+  flex-shrink: 0;
+  fill: #fff;
+  border: 0.5px solid #dadada;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.24rem 0.63rem;
+}
+
+.payment-page__order-info__item__count-minus {
+  cursor: pointer;
+}
+
+.payment-page__order-info__item__count-plus {
+  cursor: pointer;
+  color: #838383;
+}
+
 .payment-page__order-info__item__line {
   width: 21.5625rem;
   height: 0rem;
