@@ -12,6 +12,7 @@ import useInterval from "./hooks/useInterval";
 import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
 import CartPage from "./pages/CartPage/CartPage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
+import PolicyInLogin from "./pages/LoginPage/PolicyInLogin";
 import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
 import MyprofilePage from "./pages/MyPage/MyprofilePage/MyprofilePage";
@@ -57,7 +58,7 @@ function App() {
   const NewPaymentPage = Auth(PaymentPage, true);
   const NewPaymentSuccessPage = Auth(PaymentSuccessPage, true);
   const NewPaymentFailPage = Auth(PaymentFailPage, true);
-  const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
+  // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   const minute = 1000 * 60 * 60 * 24; // 24시간
   // 주기적으로 실행되는 함수
@@ -102,6 +103,7 @@ function App() {
             <Route path="/search" element={<CafeSearchPage />} />
             {/* 로그인*/}
             <Route path="/kakaologin" element={<NewLoginPage />} />
+            <Route path="/policyinlogin" element={<PolicyInLogin />} />
             {/* 마이페이지-약관정책 페이지 */}
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/termsofuse" element={<TermsOfUse />} />
@@ -127,10 +129,7 @@ function App() {
             {/* 마이페이지-마이프로필 확인 페이지 */}
             <Route path="/myprofile" element={<NewMyprofilePage />} />
             {/* 포장 여부 선택 페이지 */}
-            <Route
-              path="/packagingStatus"
-              element={<NewPackagingStatusPage />}
-            />
+            <Route path="/packagingStatus" element={<PackagingStatusPage />} />
             {/* 주문 과정 페이지 */}
             <Route path="/order" element={<NewOrderProcessPage />} />
             {/* 마이페이지-쿠폰 확인 페이지 */}
