@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const PaymentFailPage = () => {
   const location = useLocation();
@@ -9,6 +9,7 @@ const PaymentFailPage = () => {
   const orderId = params.get("orderId");
   const code = params.get("code");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -18,6 +19,12 @@ const PaymentFailPage = () => {
       )
       .then((response) => {
         console.log(response.data);
+
+        if (response.status === 200) {
+          navigate("/cart");
+        } else {
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.error("Error sending fail URL request:", error);
