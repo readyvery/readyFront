@@ -99,7 +99,7 @@ function Mypage() {
         <Link to="/policy" className="mypage-etc-policy-link">
           <div className="mypage-etc-policy">약관 및 정책</div>
         </Link>
-        <Link to="/" className="mypage-etc-sos-link">
+        <Link to="/customerservice" className="mypage-etc-sos-link">
           <div className="mypage-etc-sos">고객센터</div>
         </Link>
       </div>

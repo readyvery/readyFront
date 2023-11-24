@@ -14,6 +14,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
 import PolicyInLogin from "./pages/LoginPage/PolicyInLogin";
 import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
+import CustomerServicePage from "./pages/MyPage/CustomerServicePage/CustomerServicePage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
 import MyprofilePage from "./pages/MyPage/MyprofilePage/MyprofilePage";
 import PolicyPage from "./pages/MyPage/PolicyPage/PolicyPage";
@@ -116,6 +117,8 @@ function App() {
             <Route path="/store" element={<StoreDetailPage />} />
             {/* 마이페이지*/}
             <Route path="/mypage" element={<MyPage />} />
+            {/* 마이페이지-고객센터 페이지 */}
+            <Route path="/customerservice" element={<CustomerServicePage />} />
 
             {/* 로그인 해야지 볼 수 있는 페이지 */}
             {/* 주문내역 페이지*/}

@@ -57,17 +57,17 @@
   margin: 13% 7% 0 7%;
 }
 
-.item-price {
-  font-family: "ExtraLight";
-  font-size: 0.75rem;
-  color: black;
-  margin: 0 7% 0 7%;
-}
 .item-detail {
   font-family: "ExtraLight";
   font-size: 0.75rem;
   color: black;
   margin: 15% 7% 0 7%;
+}
+.item-price {
+  font-family: "ExtraLight";
+  font-size: 0.75rem;
+  color: black;
+  margin: 0 7% 0 7%;
 }
 
 /* 로그인 되어있지 않을 때 */
