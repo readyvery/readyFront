@@ -9,7 +9,7 @@ import {
   loginState,
 } from "../Atom/status";
 
-function Auth(SpecificComponent, option, adminRoute = null) {
+function Auth(SpecificComponent, option) {
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
@@ -19,6 +19,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
+      console.log(userInfo);
       const isAuth = window.localStorage.getItem("isAuthenticated");
       if (userInfo === "404" && location.pathname !== "/kakaologin") {
         navigate("/kakaologin");

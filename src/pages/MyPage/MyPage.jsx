@@ -1,5 +1,6 @@
 // import React, { useEffect, useState } from "react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
@@ -8,7 +9,25 @@ import "./MyPage.css";
 function Mypage() {
   const isLoggedIn = window.localStorage.getItem("isAuthenticated");
   console.log(isLoggedIn);
+  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const [userName, setUserName] = useState("");
 
+  useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
+
+    axios
+      .get(`${apiUrl}/api/v1/user/info`, config)
+      .then((response) => {
+        const { name } = response.data;
+        setUserName(name);
+      })
+      .catch((error) => {
+        console.error("Error fetching user info:", error);
+        // Handle error, e.g., redirect to login page
+      });
+  }, [apiUrl]);
   return (
     <div className="mypage-div">
       <Header
@@ -29,7 +48,7 @@ function Mypage() {
                 alt="ProfileIcon"
                 className="profile-icon2"
               />
-              <div className="profile-name">강짱구</div>
+              <div className="profile-name">{userName}</div>
               <Link to="/myprofile" className="profile-detailBtn">
                 프로필보기
               </Link>

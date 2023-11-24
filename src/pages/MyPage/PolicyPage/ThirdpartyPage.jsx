@@ -3,7 +3,7 @@ import Header from "../../../components/views/Header/Header";
 
 function ThirdpartyPage() {
   return (
-    <div className="privacy-div" style={{ width: "90%" }}>
+    <div className="privacy-div" style={{ width: "90%", height: "94vh" }}>
       <Header
         headerProps={{
           pageName: "개인정보 제3자 제공 동의",
