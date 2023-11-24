@@ -1,75 +1,71 @@
-// ../hoc/auth.js
-
-import axios from "axios";
+import moment from "moment";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-// import { useRecoilState } from "recoil";
-// import { accessTokenState, isAuthenticatedState } from "../recoil/authAtoms";
+import { useCookies } from "react-cookie";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  getUserSelector,
+  //isAuthenticatedState,
+  loginState,
+} from "../Atom/status";
 
-export default function Auth(SpecificComponent, option, adminRoute = null) {
-  function AuthenticationCheck() {
+function Auth(SpecificComponent, option, adminRoute = null) {
+  function AuthenticationCheck(props) {
     const navigate = useNavigate();
-    //const location = useLocation();
-    //const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState); // 인증 상태 (로그인이 되어있으면 true, 아니면 false)
-    //const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+    const location = useLocation();
+    const userInfo = useRecoilValue(getUserSelector);
+    const setIsLoggedIn = useSetRecoilState(loginState);
+    //const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+    const [cookies] = useCookies(["accessToken"]);
 
-    // TODO : 로그인 한 유저 AT 시간 재설정 (setIsAuthenticated(true) 진행
-
-    // auth 기능
     useEffect(() => {
-      axios
-        .get(`${process.env.REACT_APP_API_ROOT}/api/v1/auth`, {
-          withCredentials: true,
-        }) ///api/v1/auth
-        .then((response) => {
-          // 로그인 안한 유저
-          if (!response.data.auth) {
-            if (option) {
-              navigate("/kakaologin", { replace: true });
-            }
-          } else {
-            //respone.data.auth = true
-            //로그인한 상태
-            if (adminRoute && !response.data.admin) {
-              //admin유저만
-              navigate("/");
-            } else {
-              if (option === false) {
-                navigate("/");
-              }
-            }
+      const isAuth = window.localStorage.getItem("isAuthenticated");
+      if (userInfo === "404" && location.pathname !== "/kakaologin") {
+        navigate("/kakaologin");
+      } else {
+        if (!isAuth && cookies?.accessToken) {
+          // 첫 로그인 시
+          window.localStorage.setItem("isAuthenticated", true);
+          // window.localStorage.setItem("isAuthenticated", false);
+          setIsLoggedIn({
+            accessToken: getAccessTokenFromCookie(),
+            expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+          });
+          // setIsAuthenticated(true);
+          navigate("/"); //homepage
+          alert("로그인에 성공하셨습니다.");
+        } else {
+          if (cookies?.accessToken && location.pathname === "/kakaologin") {
+            // 로그인 상태에서 로그인 화면으로 갔을 경우
+            navigate("/"); // homepage
           }
-        })
-        .catch((error) => {
-          navigate("/kakaologin", { replace: true });
-        });
-    }, [navigate]);
+        }
+      }
 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return <SpecificComponent />;
   }
 
   return AuthenticationCheck;
 }
 
-// // 액세스 토큰 쿠키에 저장하는 함수 만들기
-// export const setAccessTokenCookie = (accessToken) => {
-//   document.cookie = `accessToken=${accessToken}; path=/`;
-// };
+// accessToken을 cookie에서 가져오는 함수
+export const getAccessTokenFromCookie = () => {
+  const cookieString = document.cookie;
+  if (cookieString) {
+    const cookies = cookieString.split("; ");
 
-// // 쿠키에서 액세스 토큰을 읽어오는 함수
-// export const getAccessTokenFromCookie = () => {
-//   const cookieString = document.cookie;
-//   if(cookieString){
-//     const cookies = cookieString.split("; ");
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split("=");
+      if (name === "accessToken") {
+        return value;
+      }
+    }
+  }
 
-//   for (const cookie of cookies) {
-//     const [name, value] = cookie.split("=");
-//     if (name === "accessToken") {
-//       return value;
-//     }
-//   }
-//   }
+  // accessToken만 받아와야하는데 지금은 다른 것도 받아오고 있어서 파싱해야함
+  return null;
+};
 
-//  // accessToken만 받아와야하는데 지금은 다른 것도 받아오고 있어서 파싱해야함
-//   return null;
-// };
+export default Auth;

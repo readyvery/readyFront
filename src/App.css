@@ -12,7 +12,7 @@
 @media only screen and (max-width: 400px) {
   .App {
     max-width: 390px;
-    height: 94vh;
+    /* height: 94vh; */
     background-color: white;
     padding-top: 3.5rem;
   }
@@ -34,7 +34,7 @@
 @media only screen and (min-width: 400px) and (max-width: 800px) {
   .App {
     max-width: 430px;
-    height: 94vh;
+    /* height: 94vh; */
     background-color: white;
     padding-top: 3.5rem;
   }
@@ -56,7 +56,7 @@
 @media (min-width: 800px) {
   .App {
     width: 600px;
-    height: 94vh;
+    /* height: 94vh; */
     background-color: white;
     padding-top: 3.5rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;

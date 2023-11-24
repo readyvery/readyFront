@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
 function Mypage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setIsLoggedIn(true);
-
-    // Axios.get("http://localhost:8080/api/v1/auth", {
-    //   withCredentials: true, // default
-    // }).then((response) => {
-    //   if (response.data) {
-    //     console.log(response.data);
-    //   }
-    // });
-  }, []);
+  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
+  console.log(isLoggedIn);
 
   return (
     <div className="mypage-div">

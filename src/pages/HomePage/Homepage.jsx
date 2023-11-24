@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import event_icon from "../../assets/images/event_icon.svg";
@@ -12,33 +11,11 @@ import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
-import { loginState } from "../../recoil/user";
 import "./Homepage.css";
 
-//const EventSlider = styled(Slider)`
-// width: 100%;
-//`;
-
-//const EventImg = styled.img`
-//  height: 100%;
-//`;
-
 function Homepage() {
-  //const settings = {
-  // dots: false,
-  // infinite: true,
-  // speed: 500,
-  // slidesToShow: 1,
-  // slidesToScroll: 1,
-  // centerMode: true,
-  // autoplay: true,
-  // autoplaySpeed: 4000,
-  //};
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [quickOrderItems, setQuickOrderItems] = useState([]); // 바로주문
-  // const [eventImages, setEventImages] = useState([]); // evetn 배너
-  // const [storeData, setsStoreData] = useState([]); // verypick
-  const isLoggedIn = useRecoilValue(loginState);
+  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
+  console.log(isLoggedIn);
 
   const eventCase = [
     {
@@ -89,14 +66,14 @@ function Homepage() {
       eventText: "테이크아웃 시 아메리카노 1,700원",
     },
     {
-      id: 2,
+      id: 3,
       name: "카페하랑 부천점",
       address: "경기도 부천시 지봉로 43",
       img: home_harang,
       eventText: "강의실에서 주문하고, 바로 가져가세요!",
     },
     {
-      id: 3,
+      id: 2,
       name: "카페드림 가톨릭대학교 성심교정 중앙도서관점",
       address:
         "경기도 부천시 지봉로 43 가톨릭대학교 중앙도서관 1층 15베리타스관",

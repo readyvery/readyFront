@@ -17,7 +17,7 @@ function CafeSearch() {
       imgUrl: search_orda,
     },
     {
-      idx: 2,
+      idx: 3,
       name: "카페 하랑",
       address: "경기도 부천시 지봉로 2",
       status: "영업종료",
@@ -25,7 +25,7 @@ function CafeSearch() {
       imgUrl: search_harang,
     },
     {
-      idx: 3,
+      idx: 2,
       name: "카페 드림",
       address: "경기도 부천시 지봉로 3",
       status: "영업중",

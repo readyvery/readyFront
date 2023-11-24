@@ -13,6 +13,8 @@ const PaymentSuccessPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // const successUrl = `${apiRoot}/api/v1/order/toss/success?paymentType=${paymentType}&orderId=${orderId}&paymentKey=${paymentKey}&amount=${amount}`;
+
     if (orderId) {
       axios
         .get(
@@ -24,11 +26,11 @@ const PaymentSuccessPage = () => {
           if (response.status === 200) {
             navigate("/status");
           } else {
-            navigate("/payment/failure");
+            navigate("/payment/fail");
           }
         })
         .catch((error) => {
-          console.log("조현식");
+          console.error("Error sending success URL request:", error);
         });
     } else {
       navigate("/");
