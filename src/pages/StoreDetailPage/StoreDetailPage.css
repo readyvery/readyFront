@@ -94,7 +94,7 @@
   display: flex;
   width: 100%;
   max-width: 100vw; /* 화면 너비 이내에서만 확장됩니다. */
-  height: fit-content;
+  flex: 0 0 auto; /* 고정 높이 */
   overflow-x: auto;
   border-bottom: 1px solid rgba(216, 35, 86, 0.6);
 }
@@ -132,9 +132,9 @@
 .store-detail-page__menuList {
   display: flex;
   width: 100%;
-  height: fit-content;
   flex-direction: column;
-  overflow-y: auto;
+  flex: 1; /* 남은 공간을 채움 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 표시 */
 }
 
 .store-detail-page__menuList::-webkit-scrollbar {
