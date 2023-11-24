@@ -5,6 +5,7 @@ import loginpagelogo from "../../assets/images/login_logo.svg";
 
 const Container = styled.div`
   width: 100%;
+  height: 94vh;
 `;
 
 const LogoContainer = styled.div`

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import event_icon from "../../assets/images/event_icon.svg";
@@ -12,19 +11,11 @@ import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
-import { loginState } from "../../recoil/user";
 import "./Homepage.css";
 
-//const EventSlider = styled(Slider)`
-// width: 100%;
-//`;
-
-//const EventImg = styled.img`
-//  height: 100%;
-//`;
-
 function Homepage() {
-  const isLoggedIn = useRecoilValue(loginState);
+  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
+  console.log(isLoggedIn);
 
   const eventCase = [
     {
