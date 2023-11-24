@@ -16,7 +16,7 @@ const LogoContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  margin: 40% 0 40% 0;
+  margin: 20% 0 40% 0;
 `;
 
 const LoginContainer = styled.div`
