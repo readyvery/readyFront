@@ -104,6 +104,8 @@ function MyprofilePage() {
           <div className="myprofile-logout" onClick={handleLogout}>
             로그아웃
           </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div className="myprofile-unregister">회원탈퇴</div>
         </div>
       </div>
     </div>
