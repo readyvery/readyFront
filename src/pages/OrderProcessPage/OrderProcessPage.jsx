@@ -233,7 +233,7 @@ const OrderProcessPage = () => {
 
                 {activeToggles?.length && activeToggles[index] && (
                   <div
-                    className="order-process-page__toggle__container"
+                    className={`order-process-page__toggle__body__container open`}
                     key={index}
                   >
                     {category?.options?.map((option, optionIndex) => (
@@ -259,7 +259,11 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
-                          <span>{option.name}</span>
+                          {option.price === 0 ? (
+                            <span>{option.name}</span>
+                          ) : (
+                            <span>{option.name} (+{option.price}원)</span>
+                          )}
                         </label>
                       </div>
                     ))}
@@ -322,7 +326,11 @@ const OrderProcessPage = () => {
                                   )
                                 }
                               />
-                              <span>{option.name}</span>
+                              {option.price === 0 ? (
+                                <span>{option.name}</span>
+                              ) : (
+                                <span>{option.name} (+{option.price}원)</span>
+                              )}
                             </label>
                           </div>
                         </React.Fragment>
