@@ -31,6 +31,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
+import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponePage";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -141,6 +142,8 @@ function App() {
             <Route path="/cart" element={<NewCartPage />} />
             {/* 결제 페이지 */}
             <Route path="/payment" element={<NewPaymentPage />} />
+            {/* 쿠폰 적용 페이지 */}
+            <Route path="/payment/coupon" element={<ApplyCouponPage />} />
             {/* 결제 성공 리다이렉트 페이지 */}
             <Route
               path="/payment/success"
