@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/berry.png";
 import berry from "../../../assets/images/berry.svg";
@@ -26,7 +26,10 @@ function OrderStatus (){
         "PICKUP": 3
     };
 
-    useEffect(() => {fetchData();}, []);
+useEffect(() => {
+    fetchData(); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
     // const fetchData = () => {
     //     const config = {
@@ -41,7 +44,7 @@ function OrderStatus (){
     //     .catch((err) => console.log(err));
     // }
 
-    const fetchData = useCallback(() => {
+    const fetchData = () => {
         const config = {
             withCredentials: true,
         };
@@ -56,7 +59,7 @@ function OrderStatus (){
                 setDegree(progressList[curPro]);
             })
             .catch((err) => console.log(err));
-    }, [apiUrl, orderId]);
+    };
     
     const refreshDegree = () => {
         fetchData();
@@ -112,7 +115,7 @@ function OrderStatus (){
                             <div className="logo-img-wrapper center">
                                 <img src={logo} className="logo-img" alt={logo}/>
                             </div>
-                            <span className="status-number">258번</span>
+                            <span className="status-number">{statusList?.orderNum}번</span>
                         </div>
                         <div className="progressbar-wrapper">
                             <Progressbar degree={degree}/>
@@ -123,12 +126,12 @@ function OrderStatus (){
                         <div className="status-content-container">
                             <div className="status-content-wrapper">
                                 <span className="status-content-subtitle">주문매장</span>
-                                <span className="status-content">이디야커피 가톨릭대점</span>
+                                <span className="status-content">{statusList?.name}</span>
                             </div>
                             <div className="status-content-wrapper">
                                 <span className="status-content-subtitle">주문내역</span>
                                 <div className="status-content">
-                                    <span className="status-history">레몬에이드 외 3잔</span>
+                                    <span className="status-history">{statusList?.orderName}</span>
                                     <div className="status-detail">
                                         <Link to="/orderDetail" style={{ textDecoration: "none"}}>
                                             주문상세
