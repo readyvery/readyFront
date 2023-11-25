@@ -2,12 +2,12 @@ import "./StateBox.css";
 
 import cafe from "../../../assets/images/cafe_logo.png";
 
-const StateBox = ({ id, date, name, menu, imgUrl, amount, state = 0 }) => {
+const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state = 1 }) => {
   const stateList = ["취소완료", "진행중", "수령완료"];
 
   return (
     <>
-      <div className={`order-box ${state === 1 && "selected"}`}>
+      <div className={`order-box ${state === 1 && "selected"} ${isLast && "last"}`}>
         <div className="status-bar">
           <div className="status-date">{date}</div>
           <div className={`status-box ${state === 1 && "selected"}`}>
