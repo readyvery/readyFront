@@ -23,9 +23,8 @@ import PrivacyPolicy from "./pages/MyPage/PolicyPage/PrivacypolicyPage";
 import TermsOfUse from "./pages/MyPage/PolicyPage/TermsofusePage";
 import ThirdpartyPage from "./pages/MyPage/PolicyPage/ThirdpartyPage";
 import OrderDetail from "./pages/OrderDetail/OrderDetail";
+import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
-import OrderStatus from "./pages/OrderStatus/OrderStatus";
-import OrderStorage from "./pages/OrderStorage/OrderStorage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
@@ -48,8 +47,7 @@ function App() {
   const NewLoginPage = Auth(KakaoLoginPage, false); // 로그인 페이지
 
   //true : 로그인 한 유저 들어감
-  const NewOrderStorage = Auth(OrderStorage, true);
-  const NewOrderStatus = Auth(OrderStatus, true);
+  const NewOrderHistory = Auth(OrderHistory, true);
   const NewOrderDetail = Auth(OrderDetail, true);
   const NewReadyPage = Auth(ReadyPage, true);
   const NewMyprofilePage = Auth(MyprofilePage, true);
@@ -123,9 +121,7 @@ function App() {
 
             {/* 로그인 해야지 볼 수 있는 페이지 */}
             {/* 주문내역 페이지*/}
-            <Route path="/storage" element={<NewOrderStorage />} />
-            {/* 주문상태 페이지 - 추후 병합 예정*/}
-            <Route path="/status" element={<NewOrderStatus />} />
+            <Route path="/orderHistory" element={<NewOrderHistory />} />
             {/* 주문상세 페이지 - 추후 병합 예정*/}
             <Route path="/orderDetail" element={<NewOrderDetail />} />
             {/* 바로주문*/}

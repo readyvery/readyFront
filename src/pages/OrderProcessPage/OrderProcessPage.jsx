@@ -233,7 +233,7 @@ const OrderProcessPage = () => {
 
                 {activeToggles?.length && activeToggles[index] && (
                   <div
-                    className="order-process-page__toggle__container"
+                    className={`order-process-page__toggle__body__container open`}
                     key={index}
                   >
                     {category?.options?.map((option, optionIndex) => (
@@ -259,7 +259,24 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
-                          <span>{option.name}</span>
+                          {/* {selectedRadioTexts?.length &&
+                            selectedRadioTexts[index] === option.name && (
+                              <span className="custom-radio"></span>
+                            )
+                          } */}
+                          <span>
+                            <span className={`custom-radio ${selectedRadioTexts?.length &&
+                                selectedRadioTexts[index] === option.name && "checked"}`}></span>
+                          </span>
+                          {option.price === 0 ? (
+                            <span className="radio-txt">
+                              {option.name}
+                            </span>
+                          ) : (
+                            <span className="radio-txt">
+                              {option.name} (+{option.price}원)
+                            </span>
+                          )}
                         </label>
                       </div>
                     ))}
@@ -322,7 +339,16 @@ const OrderProcessPage = () => {
                                   )
                                 }
                               />
-                              <span>{option.name}</span>
+
+                              <span>
+                                <span className={`custom-checkbox ${optionIdx?.length &&
+                                    optionIdx.includes(option.idx) && "checked"}`}></span>
+                              </span>
+                              {option.price === 0 ? (
+                                <span className="radio-txt">{option.name}</span>
+                              ) : (
+                                <span className="radio-txt">{option.name} (+{option.price}원)</span>
+                              )}
                             </label>
                           </div>
                         </React.Fragment>
@@ -358,7 +384,12 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {String(totalAmount) + "원"}
+          {isNaN(totalAmount) 
+            ?
+              0 + "원" 
+            : 
+              totalAmount.toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
 

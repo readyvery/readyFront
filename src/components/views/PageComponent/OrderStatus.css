@@ -97,8 +97,6 @@
     margin: 0 auto;
 }
 
-.logo-img-wrapper{}
-
 .logo-img-wrapper.center{
     text-align: center;
 }
@@ -248,6 +246,7 @@
     border: 1px solid #dadada;
     border-radius: 0.625rem;
     padding: 3% 5%;
+    white-space: nowrap;
 }
 
 /* 주문 완료 */
