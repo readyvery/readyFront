@@ -4,25 +4,27 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5rem;
+  height: 4rem;
   background-color: #ffffff;
   display: flex;
+  z-index: 100;
   align-items: center;
 }
 
 .top_header.page {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5rem;
+  height: 4rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
 }
 
 .header-link {
-  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
 }
 
 .header-main__warpper {
@@ -31,7 +33,7 @@
   justify-content: space-between;
 
   width: 94%;
-  margin: 0 auto;
+  margin: 0 1rem;
 }
 
 .header-main__warpper span {

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
-// import menuDelete from "../../assets/images/menu_delete.svg";
+import menuDelete from "../../assets/images/menu_delete.svg";
 // import takeIn from "../../assets/images/take_in.svg";
 // import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
@@ -22,6 +22,28 @@ const PaymentPage = () => {
   const paymentMethodsWidgetRef = useRef(null);
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
+
+  const handleDecrease = (item) => {
+    if (item.count > 1) {
+      const updatedCarts = paymentData.carts.map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, count: cartItem.count - 1 }
+          : cartItem
+      );
+      setPaymentData({ ...paymentData, carts: updatedCarts });
+      setPrice((prevPrice) => prevPrice - item.price);
+    }
+  };
+
+  const handleIncrease = (item) => {
+    const updatedCarts = paymentData.carts.map((cartItem) =>
+      cartItem.id === item.id
+        ? { ...cartItem, count: cartItem.count + 1 }
+        : cartItem
+    );
+    setPaymentData({ ...paymentData, carts: updatedCarts });
+    setPrice((prevPrice) => prevPrice + item.price);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,6 +110,7 @@ const PaymentPage = () => {
   const paymentRequest = async () => {
     let body = {
       inout: inout,
+      couponId: 12,
     };
 
     await axios
@@ -129,6 +152,7 @@ const PaymentPage = () => {
           src={paymentData?.imgUrl}
           alt="cafeImg"
         ></img>
+
         <text className="payment-page__cafe-info__name">
           {paymentData?.name}
         </text>
@@ -148,7 +172,7 @@ const PaymentPage = () => {
                 <div className="payment-page__order-info__item__name">
                   {item.name}
                 </div>
-                {/* <img src={menuDelete} alt="X" /> */}
+
                 <div className="payment-page__order-info__item__option">
                   {item.options.map((option) => (
                     <div>
@@ -156,11 +180,40 @@ const PaymentPage = () => {
                     </div>
                   ))}
                 </div>
+
                 <div className="payment-page__order-info__item__price">
-                  {item.totalPrice}원
+                  {item.totalPrice * item.count}원
+                </div>
+              </div>
+
+              <div className="payment-page__order-info__item__control">
+                <img
+                  className="payment-page__order-info__item__delete"
+                  src={menuDelete}
+                  alt="X"
+                />
+
+                <div className="payment-page__order-info__item__count">
+                  <span
+                    className="payment-page__order-info__item__count-minus"
+                    style={{
+                      color: item.count === 1 ? "#DADADA" : "#838383",
+                    }}
+                    onClick={() => handleDecrease(item)}
+                  >
+                    -
+                  </span>
+                  <span>{item.count}</span>
+                  <span
+                    className="payment-page__order-info__item__count-plus"
+                    onClick={() => handleIncrease(item)}
+                  >
+                    +
+                  </span>
                 </div>
               </div>
             </div>
+
             <div className="payment-page__order-info__item__line"></div>
           </div>
         ))}

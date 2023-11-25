@@ -60,7 +60,7 @@ const NavBar = () => {
       </Link>
 
       <Link
-        to="/home"
+        to="/"
         className="nav-link"
         onClick={() => {
           setActiveNav(3);
