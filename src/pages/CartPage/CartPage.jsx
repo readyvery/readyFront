@@ -69,17 +69,17 @@ const CartPage = () => {
     }
   };
 
-  const updateCartItem = (itemId, newPrice, cnt) => {
-    axios
-      .put(
-        `${apiRoot}/api/v1/order/cart?idx=${itemId}&count=${cnt}`,
-        { price: newPrice },
-        { withCredentials: true }
-      )
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const updateCartItem = (itemId, newPrice, cnt) => {
+  //   axios
+  //     .put(
+  //       `${apiRoot}/api/v1/order/cart?idx=${itemId}&count=${cnt}`,
+  //       { price: newPrice },
+  //       { withCredentials: true }
+  //     )
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,8 +99,16 @@ const CartPage = () => {
   }, []);
 
   useEffect(() => {
-    updateCartItem(Idx, price, Count);
-  }, [Count]);
+    axios
+      .put(
+        `${apiRoot}/api/v1/order/cart?idx=${Idx}&count=${Count}`,
+        { price: price },
+        { withCredentials: true }
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [Idx, price, Count, apiRoot]);
 
   return (
     <div className="cart-page">
