@@ -29,7 +29,8 @@
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
-  .top_header2 {
+
+  .top_header_page {
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
@@ -55,9 +56,9 @@
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
   }
-  .top_header2 {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+  .top_header_page {
+    left: calc(50% - 215px); /* Center the navbar */
+    right: calc(50% - 215px); /* Center the navbar */
   }
 }
 
@@ -83,9 +84,10 @@
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
   }
-  .top_header2 {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+
+  .top_header_page {
+    left: calc(50% - 300px); /* Center the navbar */
+    right: calc(50% - 300px); /* Center the navbar */
   }
 }
 

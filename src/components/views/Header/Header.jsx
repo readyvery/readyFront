@@ -9,13 +9,13 @@ const Header = ({ headerProps }) => {
   return (
     <>
       {headerProps ? (
-        <header className="top_header2">
+        <header className="top_header_page">
           <div className="header-main__warpper">
             {!headerProps.isClose ? (
               <div>
                 <Link
                   to={headerProps.linkTo}
-                  style={{ textDecoration: "none", marginLeft: "10px" }}
+                  style={{ textDecoration: "none" }}
                 >
                   <img src={arrow} alt="arrow" />
                 </Link>
