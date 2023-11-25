@@ -1,3 +1,4 @@
+import { message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
@@ -153,11 +154,18 @@ function Homepage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [couponIssued, setCouponIssued] = useState(false);
+
   const handleCouponClick = (couponCode, couponId) => {
     console.log(couponCode, couponId);
     const config = {
       withCredentials: true,
     };
+
+    if (couponIssued) {
+      return;
+    }
+
     axios
       .post(
         `${apiRoot}/api/v1/coupon`,
@@ -169,9 +177,13 @@ function Homepage() {
       )
       .then((response) => {
         console.log("Coupon registration successful:", response.data);
+
+        message.success("쿠폰이 발급되었습니다.");
+        setCouponIssued(true);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        message.success("쿠폰이 이미 발급되었습니다.");
       });
   };
 
