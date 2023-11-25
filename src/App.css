@@ -29,6 +29,10 @@
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
+  .top_header2 {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
+  }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 800px) {
@@ -50,6 +54,10 @@
   .top_header {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
+  }
+  .top_header2 {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
   }
 }
 
@@ -74,6 +82,10 @@
   .top_header {
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
+  }
+  .top_header2 {
+    left: calc(50% - 207px); /* Center the navbar */
+    right: calc(50% - 207px); /* Center the navbar */
   }
 }
 

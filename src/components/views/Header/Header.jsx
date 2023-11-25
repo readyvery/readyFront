@@ -9,7 +9,7 @@ const Header = ({ headerProps }) => {
   return (
     <>
       {headerProps ? (
-        <header className="top_header page">
+        <header className="top_header2">
           <div className="header-main__warpper">
             {!headerProps.isClose ? (
               <div>
