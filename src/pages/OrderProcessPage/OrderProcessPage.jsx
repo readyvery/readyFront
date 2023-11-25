@@ -259,10 +259,23 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
+                          {/* {selectedRadioTexts?.length &&
+                            selectedRadioTexts[index] === option.name && (
+                              <span className="custom-radio"></span>
+                            )
+                          } */}
+                          <span>
+                            <span className={`custom-radio ${selectedRadioTexts?.length &&
+                                selectedRadioTexts[index] === option.name && "checked"}`}></span>
+                          </span>
                           {option.price === 0 ? (
-                            <span>{option.name}</span>
+                            <span className="radio-txt">
+                              {option.name}
+                            </span>
                           ) : (
-                            <span>{option.name} (+{option.price}원)</span>
+                            <span className="radio-txt">
+                              {option.name} (+{option.price}원)
+                            </span>
                           )}
                         </label>
                       </div>
@@ -326,10 +339,15 @@ const OrderProcessPage = () => {
                                   )
                                 }
                               />
+
+                              <span>
+                                <span className={`custom-checkbox ${optionIdx?.length &&
+                                    optionIdx.includes(option.idx) && "checked"}`}></span>
+                              </span>
                               {option.price === 0 ? (
-                                <span>{option.name}</span>
+                                <span className="radio-txt">{option.name}</span>
                               ) : (
-                                <span>{option.name} (+{option.price}원)</span>
+                                <span className="radio-txt">{option.name} (+{option.price}원)</span>
                               )}
                             </label>
                           </div>
@@ -366,7 +384,12 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {String(totalAmount) + "원"}
+          {isNaN(totalAmount) 
+            ?
+              0 + "원" 
+            : 
+              totalAmount.toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
 
