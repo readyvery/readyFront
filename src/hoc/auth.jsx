@@ -1,3 +1,4 @@
+import { message } from "antd";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -33,8 +34,9 @@ function Auth(SpecificComponent, option) {
             expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
           });
           // setIsAuthenticated(true);
+          message.success("로그인에 성공하셨습니다.");
           navigate("/"); //homepage
-          alert("로그인에 성공하셨습니다.");
+          // alert("로그인에 성공하셨습니다.");
         } else {
           if (cookies?.accessToken && location.pathname === "/kakaologin") {
             // 로그인 상태에서 로그인 화면으로 갔을 경우

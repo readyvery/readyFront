@@ -16,14 +16,13 @@ const LogoContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  margin: 20% 0 40% 0;
+  margin: 35% 0 10% 0;
 `;
 
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
 `;
 
 const KakaoButton = styled.button`
@@ -62,7 +61,9 @@ function KaKaoLoginBtn() {
         </KakaoButton>
       </LoginContainer>
       <PolicyContainter onClick={handlePolicyClick}>
-        레디베리이용약관
+        <div style={{ borderBottom: "0.5px solid #000" }}>
+          레디베리 이용약관
+        </div>
       </PolicyContainter>
     </Container>
   );
