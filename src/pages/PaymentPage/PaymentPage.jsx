@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import menuDelete from "../../assets/images/menu_delete.svg";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
-import menuDelete from "../../assets/images/menu_delete.svg";
 // import takeIn from "../../assets/images/take_in.svg";
 // import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";

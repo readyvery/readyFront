@@ -52,7 +52,7 @@ function CouponPage() {
       <div className="coupon-list">
         <div className="coupon-list-box">
           {couponCheck.map((item) => (
-            <div className="coupon-item" key={item.idx}>
+            <div className="coupon-item">
               <div className="coupon-item-name">{item.couponName}</div>
               <div className="coupon-item-content">{item.publisher}</div>
               <div className="coupon-item-date">{item.expirationDate}</div>
