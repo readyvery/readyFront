@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import menuDelete from "../../assets/images/menu_delete.svg";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
@@ -22,28 +21,7 @@ const PaymentPage = () => {
   const paymentMethodsWidgetRef = useRef(null);
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
-
-  const handleDecrease = (item) => {
-    if (item.count > 1) {
-      const updatedCarts = paymentData.carts.map((cartItem) =>
-        cartItem.id === item.id
-          ? { ...cartItem, count: cartItem.count - 1 }
-          : cartItem
-      );
-      setPaymentData({ ...paymentData, carts: updatedCarts });
-      setPrice((prevPrice) => prevPrice - item.price);
-    }
-  };
-
-  const handleIncrease = (item) => {
-    const updatedCarts = paymentData.carts.map((cartItem) =>
-      cartItem.id === item.id
-        ? { ...cartItem, count: cartItem.count + 1 }
-        : cartItem
-    );
-    setPaymentData({ ...paymentData, carts: updatedCarts });
-    setPrice((prevPrice) => prevPrice + item.price);
-  };
+  // const selectedCoupon = location.state?.selectedCoupon;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -142,7 +120,7 @@ const PaymentPage = () => {
         headerProps={{
           pageName: "주문결제",
           isClose: false,
-          linkTo: `/store?storeId=${storeId}&inout=${inout}`,
+          linkTo: `/cart?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
@@ -183,33 +161,6 @@ const PaymentPage = () => {
 
                 <div className="payment-page__order-info__item__price">
                   {item.totalPrice * item.count}원
-                </div>
-              </div>
-
-              <div className="payment-page__order-info__item__control">
-                <img
-                  className="payment-page__order-info__item__delete"
-                  src={menuDelete}
-                  alt="X"
-                />
-
-                <div className="payment-page__order-info__item__count">
-                  <span
-                    className="payment-page__order-info__item__count-minus"
-                    style={{
-                      color: item.count === 1 ? "#DADADA" : "#838383",
-                    }}
-                    onClick={() => handleDecrease(item)}
-                  >
-                    -
-                  </span>
-                  <span>{item.count}</span>
-                  <span
-                    className="payment-page__order-info__item__count-plus"
-                    onClick={() => handleIncrease(item)}
-                  >
-                    +
-                  </span>
                 </div>
               </div>
             </div>

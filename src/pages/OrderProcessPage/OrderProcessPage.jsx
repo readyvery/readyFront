@@ -45,20 +45,20 @@ const OrderProcessPage = () => {
       options: optionIdx,
       count: orderCnt,
     };
-    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+    // const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
-    // Axios를 사용한 DELETE 요청
-    const response = axios.delete(apiUrl, { withCredentials: true });
+    // // Axios를 사용한 DELETE 요청
+    // const response = axios.delete(apiUrl, { withCredentials: true });
 
-    // 성공적으로 처리된 경우에 대한 로직
-    console.log("Cart reset successful", response.data);
+    // // 성공적으로 처리된 경우에 대한 로직
+    // console.log("Cart reset successful", response.data);
     axios
       .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data);
-        navigate(`/payment?storeId=${storeId}&inout=${inout}`);
+        navigate(`/cart?storeId=${storeId}&inout=${inout}`);
       })
 
       // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
@@ -96,15 +96,15 @@ const OrderProcessPage = () => {
         .map((e) => `${e.options[0]?.name}`)
     );
     setTotalAmount(
-      orderCnt && orderCnt * (
-      foodOptionInfo?.price +
-        parseInt(
-          foodOptionInfo?.category
-            ?.filter((el) => el?.essential)
-            .map((e) => parseInt(e?.options[0]?.price))
-            .reduce((prev, curr) => prev + curr, 0)
-        )
-      )
+      orderCnt &&
+        orderCnt *
+          (foodOptionInfo?.price +
+            parseInt(
+              foodOptionInfo?.category
+                ?.filter((el) => el?.essential)
+                .map((e) => parseInt(e?.options[0]?.price))
+                .reduce((prev, curr) => prev + curr, 0)
+            ))
     );
     setPrevRadioPrice(
       foodOptionInfo?.category
@@ -159,14 +159,15 @@ const OrderProcessPage = () => {
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
     setOrderCnt(newOrderCnt);
-    setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
-  }
+    setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt - 1));
+  };
 
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
-    orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
-    setOrderCnt((prev) => prev === 1 ? 1 : newOrderCnt);
-  }
+    orderCnt > 1 &&
+      setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt + 1));
+    setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
+  };
 
   return (
     <div className="order-process-page">
@@ -265,13 +266,16 @@ const OrderProcessPage = () => {
                             )
                           } */}
                           <span>
-                            <span className={`custom-radio ${selectedRadioTexts?.length &&
-                                selectedRadioTexts[index] === option.name && "checked"}`}></span>
+                            <span
+                              className={`custom-radio ${
+                                selectedRadioTexts?.length &&
+                                selectedRadioTexts[index] === option.name &&
+                                "checked"
+                              }`}
+                            ></span>
                           </span>
                           {option.price === 0 ? (
-                            <span className="radio-txt">
-                              {option.name}
-                            </span>
+                            <span className="radio-txt">{option.name}</span>
                           ) : (
                             <span className="radio-txt">
                               {option.name} (+{option.price}원)
@@ -341,13 +345,20 @@ const OrderProcessPage = () => {
                               />
 
                               <span>
-                                <span className={`custom-checkbox ${optionIdx?.length &&
-                                    optionIdx.includes(option.idx) && "checked"}`}></span>
+                                <span
+                                  className={`custom-checkbox ${
+                                    optionIdx?.length &&
+                                    optionIdx.includes(option.idx) &&
+                                    "checked"
+                                  }`}
+                                ></span>
                               </span>
                               {option.price === 0 ? (
                                 <span className="radio-txt">{option.name}</span>
                               ) : (
-                                <span className="radio-txt">{option.name} (+{option.price}원)</span>
+                                <span className="radio-txt">
+                                  {option.name} (+{option.price}원)
+                                </span>
                               )}
                             </label>
                           </div>
@@ -362,19 +373,26 @@ const OrderProcessPage = () => {
         )}
 
         <div className="order-process-page__toggle__container">
-          <div
-            className="order-process-page__toggle__header"
-          >
-            <span className="order-process-page__toggle__name">
-              수량
-            </span>
+          <div className="order-process-page__toggle__header">
+            <span className="order-process-page__toggle__name">수량</span>
             <div className="order-process-page-quantity__wrapper">
-              <span className="order-process-page__img__wrapper" onClick={handleCntDown}>
-                <img src={orderCnt === 1 ? minusDisabled : minus} alt={orderCnt === 1 ? "minusDisabled" : "minus"}/>
+              <span
+                className="order-process-page__img__wrapper"
+                onClick={handleCntDown}
+              >
+                <img
+                  src={orderCnt === 1 ? minusDisabled : minus}
+                  alt={orderCnt === 1 ? "minusDisabled" : "minus"}
+                />
               </span>
-              <span className="order-process-page-quantity__txt">{orderCnt}</span>
-              <span className="order-process-page__img__wrapper" onClick={handleCntUp}>
-                <img src={plus} alt="plus"/>
+              <span className="order-process-page-quantity__txt">
+                {orderCnt}
+              </span>
+              <span
+                className="order-process-page__img__wrapper"
+                onClick={handleCntUp}
+              >
+                <img src={plus} alt="plus" />
               </span>
             </div>
           </div>
@@ -384,11 +402,10 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {isNaN(totalAmount) 
-            ?
-              0 + "원" 
-            : 
-              totalAmount.toString()
+          {isNaN(totalAmount)
+            ? 0 + "원"
+            : totalAmount
+                .toString()
                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
@@ -407,7 +424,7 @@ const OrderProcessPage = () => {
       </Link> */}
 
       <div className="order-process-page__cart__btn" onClick={handleCartReset}>
-        주문하기
+        장바구니 담기
       </div>
     </div>
   );
