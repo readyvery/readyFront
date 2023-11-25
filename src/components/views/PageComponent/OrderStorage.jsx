@@ -3,44 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./OrderStorage.css";
 
-import Header from "../../components/views/Header/Header";
-import StateBox from "../../components/views/StateBox/StateBox";
+import Header from "../Header/Header";
+import StateBox from "../StateBox/StateBox";
 
-import empty from "../../assets/images/storage_empty.svg";
+import empty from "../../../assets/images/storage_empty.svg";
 
 function OrderStatus() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [storageList, setStorageList] = useState([]);
-  // const storageList = [
-  //   {
-  //     id: 1,
-  //     date: "2023.05.11 (수) 11:37",
-  //     name: "카페 오르다",
-  //     menu: "(ICE)아메리카노 외 4잔 13,700원",
-  //     state: 1,
-  //   },
-  //   {
-  //     id: 2,
-  //     date: "2023.10.01 (월) 19:37",
-  //     name: "카페 오르다",
-  //     menu: "(ICE)아메리카노 외 4잔 13,700원",
-  //     state: 2,
-  //   },
-  //   {
-  //     id: 3,
-  //     date: "2023.09.01 (월) 16:36",
-  //     name: "이디야커피(가톨릭대점)",
-  //     menu: "(ICE)아메리카노 외 4잔 13,700원",
-  //     state: 0,
-  //   },
-  //   {
-  //     id: 4,
-  //     date: "2023.05.11 (수) 11:37",
-  //     name: "카페 오르다",
-  //     menu: "(ICE)아메리카노 외 4잔 13,700원",
-  //     state: 2,
-  //   },
-  // ];
 
   useEffect(() => {
     const config = {
@@ -64,10 +34,10 @@ function OrderStatus() {
       />
       <main className="content-container">
         {storageList.length ? (
-          storageList.map((e) => (
-            // storageList
+          storageList.map((e, i) => (
             <Link
-              to={e.state === 1 ? "/status" : "/orderDetail"}
+              // to={e.state === 1 ? `/storage?orderId=${e.orderId}` : "/orderDetail"}
+              to={`/orderHistory?orderId=${e.orderId}`}
               style={{ textDecoration: "none" }}
             >
               <StateBox
@@ -77,6 +47,7 @@ function OrderStatus() {
                 menu={e.orderName}
                 imgUrl={e.imgUrl}
                 amount={e.amount}
+                isLast={storageList.length - 1 === i}
                 // state={e.state}
               />
             </Link>

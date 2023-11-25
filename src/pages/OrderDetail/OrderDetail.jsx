@@ -11,7 +11,7 @@ const OrderDetail = () => {
         headerProps={{
           pageName: "주문상세",
           isClose: true,
-          linkTo: "/storage",
+          linkTo: "/orderHistory",
         }}
       />
       <div className="detail-content__wrapper">

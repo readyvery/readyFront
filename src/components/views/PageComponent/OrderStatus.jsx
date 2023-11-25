@@ -1,29 +1,85 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/images/berry.png";
-import berry from "../../assets/images/berry.svg";
-import clock from "../../assets/images/icon_clock.svg";
-import close from "../../assets/images/icon_close.svg";
-import refresh from "../../assets/images/icon_refresh.svg";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../../assets/images/berry.png";
+import berry from "../../../assets/images/berry.svg";
+import clock from "../../../assets/images/icon_clock.svg";
+import close from "../../../assets/images/icon_close.svg";
+import refresh from "../../../assets/images/icon_refresh.svg";
 import "./OrderStatus.css";
 
-import Progressbar from "../../components/views/ProgressBar/ProgressBar";
+import Progressbar from "../ProgressBar/ProgressBar";
 
 function OrderStatus (){
+    const apiUrl = process.env.REACT_APP_API_ROOT;
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const orderId = params.get("orderId");
     const [degree, setDegree] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
+    const [statusList, setStatusList] = useState({});
+
+    const progressList = {
+        "ORDER": 0,
+        "MAKE": 1,
+        "COMPELETE": 2,
+        "PICKUP": 3
+    };
+
+    useEffect(() => {fetchData();}, []);
+
+    // const fetchData = () => {
+    //     const config = {
+    //     withCredentials: true
+    //     };
     
-    const refreshDegree = () => setDegree((prev) => (prev !== 3 ? prev + 1 : 0));
+    //     axios.get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
+    //     .then((res) => {
+    //         console.log(res);
+    //         setStatusList(res.data);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
+
+    const fetchData = useCallback(() => {
+        const config = {
+            withCredentials: true,
+        };
+
+        axios
+            .get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
+            .then((res) => {
+                console.log(res);
+                setStatusList(res.data);
+                const curPro = res.data.progress;
+                console.log(progressList[curPro]);
+                setDegree(progressList[curPro]);
+            })
+            .catch((err) => console.log(err));
+    }, [apiUrl, orderId]);
+    
+    const refreshDegree = () => {
+        fetchData();
+    };
 
     const handleCancle = () => {
-        setIsOpen(!isOpen);
+        setIsOpen((prev) => !prev);
+        const config = {
+            withCredentials: true,
+        };
+        const body = {
+            "orderId": orderId
+        }
+
+        axios.post(`${apiUrl}/api/v1/order/cancel/toss`, body, config)
+            .then((res) => console.log(res))
     };
 
     return(
         <section className="status-container">
             <div className="status-nav-bar__wrapper">
                 <div className="status-nav-bar">
-                    <Link to="/storage" style={{ textDecoration: "none"}}><img src={close} className="close-btn" alt={close}/></Link>
+                    <Link to="/orderHistory" style={{ textDecoration: "none"}}><img src={close} className="close-btn" alt={close}/></Link>
                     <img src={refresh} className="refresh-btn" alt={refresh} onClick={refreshDegree}/>
                 </div>
                 {degree !== 0 && (
@@ -84,7 +140,7 @@ function OrderStatus (){
                     )}
                 {degree === 0 && (
                     <div className="btn-wrapper">
-                        <div className="cancle-btn" onClick={handleCancle}>주문 취소</div>
+                        <div className="cancle-btn" onClick={() => setIsOpen((prev) => !prev)}>주문 취소</div>
                     </div>
                 )}
 
@@ -106,7 +162,7 @@ function OrderStatus (){
                         <div className="modal-title">주문을 취소하시겠습니까?</div>
                         <div className="modal-subtitle">확인 버튼을 누르시면, 주문이 취소됩니다.</div>
                         <div className="modal-btn__wrapper">
-                            <span className="modal-cancle-btn" onClick={handleCancle}>취소</span>
+                            <span className="modal-cancle-btn" onClick={() => setIsOpen((prev) => !prev)}>취소</span>
                             <span className="modal-check-btn" onClick={handleCancle}>확인</span>
                         </div>
                     </div>
