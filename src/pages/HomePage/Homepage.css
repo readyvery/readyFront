@@ -7,6 +7,26 @@
 .homepage::-webkit-scrollbar {
   display: none;
 }
+/* 홍보 문구 */
+.addTextBox {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 1.25rem;
+  border: 1.5px solid #d82356;
+  background: #fff;
+  height: 2.375rem;
+  display: flex;
+}
+.berryIcon {
+  margin: 0.6rem 1rem;
+  width: 1.062rem;
+  height: 1.062rem;
+}
+.addText {
+  margin: auto 0;
+  font-family: "Medium";
+  font-size: 0.875rem;
+}
 
 /* 바로 주문 */
 .quick-order {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import berryIcon from "../../assets/images/berry.svg";
 // import event_icon from "../../assets/images/event_icon.svg";
 // import home_cafedream from "../../assets/images/home_cafedream.svg";
 // import home_harang from "../../assets/images/home_harang.svg";
@@ -17,6 +18,15 @@ import "./Homepage.css";
 function Homepage() {
   const isLoggedIn = window.localStorage.getItem("isAuthenticated");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const textArray = [
+    "오늘도 준비된 당신의 삶을 위해, 레디베리!",
+    "레디베리가 당신의 시험을 응원합니다.",
+    "Ready & Very Comfortable",
+    "Let's Very Up!",
+    "레디베리 소식은 @readyvery_cuk 인스타로!",
+  ];
+  const randomIndex = Math.floor(Math.random() * textArray.length);
+  const randomText = textArray[randomIndex];
 
   useEffect(() => {
     console.log(isLoggedIn);
@@ -166,6 +176,12 @@ function Homepage() {
     // <div className="load">
     <div className="homepage">
       <Header headerProps={null} />
+
+      <div className="addTextBox">
+        <img src={berryIcon} alt="berryIcon" className="berryIcon" />
+        {/* 자동 슬라이드 어떻게 하는지 모르겠어용 랜덤으로 할래용 */}
+        <div className="addText">{randomText}</div>
+      </div>
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
