@@ -89,9 +89,12 @@ function Homepage() {
   const [quickOrder, setQuickOrder] = useState([]);
   // {/* 바로주문 */}
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     // Fetch data from the backend API
     axios
-      .get(`${apiRoot}/api/v1/order/history`)
+      .get(`${apiRoot}/api/v1/order/history`, config)
       .then((response) => {
         setQuickOrder(response.data.receipts);
       })
@@ -104,9 +107,12 @@ function Homepage() {
   const [stores, setStores] = useState([]);
   /* verypick 가게 정보 */
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     // Fetch data from the backend API
     axios
-      .get(`${apiRoot}/api/v1/board/store`)
+      .get(`${apiRoot}/api/v1/board/store`, config)
       .then((response) => {
         setStores(response.data.stores);
       })
@@ -120,8 +126,11 @@ function Homepage() {
   const [eventBanner, setEventBanner] = useState([]);
 
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     axios
-      .get(`${apiRoot}/api/v1/event/banner`)
+      .get(`${apiRoot}/api/v1/event/banner`, config)
       .then((response) => {
         setEventBanner(response.data.banners);
       })
@@ -132,11 +141,18 @@ function Homepage() {
   }, []);
 
   const handleCouponClick = (couponCode, couponId) => {
+    const config = {
+      withCredentials: true,
+    };
     axios
-      .post(`${apiRoot}/api/v1/coupon`, {
-        couponCode,
-        couponId,
-      })
+      .post(
+        `${apiRoot}/api/v1/coupon`,
+        {
+          couponCode,
+          couponId,
+        },
+        config
+      )
       .then((response) => {
         console.log("Coupon registration successful:", response.data);
       })
@@ -156,12 +172,12 @@ function Homepage() {
           {isLoggedIn ? (
             quickOrder.map((item) => (
               //to={`/ready?quickId=${item.id}`}
-              <Link to="/ready" className="login-box">
+              <Link to={`/ready?quickId=${item.id}`} className="login-box">
                 <React.Fragment key={item.id}>
                   <div className="quick-order-item">
                     <div className="item-name">{item.name}</div>
                     <div className="item-detail">{item.orderName}</div>
-                    <div className="item-price">{item.amount}</div>
+                    <div className="item-price">{item.amount}원</div>
                   </div>
                 </React.Fragment>
               </Link>

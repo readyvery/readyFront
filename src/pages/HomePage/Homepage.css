@@ -40,7 +40,7 @@
 
 /* 로그인 되어 있을 때 */
 .login-box {
-  width: 100%;
+  width: 10.375rem;
   height: 7rem;
   box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
   border-radius: 0.5rem;
@@ -48,21 +48,29 @@
 }
 .quick-order-item {
   padding: 0 4rem 0 0;
+  width: 10.375rem;
 }
 
 .item-name {
   color: #4f4f4f;
   font-family: "Bold";
   font-size: 0.9375rem;
-  margin: 13% 7% 0 7%;
+  margin: 1rem 7% 0 7%;
+  white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
+  overflow: hidden; /* 텍스트가 넘어갈 경우 숨기기 */
+  text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
 
 .item-detail {
   font-family: "ExtraLight";
   font-size: 0.75rem;
   color: black;
-  margin: 15% 7% 0 7%;
+  margin: 2rem 7% 0 7%;
+  white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
+  overflow: hidden; /* 텍스트가 넘어갈 경우 숨기기 */
+  text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
+
 .item-price {
   font-family: "ExtraLight";
   font-size: 0.75rem;

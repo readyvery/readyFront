@@ -25,8 +25,11 @@ function CouponPage() {
   const [couponCheck, setCouponCheck] = useState([]);
 
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     axios
-      .get(`${apiRoot}/api/v1/coupon`)
+      .get(`${apiRoot}/api/v1/coupon`, config)
       .then((response) => {
         setCouponCheck(response.data.coupons);
       })

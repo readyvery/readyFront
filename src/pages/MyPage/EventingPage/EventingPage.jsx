@@ -60,8 +60,11 @@ function EventingPage() {
 
   //const [mypageEventing, setMypageEventing] = useState([]);
   // useEffect(() => {
+  //    const config = {
+  //     withCredentials: true,
+  //    };
   //   axios
-  //   .get(`${apiRoot}/api/v1/event/main`)
+  //   .get(`${apiRoot}/api/v1/event/main`, config)
   //   .then((response) => {
   //     setMypageEventing(response.data.events);
   //   })

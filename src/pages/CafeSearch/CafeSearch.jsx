@@ -41,8 +41,11 @@ function CafeSearch() {
   /* verypick 가게 정보 */
   useEffect(() => {
     // Fetch data from the backend API
+    const config = {
+      withCredentials: true,
+    };
     axios
-      .get(`${apiRoot}/api/v1/board/search`)
+      .get(`${apiRoot}/api/v1/board/search`, config)
       .then((response) => {
         setStores(response.data.stores);
       })
