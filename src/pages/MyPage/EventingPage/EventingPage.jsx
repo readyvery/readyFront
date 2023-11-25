@@ -1,3 +1,4 @@
+// import React, { useEffect,useState } from "react";
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,6 +7,7 @@ import styled from "styled-components";
 import eventing1 from "../../../assets/images/eventing1.svg";
 import Header from "../../../components/views/Header/Header";
 import "./EventingPage.css";
+//import axios from "axios";
 
 const StyleSlider = styled(Slider)`
   width: 100%;
@@ -26,6 +28,8 @@ const EventingImg = styled.img`
 `;
 
 function EventingPage() {
+  //const apiRoot = process.env.REACT_APP_API_ROOT;
+
   const dummyEventingItems = [
     {
       events: [
@@ -54,6 +58,22 @@ function EventingPage() {
     centerMode: true,
   };
 
+  //const [mypageEventing, setMypageEventing] = useState([]);
+  // useEffect(() => {
+  //    const config = {
+  //     withCredentials: true,
+  //    };
+  //   axios
+  //   .get(`${apiRoot}/api/v1/event/main`, config)
+  //   .then((response) => {
+  //     setMypageEventing(response.data.events);
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error fetching data:", error);
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   return (
     <div className="event-div">
       <Header
@@ -69,6 +89,11 @@ function EventingPage() {
             <EventingImg src={event.imgUrl} alt="eventing" />
           ))}
         </StyleSlider>
+        {/* <StyleSlider {...settings}>
+        {mypageEventing.map((item) => (
+          <EventingImg key={item.idx} src={item.imgUrl} alt="eventing" />
+        ))}
+      </StyleSlider> */}
       </div>
     </div>
   );

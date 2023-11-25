@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import event_icon from "../../assets/images/event_icon.svg";
+// import event_icon from "../../assets/images/event_icon.svg";
 // import home_cafedream from "../../assets/images/home_cafedream.svg";
 // import home_harang from "../../assets/images/home_harang.svg";
 // import home_orda from "../../assets/images/home_orda.svg";
@@ -22,16 +22,16 @@ function Homepage() {
     console.log(isLoggedIn);
   }, [isLoggedIn]);
 
-  const eventCase = [
-    {
-      events: [
-        {
-          idx: 1,
-          imgUrl: event_icon,
-        },
-      ],
-    },
-  ];
+  // const eventCase = [
+  //   {
+  //     events: [
+  //       {
+  //         idx: 1,
+  //         imgUrl: event_icon,
+  //       },
+  //     ],
+  //   },
+  // ];
 
   // 연습
   // const dummyQuickOrderItems = [
@@ -89,9 +89,12 @@ function Homepage() {
   const [quickOrder, setQuickOrder] = useState([]);
   // {/* 바로주문 */}
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     // Fetch data from the backend API
     axios
-      .get(`${apiRoot}/api/v1/order/history`)
+      .get(`${apiRoot}/api/v1/order/history`, config)
       .then((response) => {
         setQuickOrder(response.data.receipts);
       })
@@ -104,9 +107,12 @@ function Homepage() {
   const [stores, setStores] = useState([]);
   /* verypick 가게 정보 */
   useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
     // Fetch data from the backend API
     axios
-      .get(`${apiRoot}/api/v1/board/store`)
+      .get(`${apiRoot}/api/v1/board/store`, config)
       .then((response) => {
         setStores(response.data.stores);
       })
@@ -117,21 +123,46 @@ function Homepage() {
   }, []);
 
   // 홈 이벤트 배너
-  // const [eventBanner, setEventBanner] = useState([]);
+  const [eventBanner, setEventBanner] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${apiRoot}/api/v1/event/banner`)
-  //     .then((response) => {
-  //       setEventBanner(response.data.imgs);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    const config = {
+      withCredentials: true,
+    };
+    axios
+      .get(`${apiRoot}/api/v1/event/banner`, config)
+      .then((response) => {
+        setEventBanner(response.data.banners);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleCouponClick = (couponCode, couponId) => {
+    const config = {
+      withCredentials: true,
+    };
+    axios
+      .post(
+        `${apiRoot}/api/v1/coupon`,
+        {
+          couponCode,
+          couponId,
+        },
+        config
+      )
+      .then((response) => {
+        console.log("Coupon registration successful:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   return (
+    // <div className="load">
     <div className="homepage">
       <Header headerProps={null} />
 
@@ -141,12 +172,12 @@ function Homepage() {
           {isLoggedIn ? (
             quickOrder.map((item) => (
               //to={`/ready?quickId=${item.id}`}
-              <Link to="/ready" className="login-box">
+              <Link to={`/ready?quickId=${item.id}`} className="login-box">
                 <React.Fragment key={item.id}>
                   <div className="quick-order-item">
                     <div className="item-name">{item.name}</div>
                     <div className="item-detail">{item.orderName}</div>
-                    <div className="item-price">{item.amount}</div>
+                    <div className="item-price">{item.amount}원</div>
                   </div>
                 </React.Fragment>
               </Link>
@@ -167,15 +198,19 @@ function Homepage() {
 
       {/* 이벤트 div */}
       <div className="event">
-        {/* {eventBanner.map((image) => (
-          <Link to="/event" className="event-link" key={image.idx}>
-            <img src={image.imgUrl} alt="eventBanner" className="event-icon" />
-          </Link>
-        ))} */}
-
-        {eventCase[0].events.map((event) => (
-          <img src={event.imgUrl} alt="event" className="event-icon" />
+        {eventBanner.map((item) => (
+          <img
+            key={item.idx}
+            src={item.bannerImg}
+            alt="eventBanner"
+            className="event-icon"
+            onClick={() => handleCouponClick(item.couponCode, item.couponId)}
+          />
         ))}
+
+        {/* {eventCase[0].events.map((event) => (
+          <img src={event.imgUrl} alt="event" className="event-icon" />
+        ))} */}
 
         {/* <EventSlider {...settings}>
           {eventCase[0].events.map((event) => (
@@ -258,6 +293,7 @@ function Homepage() {
       <NavBar2 />
       <NavBar />
     </div>
+    // </div>
   );
 }
 

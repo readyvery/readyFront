@@ -19,9 +19,9 @@ function CustomerServicePage() {
         <img src={customerIcon} alt="CustomerIcon" className="service-icon" />
         <div className="service-text">
           <div className="service-name">레디베리</div>
-          <div className="service-time">매일 00:00 ~ 24:00</div>
+          <div className="service-time">평일 09:00 ~ 18:00</div>
         </div>
-        <Link to="http://pf.kakao.com/_ZxiEjG" className="service-chat">
+        <Link to="http://pf.kakao.com/_ZxiEjG/chat" className="service-chat">
           <img src={chatIcon} alt="ChatIcon" className="chat-icon" />
         </Link>
       </div>
