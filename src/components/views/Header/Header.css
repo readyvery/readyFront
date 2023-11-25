@@ -1,17 +1,23 @@
 /* Header 상단 고정 및 세로길이 설정 */
 .top_header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4rem;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   display: flex;
   z-index: 100;
   align-items: center;
+  background: linear-gradient(
+      180deg,
+      rgba(216, 35, 86, 0.2) 0.1%,
+      rgba(216, 35, 86, 0) 100%
+    ),
+    #fff;
 }
 
-.top_header.page {
+.top_header2 {
   position: fixed;
   top: 0;
 

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import berryIcon from "../../assets/images/berry.svg";
 // import event_icon from "../../assets/images/event_icon.svg";
 // import home_cafedream from "../../assets/images/home_cafedream.svg";
 // import home_harang from "../../assets/images/home_harang.svg";
 // import home_orda from "../../assets/images/home_orda.svg";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
@@ -15,12 +17,20 @@ import NavBar2 from "../../components/views/NavBar/NavBar2";
 import "./Homepage.css";
 
 function Homepage() {
-  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
+  // const isLoggedIn = window.localStorage.getItem("isAuthenticated");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const [cookies] = useCookies(["accessToken"]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
+    if (cookies?.accessToken) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+    console.log(loggedIn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cookies]);
 
   // const eventCase = [
   //   {
@@ -89,20 +99,23 @@ function Homepage() {
   const [quickOrder, setQuickOrder] = useState([]);
   // {/* 바로주문 */}
   useEffect(() => {
-    const config = {
-      withCredentials: true,
-    };
-    // Fetch data from the backend API
-    axios
-      .get(`${apiRoot}/api/v1/order/history`, config)
-      .then((response) => {
-        setQuickOrder(response.data.receipts);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    if (loggedIn) {
+      const config = {
+        withCredentials: true,
+      };
+      // Fetch data from the backend API
+      axios
+        .get(`${apiRoot}/api/v1/order/history`, config)
+        .then((response) => {
+          setQuickOrder(response.data.receipts);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loggedIn]);
 
   const [stores, setStores] = useState([]);
   /* verypick 가게 정보 */
@@ -167,10 +180,15 @@ function Homepage() {
     <div className="homepage">
       <Header headerProps={null} />
 
+      <div className="addTextBox">
+        <img src={berryIcon} alt="berryIcon" className="berryIcon" />
+        <div className="addText">오늘도 준비된 당신의 삶을 위해, 레디베리!</div>
+      </div>
+
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
         <div className="quick-order-list">
-          {isLoggedIn ? (
+          {loggedIn ? (
             quickOrder.map((item) => (
               //to={`/ready?quickId=${item.id}`}
               <Link to={`/ready?quickId=${item.id}`} className="login-box">
@@ -199,7 +217,7 @@ function Homepage() {
 
       {/* 이벤트 div */}
       <div className="event">
-        {isLoggedIn
+        {loggedIn
           ? eventBanner.map((item) => (
               <img
                 key={item.idx}
