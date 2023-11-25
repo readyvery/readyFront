@@ -7,7 +7,7 @@ import "./ApplyCouponePage.css";
 const ApplyCouponPage = () => {
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const [coupone, setCoupone] = useState(null);
-  const [selectedCoupon, setSelectedCoupon] = useState(null);
+  // const [selectedCoupon, setSelectedCoupon] = useState(null);
 
   // const coupone = [
   //   {
@@ -62,7 +62,7 @@ const ApplyCouponPage = () => {
             }}
             className="coupon-page__coupon-item"
             key={item.couponId}
-            onClick={() => setSelectedCoupon(item)}
+            // onClick={() => setSelectedCoupon(item)}
             style={{ textDecoration: "none" }}
           >
             <div className="coupon-page__coupon-item">
