@@ -15,7 +15,7 @@ const Header = ({ headerProps }) => {
               <div>
                 <Link
                   to={headerProps.linkTo}
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none", marginLeft: "10px" }}
                 >
                   <img src={arrow} alt="arrow" />
                 </Link>

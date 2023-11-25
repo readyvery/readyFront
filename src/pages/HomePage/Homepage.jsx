@@ -141,6 +141,7 @@ function Homepage() {
   }, []);
 
   const handleCouponClick = (couponCode, couponId) => {
+    console.log(couponCode, couponId);
     const config = {
       withCredentials: true,
     };
@@ -198,15 +199,24 @@ function Homepage() {
 
       {/* 이벤트 div */}
       <div className="event">
-        {eventBanner.map((item) => (
-          <img
-            key={item.idx}
-            src={item.bannerImg}
-            alt="eventBanner"
-            className="event-icon"
-            onClick={() => handleCouponClick(item.couponCode, item.couponId)}
-          />
-        ))}
+        {isLoggedIn
+          ? eventBanner.map((item) => (
+              <img
+                key={item.idx}
+                src={item.bannerImg}
+                alt="eventBanner"
+                className="event-icon"
+                onClick={() => handleCouponClick(item.couponCode, item.idx)}
+              />
+            ))
+          : eventBanner.map((item) => (
+              <img
+                key={item.idx}
+                src={item.bannerImg}
+                alt="eventBanner"
+                className="event-icon"
+              />
+            ))}
 
         {/* {eventCase[0].events.map((event) => (
           <img src={event.imgUrl} alt="event" className="event-icon" />
