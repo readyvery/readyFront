@@ -16,6 +16,7 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
   const couponId = params.get("couponId");
   const salePrice = params.get("salePrice");
   const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -28,7 +29,7 @@ const PaymentPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
           { withCredentials: true }
         );
         setPaymentData(response.data);
@@ -218,7 +219,7 @@ const PaymentPage = () => {
                 </span>
               )}
               <Link
-                to={`/payment/coupon?storeId=${storeId}&inout=${inout}`}
+                to={`/payment/coupon?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
                 className="payment-page__coupone-btn"
                 style={{ textDecoration: "none" }}
               >
@@ -258,15 +259,6 @@ const PaymentPage = () => {
         <div className="payment-page__notice">
           주문 승인 후, 취소 및 추가 주문이 불가합니다.
         </div>
-        {/* <label>
-          <input
-            type="checkbox"
-            onChange={(event) => {
-              setPrice(event.target.checked ? price - 5000 : price + 5000);
-            }}
-          />
-          5,000원 할인 쿠폰 적용
-        </label> */}
       </div>
 
       <div className="payment-page__payment-btn" onClick={paymentRequest}>

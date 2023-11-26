@@ -202,7 +202,10 @@ function Homepage() {
         <div className="quick-order-list">
           {loggedIn ? (
             quickOrder.map((item) => (
-              <Link to={`/payment?storeId=${item.id}`} className="login-box">
+              <Link
+                to={`/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`}
+                className="login-box"
+              >
                 <React.Fragment key={item.id}>
                   <div className="quick-order-item">
                     <div className="item-name">{item.name}</div>

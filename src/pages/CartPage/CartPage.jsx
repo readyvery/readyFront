@@ -190,7 +190,7 @@ const CartPage = () => {
       </div>
 
       <Link
-        to={`/payment?storeId=${storeId}&inout=${inout}`}
+        to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${paymentData?.cartId}`}
         style={{ display: "flex", textDecoration: "none" }}
       >
         <div className="payment-page__order-btn">주문하기</div>
