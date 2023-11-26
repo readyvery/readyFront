@@ -10,8 +10,11 @@ const StoreDetailPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const apiRoot = process.env.REACT_APP_API_ROOT;
-
   const [caffeeInfo, setCaffeeInfo] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const [menu, setMenu] = useState(null);
+  const [hasResponse, setHasResponse] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,8 +28,6 @@ const StoreDetailPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [selectedCategory, setSelectedCategory] = useState([]);
-  const [menu, setMenu] = useState(null);
   useEffect(() => {
     // API 엔드포인트
     const apiUrl = `${apiRoot}/api/v1/store/${storeId}/menu?inout=${inout}`;
@@ -48,6 +49,29 @@ const StoreDetailPage = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .get(`${apiRoot}/api/v1/order/cart?inout=${inout}`, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.data.carts.length > 0) {
+            console.log("response.data");
+            setHasResponse(true);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          // 만약 에러가 발생하면 false를 설정
+          setHasResponse(false);
+        });
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRoot, inout]);
 
   return (
     <div className="store-detail-page">
@@ -103,7 +127,6 @@ const StoreDetailPage = () => {
           </text>
         </div>
       </div>
-
       <div className="store-detail-page__menuCategory">
         {menu && menu.menu && Array.isArray(menu.menu) ? (
           menu.menu.map((category, index) => (
@@ -120,10 +143,9 @@ const StoreDetailPage = () => {
             </span>
           ))
         ) : (
-          <p>Loading menu...</p>
+          <p>Loading category...</p>
         )}
       </div>
-
       <div className="store-detail-page__menuList">
         {selectedCategory &&
         selectedCategory.menuItems &&
@@ -143,9 +165,18 @@ const StoreDetailPage = () => {
             </Link>
           ))
         ) : (
-          <p>Loading menu items...</p>
+          <p>Loading menu...</p>
         )}
       </div>
+      {hasResponse && (
+        <Link
+          to={`/cart?storeId=${storeId}&inout=${inout}`}
+          className="store-detail-page__cart-btn"
+          style={{ textDecoration: "none" }}
+        >
+          장바구니
+        </Link>
+      )}
     </div>
   );
 };
