@@ -93,7 +93,9 @@
 
 .payment-page__order-info__item__add {
   display: flex;
-  padding: 0.75rem 9.5625rem 0.875rem 8.625rem;
+  width: auto;
+  /* padding: 0.75rem 9.5625rem 0.875rem 8.625rem; */
+  padding: 0.75rem;
   align-items: center;
   justify-content: center;
   gap: 0.36925rem;
@@ -102,6 +104,7 @@
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
+  white-space: nowrap;
 }
 
 .order-btn {

@@ -53,7 +53,7 @@ const ApplyCouponPage = () => {
         headerProps={{
           pageName: "할인쿠폰",
           isClose: false,
-          linkTo: `/payment??storeId=${storeId}&inout=${inout}`,
+          linkTo: `/payment?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
@@ -62,6 +62,7 @@ const ApplyCouponPage = () => {
           <Link
             to={{
               pathname: "/payment",
+              search: `?storeId=${storeId}&inout=${inout}&couponId=${item.couponId}&salePrice=${item.salePrice}`,
               state: { selectedCoupon: item.salePrice },
             }}
             className="coupon-page__coupon-item"

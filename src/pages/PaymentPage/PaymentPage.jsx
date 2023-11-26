@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
@@ -16,6 +16,8 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const couponId = params.get("couponId");
+  const salePrice = params.get("salePrice");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
@@ -88,7 +90,7 @@ const PaymentPage = () => {
   const paymentRequest = async () => {
     let body = {
       inout: inout,
-      couponId: 12,
+      couponId: couponId,
     };
 
     await axios
@@ -212,12 +214,18 @@ const PaymentPage = () => {
           <span className="payment-page__content">쿠폰</span>
           <span className="payment-page__coupone__apply">
             <span className="payment-page__coupone-price">
-              {selectedCoupon && (
+              {salePrice && (
                 <span className="payment-page__coupone-price">
-                  {selectedCoupon}원
+                  {salePrice}원
                 </span>
               )}
-              <span className="payment-page__coupone-btn">쿠폰적용</span>
+              <Link
+                to={`/payment/coupon?storeId=${storeId}&inout=${inout}`}
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+              >
+                쿠폰적용
+              </Link>
             </span>
           </span>
         </div>
@@ -233,9 +241,9 @@ const PaymentPage = () => {
         </div>
         <div className="payment-page__discountAmount">
           <span className="payment-page__content">할인금액</span>
-          {selectedCoupon && (
+          {salePrice && (
             <span className="payment-page__content-price">
-              (-){selectedCoupon}원
+              (-){salePrice}원
             </span>
           )}
         </div>
@@ -245,7 +253,7 @@ const PaymentPage = () => {
         <div className="payment-page__payment">
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
-            {paymentData?.totalPrice}원
+            {paymentData?.totalPrice - salePrice}원
           </span>
         </div>
 
