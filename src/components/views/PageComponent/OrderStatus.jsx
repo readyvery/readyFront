@@ -76,7 +76,7 @@ function OrderStatus() {
     };
 
     axios
-      .post(`${apiUrl}/api/v1/order/cancel/toss`, body, config)
+      .post(`${apiUrl}/api/v1/order/toss/cancel`, body, config)
       .then((res) => console.log(res));
   };
 
@@ -176,7 +176,14 @@ function OrderStatus() {
         )}
       </div>
 
-      {isOpen && <Modal setIsOpen={setIsOpen} handleCancle={handleCancle} />}
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancle={handleCancle}
+          title={"주문을 취소하시겠습니까?"}
+          subtitle={"확인 버튼을 누르시면, 주문이 취소됩니다."}
+        />
+      )}
     </section>
   );
 }

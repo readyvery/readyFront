@@ -9,6 +9,7 @@ const ApplyCouponPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const [coupone, setCoupone] = useState(null);
   // const [selectedCoupon, setSelectedCoupon] = useState(null);
@@ -62,7 +63,7 @@ const ApplyCouponPage = () => {
           <Link
             to={{
               pathname: "/payment",
-              search: `?storeId=${storeId}&inout=${inout}&couponId=${item.couponId}&salePrice=${item.salePrice}`,
+              search: `?storeId=${storeId}&inout=${inout}&cartId=${cartId}&couponId=${item.couponId}&salePrice=${item.salePrice}`,
               state: { selectedCoupon: item.salePrice },
             }}
             className="coupon-page__coupon-item"

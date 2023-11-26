@@ -16,6 +16,7 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
   const couponId = params.get("couponId");
   const salePrice = params.get("salePrice");
   const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -23,13 +24,12 @@ const PaymentPage = () => {
   const paymentMethodsWidgetRef = useRef(null);
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
-  const selectedCoupon = location.state?.selectedCoupon;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
           { withCredentials: true }
         );
         setPaymentData(response.data);
@@ -55,7 +55,7 @@ const PaymentPage = () => {
       // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
         "#payment-page__payment-widget",
-        { value: price },
+        { value: price - salePrice },
         // 렌더링하고 싶은 결제 UI의 variantKey
         // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
         // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
@@ -72,7 +72,7 @@ const PaymentPage = () => {
       paymentWidgetRef.current = paymentWidget;
       paymentMethodsWidgetRef.current = paymentMethodsWidget;
     })();
-  }, [price]);
+  }, [price, salePrice]);
 
   useEffect(() => {
     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
@@ -84,8 +84,8 @@ const PaymentPage = () => {
     // ------ 금액 업데이트 ------
     // 새로운 결제 금액을 넣어주세요.
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(price);
-  }, [price]);
+    paymentMethodsWidget.updateAmount(price - salePrice);
+  }, [price, salePrice]);
 
   const paymentRequest = async () => {
     let body = {
@@ -115,7 +115,6 @@ const PaymentPage = () => {
         // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
       });
   };
-  console.log("쿠폰", selectedCoupon);
 
   return (
     <div className="payment-page">
@@ -220,7 +219,7 @@ const PaymentPage = () => {
                 </span>
               )}
               <Link
-                to={`/payment/coupon?storeId=${storeId}&inout=${inout}`}
+                to={`/payment/coupon?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
                 className="payment-page__coupone-btn"
                 style={{ textDecoration: "none" }}
               >
@@ -260,15 +259,6 @@ const PaymentPage = () => {
         <div className="payment-page__notice">
           주문 승인 후, 취소 및 추가 주문이 불가합니다.
         </div>
-        {/* <label>
-          <input
-            type="checkbox"
-            onChange={(event) => {
-              setPrice(event.target.checked ? price - 5000 : price + 5000);
-            }}
-          />
-          5,000원 할인 쿠폰 적용
-        </label> */}
       </div>
 
       <div className="payment-page__payment-btn" onClick={paymentRequest}>

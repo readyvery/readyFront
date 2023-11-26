@@ -65,7 +65,7 @@
 @media (min-width: 800px) {
   .App {
     width: 600px;
-    /* height: 94vh; */
+    height: 94vh;
     background-color: white;
     padding-top: 4rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
