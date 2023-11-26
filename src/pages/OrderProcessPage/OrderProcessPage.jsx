@@ -9,6 +9,7 @@ import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
 import "./OrderProcess.css";
+import Modal from "../../components/views/Modal/Modal";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -20,6 +21,7 @@ const OrderProcessPage = () => {
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
   const [orderCnt, setOrderCnt] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +40,7 @@ const OrderProcessPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleCartReset = () => {
+  const handleCartUpdate = () => {
     let body = {
       storeId: storeId,
       foodieId: foodieId,
@@ -46,13 +48,7 @@ const OrderProcessPage = () => {
       count: orderCnt,
       inout: inout,
     };
-    // const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
-    // // Axios를 사용한 DELETE 요청
-    // const response = axios.delete(apiUrl, { withCredentials: true });
-
-    // // 성공적으로 처리된 경우에 대한 로직
-    // console.log("Cart reset successful", response.data);
     axios
       .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
         withCredentials: true,
@@ -67,8 +63,46 @@ const OrderProcessPage = () => {
         // 에러가 발생한 경우에 대한 로직
         console.error("Error resetting cart", error);
 
-        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+        setIsOpen(true);
       });
+  };
+
+  const handleCancle = () => {
+    setIsOpen((prev) => !prev);
+
+    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+
+    // Axios를 사용한 DELETE 요청
+    const response = axios.delete(apiUrl, { withCredentials: true });
+
+    // 성공적으로 처리된 경우에 대한 로직
+    console.log("Cart reset successful", response.data);
+
+    let body = {
+      storeId: storeId,
+      foodieId: foodieId,
+      options: optionIdx,
+      count: orderCnt,
+      inout: inout,
+    };
+
+    axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/store?storeId=${storeId}&inout=${inout}`);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+      });
+
+    // 모달을 닫습니다.
+    setIsOpen(false);
   };
 
   const [activeToggles, setActiveToggles] = useState(
@@ -411,22 +445,19 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      {/* <Link
-        to={`/payment?storeId=${storeId}&inout=${inout}`}
-        style={{
-          display: "flex",
-          textDecoration: "none",
-          marginBottom: "2rem",
-        }}
-      >
-        <div className="order-btn" onClick={handleCartReset}>
-          주문하기
-        </div>
-      </Link> */}
-
-      <div className="order-process-page__cart__btn" onClick={handleCartReset}>
+      <div className="order-process-page__cart__btn" onClick={handleCartUpdate}>
         장바구니 담기
       </div>
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancle={handleCancle}
+          title={`장바구니는\n
+          같은 가게의 메뉴만 담을 수 있어요.`}
+          subtitle={"확인 버튼을 누르시면, 이전에 담은 메뉴가 삭제됩니다."}
+        />
+      )}
     </div>
   );
 };

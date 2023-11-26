@@ -6,9 +6,10 @@
 
 .payment-page__cafe-info {
   display: flex;
-  margin-left: 1.56rem;
-  margin-top: 1.38rem;
-  margin-bottom: 0.44rem;
+  padding-left: 1.56rem;
+  padding-right: 1.56rem;
+  padding-top: 1.38rem;
+  padding-bottom: 0.44rem;
 }
 
 .payment-page__cafe-info__img {

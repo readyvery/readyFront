@@ -119,22 +119,33 @@ const CartPage = () => {
           linkTo: `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />
-      <div className="payment-page__order-info">
+
+      <div className="cart-page__cafe-info">
+        <img
+          className="cart-page__cafe-info__img"
+          src={paymentData?.imgUrl}
+          alt="cafeImg"
+        ></img>
+
+        <text className="cart-page__cafe-info__name">{paymentData?.name}</text>
+      </div>
+
+      <div className="cart-page__order-info">
         {paymentData?.carts.map((item) => (
           <div>
-            <div className="payment-page__order-info__item">
+            <div className="cart-page__order-info__item">
               <img
-                className="payment-page__order-info__item__img"
+                className="cart-page__order-info__item__img"
                 src={item.imgUrl || noImageMenu}
                 alt="menuImg"
               ></img>
 
               <div>
-                <div className="payment-page__order-info__item__name">
+                <div className="cart-page__order-info__item__name">
                   {item.name}
                 </div>
 
-                <div className="payment-page__order-info__item__option">
+                <div className="cart-page__order-info__item__option">
                   {item.options.map((option) => (
                     <div>
                       •{option.name} (+{option.price}원)
@@ -142,22 +153,22 @@ const CartPage = () => {
                   ))}
                 </div>
 
-                <div className="payment-page__order-info__item__price">
+                <div className="cart-page__order-info__item__price">
                   {item.totalPrice * item.count}원
                 </div>
               </div>
 
-              <div className="payment-page__order-info__item__control">
+              <div className="cart-page__order-info__item__control">
                 <img
-                  className="payment-page__order-info__item__delete"
+                  className="cart-page__order-info__item__delete"
                   src={menuDelete}
                   alt="X"
                   onClick={() => handleRemoveItem(item.idx)}
                 />
 
-                <div className="payment-page__order-info__item__count">
+                <div className="cart-page__order-info__item__count">
                   <span
-                    className="payment-page__order-info__item__count-minus"
+                    className="cart-page__order-info__item__count-minus"
                     style={{
                       color: item.count === 1 ? "#DADADA" : "#838383",
                     }}
@@ -167,7 +178,7 @@ const CartPage = () => {
                   </span>
                   <span>{item.count}</span>
                   <span
-                    className="payment-page__order-info__item__count-plus"
+                    className="cart-page__order-info__item__count-plus"
                     onClick={() => handleIncrease(item)}
                   >
                     +
@@ -176,12 +187,12 @@ const CartPage = () => {
               </div>
             </div>
 
-            <div className="payment-page__order-info__item__line"></div>
+            <div className="cart-page__order-info__item__line"></div>
           </div>
         ))}
 
         <Link
-          className="payment-page__order-info__item__add"
+          className="cart-page__order-info__item__add"
           to={`/store?storeId=${storeId}&inout=${inout}`}
           style={{ textDecoration: "none" }}
         >
@@ -193,7 +204,7 @@ const CartPage = () => {
         to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${paymentData?.cartId}`}
         style={{ display: "flex", textDecoration: "none" }}
       >
-        <div className="payment-page__order-btn">주문하기</div>
+        <div className="cart-page__order-btn">주문하기</div>
       </Link>
     </div>
   );

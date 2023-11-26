@@ -38,7 +38,7 @@ const PaymentSuccessPage = () => {
       />
       <div className="payment-redirect-page__title">결제 완료!</div>
       <Link
-        to={`orderHistory?orderId=${orderId}`}
+        to={`/orderHistory?orderId=${orderId}`}
         className="payment-redirect-page__done"
         style={{ textDecoration: "none" }}
       >
