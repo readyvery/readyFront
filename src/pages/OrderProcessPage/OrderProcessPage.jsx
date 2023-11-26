@@ -59,7 +59,7 @@ const OrderProcessPage = () => {
       })
       .then((res) => {
         console.log(res.data);
-        navigate(`/cart?storeId=${storeId}&inout=${inout}`);
+        navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
 
       // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
