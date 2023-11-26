@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/berry.png";
-import berry from "../../../assets/images/berry.svg";
+// import berry from "../../../assets/images/berry.svg";
 import clock from "../../../assets/images/icon_clock.svg";
 import close from "../../../assets/images/icon_close.svg";
 import refresh from "../../../assets/images/icon_refresh.svg";
