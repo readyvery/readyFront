@@ -1,10 +1,14 @@
 import Header from "../../components/views/Header/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./ApplyCouponePage.css";
 
 const ApplyCouponPage = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const storeId = params.get("storeId");
+  const inout = params.get("inout");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const [coupone, setCoupone] = useState(null);
   // const [selectedCoupon, setSelectedCoupon] = useState(null);
@@ -49,7 +53,7 @@ const ApplyCouponPage = () => {
         headerProps={{
           pageName: "할인쿠폰",
           isClose: false,
-          linkTo: "/mypage",
+          linkTo: `/payment??storeId=${storeId}&inout=${inout}`,
         }}
       />
 

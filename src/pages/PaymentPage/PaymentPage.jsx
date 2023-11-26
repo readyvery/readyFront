@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
-// import takeIn from "../../assets/images/take_in.svg";
-// import takeOut from "../../assets/images/take_out.svg";
+import takeIn from "../../assets/images/take_in.svg";
+import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ const PaymentPage = () => {
   const paymentMethodsWidgetRef = useRef(null);
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
-  // const selectedCoupon = location.state?.selectedCoupon;
+  const selectedCoupon = location.state?.selectedCoupon;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,6 +113,7 @@ const PaymentPage = () => {
         // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
       });
   };
+  console.log("쿠폰", selectedCoupon);
 
   return (
     <div className="payment-page">
@@ -172,15 +173,86 @@ const PaymentPage = () => {
 
       <div className="payment-page__line"></div>
 
-      <div className="payment-page__packaging-status">수령방식</div>
+      <div className="payment-page__packaging-status">
+        <div className="payment-page__title">수령방식</div>
 
-      <div className="payment-page__packaging-status__content"></div>
+        <div className="payment-page__packaging-status__container">
+          {inout === "1" ? (
+            <>
+              <img
+                className="payment-page__packaging-status__img"
+                src={takeIn}
+                alt="Take In"
+              />
+              <span>먹고갈게요</span>
+            </>
+          ) : inout === "2" ? (
+            <>
+              <img
+                className="payment-page__packaging-status__img"
+                src={takeOut}
+                alt="Take Out"
+              />
+              <span>가져갈게요</span>
+            </>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="payment-page__line"></div>
 
       <div id="payment-page__payment-widget" />
       <div id="payment-page__payment-agreement" />
 
-      <div>
-        <label>
+      <div className="payment-page__line"></div>
+
+      <div className="payment-page__pay-info">
+        <div className="payment-page__title">할인적용</div>
+        <div className="payment-page__coupone">
+          <span className="payment-page__content">쿠폰</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {selectedCoupon && (
+                <span className="payment-page__coupone-price">
+                  {selectedCoupon}원
+                </span>
+              )}
+              <span className="payment-page__coupone-btn">쿠폰적용</span>
+            </span>
+          </span>
+        </div>
+
+        <div className="payment-page__order-info__pay__line"></div>
+
+        <div className="payment-page__title">결제금액</div>
+        <div className="payment-page__productAmount">
+          <span className="payment-page__content">상품금액</span>
+          <span className="payment-page__content-price">
+            {paymentData?.totalPrice}원
+          </span>
+        </div>
+        <div className="payment-page__discountAmount">
+          <span className="payment-page__content">할인금액</span>
+          {selectedCoupon && (
+            <span className="payment-page__content-price">
+              (-){selectedCoupon}원
+            </span>
+          )}
+        </div>
+
+        <div className="payment-page__order-info__pay__line"></div>
+
+        <div className="payment-page__payment">
+          <span className="payment-page__title">총 결제 금액</span>
+          <span className="payment-page__total-price">
+            {paymentData?.totalPrice}원
+          </span>
+        </div>
+
+        <div className="payment-page__notice">
+          주문 승인 후, 취소 및 추가 주문이 불가합니다.
+        </div>
+        {/* <label>
           <input
             type="checkbox"
             onChange={(event) => {
@@ -188,7 +260,7 @@ const PaymentPage = () => {
             }}
           />
           5,000원 할인 쿠폰 적용
-        </label>
+        </label> */}
       </div>
 
       <div className="payment-page__payment-btn" onClick={paymentRequest}>

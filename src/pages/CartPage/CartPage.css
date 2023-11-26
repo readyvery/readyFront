@@ -8,14 +8,14 @@
   flex-shrink: 0;
   background: #fff;
   flex-direction: column;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .payment-page__order-info__item {
   display: flex;
   height: fit-content;
   flex-shrink: 0;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
 }
@@ -85,13 +85,10 @@
 }
 
 .payment-page__order-info__item__line {
-  width: 21.5625rem;
+  width: auto;
   height: 0rem;
   flex-shrink: 0;
-  stroke-width: 1px;
-  stroke: #dadada;
-  margin-left: auto;
-  margin-right: auto;
+  border: 0.1px solid #dadada;
 }
 
 .payment-page__order-info__item__add {
