@@ -5,6 +5,7 @@
 .coupon-page__coupon-list {
   display: flex;
   flex-direction: column;
+  margin-top: 3.44rem;
 }
 
 .coupon-page__coupon-item {

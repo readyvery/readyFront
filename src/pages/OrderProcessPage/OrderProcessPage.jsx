@@ -44,6 +44,7 @@ const OrderProcessPage = () => {
       foodieId: foodieId,
       options: optionIdx,
       count: orderCnt,
+      inout: inout,
     };
     // const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
