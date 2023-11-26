@@ -193,7 +193,7 @@ const CartPage = () => {
         to={`/payment?storeId=${storeId}&inout=${inout}`}
         style={{ display: "flex", textDecoration: "none" }}
       >
-        <div className="order-btn">주문하기</div>
+        <div className="payment-page__order-btn">주문하기</div>
       </Link>
     </div>
   );
