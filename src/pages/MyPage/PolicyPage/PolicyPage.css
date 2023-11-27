@@ -1,15 +1,18 @@
 .policy-div {
   width: 100%;
-  height: 100%;
+  height: 94vh;
   margin: 0 auto;
 }
 
 .myprofile-head {
+  margin-top: 3rem;
   width: 90%;
   display: flex;
   flex-direction: column;
 }
 
+.position,
+.personal-3rd,
 .terms-of-use,
 .personal-info {
   text-decoration: none;
@@ -17,5 +20,5 @@
   font-family: "Medium";
   font-size: 1.125rem;
   align-self: flex-start;
-  margin: 3% 10%;
+  margin: 3% 2%;
 }

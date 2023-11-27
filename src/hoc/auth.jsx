@@ -1,44 +1,74 @@
-// // ../hoc/auth.js
+import { message } from "antd";
+import moment from "moment";
+import React, { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  getUserSelector,
+  //isAuthenticatedState,
+  loginState,
+} from "../Atom/status";
 
-// import React, { useEffect } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import { useRecoilState } from "recoil";
-// import { accessTokenState, isAuthenticatedState } from "../recoil/authAtoms";
+function Auth(SpecificComponent, option) {
+  function AuthenticationCheck(props) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const userInfo = useRecoilValue(getUserSelector);
+    const setIsLoggedIn = useSetRecoilState(loginState);
+    //const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+    const [cookies] = useCookies(["accessToken"]);
 
-// export default function Auth(SpecificComponent, option, adminRoute = null) {
-//   function AuthenticationCheck() {
-//     const navigate = useNavigate();
-//     const location = useLocation();
-//     const [isAuthenticated, setIsAuthenticated] =
-//       useRecoilState(isAuthenticatedState);
-//     const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+    useEffect(() => {
+      console.log(userInfo);
+      const isAuth = window.localStorage.getItem("isAuthenticated");
+      if (userInfo === "404" && location.pathname !== "/kakaologin") {
+        navigate("/kakaologin");
+      } else {
+        if (!isAuth && cookies?.accessToken) {
+          // 첫 로그인 시
+          window.localStorage.setItem("isAuthenticated", true);
+          // window.localStorage.setItem("isAuthenticated", false);
+          setIsLoggedIn({
+            accessToken: getAccessTokenFromCookie(),
+            expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+          });
+          // setIsAuthenticated(true);
+          message.success("로그인에 성공하셨습니다.");
+          navigate("/"); //homepage
+          // alert("로그인에 성공하셨습니다.");
+        } else {
+          if (cookies?.accessToken && location.pathname === "/kakaologin") {
+            // 로그인 상태에서 로그인 화면으로 갔을 경우
+            navigate("/"); // homepage
+          }
+        }
+      }
 
-//     useEffect(() => {
-//       // 여기서 적절한 방법으로 사용자의 인증 상태를 확인하고 accessToken을 Recoil 상태에 업데이트합니다.
-//       // 이 예시에서는 option이 false일 때만 인증 상태를 true로 설정합니다.
-//       if (!option) {
-//         setIsAuthenticated(true);
-//         // 여기서 세션 또는 토큰을 가져와서 Recoil 상태에 업데이트합니다.
-//         // 이 예시에서는 accessToken을 예시로 사용하고, 실제로는 여러분의 인증 방식에 맞게 수정해야 합니다.
-//         setAccessToken("exampleAccessToken");
-//       }
-//     }, [option, setIsAuthenticated, setAccessToken]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    return <SpecificComponent />;
+  }
 
-//     useEffect(() => {
-//       // 인증 상태에 따라 페이지 접근을 처리합니다.
-//       if (!isAuthenticated) {
-//         // 인증되지 않은 경우 로그인 페이지로 리다이렉트
-//         if (location.pathname !== "/kakaologin") {
-//           navigate("/kakologin", { replace: true });
-//         }
-//       } else if (isAuthenticated && option === false) {
-//         // 인증된 상태이고 option이 false인 경우 특정 조건에 따라 리다이렉트
-//         // 이 예시에서는 특별한 조건이 없으므로 특별한 동작을 추가할 수 있습니다.
-//       }
-//     }, [isAuthenticated, option, navigate, location.pathname]);
+  return AuthenticationCheck;
+}
 
-//     return <SpecificComponent />;
-//   }
+// accessToken을 cookie에서 가져오는 함수
+export const getAccessTokenFromCookie = () => {
+  const cookieString = document.cookie;
+  if (cookieString) {
+    const cookies = cookieString.split("; ");
 
-//   return AuthenticationCheck;
-// }
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split("=");
+      if (name === "accessToken") {
+        return value;
+      }
+    }
+  }
+
+  // accessToken만 받아와야하는데 지금은 다른 것도 받아오고 있어서 파싱해야함
+  return null;
+};
+
+export default Auth;

@@ -1,3 +1,5 @@
+// import React, { useEffect, useState } from "react";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profile_icon from "../../assets/images/profile_icon.svg";
@@ -5,20 +7,27 @@ import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
 function Mypage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
+  console.log(isLoggedIn);
+  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    setIsLoggedIn(true);
+    const config = {
+      withCredentials: true,
+    };
 
-    // Axios.get("http://localhost:8080/api/v1/auth", {
-    //   withCredentials: true, // default
-    // }).then((response) => {
-    //   if (response.data) {
-    //     console.log(response.data);
-    //   }
-    // });
-  }, []);
-
+    axios
+      .get(`${apiUrl}/api/v1/user/info`, config)
+      .then((response) => {
+        const { name } = response.data;
+        setUserName(name);
+      })
+      .catch((error) => {
+        console.error("Error fetching user info:", error);
+        // Handle error, e.g., redirect to login page
+      });
+  }, [apiUrl]);
   return (
     <div className="mypage-div">
       <Header
@@ -39,7 +48,7 @@ function Mypage() {
                 alt="ProfileIcon"
                 className="profile-icon2"
               />
-              <div className="profile-name">강짱구</div>
+              <div className="profile-name">{userName}</div>
               <Link to="/myprofile" className="profile-detailBtn">
                 프로필보기
               </Link>
@@ -90,7 +99,7 @@ function Mypage() {
         <Link to="/policy" className="mypage-etc-policy-link">
           <div className="mypage-etc-policy">약관 및 정책</div>
         </Link>
-        <Link to="/" className="mypage-etc-sos-link">
+        <Link to="/customerservice" className="mypage-etc-sos-link">
           <div className="mypage-etc-sos">고객센터</div>
         </Link>
       </div>

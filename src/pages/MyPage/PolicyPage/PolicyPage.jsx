@@ -24,6 +24,20 @@ function PolicyPage() {
         >
           <div>개인정보 처리방침</div>
         </Link>
+        <Link
+          to="/thirdparty"
+          alt="개인정보 제3자 제공 동의"
+          className="personal-3rd"
+        >
+          <div>개인정보 제3자 제공 동의</div>
+        </Link>
+        <Link
+          to="/position"
+          alt="위치 기반 서비스 이용약관"
+          className="position"
+        >
+          <div>위치 기반 서비스 이용약관</div>
+        </Link>
       </div>
     </div>
   );

@@ -1,37 +1,43 @@
 /* Header 상단 고정 및 세로길이 설정 */
 .top_header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3.5rem;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-}
-
-.top_header.page {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5rem;
+  height: 4rem;
+  /* background-color: #ffffff; */
+  display: flex;
+  z-index: 100;
+  align-items: center;
+  background: linear-gradient(
+      180deg,
+      rgba(216, 35, 86, 0.2) 0.1%,
+      rgba(216, 35, 86, 0) 100%
+    ),
+    #fff;
+}
+
+.top_header_page {
+  position: fixed;
+  top: 0;
+
+  height: 4rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
 }
 
 .header-link {
-  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
 }
 
 .header-main__warpper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   width: 94%;
-  margin: 0 auto;
+  margin: 0 1rem;
 }
 
 .header-main__warpper span {

@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
-// import menuDelete from "../../assets/images/menu_delete.svg";
-// import takeIn from "../../assets/images/take_in.svg";
-// import takeOut from "../../assets/images/take_out.svg";
+import takeIn from "../../assets/images/take_in.svg";
+import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import axios from "axios";
 
@@ -17,6 +16,9 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
+  const couponId = params.get("couponId");
+  const salePrice = params.get("salePrice");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
@@ -27,7 +29,7 @@ const PaymentPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
           { withCredentials: true }
         );
         setPaymentData(response.data);
@@ -53,7 +55,7 @@ const PaymentPage = () => {
       // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
         "#payment-page__payment-widget",
-        { value: price },
+        { value: price - salePrice },
         // 렌더링하고 싶은 결제 UI의 variantKey
         // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
         // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
@@ -70,7 +72,7 @@ const PaymentPage = () => {
       paymentWidgetRef.current = paymentWidget;
       paymentMethodsWidgetRef.current = paymentMethodsWidget;
     })();
-  }, [price]);
+  }, [price, salePrice]);
 
   useEffect(() => {
     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
@@ -82,12 +84,13 @@ const PaymentPage = () => {
     // ------ 금액 업데이트 ------
     // 새로운 결제 금액을 넣어주세요.
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(price);
-  }, [price]);
+    paymentMethodsWidget.updateAmount(price - salePrice);
+  }, [price, salePrice]);
 
   const paymentRequest = async () => {
     let body = {
       inout: inout,
+      couponId: couponId,
     };
 
     await axios
@@ -119,7 +122,7 @@ const PaymentPage = () => {
         headerProps={{
           pageName: "주문결제",
           isClose: false,
-          linkTo: `/store?storeId=${storeId}&inout=${inout}`,
+          linkTo: `/cart?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
@@ -129,6 +132,7 @@ const PaymentPage = () => {
           src={paymentData?.imgUrl}
           alt="cafeImg"
         ></img>
+
         <text className="payment-page__cafe-info__name">
           {paymentData?.name}
         </text>
@@ -148,7 +152,7 @@ const PaymentPage = () => {
                 <div className="payment-page__order-info__item__name">
                   {item.name}
                 </div>
-                {/* <img src={menuDelete} alt="X" /> */}
+
                 <div className="payment-page__order-info__item__option">
                   {item.options.map((option) => (
                     <div>
@@ -156,11 +160,13 @@ const PaymentPage = () => {
                     </div>
                   ))}
                 </div>
+
                 <div className="payment-page__order-info__item__price">
-                  {item.totalPrice}원
+                  {item.totalPrice * item.count}원
                 </div>
               </div>
             </div>
+
             <div className="payment-page__order-info__item__line"></div>
           </div>
         ))}
@@ -168,23 +174,91 @@ const PaymentPage = () => {
 
       <div className="payment-page__line"></div>
 
-      <div className="payment-page__packaging-status">수령방식</div>
+      <div className="payment-page__packaging-status">
+        <div className="payment-page__title">수령방식</div>
 
-      <div className="payment-page__packaging-status__content"></div>
+        <div className="payment-page__packaging-status__container">
+          {inout === "1" ? (
+            <>
+              <img
+                className="payment-page__packaging-status__img"
+                src={takeIn}
+                alt="Take In"
+              />
+              <span>먹고갈게요</span>
+            </>
+          ) : inout === "2" ? (
+            <>
+              <img
+                className="payment-page__packaging-status__img"
+                src={takeOut}
+                alt="Take Out"
+              />
+              <span>가져갈게요</span>
+            </>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="payment-page__line"></div>
 
       <div id="payment-page__payment-widget" />
       <div id="payment-page__payment-agreement" />
 
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            onChange={(event) => {
-              setPrice(event.target.checked ? price - 5000 : price + 5000);
-            }}
-          />
-          5,000원 할인 쿠폰 적용
-        </label>
+      <div className="payment-page__line"></div>
+
+      <div className="payment-page__pay-info">
+        <div className="payment-page__title">할인적용</div>
+        <div className="payment-page__coupone">
+          <span className="payment-page__content">쿠폰</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {salePrice && (
+                <span className="payment-page__coupone-price">
+                  {salePrice}원
+                </span>
+              )}
+              <Link
+                to={`/payment/coupon?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+              >
+                쿠폰적용
+              </Link>
+            </span>
+          </span>
+        </div>
+
+        <div className="payment-page__order-info__pay__line"></div>
+
+        <div className="payment-page__title">결제금액</div>
+        <div className="payment-page__productAmount">
+          <span className="payment-page__content">상품금액</span>
+          <span className="payment-page__content-price">
+            {paymentData?.totalPrice}원
+          </span>
+        </div>
+        <div className="payment-page__discountAmount">
+          <span className="payment-page__content">할인금액</span>
+          {salePrice && (
+            <span className="payment-page__content-price">
+              (-){salePrice}원
+            </span>
+          )}
+        </div>
+
+        <div className="payment-page__order-info__pay__line"></div>
+
+        <div className="payment-page__payment">
+          <span className="payment-page__title">총 결제 금액</span>
+          <span className="payment-page__total-price">
+            {paymentData?.totalPrice - salePrice}원
+          </span>
+        </div>
+
+        <div className="payment-page__notice">
+          주문 승인 후, 취소 및 추가 주문이 불가합니다.
+        </div>
       </div>
 
       <div className="payment-page__payment-btn" onClick={paymentRequest}>

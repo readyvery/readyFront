@@ -6,9 +6,10 @@
 
 .payment-page__cafe-info {
   display: flex;
-  margin-left: 1.56rem;
-  margin-top: 1.38rem;
-  margin-bottom: 0.44rem;
+  padding-left: 1.56rem;
+  padding-right: 1.56rem;
+  padding-top: 1.38rem;
+  padding-bottom: 0.44rem;
 }
 
 .payment-page__cafe-info__img {
@@ -39,8 +40,6 @@
   display: flex;
   height: fit-content;
   flex-shrink: 0;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
 }
@@ -74,14 +73,46 @@
   margin-bottom: 0.31rem;
 }
 
+.payment-page__order-info__item__control {
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+}
+
+.payment-page__order-info__item__delete {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-bottom: auto;
+}
+
+.payment-page__order-info__item__count {
+  display: flex;
+  width: 3.6875rem;
+  height: 1.0625rem;
+  flex-shrink: 0;
+  fill: #fff;
+  border: 0.5px solid #dadada;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.24rem 0.63rem;
+}
+
+.payment-page__order-info__item__count-minus {
+  cursor: pointer;
+}
+
+.payment-page__order-info__item__count-plus {
+  cursor: pointer;
+  color: #838383;
+}
+
 .payment-page__order-info__item__line {
-  width: 21.5625rem;
+  width: auto;
   height: 0rem;
   flex-shrink: 0;
-  stroke-width: 1px;
-  stroke: #dadada;
-  margin-left: auto;
-  margin-right: auto;
+  border: 0.1px solid #dadada;
 }
 
 .payment-page__line {
@@ -90,18 +121,149 @@
   height: 0.25rem;
   flex-shrink: 0;
   background: #dadada;
-  margin-top: 1rem;
-  margin-bottom: 1.44rem;
+  margin-top: 1.56rem;
+  margin-bottom: 1.56rem;
 }
 
 .payment-page__packaging-status {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.payment-page__title {
   display: flex;
   color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 20px;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-bottom: 1.06rem;
+}
+
+.payment-page__packaging-status__container {
+  display: flex;
+  width: auto;
+  height: 3.9375rem;
+  flex-shrink: 0;
+  border-radius: 0.1875rem;
+  border: 1.5px solid #838383;
+  background: #ffe2ed;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  font-family: "Semibold";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-top: 1.13rem;
+}
+
+.payment-page__packaging-status__img {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.payment-page__pay-info {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.payment-page__coupone {
+  display: flex;
+  margin-bottom: 1.37rem;
+}
+
+.payment-page__coupone__apply {
+  display: flex;
+  margin-left: auto;
+}
+
+.payment-page__coupone-price {
+  color: #000;
   font-family: "Bold";
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
-  margin-left: 1.62rem;
+}
+
+.payment-page__coupone-btn {
+  width: 3.75rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #ffe2ed;
+  color: #4f4f4f;
+  font-family: "Bold";
+  font-size: 0.6875rem;
+  line-height: 130%; /* 0.89375rem */
+  letter-spacing: -0.00688rem;
+  padding: 0.31rem 0.69rem;
+  margin-left: 0.5rem;
+}
+
+.payment-page__content {
+  color: #000;
+  font-family: "Medium";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+}
+
+.payment-page__order-info__pay__line {
+  width: auto;
+  height: 0rem;
+  flex-shrink: 0;
+  border: 0.1px solid #dadada;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-page__productAmount {
+  display: flex;
+  margin-bottom: 0.56rem;
+}
+
+.payment-page__discountAmount {
+  display: flex;
+}
+
+.payment-page__content-price {
+  display: flex;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-left: auto;
+}
+
+.payment-page__payment {
+  display: flex;
+}
+
+.payment-page__total-price {
+  color: #d82356;
+  text-align: right;
+  font-family: "Bold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-left: auto;
+}
+
+.payment-page__notice {
+  color: #838383;
+  text-align: center;
+  font-family: "Regular";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-top: 4.12rem;
+  margin-bottom: 0.62rem;
 }
 
 .payment-page__payment-btn {
@@ -111,8 +273,6 @@
   flex-shrink: 0;
   border-radius: 0.625rem;
   background: #d82356;
-  margin-left: auto;
-  margin-right: auto;
   color: #fff;
   text-align: center;
   font-family: "Bold";
@@ -121,4 +281,7 @@
   letter-spacing: -0.01125rem;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.94rem;
 }

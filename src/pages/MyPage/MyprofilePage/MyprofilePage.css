@@ -1,6 +1,6 @@
 .myprofile-div {
   width: 100%;
-  height: 100%;
+  height: 94vh;
   background-color: #ffe2ed;
 }
 
@@ -50,14 +50,16 @@
 }
 
 .detail-item-name {
-  width: 30%;
+  display: flex;
+  width: 10rem;
 }
 
 .detail-item {
-  width: 70%;
+  display: flex;
+  width: 20rem;
   font-size: 0.9375rem;
   font-family: "Light";
-  margin: 0 5rem;
+  margin: 0 3rem 0 0;
 }
 
 .myprofile-bye {
@@ -67,5 +69,5 @@
   color: #838383;
   font-size: 0.9375rem;
   font-family: "Regular";
-  margin-top: 97%;
+  margin-top: 15rem;
 }

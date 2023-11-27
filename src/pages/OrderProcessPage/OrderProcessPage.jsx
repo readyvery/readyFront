@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import minus from "../../assets/images/icon_minus.png";
+import minusDisabled from "../../assets/images/icon_minus_disabled.png";
+import plus from "../../assets/images/icon_plus.png";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
 import "./OrderProcess.css";
+import Modal from "../../components/views/Modal/Modal";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -16,6 +20,8 @@ const OrderProcessPage = () => {
   const foodieId = params.get("foodie_id");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
+  const [orderCnt, setOrderCnt] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,27 +40,22 @@ const OrderProcessPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleCartReset = () => {
+  const handleCartUpdate = () => {
     let body = {
       storeId: storeId,
       foodieId: foodieId,
       options: optionIdx,
-      count: 1,
+      count: orderCnt,
+      inout: inout,
     };
-    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
 
-    // Axios를 사용한 DELETE 요청
-    const response = axios.delete(apiUrl, { withCredentials: true });
-
-    // 성공적으로 처리된 경우에 대한 로직
-    console.log("Cart reset successful", response.data);
     axios
       .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data);
-        navigate(`/payment?storeId=${storeId}&inout=${inout}`);
+        navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
 
       // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
@@ -62,8 +63,46 @@ const OrderProcessPage = () => {
         // 에러가 발생한 경우에 대한 로직
         console.error("Error resetting cart", error);
 
-        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
+        setIsOpen(true);
       });
+  };
+
+  const handleCancle = () => {
+    setIsOpen((prev) => !prev);
+
+    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+
+    // Axios를 사용한 DELETE 요청
+    const response = axios.delete(apiUrl, { withCredentials: true });
+
+    // 성공적으로 처리된 경우에 대한 로직
+    console.log("Cart reset successful", response.data);
+
+    let body = {
+      storeId: storeId,
+      foodieId: foodieId,
+      options: optionIdx,
+      count: orderCnt,
+      inout: inout,
+    };
+
+    axios
+      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/store?storeId=${storeId}&inout=${inout}`);
+      })
+
+      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
+      .catch((error) => {
+        // 에러가 발생한 경우에 대한 로직
+        console.error("Error resetting cart", error);
+      });
+
+    // 모달을 닫습니다.
+    setIsOpen(false);
   };
 
   const [activeToggles, setActiveToggles] = useState(
@@ -92,13 +131,15 @@ const OrderProcessPage = () => {
         .map((e) => `${e.options[0]?.name}`)
     );
     setTotalAmount(
-      foodOptionInfo?.price +
-        parseInt(
-          foodOptionInfo?.category
-            ?.filter((el) => el?.essential)
-            .map((e) => parseInt(e?.options[0]?.price))
-            .reduce((prev, curr) => prev + curr, 0)
-        )
+      orderCnt &&
+        orderCnt *
+          (foodOptionInfo?.price +
+            parseInt(
+              foodOptionInfo?.category
+                ?.filter((el) => el?.essential)
+                .map((e) => parseInt(e?.options[0]?.price))
+                .reduce((prev, curr) => prev + curr, 0)
+            ))
     );
     setPrevRadioPrice(
       foodOptionInfo?.category
@@ -110,6 +151,7 @@ const OrderProcessPage = () => {
         ?.filter((el) => el?.essential)
         .map((e) => e?.options[0]?.idx)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
 
   const handleToggle = (index) => {
@@ -149,9 +191,18 @@ const OrderProcessPage = () => {
       : setOptionIdx((prev) => prev.filter((e) => e !== idx));
   };
 
-  // const submitOrder = () => {
-  //   console.log(optionIdx);
-  // }
+  const handleCntUp = () => {
+    const newOrderCnt = orderCnt + 1;
+    setOrderCnt(newOrderCnt);
+    setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt - 1));
+  };
+
+  const handleCntDown = () => {
+    const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
+    orderCnt > 1 &&
+      setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt + 1));
+    setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
+  };
 
   return (
     <div className="order-process-page">
@@ -218,7 +269,7 @@ const OrderProcessPage = () => {
 
                 {activeToggles?.length && activeToggles[index] && (
                   <div
-                    className="order-process-page__toggle__container"
+                    className={`order-process-page__toggle__body__container open`}
                     key={index}
                   >
                     {category?.options?.map((option, optionIndex) => (
@@ -244,7 +295,27 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
-                          <span>{option.name}</span>
+                          {/* {selectedRadioTexts?.length &&
+                            selectedRadioTexts[index] === option.name && (
+                              <span className="custom-radio"></span>
+                            )
+                          } */}
+                          <span>
+                            <span
+                              className={`custom-radio ${
+                                selectedRadioTexts?.length &&
+                                selectedRadioTexts[index] === option.name &&
+                                "checked"
+                              }`}
+                            ></span>
+                          </span>
+                          {option.price === 0 ? (
+                            <span className="radio-txt">{option.name}</span>
+                          ) : (
+                            <span className="radio-txt">
+                              {option.name} (+{option.price}원)
+                            </span>
+                          )}
                         </label>
                       </div>
                     ))}
@@ -307,7 +378,23 @@ const OrderProcessPage = () => {
                                   )
                                 }
                               />
-                              <span>{option.name}</span>
+
+                              <span>
+                                <span
+                                  className={`custom-checkbox ${
+                                    optionIdx?.length &&
+                                    optionIdx.includes(option.idx) &&
+                                    "checked"
+                                  }`}
+                                ></span>
+                              </span>
+                              {option.price === 0 ? (
+                                <span className="radio-txt">{option.name}</span>
+                              ) : (
+                                <span className="radio-txt">
+                                  {option.name} (+{option.price}원)
+                                </span>
+                              )}
                             </label>
                           </div>
                         </React.Fragment>
@@ -319,31 +406,58 @@ const OrderProcessPage = () => {
         ) : (
           <div></div>
         )}
+
+        <div className="order-process-page__toggle__container">
+          <div className="order-process-page__toggle__header">
+            <span className="order-process-page__toggle__name">수량</span>
+            <div className="order-process-page-quantity__wrapper">
+              <span
+                className="order-process-page__img__wrapper"
+                onClick={handleCntDown}
+              >
+                <img
+                  src={orderCnt === 1 ? minusDisabled : minus}
+                  alt={orderCnt === 1 ? "minusDisabled" : "minus"}
+                />
+              </span>
+              <span className="order-process-page-quantity__txt">
+                {orderCnt}
+              </span>
+              <span
+                className="order-process-page__img__wrapper"
+                onClick={handleCntUp}
+              >
+                <img src={plus} alt="plus" />
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {String(totalAmount) + "원"}
+          {isNaN(totalAmount)
+            ? 0 + "원"
+            : totalAmount
+                .toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
 
-      {/* <Link
-        to={`/payment?storeId=${storeId}&inout=${inout}`}
-        style={{
-          display: "flex",
-          textDecoration: "none",
-          marginBottom: "2rem",
-        }}
-      >
-        <div className="order-btn" onClick={handleCartReset}>
-          주문하기
-        </div>
-      </Link> */}
-
-      <div className="order-process-page__cart__btn" onClick={handleCartReset}>
-        주문하기
+      <div className="order-process-page__cart__btn" onClick={handleCartUpdate}>
+        장바구니 담기
       </div>
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancle={handleCancle}
+          title={`장바구니는\n
+          같은 가게의 메뉴만 담을 수 있어요.`}
+          subtitle={"확인 버튼을 누르시면, 이전에 담은 메뉴가 삭제됩니다."}
+        />
+      )}
     </div>
   );
 };

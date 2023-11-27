@@ -1,5 +1,6 @@
 .search-container {
   width: 100%;
+  height: 94vh;
 }
 
 .search-list {
@@ -55,12 +56,6 @@
 .search-status {
   color: #4f4f4f;
   font-family: "Bold";
-  font-size: 0.75rem;
-}
-
-.search-time {
-  color: #000;
-  font-family: "ExtraLight";
   font-size: 0.75rem;
 }
 

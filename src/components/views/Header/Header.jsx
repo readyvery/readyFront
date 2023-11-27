@@ -5,20 +5,39 @@ import arrow from "../../../assets/images/icon_arrow.svg";
 import close from "../../../assets/images/icon_close.svg";
 import "./Header.css";
 
-const Header = ({headerProps}) => {
+const Header = ({ headerProps }) => {
   return (
     <>
       {headerProps ? (
-        <header className="top_header page">
+        <header className="top_header_page">
           <div className="header-main__warpper">
-            {!headerProps.isClose ? (<div><Link to={headerProps.linkTo} style={{ textDecoration: "none"}}><img src={arrow} alt="arrow"/></Link></div>) : (<div></div>)}
+            {!headerProps.isClose ? (
+              <div>
+                <Link
+                  to={headerProps.linkTo}
+                  style={{ textDecoration: "none" }}
+                >
+                  <img src={arrow} alt="arrow" />
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
             <span>{headerProps.pageName}</span>
-            {headerProps.isClose ? (<div><Link to={headerProps.linkTo}><img src={close} alt="close"/></Link></div>) : (<div></div>)}
+            {headerProps.isClose ? (
+              <div>
+                <Link to={headerProps.linkTo}>
+                  <img src={close} alt="close" />
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
         </header>
       ) : (
         <header className="top_header">
-          <Link to="/home" className="header-link">
+          <Link to="/" className="header-link">
             <img src={home_logo} alt="Logo" className="header-logo" />
           </Link>
         </header>
