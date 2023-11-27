@@ -28,6 +28,7 @@ function Mypage() {
         // Handle error, e.g., redirect to login page
       });
   }, [apiUrl]);
+
   return (
     <div className="mypage-div">
       <Header
