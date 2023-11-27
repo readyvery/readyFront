@@ -9,7 +9,7 @@ import "./MyprofilePage.css";
 function MyprofilePage() {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [, , removeCookies] = useCookies();
+  const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
   // const setIsLoggedIn = useSetRecoilState(loginState);
   // const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
 
@@ -27,8 +27,33 @@ function MyprofilePage() {
         //     expiredTime: null
         //   })
         navigate("/");
-        removeCookies("accessToken");
-        removeCookies("JSESSIONID");
+        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+        window.localStorage.setItem("isAuthenticated", false);
+      })
+      .catch((error) => {
+        alert("관리자에게 문의하세요.");
+        navigate("/");
+        // navigate로 props 보내 그리고 location올 props 있을 때만 해
+      });
+  };
+
+  const handleLogdelete = () => {
+    const config = {
+      withCredentials: true,
+    };
+    axios
+      .get(apiUrl + "/api/v1/user/remove", config)
+      .then((response) => {
+        console.log(response);
+        // setIsAuthenticated(false);
+        // setIsLoggedIn({
+        //   accessToken: null,
+        //     expiredTime: null
+        //   })
+        navigate("/");
+        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
         window.localStorage.setItem("isAuthenticated", false);
       })
       .catch((error) => {
@@ -105,7 +130,7 @@ function MyprofilePage() {
             로그아웃
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div className="myprofile-unregister" onClick={handleLogout}>
+          <div className="myprofile-unregister" onClick={handleLogdelete}>
             회원탈퇴
           </div>
         </div>

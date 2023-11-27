@@ -80,6 +80,14 @@
   flex-direction: column;
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .cart-page__order-info__item__delete {
   display: flex;
   width: fit-content;

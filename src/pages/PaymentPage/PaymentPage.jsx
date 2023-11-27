@@ -121,8 +121,10 @@ const PaymentPage = () => {
       <Header
         headerProps={{
           pageName: "주문결제",
-          isClose: false,
-          linkTo: `/cart?storeId=${storeId}&inout=${inout}`,
+          isClose: !paymentData?.edit,
+          linkTo: !paymentData?.edit
+            ? "/"
+            : `/cart?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
