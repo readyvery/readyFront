@@ -82,13 +82,13 @@ const StoreDetailPage = () => {
           linkTo: `/packagingStatus?storeId=${storeId}`,
         }}
       />
-      <div className="store-detail-page__banner">
-        <img
-          className="store-detail-page__bannerImg"
-          src={caffeeInfo?.imgs?.[0]}
-          alt="caffee banner"
-        />
-      </div>
+
+      <img
+        className="store-detail-page__banner"
+        src={caffeeInfo?.imgs?.[0]}
+        alt="caffee banner"
+      />
+
       <div className="store-detail-page__caffeeInfo">
         <div className="store-detail-page__caffeeInfo__title">
           {caffeeInfo?.name}
