@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../../../components/views/Header/Header";
 import "./CouponPage.css";
+import empty from "../../../assets/images/storage_empty.svg";
 
 function CouponPage() {
   const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -50,17 +51,31 @@ function CouponPage() {
       />
 
       <div className="coupon-list">
-        <div className="coupon-list-box">
-          {couponCheck.map((item) => (
-            <div className="coupon-item">
-              <div className="coupon-item-name">{item.couponName}</div>
-              <div className="coupon-item-content">{item.publisher}</div>
-              <div className="coupon-item-date">{item.expirationDate}</div>
-              <div className="coupon-item-limit">{item.description}</div>
-            </div>
-          ))}
+        {couponCheck && couponCheck.length > 0 ? (
+          <div className="coupon-list-box">
+            {couponCheck.map((item) => (
+              <div className="coupon-item">
+                <div className="coupon-item-name">{item.couponName}</div>
+                <div className="coupon-item-content">{item.publisher}</div>
+                <div className="coupon-item-date">{item.expirationDate}</div>
+                <div className="coupon-item-limit">{item.description}</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="coupon-list-empty">
+            <img
+              src={empty}
+              alt="empty coupon"
+              className="coupon-list-empty__img"
+            />
+            <span className="coupon-list-empty__text">
+              사용 가능한 쿠폰이 없습니다
+            </span>
+          </div>
+        )}
 
-          {/* {dummyCouponItems.map((item) => (
+        {/* {dummyCouponItems.map((item) => (
             <div className="coupon-item" key={item.idx}>
               <div className="coupon-item-name">{item.name}</div>
               <div className="coupon-item-content">{item.content}</div>
@@ -68,7 +83,6 @@ function CouponPage() {
               <div className="coupon-item-limit">{item.limit}</div>
             </div>
           ))} */}
-        </div>
       </div>
     </div>
   );

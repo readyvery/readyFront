@@ -305,8 +305,8 @@
 
 .order-process-page__cart__btn {
   display: flex;
-  width: 17.8505rem;
-  height: 3.1875rem;
+  width: 23.4375rem;
+  height: 3.6875rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
   background: #d82356;
@@ -320,5 +320,6 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
   margin-bottom: 2.38rem;
 }
