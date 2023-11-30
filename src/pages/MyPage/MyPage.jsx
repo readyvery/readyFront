@@ -72,16 +72,13 @@ function Mypage() {
       <div className="mypage-order">
         <div className="mypage-order-text">주문 및 결제</div>
         <Link
-          to={isLoggedIn ? "/status" : "/kakaologin"}
+          to={isLoggedIn ? "/orderHistory" : "/kakaologin"}
           className="mypage-order-list-link"
         >
           <div className="mypage-order-list">주문내역</div>
         </Link>
-        <Link
-          to={isLoggedIn ? "/" : "/kakaologin"}
-          className="mypage-order-type-link"
-        >
-          <div className="mypage-order-type">결제 수단 등록</div>
+        <Link className="mypage-order-type-link">
+          <div className="mypage-order-type">결제 수단 등록 (준비중)</div>
         </Link>
         <Link
           to={isLoggedIn ? "/coupon" : "/kakaologin"}

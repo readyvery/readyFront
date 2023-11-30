@@ -44,7 +44,8 @@
 .search-status-time {
   display: flex;
   flex-direction: row;
-  margin-top: 2%;
+  margin: 2% 0;
+  
 }
 
 .search-name {
@@ -57,6 +58,7 @@
   color: #4f4f4f;
   font-family: "Bold";
   font-size: 0.75rem;
+  margin-bottom: 1%;
 }
 
 .search-address {
