@@ -438,11 +438,7 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {isNaN(totalAmount)
-            ? 0 + "원"
-            : totalAmount
-                .toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
+          {isNaN(totalAmount) ? "0원" : totalAmount.toLocaleString() + "원"}
         </text>
       </div>
 
