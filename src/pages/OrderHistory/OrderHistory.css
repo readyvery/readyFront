@@ -3,6 +3,7 @@
 }
 
 .content-container{
+    /* height: calc(94vh - 4rem); */
     height: 94vh;
 }
 
@@ -107,14 +108,6 @@
     height: 90%;
     width: 90%;
     margin: 0 auto;
-}
-
-.empty-img-wrapper{
-
-}
-
-.empty-img{
-
 }
 
 .empty-text{

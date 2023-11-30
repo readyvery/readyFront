@@ -8,9 +8,9 @@ import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
-import "./OrderProcess.css";
 import Modal from "../../components/views/Modal/Modal";
 import TEXT from "../../constants/text";
+import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -195,15 +195,14 @@ const OrderProcessPage = () => {
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
     setOrderCnt(newOrderCnt);
-    setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt - 1));
-  };
+    // setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
+  }
 
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
-    orderCnt > 1 &&
-      setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt + 1));
-    setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
-  };
+    // orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
+    setOrderCnt((prev) => prev === 1 ? 1 : newOrderCnt);
+  }
 
   return (
     <div className="order-process-page">
@@ -438,10 +437,11 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {isNaN(totalAmount)
-            ? 0 + "원"
-            : totalAmount
-                .toString()
+          {isNaN(totalAmount * orderCnt)
+            ?
+              0 + "원" 
+            : 
+              (totalAmount * orderCnt).toString()
                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
