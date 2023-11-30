@@ -9,6 +9,7 @@ import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
 import Modal from "../../components/views/Modal/Modal";
+import TEXT from "../../constants/text";
 import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
@@ -453,8 +454,12 @@ const OrderProcessPage = () => {
         <Modal
           setIsOpen={setIsOpen}
           handleCancle={handleCancle}
-          title={`장바구니는\n
-          같은 가게의 메뉴만 담을 수 있어요.`}
+          title={TEXT.cartModal.split("\n").map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
           subtitle={"확인 버튼을 누르시면, 이전에 담은 메뉴가 삭제됩니다."}
         />
       )}

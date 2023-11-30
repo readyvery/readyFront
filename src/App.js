@@ -30,7 +30,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
-import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponePage";
+import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponPage";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();

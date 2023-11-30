@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.coupon-page__coupon {
+  display: flex;
+}
+
 .coupon-page__coupon-list {
   display: flex;
   flex-direction: column;
@@ -57,4 +61,42 @@
   line-height: 130%; /* 0.89375rem */
   text-align: left;
   margin-left: 1.25rem;
+}
+
+.coupon-page__coupon-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 14.56rem;
+  margin-bottom: 20rem;
+}
+
+.coupon-page__coupon-empty__text {
+  color: #838383;
+  font-family: "KBold";
+  font-size: 1.5rem;
+  line-height: 130%; /* 1.95rem */
+  letter-spacing: -0.015rem;
+  text-align: center;
+  margin-top: 0.63rem;
+}
+
+.coupon-list-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 14.56rem;
+  margin-bottom: 20rem;
+}
+
+.coupon-list-empty__text {
+  color: #838383;
+  font-family: "KBold";
+  font-size: 1.5rem;
+  line-height: 130%; /* 1.95rem */
+  letter-spacing: -0.015rem;
+  text-align: center;
+  margin-top: 0.63rem;
 }
