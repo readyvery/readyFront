@@ -4,23 +4,18 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4rem;
-  /* background-color: #ffffff; */
+  left: 0;
+  height: 6rem;
+  background-color: #d82356;
   display: flex;
   z-index: 100;
   align-items: center;
-  background: linear-gradient(
-      180deg,
-      rgba(216, 35, 86, 0.2) 0.1%,
-      rgba(216, 35, 86, 0) 100%
-    ),
-    #fff;
+  border-radius: 0rem 0rem 2rem 2rem;
 }
 
 .top_header_page {
   position: fixed;
   top: 0;
-
   height: 4rem;
   background-color: #ffffff;
   display: flex;
@@ -32,12 +27,49 @@
   margin-left: 2rem;
 }
 
+.close-link {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: 1.56rem;
+}
+
+.header-cart {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: 2rem;
+}
+
+/* home-link 및 homeIcon 스타일 조정 */
+.home-link {
+  display: inline-block;
+}
+
+.homeIcon {
+  margin-right: 1rem; /* 간격을 주기 위한 마진 값 설정 */
+}
+
+/* cart-link 및 bagIcon 스타일 조정 */
+.cart-link {
+  display: inline-block;
+}
+
+.bagIcon {
+  margin-left: 1rem; /* 간격을 주기 위한 마진 값 설정 */
+}
+
+/* homeAndCart 간격 조정 */
+.homeAndCart {
+  display: flex;
+  align-items: center;
+}
+
 .header-main__warpper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 94%;
-  margin: 0 1rem;
+  width: 86%;
+  margin: auto;
 }
 
 .header-main__warpper span {
@@ -47,5 +79,5 @@
 }
 
 .header-main__warpper div {
-  width: 1.5rem;
+  width: 4rem;
 }
