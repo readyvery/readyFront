@@ -15,7 +15,7 @@ function OrderStorage() {
   const progressList = {
     "ORDER": 0,
     "MAKE": 1,
-    "COMPELETE": 2,
+    "COMPLETE": 2,
     "PICKUP": 3,
     "CANCEL": 4
   };
@@ -45,7 +45,7 @@ function OrderStorage() {
         {storageList.length ? (
           storageList.map((e, i) => (
             <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : "/orderDetail"}
+              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
               // to={`/orderHistory?orderId=${e.orderId}`}
               style={{ textDecoration: "none" }}
             >
