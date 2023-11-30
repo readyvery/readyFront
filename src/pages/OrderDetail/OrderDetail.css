@@ -23,7 +23,6 @@
     padding: 1.9375rem 0;
 }
 
-.detail-scroll-content{}
 
 .detail-content::-webkit-scrollbar {
     display: none;
