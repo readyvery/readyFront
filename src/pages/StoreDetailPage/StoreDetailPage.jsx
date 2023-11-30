@@ -14,6 +14,9 @@ const StoreDetailPage = () => {
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [menu, setMenu] = useState(null);
   const [hasResponse, setHasResponse] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [cartId, setCartId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,13 +56,15 @@ const StoreDetailPage = () => {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get(`${apiRoot}/api/v1/order/cart?inout=${inout}`, {
+        .get(`${apiRoot}/api/v1/order/cart`, {
           withCredentials: true,
         })
         .then((response) => {
           if (response.data.carts.length > 0) {
             console.log("response.data");
             setHasResponse(true);
+            setTotalPrice(response.data.totalPrice);
+            setCartId(response.data.cartId);
           }
         })
         .catch((error) => {
@@ -72,6 +77,21 @@ const StoreDetailPage = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRoot, inout]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${apiRoot}/api/v1/order/cart/count`, {
+          withCredentials: true,
+        });
+        setTotalCount(response.data.count);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="store-detail-page">
@@ -160,7 +180,7 @@ const StoreDetailPage = () => {
                 {item?.name}
               </div>
               <div className="store-detail-page__menuList__item__price">
-                {String(item?.price) + "원"}
+                {(item?.price).toLocaleString() + "원"}
               </div>
             </Link>
           ))
@@ -170,11 +190,16 @@ const StoreDetailPage = () => {
       </div>
       {hasResponse && (
         <Link
-          to={`/cart?storeId=${storeId}&inout=${inout}`}
+          to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
           className="store-detail-page__cart-btn"
-          style={{ textDecoration: "none" }}
         >
-          장바구니
+          <span className="store-detail-page__total-quantity">
+            {totalCount}
+          </span>
+          <span className="store-detail-page__cart-text">장바구니</span>
+          <span className="store-detail-page__total-price">
+            {totalPrice?.toLocaleString()}원
+          </span>
         </Link>
       )}
     </div>

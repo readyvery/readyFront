@@ -36,7 +36,7 @@ const PaymentSuccessPage = () => {
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />
-      <div className="payment-redirect-page__title">결제 완료!</div>
+      <div className="payment-redirect-page__title">주문현황 확인</div>
       <Link
         to={`/orderHistory?orderId=${orderId}`}
         className="payment-redirect-page__done"
