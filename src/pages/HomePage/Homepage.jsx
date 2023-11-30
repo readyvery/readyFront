@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import berryIcon from "../../assets/images/berry.svg";
 // import event_icon from "../../assets/images/event_icon.svg";
 // import home_cafedream from "../../assets/images/home_cafedream.svg";
 // import home_harang from "../../assets/images/home_harang.svg";
@@ -178,12 +177,12 @@ function Homepage() {
       .then((response) => {
         console.log("Coupon registration successful:", response.data);
 
-        message.success("쿠폰이 발급되었습니다.");
+        message.success("쿠폰 받기 완료!");
         setCouponIssued(true);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        message.success("쿠폰이 이미 발급되었습니다.");
+        message.warning("쿠폰을 이미 받았아요!");
       });
   };
 
@@ -192,31 +191,35 @@ function Homepage() {
     <div className="homepage">
       <Header headerProps={null} />
 
-      <div className="addTextBox">
-        <img src={berryIcon} alt="berryIcon" className="berryIcon" />
-        <div className="addText">오늘도 준비된 당신의 삶을 위해, 레디베리!</div>
-      </div>
-
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
         <div className="quick-order-list">
           {loggedIn ? (
-            quickOrder.map((item) => (
-              <Link
-                to={`/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`}
-                className="login-box"
-              >
-                <React.Fragment key={item.id}>
+            quickOrder.length > 0 ? (
+              quickOrder.map((item) => (
+                <Link
+                  to={`/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`}
+                  className="login-box"
+                  key={item.id}
+                >
                   <div className="quick-order-item">
                     <div className="item-name">{item.name}</div>
                     <div className="item-detail">{item.orderName}</div>
                     <div className="item-price">{item.amount}원</div>
                   </div>
-                </React.Fragment>
+                </Link>
+              ))
+            ) : (
+              <Link to={`/search`} className="not-login-box">
+                <img
+                  src={profile_icon}
+                  alt="ProfileIcon"
+                  className="profile-icon"
+                />
+                <div className="not-loggedIn">첫 주문 후 이용가능합니다</div>
               </Link>
-            ))
+            )
           ) : (
-            // 로그인하지 않은 경우 다른 내용을 렌더링
             <Link to="/kakaologin" className="not-login-box">
               <img
                 src={profile_icon}
