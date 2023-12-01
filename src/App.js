@@ -13,6 +13,7 @@ import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
 import CartPage from "./pages/CartPage/CartPage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
 import PolicyInLogin from "./pages/LoginPage/PolicyInLogin";
+import PrivacyPolicyLogin from "./pages/LoginPage/PrivacyPolicyLogin";
 import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
 import CustomerServicePage from "./pages/MyPage/CustomerServicePage/CustomerServicePage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
@@ -26,11 +27,11 @@ import OrderDetail from "./pages/OrderDetail/OrderDetail";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
+import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
-import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponPage";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -104,6 +105,7 @@ function App() {
             {/* 로그인*/}
             <Route path="/kakaologin" element={<NewLoginPage />} />
             <Route path="/policyinlogin" element={<PolicyInLogin />} />
+            <Route path="/privacypolicyinlogin" element={<PrivacyPolicyLogin />} />
             {/* 마이페이지-약관정책 페이지 */}
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/termsofuse" element={<TermsOfUse />} />

@@ -1,11 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
-import Header from "../../components/views/Header/Header";
-import "./CartPage.css";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import menuDelete from "../../assets/images/menu_delete.svg";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
-import axios from "axios";
 import empty from "../../assets/images/storage_empty.svg";
+import Header from "../../components/views/Header/Header";
+import "./CartPage.css";
 
 const CartPage = () => {
   const location = useLocation();

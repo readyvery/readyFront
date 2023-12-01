@@ -12,14 +12,24 @@ function PrivacypolicyPage() {
           linkTo: "/policy",
         }}
       />
-      <div style={{ fontSize: "13px" }}>
-        {TEXT.privacyPolicy.split("\n").map((line, index) => (
-          <React.Fragment key={index}>
-            {line}
-            <br />
-          </React.Fragment>
-        ))}
-      </div>
+      
+      {TEXT.privacyPolicyTitle.split("\n").map((title, index) => (
+        <React.Fragment key={index}>
+          <span style={{'fontSize' : '14px', 'fontFamily': "Bold", 'marginTop' : '5px'}}>{title}</span>
+          <br />
+          {/* Check if there's a corresponding line in privacyPolicy */}
+          {TEXT.privacyPolicy.split("@")[index] && (
+            <>
+            <span style={{'fontSize': '12px', 'fontFamily': "Regular"}}>
+              {TEXT.privacyPolicy.split("@")[index].split("\n").map((e) => (
+                <div>{e}</div>
+              ))}
+            </span>
+            <div></div>
+            </>
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 }

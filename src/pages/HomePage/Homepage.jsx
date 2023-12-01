@@ -105,7 +105,7 @@ function Homepage() {
       };
       // Fetch data from the backend API
       axios
-        .get(`${apiRoot}/api/v1/order/history`, config)
+        .get(`${apiRoot}/api/v1/order/history/old`, config)
         .then((response) => {
           setQuickOrder(response.data.receipts);
         })
