@@ -18,15 +18,15 @@ function PrivacypolicyPage() {
           <span style={{'fontSize' : '14px', 'fontFamily': "Bold", 'marginTop' : '5px'}}>{title}</span>
           <br />
           {/* Check if there's a corresponding line in privacyPolicy */}
-          {TEXT.privacyPolicy.split("@")[index] && (
-            <>
+          {TEXT.privacyPolicy.split("#")[index] && (
+            <div style={{'marginTop': '10px', 'marginBottom': '10px'}}>
             <span style={{'fontSize': '12px', 'fontFamily': "Regular"}}>
-              {TEXT.privacyPolicy.split("@")[index].split("\n").map((e) => (
+              {TEXT.privacyPolicy.split("#")[index].split("\n").map((e) => (
                 <div>{e}</div>
               ))}
             </span>
             <div></div>
-            </>
+            </div>
           )}
         </React.Fragment>
       ))}

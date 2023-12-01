@@ -12,7 +12,7 @@ function ThirdpartyPage() {
           linkTo: "/policy",
         }}
       />
-      <div style={{ fontSize: "13px" }}>
+      <div style={{ fontSize: "12px", "fontFamily": "Regular" }}>
         {TEXT.thirdParty.split("\n").map((line, index) => (
           <React.Fragment key={index}>
             {line}
