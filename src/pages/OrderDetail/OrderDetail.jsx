@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import americano from "../../assets/images/img_americano.svg";
 import Header from "../../components/views/Header/Header";
 import "./OrderDetail.css";
 
@@ -63,7 +62,7 @@ const OrderDetail = () => {
                   <div className="detail-order__box" key={e.idx}>
                     <div className="detail-order-left__box">
                       <div className="detail-menu-img__wrapper">
-                        <img src={americano} alt="americano" />
+                        <img src={e.imgUrl} alt="americano" with=""/>
                       </div>
                       <div className="detail-order-menu__wrapper">
                         <span className="detail-order-menu__title">{e.name}</span>
