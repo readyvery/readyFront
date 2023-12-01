@@ -17,7 +17,7 @@
   right: 0;
   height: 6rem; /*60px*/
   background-color: #00000000;
-  z-index: 3;
+  z-index: 100;
 
   -webkit-tap-highlight-color: transparent; /*모바일 크롬 브라우저에서 클릭시 하이라이트 제거*/
 }
