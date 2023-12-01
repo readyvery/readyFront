@@ -147,6 +147,7 @@ const StoreDetailPage = () => {
           </text>
         </div>
       </div>
+
       <div className="store-detail-page__menuCategory">
         {menu && menu.menu && Array.isArray(menu.menu) ? (
           menu.menu.map((category, index) => (
@@ -166,6 +167,7 @@ const StoreDetailPage = () => {
           <p>Loading category...</p>
         )}
       </div>
+
       <div className="store-detail-page__menuList">
         {selectedCategory &&
         selectedCategory.menuItems &&
@@ -179,15 +181,27 @@ const StoreDetailPage = () => {
               <div className="store-detail-page__menuList__item__name">
                 {item?.name}
               </div>
-              <div className="store-detail-page__menuList__item__price">
-                {(item?.price).toLocaleString() + "원"}
-              </div>
+              {inout === "2" && item?.price !== item?.sale ? (
+                <div>
+                  <span className="store-detail-page__menuList__item__cost">
+                    {(item?.price).toLocaleString() + "원"}
+                  </span>
+                  <span className="store-detail-page__menuList__item__sale">
+                    {(item?.sale).toLocaleString() + "원"}
+                  </span>
+                </div>
+              ) : (
+                <div className="store-detail-page__menuList__item__price">
+                  {(item?.price).toLocaleString() + "원"}
+                </div>
+              )}
             </Link>
           ))
         ) : (
           <p>Loading menu...</p>
         )}
       </div>
+
       {hasResponse && (
         <Link
           to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import "./PaymentRedirectPage.css";
 import { useLocation } from "react-router-dom";
-import paymentBerry from "../../../assets/images/payment_icon.png";
+import paymentFail from "../../../assets/images/payment_fail.png";
 import { Link } from "react-router-dom";
 
 const PaymentFailPage = () => {
@@ -31,18 +31,17 @@ const PaymentFailPage = () => {
   return (
     <div className="payment-fail-page">
       <img
-        src={paymentBerry}
+        src={paymentFail}
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />
       <div className="payment-redirect-page__title">결제 실패</div>
       <Link
-        // to={`/cart?storeId=${storeId}&inout=${inout}`}
         to={`/`}
-        className="payment-redirect-page__done"
+        className="payment-fail-page__done"
         style={{ textDecoration: "none" }}
       >
-        확인
+        다른 주문하러 가기
       </Link>
     </div>
   );
