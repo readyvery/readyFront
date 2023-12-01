@@ -321,3 +321,22 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.order-process-page__is-close {
+  display: flex;
+  width: 23.4375rem;
+  height: 3.6875rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #838383;
+  color: #fff;
+  text-align: center;
+  font-family: "Bold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}

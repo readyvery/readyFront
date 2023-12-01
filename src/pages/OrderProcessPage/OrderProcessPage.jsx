@@ -19,10 +19,12 @@ const OrderProcessPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const foodieId = params.get("foodie_id");
+  const status = params.get("status");
   const [optionOpen, setOptionOpen] = useState(false);
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
   const [orderCnt, setOrderCnt] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,10 +68,21 @@ const OrderProcessPage = () => {
 
       // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
       .catch((error) => {
+        let title = "에러 발생";
         // 에러가 발생한 경우에 대한 로직
         console.error("Error resetting cart", error);
 
-        setIsOpen(true);
+        if (error.response.status === 400) {
+          // 다른 가게 메뉴를 담으려고 할 때
+          title = TEXT.cartModal400;
+          setIsOpen(true);
+          setModalTitle(title);
+        } else if (error.response.status === 409) {
+          // 포장 상태가 다른 메뉴를 담을 때
+          title = TEXT.cartModal409;
+          setIsOpen(true);
+          setModalTitle(title);
+        }
       });
   };
 
@@ -188,7 +201,7 @@ const OrderProcessPage = () => {
       return prices;
     });
 
-    setOptionIdx((prev) => [prev.filter((e) => e !== idx), idx])
+    setOptionIdx((prev) => [prev.filter((e) => e !== idx), idx]);
   };
 
   const handleOptionChange = (idx, price, e) => {
@@ -452,15 +465,24 @@ const OrderProcessPage = () => {
         </text>
       </div>
 
-      <div className="order-process-page__cart__btn" onClick={handleCartUpdate}>
-        장바구니 담기
-      </div>
+      {status === "true" ? (
+        <div
+          className="order-process-page__cart__btn"
+          onClick={handleCartUpdate}
+        >
+          장바구니 담기
+        </div>
+      ) : (
+        <div className="order-process-page__is-close">
+          지금은 영업 전입니다.
+        </div>
+      )}
 
       {isOpen && (
         <Modal
           setIsOpen={setIsOpen}
           handleCancle={handleCancle}
-          title={TEXT.cartModal.split("\n").map((line, index) => (
+          title={modalTitle.split("\n").map((line, index) => (
             <React.Fragment key={index}>
               {line}
               <br />
