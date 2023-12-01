@@ -4,7 +4,6 @@ import cafe from "../../../assets/images/cafe_logo.png";
 
 const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
   const stateList = ["진행중", "수령완료", "취소완료"];
-  console.log(state);
   return (
     <>
       <div className={`order-box ${(state !== undefined && (state === 0 || state === 1 || state === 2) ) && "selected"} ${isLast && "last"}`}>
