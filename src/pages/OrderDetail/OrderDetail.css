@@ -99,10 +99,17 @@
     height: 3.125rem;
 }
 
+.detail-menu-img__wrapper img {
+    width: 3.125rem;
+    height: 3.125rem;
+
+}
+
 .detail-order-menu__wrapper{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    padding-left: 1rem;
+    padding-top: 0.15rem;
 }
 
 .detail-order-menu__title{

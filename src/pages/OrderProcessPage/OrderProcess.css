@@ -137,7 +137,10 @@
 }
 
 .order-process-page__toggle__body__radio input[type="radio"]:checked {
-  border: 0.1875rem solid #d82356;
+  /* border: 0.1875rem solid #d82356; */
+  background-color: #d82356;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1.6px #d82356;
 }
 
 .order-process-page__toggle__body__radio label {
@@ -215,7 +218,9 @@
 }
 
 .option__checkbox__wrapper input[type="checkbox"]:checked {
-  border: 0.1875rem solid #d82356;
+  background-color: #d82356;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1.6px #d82356;
 }
 
 .option__checkbox__wrapper label {
