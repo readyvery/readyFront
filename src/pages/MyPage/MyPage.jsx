@@ -2,13 +2,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { isAuthenticatedState } from "../../Atom/status";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
 function Mypage() {
-  const isLoggedIn = window.localStorage.getItem("isAuthenticated");
-  console.log(isLoggedIn);
+  const isAuth = useRecoilValue(isAuthenticatedState);
+  console.log(isAuth);
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [userName, setUserName] = useState("");
 
@@ -41,7 +43,7 @@ function Mypage() {
 
       <div className="mypage-profile-head">
         <div className="mypage-profile-list">
-          {isLoggedIn ? (
+          {isAuth ? (
             // 로그인 한 경우 그림 이미지랑 이름 나오게
             <div className="login-box2">
               <img
@@ -72,7 +74,7 @@ function Mypage() {
       <div className="mypage-order">
         <div className="mypage-order-text">주문 및 결제</div>
         <Link
-          to={isLoggedIn ? "/orderHistory" : "/kakaologin"}
+          to={isAuth ? "/orderHistory" : "/kakaologin"}
           className="mypage-order-list-link"
         >
           <div className="mypage-order-list">주문내역</div>
@@ -81,7 +83,7 @@ function Mypage() {
           <div className="mypage-order-type">결제 수단 등록 (준비중)</div>
         </Link>
         <Link
-          to={isLoggedIn ? "/coupon" : "/kakaologin"}
+          to={isAuth ? "/coupon" : "/kakaologin"}
           className="mypage-order-coupon-link"
         >
           <div className="mypage-order-coupon">할인쿠폰</div>

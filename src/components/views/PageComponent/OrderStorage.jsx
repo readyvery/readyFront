@@ -8,19 +8,34 @@ import StateBox from "../StateBox/StateBox";
 
 import empty from "../../../assets/images/storage_empty.svg";
 
-function OrderStatus() {
+function OrderStorage() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [storageList, setStorageList] = useState([]);
+
+  const progressList = {
+    "ORDER": 0,
+    "MAKE": 1,
+    "COMPLETE": 2,
+    "PICKUP": 3,
+    "CANCEL": 4
+  };
 
   useEffect(() => {
     const config = {
       withCredentials: true
     };
 
-    axios.get(`${apiUrl}/api/v1/order/history`, config)
+    axios.get(`${apiUrl}/api/v1/order/history/new`, config)
       .then((res) => {
         console.log(res);
         setStorageList(res.data.receipts);
+      })
+      .catch((err) => console.log(err));
+
+    axios.get(`${apiUrl}/api/v1/order/history/old`, config)
+      .then((res) => {
+        console.log(res);
+        setStorageList((prev) => [...prev, res.data.receipts]);
       })
       .catch((err) => console.log(err));
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,8 +52,8 @@ function OrderStatus() {
         {storageList.length ? (
           storageList.map((e, i) => (
             <Link
-              // to={e.state === 1 ? `/storage?orderId=${e.orderId}` : "/orderDetail"}
-              to={`/orderHistory?orderId=${e.orderId}`}
+              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
+              // to={`/orderHistory?orderId=${e.orderId}`}
               style={{ textDecoration: "none" }}
             >
               <StateBox
@@ -49,7 +64,7 @@ function OrderStatus() {
                 imgUrl={e.imgUrl}
                 amount={e.amount}
                 isLast={storageList.length - 1 === i}
-                // state={e.state}
+                state={progressList[e.progress]}
               />
             </Link>
           ))
@@ -66,4 +81,4 @@ function OrderStatus() {
   );
 }
 
-export default OrderStatus;
+export default OrderStorage;

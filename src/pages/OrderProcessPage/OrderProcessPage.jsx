@@ -8,9 +8,9 @@ import noImageMenu from "../../assets/images/no_image_menu.svg";
 import toggleDown from "../../assets/images/toggle_down.svg";
 import toggleUp from "../../assets/images/toggle_up.svg";
 import Header from "../../components/views/Header/Header";
-import "./OrderProcess.css";
 import Modal from "../../components/views/Modal/Modal";
 import TEXT from "../../constants/text";
+import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -56,6 +56,11 @@ const OrderProcessPage = () => {
       })
       .then((res) => {
         console.log(res.data);
+        setOptionIdx(
+          foodOptionInfo?.category
+            ?.filter((el) => el?.essential)
+            .map((e) => e?.options[0]?.idx)
+        );
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
 
@@ -167,7 +172,7 @@ const OrderProcessPage = () => {
     // }
   };
 
-  const handleRadioChange = (index, text, price) => {
+  const handleRadioChange = (index, text, price, idx) => {
     setSelectedRadioTexts((prevTexts) => {
       const texts = [...prevTexts];
       texts[index] = text;
@@ -181,6 +186,8 @@ const OrderProcessPage = () => {
       prices[index] = price;
       return prices;
     });
+
+    setOptionIdx((prev) => [prev.filter((e) => e !== idx), idx])
   };
 
   const handleOptionChange = (idx, price, e) => {
@@ -195,13 +202,12 @@ const OrderProcessPage = () => {
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
     setOrderCnt(newOrderCnt);
-    setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt - 1));
+    // setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
   };
 
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
-    orderCnt > 1 &&
-      setTotalAmount((prev) => (prev * newOrderCnt) / (newOrderCnt + 1));
+    // orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
     setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
   };
 
@@ -292,7 +298,8 @@ const OrderProcessPage = () => {
                               handleRadioChange(
                                 index,
                                 option.name,
-                                option.price
+                                option.price,
+                                option.idx
                               )
                             }
                           />
@@ -438,11 +445,9 @@ const OrderProcessPage = () => {
       <div className="order-process-page__total-amount">
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
-          {isNaN(totalAmount)
-            ? 0 + "원"
-            : totalAmount
-                .toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
+          {isNaN(totalAmount * orderCnt)
+            ? "0원"
+            : (totalAmount * orderCnt).toLocaleString() + "원"}
         </text>
       </div>
 

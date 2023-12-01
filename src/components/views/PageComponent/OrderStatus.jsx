@@ -6,9 +6,10 @@ import logo from "../../../assets/images/berry.png";
 import clock from "../../../assets/images/icon_clock.svg";
 import close from "../../../assets/images/icon_close.svg";
 import refresh from "../../../assets/images/icon_refresh.svg";
-import "./OrderStatus.css";
 import Modal from "../../views/Modal/Modal";
+import "./OrderStatus.css";
 
+import moment from "moment/moment";
 import Progressbar from "../ProgressBar/ProgressBar";
 
 function OrderStatus() {
@@ -20,12 +21,12 @@ function OrderStatus() {
   const [isOpen, setIsOpen] = useState(false);
   const [statusList, setStatusList] = useState({});
 
-  const progressList = {
-    ORDER: 0,
-    MAKE: 1,
-    COMPELETE: 2,
-    PICKUP: 3,
-  };
+    const progressList = {
+        "ORDER": 0,
+        "MAKE": 1,
+        "COMPLETE": 2,
+        "PICKUP": 3
+    };
 
   useEffect(() => {
     fetchData();
@@ -101,7 +102,7 @@ function OrderStatus() {
                 <img src={clock} alt={clock} />
               </div>
               <span>
-                <span style={{ color: "#D82356" }}>2분 후</span> 수령 가능!
+                <span style={{ color: "#D82356" }}>{Math.abs(moment(statusList?.estimatedTime, 'HH:mm:ss.SSS').diff(moment(), 'minutes'))}분 후</span> 수령 가능!
               </span>
             </div>
           </div>
@@ -144,7 +145,7 @@ function OrderStatus() {
               <div className="status-content">
                 <span className="status-history">{statusList?.orderName}</span>
                 <div className="status-detail">
-                  <Link to="/orderDetail" style={{ textDecoration: "none" }}>
+                  <Link to={`/orderDetail?orderId=${orderId}`} style={{ textDecoration: "none" }}>
                     주문상세
                   </Link>
                 </div>
@@ -169,7 +170,7 @@ function OrderStatus() {
               <span className="compelete-text">"소중한 주문"</span>
               <span className="compelete-text">감사합니다!</span>
             </div>
-            <Link to="/storage" style={{ textDecoration: "none" }}>
+            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
               <div className="compelete-btn">확인</div>
             </Link>
           </div>

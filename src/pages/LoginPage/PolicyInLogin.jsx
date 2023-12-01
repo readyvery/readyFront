@@ -12,14 +12,22 @@ function PolicyInLogin() {
           linkTo: "/kakaologin",
         }}
       />
-      <div style={{ fontSize: "13px" }}>
-        {TEXT.termsofuse.split("\n").map((line, index) => (
-          <React.Fragment key={index}>
-            {line}
-            <br />
-          </React.Fragment>
-        ))}
-      </div>
+      {TEXT.tuermsoTitle.split("\n").map((title, index) => (
+        <React.Fragment key={index}>
+          <span style={{'fontSize' : '14px', 'fontFamily': "Bold", 'marginTop' : '5px'}}>{title}</span>
+          <br />
+          {/* Check if there's a corresponding line in privacyPolicy */}
+          {TEXT.termsofuse.split("#")[index] && (
+            <div style={{'marginTop': '10px', 'marginBottom': '10px'}}>
+            <span style={{'fontSize': '12px', 'fontFamily': "Regular"}}>
+              {TEXT.termsofuse.split("#")[index].split("\n").map((e) => (
+                <div>{e}</div>
+              ))}
+            </span>
+            </div>
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 }

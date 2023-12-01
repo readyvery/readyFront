@@ -8,7 +8,8 @@ import "slick-carousel/slick/slick.css";
 // import home_harang from "../../assets/images/home_harang.svg";
 // import home_orda from "../../assets/images/home_orda.svg";
 import axios from "axios";
-import { useCookies } from "react-cookie";
+import { useRecoilValue } from "recoil";
+import { isAuthenticatedState } from "../../Atom/status";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
@@ -19,93 +20,31 @@ import "./Homepage.css";
 function Homepage() {
   // const isLoggedIn = window.localStorage.getItem("isAuthenticated");
   const apiRoot = process.env.REACT_APP_API_ROOT;
-  const [cookies] = useCookies(["accessToken"]);
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [cookies] = useCookies(["accessToken"]);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const isAuth = useRecoilValue(isAuthenticatedState)
 
-  useEffect(() => {
-    if (cookies?.accessToken) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-    console.log(loggedIn);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cookies]);
+  // useEffect(() => {
+  //   if (cookies?.accessToken) {
+  //     setLoggedIn(true);
+  //   } else {
+  //     setLoggedIn(false);
+  //   }
+  //   console.log(loggedIn);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [cookies]);
 
-  // const eventCase = [
-  //   {
-  //     events: [
-  //       {
-  //         idx: 1,
-  //         imgUrl: event_icon,
-  //       },
-  //     ],
-  //   },
-  // ];
 
-  // 연습
-  // const dummyQuickOrderItems = [
-  //   {
-  //     id: 1,
-  //     name: "오르다",
-  //     address: "부천, 역곡동",
-  //     detail: "(ICE) 아이스아메리카노",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "카페하랑 부천점",
-  //     address: "부천, 역곡동",
-  //     detail: "(ICE) 아이스카페라떼",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "카페드림 가톨릭대점",
-  //     address: "부천, 역곡동",
-  //     detail: "(ICE) 아이스아메리카노",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "오르다",
-  //     address: "부천, 역곡동",
-  //     detail: "(ICE) 아이스아메리카노",
-  //   },
-
-  // ];
-
-  // const dummyVeryPickItems = [
-  //   {
-  //     id: 1,
-  //     name: "카페오르다",
-  //     address: "경기 부천시 지봉로 46 백호빌딩 2층",
-  //     img: home_orda,
-  //     eventText: "테이크아웃 시 아메리카노 1,700원",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "카페하랑 부천점",
-  //     address: "경기도 부천시 지봉로 43",
-  //     img: home_harang,
-  //     eventText: "강의실에서 주문하고, 바로 가져가세요!",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "카페드림 가톨릭대학교 성심교정 중앙도서관점",
-  //     address:
-  //       "경기도 부천시 지봉로 43 가톨릭대학교 중앙도서관 1층 15베리타스관",
-  //     img: home_cafedream,
-  //     eventText: "기말고사 화이팅!",
-  //   },
-  // ];
   const [quickOrder, setQuickOrder] = useState([]);
   // {/* 바로주문 */}
   useEffect(() => {
-    if (loggedIn) {
+    if (isAuth) {
       const config = {
         withCredentials: true,
       };
       // Fetch data from the backend API
       axios
-        .get(`${apiRoot}/api/v1/order/history`, config)
+        .get(`${apiRoot}/api/v1/order/history/old`, config)
         .then((response) => {
           setQuickOrder(response.data.receipts);
         })
@@ -115,7 +54,7 @@ function Homepage() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
+  }, [isAuth]);
 
   const [stores, setStores] = useState([]);
   /* verypick 가게 정보 */
@@ -194,7 +133,7 @@ function Homepage() {
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
         <div className="quick-order-list">
-          {loggedIn ? (
+          {isAuth ? (
             quickOrder.length > 0 ? (
               quickOrder.map((item) => (
                 <Link
@@ -234,7 +173,7 @@ function Homepage() {
 
       {/* 이벤트 div */}
       <div className="event">
-        {loggedIn
+        {isAuth
           ? eventBanner.map((item) => (
               <img
                 key={item.idx}

@@ -8,7 +8,7 @@ import takeOut from "../../assets/images/take_out.svg";
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import axios from "axios";
 
-const clientKey = "test_ck_pP2YxJ4K87By0b4RZeo0rRGZwXLO";
+const clientKey = process.env.REACT_APP_TOSS_CLIENT_KEY;
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
 
 const PaymentPage = () => {
@@ -89,7 +89,7 @@ const PaymentPage = () => {
 
   const paymentRequest = async () => {
     let body = {
-      inout: inout,
+      cartId: cartId,
       couponId: couponId,
     };
 
@@ -237,14 +237,16 @@ const PaymentPage = () => {
         <div className="payment-page__productAmount">
           <span className="payment-page__content">상품금액</span>
           <span className="payment-page__content-price">
-            {paymentData?.totalPrice}원
+            {isNaN(paymentData?.totalPrice)
+              ? "0원"
+              : (paymentData?.totalPrice).toLocaleString() + "원"}
           </span>
         </div>
         <div className="payment-page__discountAmount">
           <span className="payment-page__content">할인금액</span>
           {salePrice && (
             <span className="payment-page__content-price">
-              (-){salePrice}원
+              (-) salePrice.toLocaleString() + "원"
             </span>
           )}
         </div>
@@ -254,7 +256,9 @@ const PaymentPage = () => {
         <div className="payment-page__payment">
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
-            {paymentData?.totalPrice - salePrice}원
+            {isNaN(paymentData?.totalPrice - salePrice)
+              ? "0원"
+              : (paymentData?.totalPrice - salePrice).toLocaleString() + "원"}
           </span>
         </div>
 
