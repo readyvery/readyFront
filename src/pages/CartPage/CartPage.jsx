@@ -75,7 +75,7 @@ const CartPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
           { withCredentials: true }
         );
         setPaymentData(response.data);
@@ -151,7 +151,8 @@ const CartPage = () => {
                     <div className="cart-page__order-info__item__option">
                       {item.options.map((option) => (
                         <div>
-                          •{option.name} (+{option.price?.toLocaleString()}원)
+                          •[{option.categoryName}] {option.name} (+
+                          {option.price?.toLocaleString()}원)
                         </div>
                       ))}
                     </div>
