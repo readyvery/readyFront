@@ -44,10 +44,11 @@ const OrderProcessPage = () => {
   }, []);
 
   const handleCartUpdate = () => {
+    console.log(essentialOptionIdx, optionIdx);
     let body = {
       storeId: storeId,
       foodieId: foodieId,
-      options: optionIdx,
+      options: [...essentialOptionIdx, ...optionIdx],
       count: orderCnt,
       inout: inout,
     };
@@ -62,6 +63,11 @@ const OrderProcessPage = () => {
           foodOptionInfo?.category
             ?.filter((el) => el?.essential)
             .map((e) => e?.options[0]?.idx)
+        );
+        setEssentialOptionIdx(
+          foodOptionInfo?.category
+            ?.filter((e) => e.essential)
+            ?.map((cate) => cate.options[0].idx)
         );
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
@@ -101,7 +107,7 @@ const OrderProcessPage = () => {
     let body = {
       storeId: storeId,
       foodieId: foodieId,
-      options: optionIdx,
+      options: [...essentialOptionIdx, ...optionIdx],
       count: orderCnt,
       inout: inout,
     };
@@ -141,6 +147,8 @@ const OrderProcessPage = () => {
     foodOptionInfo?.category?.map(() => 0)
   );
   const [optionIdx, setOptionIdx] = useState([]);
+  const [essentialOptionIdx, setEssentialOptionIdx] = useState({});
+
   useEffect(() => {
     setActiveToggles(
       foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false)
@@ -166,10 +174,10 @@ const OrderProcessPage = () => {
         ?.filter((el) => el?.essential)
         .map((e) => e?.options[0]?.price)
     );
-    setOptionIdx(
+    setEssentialOptionIdx(
       foodOptionInfo?.category
-        ?.filter((el) => el?.essential)
-        .map((e) => e?.options[0]?.idx)
+        ?.filter((e) => e.essential)
+        ?.map((cate) => cate.options[0].idx)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
@@ -201,13 +209,18 @@ const OrderProcessPage = () => {
       return prices;
     });
 
-    setOptionIdx((prev) => [prev.filter((e) => e !== idx), idx]);
+    setEssentialOptionIdx((prevOptions) => {
+      const options = [...prevOptions];
+      options[index] = idx;
+      return options;
+    });
   };
 
   const handleOptionChange = (idx, price, e) => {
     e.target.checked
       ? setTotalAmount((prevAmount) => prevAmount + price)
       : setTotalAmount((prevAmount) => prevAmount - price);
+    console.log(e.target.checked, optionIdx);
     e.target.checked
       ? setOptionIdx((prev) => [...prev, idx])
       : setOptionIdx((prev) => prev.filter((e) => e !== idx));
@@ -216,12 +229,10 @@ const OrderProcessPage = () => {
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
     setOrderCnt(newOrderCnt);
-    // setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
   };
 
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
-    // orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
     setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
   };
 
@@ -317,20 +328,6 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
-                          {/* {selectedRadioTexts?.length &&
-                            selectedRadioTexts[index] === option.name && (
-                              <span className="custom-radio"></span>
-                            )
-                          } */}
-                          <span>
-                            <span
-                              className={`custom-radio ${
-                                selectedRadioTexts?.length &&
-                                selectedRadioTexts[index] === option.name &&
-                                "checked"
-                              }`}
-                            ></span>
-                          </span>
                           {option.price === 0 ? (
                             <span className="radio-txt">{option.name}</span>
                           ) : (
@@ -401,15 +398,6 @@ const OrderProcessPage = () => {
                                 }
                               />
 
-                              <span>
-                                <span
-                                  className={`custom-checkbox ${
-                                    optionIdx?.length &&
-                                    optionIdx.includes(option.idx) &&
-                                    "checked"
-                                  }`}
-                                ></span>
-                              </span>
                               {option.price === 0 ? (
                                 <span className="radio-txt">{option.name}</span>
                               ) : (
