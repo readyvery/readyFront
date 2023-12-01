@@ -164,6 +164,24 @@
   letter-spacing: -0.00938rem;
 }
 
+.store-detail-page__menuList__item__cost {
+  color: #838383;
+  font-family: "Medium";
+  font-size: 0.8125rem;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
+  text-decoration: line-through;
+  margin-right: 0.3rem;
+}
+
+.store-detail-page__menuList__item__sale {
+  color: #000;
+  font-family: "Medium";
+  font-size: 0.8125rem;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
+}
+
 .store-detail-page__menuList__item__price {
   color: #000;
   font-family: "Medium";

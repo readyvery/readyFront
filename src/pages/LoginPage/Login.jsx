@@ -52,7 +52,7 @@ function KaKaoLoginBtn() {
   };
   const handlePrivacyClick = () => {
     navigate("/privacypolicyinlogin");
-  }
+  };
   return (
     <Container>
       <LogoContainer>
@@ -72,7 +72,7 @@ function KaKaoLoginBtn() {
         <div style={{ borderBottom: "0.5px solid #000" }}>
           레디베리 개인정보 처리방침
         </div>
-        </PolicyContainter>
+      </PolicyContainter>
     </Container>
   );
 }

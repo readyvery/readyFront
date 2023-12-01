@@ -16,47 +16,41 @@ function MyprofilePage() {
   const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
 
   const handleLogout = async () => {
-    try{
-    const config = {
-      withCredentials: true,
-    };
-    const response = await axios.get(apiUrl + "/api/v1/user/logout", config)
-      
-    console.log(response);
-    removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-    removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-    setIsAuth(false);
-    message.success("로그아웃에 성공하셨습니다.");
-    navigate("/");
-    } catch(error) {
+    try {
+      const config = {
+        withCredentials: true,
+      };
+      const response = await axios.get(apiUrl + "/api/v1/user/logout", config);
+
+      console.log(response);
+      removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+      removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+      setIsAuth(false);
+      message.success("로그아웃에 성공하셨습니다.");
+      navigate("/");
+    } catch (error) {
       alert("관리자에게 문의하세요.");
       navigate("/");
     }
   };
 
-  const handleLogdelete = () => {
-    const config = {
-      withCredentials: true,
-    };
-    axios
-      .get(apiUrl + "/api/v1/user/remove", config)
-      .then((response) => {
-        console.log(response);
-        // setIsAuthenticated(false);
-        // setIsLoggedIn({
-        //   accessToken: null,
-        //     expiredTime: null
-        //   })
-        navigate("/");
-        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-        window.localStorage.setItem("isAuthenticated", false);
-      })
-      .catch((error) => {
-        alert("관리자에게 문의하세요.");
-        navigate("/");
-        // navigate로 props 보내 그리고 location올 props 있을 때만 해
-      });
+  const handleLogdelete = async () => {
+    try {
+      const config = {
+        withCredentials: true,
+      };
+      const response = await axios.get(apiUrl + "/api/v1/user/remove", config);
+
+      console.log(response);
+      removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+      removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+      setIsAuth(false);
+      message.success("회원탈퇴에 성공하셨습니다.");
+      navigate("/");
+    } catch (error) {
+      alert("관리자에게 문의하세요.");
+      navigate("/");
+    }
   };
 
   const [userData, setUserData] = useState({

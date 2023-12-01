@@ -12,6 +12,7 @@ const CartPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
   const [Count, setCount] = useState(1);
@@ -203,7 +204,7 @@ const CartPage = () => {
           </div>
 
           <Link
-            to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${paymentData?.cartId}`}
+            to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
             className="cart-page__order-btn"
           >
             <span className="cart-page__total-quantity">{totalQuantity}</span>

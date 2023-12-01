@@ -167,6 +167,10 @@ const PaymentPage = () => {
                   {item.totalPrice * item.count}원
                 </div>
               </div>
+
+              <div className="payment-page__order-info__item__count">
+                {item?.count}
+              </div>
             </div>
 
             <div className="payment-page__order-info__item__line"></div>
@@ -246,7 +250,7 @@ const PaymentPage = () => {
           <span className="payment-page__content">할인금액</span>
           {salePrice && (
             <span className="payment-page__content-price">
-              (-) salePrice.toLocaleString() + "원"
+              (-) {salePrice.toLocaleString() + "원"}
             </span>
           )}
         </div>
