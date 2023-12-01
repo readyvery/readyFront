@@ -26,7 +26,7 @@ function MyprofilePage() {
         //   accessToken: null,
         //     expiredTime: null
         //   })
-        navigate("/");
+        navigate("/kakaologin");
         removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
         removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
         window.localStorage.setItem("isAuthenticated", false);
