@@ -25,10 +25,17 @@ function OrderStorage() {
       withCredentials: true
     };
 
-    axios.get(`${apiUrl}/api/v1/order/history`, config)
+    axios.get(`${apiUrl}/api/v1/order/history/new`, config)
       .then((res) => {
         console.log(res);
         setStorageList(res.data.receipts);
+      })
+      .catch((err) => console.log(err));
+
+    axios.get(`${apiUrl}/api/v1/order/history/old`, config)
+      .then((res) => {
+        console.log(res);
+        setStorageList((prev) => [...prev, res.data.receipts]);
       })
       .catch((err) => console.log(err));
       // eslint-disable-next-line react-hooks/exhaustive-deps
