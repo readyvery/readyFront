@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { isAuthenticatedState } from "../../../Atom/status";
+import { getAuthenticatedSelector } from "../../../Atom/status";
 import profile_icon from "../../../assets/images/profile_icon.svg";
 import Header from "../../../components/views/Header/Header";
 import "./MyprofilePage.css";
@@ -14,32 +14,26 @@ function MyprofilePage() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
   // const setIsLoggedIn = useSetRecoilState(loginState);
-  const setIsAuth = useSetRecoilState(isAuthenticatedState);
+  const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try{
     const config = {
       withCredentials: true,
     };
-    axios
-      .get(apiUrl + "/api/v1/user/logout", config)
-      .then((response) => {
-        console.log(response);
-        // setIsAuthenticated(false);
-        // setIsLoggedIn({
-        //   accessToken: null,
-        //     expiredTime: null
-        //   })
-        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-        setIsAuth(false);
-        message.success("로그아웃에 성공하셨습니다.");
-        navigate("/");
-      })
-      .catch((error) => {
-        alert("관리자에게 문의하세요.");
-        navigate("/");
-        // navigate로 props 보내 그리고 location올 props 있을 때만 해
-      });
+    const response = await axios.get(apiUrl + "/api/v1/user/logout", config)
+      
+    console.log(response);
+    removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+    removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+    setIsAuth(false);
+    message.success("로그아웃에 성공하셨습니다.");
+    navigate("/");
+    } catch(error) {
+      alert("관리자에게 문의하세요.");
+      navigate("/");
+      // navigate로 props 보내 그리고 location올 props 있을 때만 해
+    }
   };
 
   const handleLogdelete = () => {
