@@ -2,28 +2,30 @@ import React from "react";
 import Header from "../../components/views/Header/Header";
 import TEXT from "../../constants/text";
 
-function PolicyInLogin() {
+function PrivacypolicyLogin() {
   return (
-    <div className="policylogin-div" style={{ width: "90%" }}>
+    <div className="privacy-div" style={{ width: "90%" }}>
       <Header
         headerProps={{
-          pageName: "레디베리 이용약관",
+          pageName: "개인정보 처리방침",
           isClose: false,
           linkTo: "/kakaologin",
         }}
       />
-      {TEXT.tuermsoTitle.split("\n").map((title, index) => (
+      
+      {TEXT.privacyPolicyTitle.split("\n").map((title, index) => (
         <React.Fragment key={index}>
           <span style={{'fontSize' : '14px', 'fontFamily': "Bold", 'marginTop' : '5px'}}>{title}</span>
           <br />
           {/* Check if there's a corresponding line in privacyPolicy */}
-          {TEXT.termsofuse.split("#")[index] && (
+          {TEXT.privacyPolicy.split("#")[index] && (
             <div style={{'marginTop': '10px', 'marginBottom': '10px'}}>
             <span style={{'fontSize': '12px', 'fontFamily': "Regular"}}>
-              {TEXT.termsofuse.split("#")[index].split("\n").map((e) => (
+              {TEXT.privacyPolicy.split("#")[index].split("\n").map((e) => (
                 <div>{e}</div>
               ))}
             </span>
+            <div></div>
             </div>
           )}
         </React.Fragment>
@@ -32,4 +34,4 @@ function PolicyInLogin() {
   );
 }
 
-export default PolicyInLogin;
+export default PrivacypolicyLogin;

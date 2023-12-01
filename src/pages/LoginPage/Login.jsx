@@ -37,7 +37,7 @@ const PolicyContainter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   font-size: 0.8rem;
   font-family: "Regular";
 `;
@@ -50,6 +50,9 @@ function KaKaoLoginBtn() {
   const handlePolicyClick = () => {
     navigate("/policyinlogin"); // 페이지 이동 추가
   };
+  const handlePrivacyClick = () => {
+    navigate("/privacypolicyinlogin");
+  }
   return (
     <Container>
       <LogoContainer>
@@ -65,6 +68,11 @@ function KaKaoLoginBtn() {
           레디베리 이용약관
         </div>
       </PolicyContainter>
+      <PolicyContainter onClick={handlePrivacyClick}>
+        <div style={{ borderBottom: "0.5px solid #000" }}>
+          레디베리 개인정보 처리방침
+        </div>
+        </PolicyContainter>
     </Container>
   );
 }
