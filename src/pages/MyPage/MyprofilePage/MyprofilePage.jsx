@@ -13,7 +13,6 @@ function MyprofilePage() {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
-  // const setIsLoggedIn = useSetRecoilState(loginState);
   const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
 
   const handleLogout = async () => {
@@ -32,7 +31,6 @@ function MyprofilePage() {
     } catch(error) {
       alert("관리자에게 문의하세요.");
       navigate("/");
-      // navigate로 props 보내 그리고 location올 props 있을 때만 해
     }
   };
 
