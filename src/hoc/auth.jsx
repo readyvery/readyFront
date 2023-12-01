@@ -3,10 +3,10 @@ import moment from "moment";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   getUserSelector,
-  //isAuthenticatedState,
+  isAuthenticatedState,
   loginState,
 } from "../Atom/status";
 
@@ -16,19 +16,19 @@ function Auth(SpecificComponent, option) {
     const location = useLocation();
     const userInfo = useRecoilValue(getUserSelector);
     const setIsLoggedIn = useSetRecoilState(loginState);
+    const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
     //const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
       console.log(userInfo);
-      const isAuth = window.localStorage.getItem("isAuthenticated");
-      if (userInfo === "404" && location.pathname !== "/kakaologin") {
+      if (userInfo === "404" && location.pathname !== "/kakaologin" && location.pathname !== "/") {
         navigate("/kakaologin");
       } else {
-        if (!isAuth && cookies?.accessToken) {
+        console.log(!isAuth);
+        if (!isAuth && cookies?.accessToken && location.pathname === "/") {
           // 첫 로그인 시
-          window.localStorage.setItem("isAuthenticated", true);
-          // window.localStorage.setItem("isAuthenticated", false);
+          setIsAuth(true);
           setIsLoggedIn({
             accessToken: getAccessTokenFromCookie(),
             expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
@@ -37,7 +37,8 @@ function Auth(SpecificComponent, option) {
           message.success("로그인에 성공하셨습니다.");
           navigate("/"); //homepage
           // alert("로그인에 성공하셨습니다.");
-        } else {
+        } 
+        else {
           if (cookies?.accessToken && location.pathname === "/kakaologin") {
             // 로그인 상태에서 로그인 화면으로 갔을 경우
             navigate("/"); // homepage
