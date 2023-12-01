@@ -25,7 +25,7 @@
   margin-top: 2.28rem;
 }
 
-.payment-redirect-page__done {
+.payment-success-page__done {
   display: flex;
   width: 21.5625rem;
   height: 2.6875rem;
@@ -34,6 +34,27 @@
   flex-shrink: 0;
   border-radius: 0.9375rem;
   background: #d82356;
+  color: #fff;
+  text-align: center;
+  font-family: "Bold";
+  font-size: 1.5625rem;
+  line-height: 130%; /* 2.03125rem */
+  letter-spacing: -0.01563rem;
+  margin-top: 10.12rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6.94rem;
+}
+
+.payment-fail-page__done {
+  display: flex;
+  width: 21.5625rem;
+  height: 2.6875rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  background: #838383;
   color: #fff;
   text-align: center;
   font-family: "Bold";
