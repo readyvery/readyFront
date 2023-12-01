@@ -56,6 +56,11 @@ const OrderProcessPage = () => {
       })
       .then((res) => {
         console.log(res.data);
+        setOptionIdx(
+          foodOptionInfo?.category
+            ?.filter((el) => el?.essential)
+            .map((e) => e?.options[0]?.idx)
+        );
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
 
@@ -168,7 +173,7 @@ const OrderProcessPage = () => {
     // }
   };
 
-  const handleRadioChange = (index, text, price) => {
+  const handleRadioChange = (index, text, price, idx) => {
     setSelectedRadioTexts((prevTexts) => {
       const texts = [...prevTexts];
       texts[index] = text;
@@ -182,6 +187,8 @@ const OrderProcessPage = () => {
       prices[index] = price;
       return prices;
     });
+
+    setOptionIdx((prev) => [prev.filter((e) => e !== idx), idx])
   };
 
   const handleOptionChange = (idx, price, e) => {
@@ -292,7 +299,8 @@ const OrderProcessPage = () => {
                               handleRadioChange(
                                 index,
                                 option.name,
-                                option.price
+                                option.price,
+                                option.idx
                               )
                             }
                           />

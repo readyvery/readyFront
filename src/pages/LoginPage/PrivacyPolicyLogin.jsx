@@ -1,15 +1,15 @@
 import React from "react";
-import Header from "../../../components/views/Header/Header";
-import TEXT from "../../../constants/text";
+import Header from "../../components/views/Header/Header";
+import TEXT from "../../constants/text";
 
-function PrivacypolicyPage() {
+function PrivacypolicyLogin() {
   return (
     <div className="privacy-div" style={{ width: "90%" }}>
       <Header
         headerProps={{
           pageName: "개인정보 처리방침",
           isClose: false,
-          linkTo: "/policy",
+          linkTo: "/kakaologin",
         }}
       />
       
@@ -34,4 +34,4 @@ function PrivacypolicyPage() {
   );
 }
 
-export default PrivacypolicyPage;
+export default PrivacypolicyLogin;

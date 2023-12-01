@@ -11,7 +11,6 @@ const OrderDetail = () => {
   const params = new URLSearchParams(location.search);
   const orderId = params.get("orderId");
 
-  const isCompelete = false;
   const [detailData, setDetailData] = useState({});
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const OrderDetail = () => {
         <div className="detail-content">
           <div className="detail-scroll-content">
             <div className="detail-top__wrapper">
-              {isCompelete ? (
+              {detailData?.orderStatus === "CANCEL" ? (
                 <span className="detail-order-status fail">
                   주문 취소 (가게사정)
                 </span>

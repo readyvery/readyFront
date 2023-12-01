@@ -1,49 +1,54 @@
 import { message } from "antd";
-import moment from "moment";
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
-  getUserSelector,
-  //isAuthenticatedState,
-  loginState,
+  isAuthenticatedState
 } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
-    const userInfo = useRecoilValue(getUserSelector);
-    const setIsLoggedIn = useSetRecoilState(loginState);
-    //const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+    // const userInfo = useRecoilValue(getUserSelector);
+    // const setIsLoggedIn = useSetRecoilState(loginState);
+    const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
-      console.log(userInfo);
-      const isAuth = window.localStorage.getItem("isAuthenticated");
-      if (userInfo === "404" && location.pathname !== "/kakaologin") {
-        navigate("/kakaologin");
-      } else {
-        if (!isAuth && cookies?.accessToken) {
-          // 첫 로그인 시
-          window.localStorage.setItem("isAuthenticated", true);
-          // window.localStorage.setItem("isAuthenticated", false);
-          setIsLoggedIn({
-            accessToken: getAccessTokenFromCookie(),
-            expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
-          });
-          // setIsAuthenticated(true);
-          message.success("로그인에 성공하셨습니다.");
-          navigate("/"); //homepage
-          // alert("로그인에 성공하셨습니다.");
-        } else {
-          if (cookies?.accessToken && location.pathname === "/kakaologin") {
-            // 로그인 상태에서 로그인 화면으로 갔을 경우
-            navigate("/"); // homepage
+      // 성공시 해당 정보 반환
+      const apiUrl = process.env.REACT_APP_API_ROOT;
+      const config = {
+        withCredentials: true,
+      };
+      axios.get(`${apiUrl}/api/v1/auth`, config)
+        .then((res) => {
+          console.log(res);
+          console.log("~");
+          if (!isAuth && cookies?.accessToken && location.pathname === "/") {
+            // 첫 로그인 시
+            setIsAuth(true);
+            // setIsLoggedIn({
+            //   accessToken: getAccessTokenFromCookie(),
+            //   expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+            // });
+            message.success("로그인에 성공하셨습니다.");
+            navigate("/"); //homepage
+          } 
+          else {
+            if (cookies?.accessToken && location.pathname === "/kakaologin") {
+              // 로그인 상태에서 로그인 화면으로 갔을 경우
+              navigate("/"); // homepage
+            }
           }
-        }
-      }
+        }) 
+        .catch((err) => {
+          if(location.pathname !== "/kakaologin" && location.pathname !== "/"){
+            navigate("/kakaologin");
+          }
+        })
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
