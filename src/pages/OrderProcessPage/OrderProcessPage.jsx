@@ -203,13 +203,13 @@ const OrderProcessPage = () => {
     const newOrderCnt = orderCnt + 1;
     setOrderCnt(newOrderCnt);
     // setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt - 1));
-  }
+  };
 
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
     // orderCnt > 1 && setTotalAmount((prev) => prev * newOrderCnt / (newOrderCnt + 1));
-    setOrderCnt((prev) => prev === 1 ? 1 : newOrderCnt);
-  }
+    setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
+  };
 
   return (
     <div className="order-process-page">
@@ -446,11 +446,8 @@ const OrderProcessPage = () => {
         <text className="order-process-page__total-amount__name">총 금액</text>
         <text className="order-process-page__total-amount__price">
           {isNaN(totalAmount * orderCnt)
-            ?
-              0 + "원" 
-            : 
-              (totalAmount * orderCnt).toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
+            ? "0원"
+            : (totalAmount * orderCnt).toLocaleString() + "원"}
         </text>
       </div>
 
