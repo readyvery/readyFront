@@ -1,7 +1,10 @@
+import { message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isAuthenticatedState } from "../../../Atom/status";
 import profile_icon from "../../../assets/images/profile_icon.svg";
 import Header from "../../../components/views/Header/Header";
 import "./MyprofilePage.css";
@@ -11,7 +14,7 @@ function MyprofilePage() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
   // const setIsLoggedIn = useSetRecoilState(loginState);
-  // const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+  const setIsAuth = useSetRecoilState(isAuthenticatedState);
 
   const handleLogout = () => {
     const config = {
@@ -26,10 +29,11 @@ function MyprofilePage() {
         //   accessToken: null,
         //     expiredTime: null
         //   })
-        navigate("/kakaologin");
         removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
         removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-        window.localStorage.setItem("isAuthenticated", false);
+        setIsAuth(false);
+        message.success("로그아웃에 성공하셨습니다.");
+        navigate("/");
       })
       .catch((error) => {
         alert("관리자에게 문의하세요.");
