@@ -3,10 +3,9 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
-  isAuthenticatedState,
-  loginState
+  isAuthenticatedState
 } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
@@ -14,7 +13,7 @@ function Auth(SpecificComponent, option) {
     const navigate = useNavigate();
     const location = useLocation();
     // const userInfo = useRecoilValue(getUserSelector);
-    const setIsLoggedIn = useSetRecoilState(loginState);
+    // const setIsLoggedIn = useSetRecoilState(loginState);
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
     const [cookies] = useCookies(["accessToken"]);
 
