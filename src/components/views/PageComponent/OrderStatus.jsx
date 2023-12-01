@@ -170,7 +170,7 @@ function OrderStatus() {
               <span className="compelete-text">"소중한 주문"</span>
               <span className="compelete-text">감사합니다!</span>
             </div>
-            <Link to="/storage" style={{ textDecoration: "none" }}>
+            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
               <div className="compelete-btn">확인</div>
             </Link>
           </div>

@@ -48,6 +48,7 @@ function App() {
   const NewLoginPage = Auth(KakaoLoginPage, false); // 로그인 페이지
 
   //true : 로그인 한 유저 들어감
+  const NewHomePage = Auth(HomePage, true);
   const NewOrderHistory = Auth(OrderHistory, true);
   const NewOrderDetail = Auth(OrderDetail, true);
   const NewReadyPage = Auth(ReadyPage, true);
@@ -97,7 +98,7 @@ function App() {
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<NewHomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
             {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
             {/* 카페검색*/}
