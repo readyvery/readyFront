@@ -71,7 +71,8 @@ const OrderProcessPage = () => {
   const handleCancle = () => {
     setIsOpen((prev) => !prev);
 
-    const apiUrl = `${process.env.REACT_APP_API_ROOT}/api/v1/order/cart/reset`;
+    const apiRoot = process.env.REACT_APP_API_ROOT;
+    const apiUrl = `${apiRoot}/api/v1/order/cart/reset`;
 
     // Axios를 사용한 DELETE 요청
     const response = axios.delete(apiUrl, { withCredentials: true });
