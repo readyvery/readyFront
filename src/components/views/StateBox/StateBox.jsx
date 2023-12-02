@@ -10,7 +10,7 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
         <div className="status-bar">
           <div className="status-date">{date}</div>
           <div className={`status-box ${(state !== undefined && (state === 0 || state === 1 || state === 2) ) && "selected"}`}>
-            {state !== undefined && stateList[state - 2 < 0 ? 0 : state - 2]}
+            {id !== "" ? "상세보기" : state !== undefined && stateList[state - 2 < 0 ? 0 : state - 2]}
           </div>
         </div>
         <div className="order-content">

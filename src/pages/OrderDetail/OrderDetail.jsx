@@ -9,6 +9,7 @@ const OrderDetail = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const orderId = params.get("orderId");
+  const {state} = useLocation();
 
   const [detailData, setDetailData] = useState({});
 
@@ -34,7 +35,7 @@ const OrderDetail = () => {
         headerProps={{
           pageName: "주문상세",
           isClose: true,
-          linkTo: "/orderHistory",
+          linkTo: state.returnTo,
         }}
       />
       <div className="detail-content__wrapper">

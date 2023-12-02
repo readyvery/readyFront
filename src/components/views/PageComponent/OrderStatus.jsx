@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/berry.png";
 // import berry from "../../../assets/images/berry.svg";
+import { useNavigate } from "react-router-dom";
 import clock from "../../../assets/images/icon_clock.svg";
 import close from "../../../assets/images/icon_close.svg";
 import refresh from "../../../assets/images/icon_refresh.svg";
 import Modal from "../../views/Modal/Modal";
 import "./OrderStatus.css";
-import { useNavigate } from "react-router-dom";
 
 import moment from "moment/moment";
 import Progressbar from "../ProgressBar/ProgressBar";
@@ -21,7 +21,7 @@ function OrderStatus() {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [statusList, setStatusList] = useState({});
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const progressList = {
     ORDER: 0,
@@ -34,19 +34,6 @@ function OrderStatus() {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const fetchData = () => {
-  //     const config = {
-  //     withCredentials: true
-  //     };
-
-  //     axios.get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
-  //     .then((res) => {
-  //         console.log(res);
-  //         setStatusList(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   const fetchData = () => {
     const config = {
@@ -160,6 +147,7 @@ function OrderStatus() {
                 <div className="status-detail">
                   <Link
                     to={`/orderDetail?orderId=${orderId}`}
+                    state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
                     style={{ textDecoration: "none" }}
                   >
                     주문상세
