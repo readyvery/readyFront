@@ -39,10 +39,9 @@ function OrderStorage() {
         setOldStorageList(res.data.receipts);
       })
       .catch((err) => console.log(err));
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const storageList = [];
 
   return (
     <section className="main-container">
@@ -52,42 +51,41 @@ function OrderStorage() {
       <main className="content-container">
         {newStorageList?.length || oldStorageList?.length ? (
           <>
-          {newStorageList?.length && newStorageList?.map((e, i) => (
+          {newStorageList?.length ? newStorageList?.map((e, i) => (
             <Link
               to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
-              // to={`/orderHistory?orderId=${e.orderId}`}
               style={{ textDecoration: "none" }}
             >
               <StateBox
-                id={e.orderId}
+                id=""
                 date={e.dateTime}
                 name={e.name}
                 menu={e.orderName}
                 imgUrl={e.imgUrl}
                 amount={e.amount}
-                isLast={(newStorageList?.length + oldStorageList?.length) - 1 === i}
+                isLast={oldStorageList?.length === 0 && newStorageList?.length - 1 === i}
                 state={progressList[e.progress]}
               />
-            </Link>
-          ))}
-          {oldStorageList?.length && oldStorageList?.map((e, i) => (
+          </Link>
+          )) : (<></>)}
+          {oldStorageList?.length ? oldStorageList?.map((e, i) => (
             <Link
               to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
-              // to={`/orderHistory?orderId=${e.orderId}`}
+              state={{ returnTo: "/orderHistory" }}
               style={{ textDecoration: "none" }}
             >
               <StateBox
-                id={e.orderId}
+                id=""
                 date={e.dateTime}
                 name={e.name}
                 menu={e.orderName}
                 imgUrl={e.imgUrl}
                 amount={e.amount}
-                isLast={(newStorageList?.length + oldStorageList?.length) - 1 === i}
+                isLast={oldStorageList?.length && oldStorageList?.length - 1 === i}
                 state={progressList[e.progress]}
               />
             </Link>
-          ))}
+          )) : (<></>)}
           </>
         ) : (
           <div className="empty-order-wrapper">
