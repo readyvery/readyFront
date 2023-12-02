@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "recoilize": "^3.2.0",
     "redux": "^4.2.1",
     "redux-promise": "^0.6.0",

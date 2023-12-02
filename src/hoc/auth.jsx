@@ -15,6 +15,7 @@ function Auth(SpecificComponent, option) {
     // const userInfo = useRecoilValue(getUserSelector);
     // const setIsLoggedIn = useSetRecoilState(loginState);
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
+    console.log(isAuth);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
@@ -26,7 +27,6 @@ function Auth(SpecificComponent, option) {
       axios.get(`${apiUrl}/api/v1/auth`, config)
         .then((res) => {
           console.log(res);
-          console.log("~");
           if (!isAuth && cookies?.accessToken && location.pathname === "/") {
             // 첫 로그인 시
             setIsAuth(true);
