@@ -11,6 +11,10 @@ import "./Header.css";
 const Header = ({ headerProps }) => {
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
+  const params = new URLSearchParams(location.search);
+  const storeId = params.get("storeId");
+  const inout = params.get("inout");
+
   return (
     <>
       {/* headerProps가 주어진 경우 */}
@@ -58,7 +62,10 @@ const Header = ({ headerProps }) => {
                 )}
                 {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
                 {!isCartPage && (
-                  <Link to="/cart" className="cart-link">
+                  <Link
+                    to={`/cart?storeId=${storeId}&inout=${inout}`}
+                    className="cart-link"
+                  >
                     <img src={icon_bag} alt="bagIcon" className="bag-icon" />
                   </Link>
                 )}
