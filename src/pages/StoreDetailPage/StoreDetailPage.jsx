@@ -16,7 +16,7 @@ const StoreDetailPage = () => {
   const [hasResponse, setHasResponse] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [cartId, setCartId] = useState(null);
+  const [cart, setCart] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +64,7 @@ const StoreDetailPage = () => {
             console.log("response.data");
             setHasResponse(true);
             setTotalPrice(response.data.totalPrice);
-            setCartId(response.data.cartId);
+            setCart(response.data);
           }
         })
         .catch((error) => {
@@ -174,7 +174,7 @@ const StoreDetailPage = () => {
         Array.isArray(selectedCategory.menuItems) ? (
           selectedCategory.menuItems.map((item, index) => (
             <Link
-              to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}`}
+              to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}&status=${caffeeInfo?.status}`}
               key={index}
               className="store-detail-page__menuList__item"
             >
@@ -202,9 +202,9 @@ const StoreDetailPage = () => {
         )}
       </div>
 
-      {hasResponse && (
+      {hasResponse && cart.storeId === parseInt(storeId) && (
         <Link
-          to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
+          to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cart.cartId}`}
           className="store-detail-page__cart-btn"
         >
           <span className="store-detail-page__total-quantity">
