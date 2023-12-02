@@ -60,7 +60,7 @@ const OrderProcessPage = () => {
         setOptionIdx(
           foodOptionInfo?.category
             ?.filter((el) => el?.essential)
-            .map((e) => e?.options[0]?.idx)
+            ?.map((e) => e?.options[0]?.idx)
         );
         setEssentialOptionIdx(
           foodOptionInfo?.category
@@ -143,7 +143,7 @@ const OrderProcessPage = () => {
     setSelectedRadioTexts(
       foodOptionInfo.category
         ?.filter((el) => el?.essential)
-        .map((e) => `${e.options[0]?.name}`)
+        .map((e) => `${e?.options[0]?.name}`)
     );
     setTotalAmount(
       orderCnt &&
@@ -159,12 +159,12 @@ const OrderProcessPage = () => {
     setPrevRadioPrice(
       foodOptionInfo?.category
         ?.filter((el) => el?.essential)
-        .map((e) => e?.options[0]?.price)
+        ?.map((e) => e?.options[0]?.price)
     );
     setEssentialOptionIdx(
       foodOptionInfo?.category
-        ?.filter((e) => e.essential)
-        ?.map((cate) => (cate.options[0].idx))
+        ?.filter((e) => e?.essential)
+        ?.map((cate) => (cate?.options[0]?.idx))
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
@@ -245,8 +245,7 @@ const OrderProcessPage = () => {
       </div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo &&
-          foodOptionInfo.category &&
+        {foodOptionInfo?.category?.length &&
           foodOptionInfo.category
             .filter((c, i) => c?.essential)
             .map((category, index) => (
@@ -265,10 +264,12 @@ const OrderProcessPage = () => {
                   </span>
                   <span className="order-process-page__toggle__btn">
                     {selectedRadioTexts?.length &&
-                      selectedRadioTexts[index] && (
+                      selectedRadioTexts[index] ? (
                         <span className="order-process-page__selected-radio">
                           {selectedRadioTexts[index]}
                         </span>
+                      ) : (
+                        <span className="order-process-page__selected-radio"></span>
                       )}
                     <img
                       className="order-process-page__toggle__header__img"
@@ -315,11 +316,11 @@ const OrderProcessPage = () => {
                               )
                             }
                           />
-                          {option.price === 0 ? (
-                            <span className="radio-txt">{option.name}</span>
+                          {option?.price === 0 ? (
+                            <span className="radio-txt">{option?.name}</span>
                           ) : (
                             <span className="radio-txt">
-                              {option.name} (+{option.price}원)
+                              {option?.name} (+{option?.price}원)
                             </span>
                           )}
                         </label>
@@ -356,8 +357,7 @@ const OrderProcessPage = () => {
               }}
             >
               {optionOpen &&
-                foodOptionInfo &&
-                foodOptionInfo.category &&
+                foodOptionInfo?.category?.length &&
                 foodOptionInfo.category
                   .filter((c, i) => !c.essential)
                   .map((category, index) => (
@@ -365,7 +365,7 @@ const OrderProcessPage = () => {
                       {index !== 0 && <div className="option__line"></div>}
                       <span className="order-process-page__option__title__wrapper">
                         <span className="order-process-page__option__title">
-                          {category.name}
+                          {category?.name}
                         </span>
                       </span>
                       {category?.options?.map((option, i) => (
