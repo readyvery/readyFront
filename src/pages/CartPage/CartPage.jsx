@@ -84,7 +84,20 @@ const CartPage = () => {
         console.error(error);
       }
     };
-    fetchData();
+
+    const noneCartData = async () => {
+      try {
+        const response = await axios.get(`${apiRoot}/api/v1/order/cart`, {
+          withCredentials: true,
+        });
+        setPaymentData(response.data);
+        setPrice(response.data.totalPrice);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    cartId ? fetchData() : noneCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -115,7 +128,13 @@ const CartPage = () => {
         headerProps={{
           pageName: "장바구니",
           isClose: false,
-          linkTo: !storeId ? "/" : `/store?storeId=${storeId}&inout=${inout}`,
+          linkTo:
+            !storeId ||
+            isNaN(parseInt(storeId, 10)) ||
+            !inout ||
+            isNaN(parseInt(inout, 10))
+              ? "/"
+              : `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
