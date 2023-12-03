@@ -50,6 +50,17 @@
   margin-left: 1rem; /* 간격을 주기 위한 마진 값 설정 */
 }
 
+.home-link2 {
+  margin-left: auto;
+  margin-right: 2rem;
+}
+
+.homeIcon2 {
+  margin: 0 2rem;
+  /* margin-left: 2rem; */
+  /* 간격을 주기 위한 마진 값 설정 */
+}
+
 /* cart-link 및 bagIcon 스타일 조정 */
 .cart-link {
   display: inline-block;
