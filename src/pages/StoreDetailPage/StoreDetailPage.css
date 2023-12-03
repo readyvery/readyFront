@@ -162,10 +162,19 @@
 
 .store-detail-page__menuList__item__name {
   color: #000;
-  font-family: "Semibold";
+  font-family: "SemiBold";
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
+}
+
+.store-detail-page__menuList__item__hit {
+  color: #d82356;
+  font-family: "KBold";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  margin-left: 0.25rem;
 }
 
 .store-detail-page__menuList__item__cost {
