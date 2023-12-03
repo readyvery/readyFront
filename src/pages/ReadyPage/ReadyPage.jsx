@@ -37,7 +37,7 @@ function ReadyPage() {
         {storageList.length ? (
           storageList.map((e, i) => (
             <Link
-              to={`/orderDetail?orderId=${e.orderId}`}
+              to={`/payment?storeId=${e?.storeId}&inout=${e?.inOut}&cartId=${e?.cartId}`}
               state={{ returnTo: "/ready" }}
               style={{ textDecoration: "none" }}
             >
