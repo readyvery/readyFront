@@ -40,7 +40,8 @@ const PolicyContainter = styled.div`
   align-items: center;
   margin-top: 1.5rem;
   font-size: 0.8rem;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
 `;
 
 function KaKaoLoginBtn() {

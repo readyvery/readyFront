@@ -37,7 +37,8 @@
   width: 40%;
   margin: 0 1%;
   font-size: 1.25rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   text-decoration: none;
   color: black;
 }
@@ -48,7 +49,8 @@
   border: 1px solid #838383;
   border-radius: 2rem;
   font-size: 0.8125rem;
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 200;
   color: #838383;
   padding: 0 1px;
   text-decoration: none;
@@ -67,7 +69,8 @@
 .not-loggedIn2 {
   margin: 0 0.87rem 0 0.87rem;
   font-size: 1.25rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
 }
 
 /* 주문 및 결제 */
@@ -80,7 +83,8 @@
 .mypage-order-text {
   margin: 1rem 0;
   width: 100%;
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 200;
   font-size: 0.9375rem;
   color: #4f4f4f;
 }
@@ -96,7 +100,8 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
 
@@ -111,7 +116,8 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
 
@@ -126,7 +132,8 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
 
@@ -139,7 +146,8 @@
 .mypage-etc-text {
   margin: 1rem 0;
   width: 100%;
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 200;
   font-size: 0.9375rem;
   color: #4f4f4f;
 }
@@ -155,7 +163,8 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
 
@@ -170,7 +179,8 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
 
@@ -185,6 +195,7 @@
   width: 70%;
   height: 100%;
   margin: 3% auto;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 1.125rem;
 }
