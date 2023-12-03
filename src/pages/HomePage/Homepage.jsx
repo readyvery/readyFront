@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import profile_icon from "../../assets/images/profile_icon.svg";
+import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
@@ -22,7 +23,7 @@ function Homepage() {
   const apiRoot = process.env.REACT_APP_API_ROOT;
   // const [cookies] = useCookies(["accessToken"]);
   // const [loggedIn, setLoggedIn] = useState(false);
-  const isAuth = useRecoilValue(isAuthenticatedState)
+  const isAuth = useRecoilValue(isAuthenticatedState);
 
   // useEffect(() => {
   //   if (cookies?.accessToken) {
@@ -33,7 +34,6 @@ function Homepage() {
   //   console.log(loggedIn);
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [cookies]);
-
 
   const [quickOrder, setQuickOrder] = useState([]);
   // {/* 바로주문 */}
@@ -66,6 +66,7 @@ function Homepage() {
     axios
       .get(`${apiRoot}/api/v1/board/store`, config)
       .then((response) => {
+        console.log(response.data);
         setStores(response.data.stores);
       })
       .catch((error) => {
@@ -220,6 +221,15 @@ function Homepage() {
                       alt="veryPickimg"
                       className="pick-detail"
                     />
+                    {!item.status && (
+                      <div className="closed-image-div">
+                        <img
+                          src={store_not_open} // Replace with your closed image path
+                          alt="closedImage"
+                          className="closed-image"
+                        />
+                      </div>
+                    )}
                     <div className="pick-info">
                       <div className="pick-name">{item.name}</div>
                       <div className="pick-address">{item.address}</div>
