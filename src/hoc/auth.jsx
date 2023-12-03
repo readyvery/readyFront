@@ -1,10 +1,10 @@
 import { message } from "antd";
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  getUserSelector,
   isAuthenticatedState
 } from "../Atom/status";
 
@@ -12,30 +12,23 @@ function Auth(SpecificComponent, option) {
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
-    // const userInfo = useRecoilValue(getUserSelector);
-    // const setIsLoggedIn = useSetRecoilState(loginState);
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
+    const userInfo = useRecoilValue(getUserSelector);
     console.log(isAuth);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
       // 성공시 해당 정보 반환
-      const apiUrl = process.env.REACT_APP_API_ROOT;
-      const config = {
-        withCredentials: true,
-      };
-      axios.get(`${apiUrl}/api/v1/auth`, config)
-        .then((res) => {
-          console.log(res);
+      // const apiUrl = process.env.REACT_APP_API_ROOT;
+      // const config = {
+      //   withCredentials: true,
+      // };
+      console.log(userInfo);
+        if(userInfo !== "404"){
           if (!isAuth && cookies?.accessToken && location.pathname === "/") {
             // 첫 로그인 시
             setIsAuth(true);
-            // setIsLoggedIn({
-            //   accessToken: getAccessTokenFromCookie(),
-            //   expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
-            // });
             message.success("로그인에 성공하셨습니다.");
-            navigate("/"); //homepage
           } 
           else {
             if (cookies?.accessToken && location.pathname === "/kakaologin") {
@@ -43,12 +36,11 @@ function Auth(SpecificComponent, option) {
               navigate("/"); // homepage
             }
           }
-        }) 
-        .catch((err) => {
+        } else {
           if(location.pathname !== "/kakaologin" && location.pathname !== "/"){
             navigate("/kakaologin");
           }
-        })
+        }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -37,7 +37,7 @@ const NavBar = () => {
       </Link>
 
       <Link
-        to="/orderHistory"
+        to="/status"
         className="nav-link"
         onClick={() => {
           setActiveNav(2);

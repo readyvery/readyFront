@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import RecoilizeDebugger from "recoilize";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import "./index.css";
@@ -13,7 +12,6 @@ root.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
       <RecoilRoot>
-        <RecoilizeDebugger />
         <App />
       </RecoilRoot>
     </ThemeProvider>

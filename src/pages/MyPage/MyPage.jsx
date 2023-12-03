@@ -74,7 +74,7 @@ function Mypage() {
       <div className="mypage-order">
         <div className="mypage-order-text">주문 및 결제</div>
         <Link
-          to={isAuth ? "/orderHistory" : "/kakaologin"}
+          to={isAuth ? "/status" : "/kakaologin"}
           className="mypage-order-list-link"
         >
           <div className="mypage-order-list">주문내역</div>
