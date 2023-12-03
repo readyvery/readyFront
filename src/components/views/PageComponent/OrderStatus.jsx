@@ -45,13 +45,11 @@ function OrderStatus() {
     axios
       .get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
       .then((res) => {
-        console.log(res);
         setStatusList(res.data);
         const curPro = res.data.progress;
-        console.log(progressList[curPro]);
         setDegree(progressList[curPro]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
 
   const refreshDegree = () => {
@@ -73,7 +71,6 @@ function OrderStatus() {
     const response = await axios
       .post(`${apiUrl}/api/v1/order/toss/cancel`, body, config)
     if(response.status === 200){
-      console.log(response)
       if(response.data.message === "취소 성공"){
         message.success("주문 취소되었습니다.");
         fetchData();
@@ -107,7 +104,7 @@ function OrderStatus() {
           />
         </div> 
         )}
-        {degree !== 0 && degree !== 4 && (
+        {degree !== 0 && degree !== 2 && degree !== 3 && degree !== 4 && (
           <div className="status-time-wrapper">
             <div className="status-time">
               <div className="status-time-img__wrapper">
@@ -115,12 +112,15 @@ function OrderStatus() {
               </div>
               <span>
                 <span style={{ color: "#D82356" }}>
-                  {Math.abs(
+                  {
                     moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
                       moment(),
                       "minutes"
+                    ) < 0 ? 0 : moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
+                      moment(),
+                      "minutes"
                     )
-                  )}
+                  }
                   분 후
                 </span>{" "}
                 수령 가능!
