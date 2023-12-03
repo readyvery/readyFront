@@ -169,15 +169,22 @@ const CartPage = () => {
 
                     <div className="cart-page__order-info__item__option">
                       {item.options.map((option) => (
-                        <div>
+                        <div key={option.optionId}>
                           •[{option.categoryName}] {option.name} (+
-                          {option.price?.toLocaleString()}원)
+                          {option.price && option.price.totalPrice
+                            ? option.price.totalPrice
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"
+                            : "가격 없음"}
+                          )
                         </div>
                       ))}
                     </div>
 
                     <div className="cart-page__order-info__item__price">
-                      {(item.totalPrice * item?.count)?.toLocaleString()}원
+                      {(item?.totalPrice * item?.count)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                     </div>
                   </div>
 
@@ -230,7 +237,8 @@ const CartPage = () => {
             <span className="cart-page__total-quantity">{totalQuantity}</span>
             <span className="cart-page__order-text">주문하기</span>
             <span className="cart-page__total-price">
-              {totalPrice?.toLocaleString()}원
+              {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                "원"}
             </span>
           </Link>
         </div>
