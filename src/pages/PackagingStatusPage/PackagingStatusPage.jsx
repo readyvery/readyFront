@@ -75,6 +75,10 @@ const PackagingStatusPage = () => {
           </span>
         </div>
       </Link>
+
+      <div className="packaging-status-page__notice">
+        매장 컵 사용하실 경우 자리 확인 후 주문해주세요
+      </div>
     </div>
   );
 };
