@@ -186,6 +186,11 @@ const StoreDetailPage = () => {
               >
                 <div className="store-detail-page__menuList__item__name">
                   {item?.name}
+                  {item?.hit && (
+                    <span className="store-detail-page__menuList__item__hit">
+                      HIT
+                    </span>
+                  )}
                 </div>
                 {inout === "2" && item?.price !== item?.sale ? (
                   <div>
