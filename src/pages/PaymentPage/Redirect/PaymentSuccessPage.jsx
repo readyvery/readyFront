@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import "./PaymentRedirectPage.css";
-import paymentBerry from "../../../assets/images/payment_icon.png";
+import paymentSuccess from "../../../assets/images/payment_success.png";
 import { Link } from "react-router-dom";
 
 const PaymentSuccessPage = () => {
@@ -32,17 +32,17 @@ const PaymentSuccessPage = () => {
   return (
     <div className="payment-success-page">
       <img
-        src={paymentBerry}
+        src={paymentSuccess}
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />
-      <div className="payment-redirect-page__title">주문현황 확인</div>
+      <div className="payment-redirect-page__title">결제 완료!</div>
       <Link
         to={`/orderHistory?orderId=${orderId}`}
-        className="payment-redirect-page__done"
+        className="payment-success-page__done"
         style={{ textDecoration: "none" }}
       >
-        확인
+        주문현황 확인
       </Link>
     </div>
   );

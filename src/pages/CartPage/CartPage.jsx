@@ -12,6 +12,7 @@ const CartPage = () => {
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
   const inout = params.get("inout");
+  const cartId = params.get("cartId");
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
   const [Count, setCount] = useState(1);
@@ -74,7 +75,7 @@ const CartPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?inout=${inout}`,
+          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
           { withCredentials: true }
         );
         setPaymentData(response.data);
@@ -83,7 +84,20 @@ const CartPage = () => {
         console.error(error);
       }
     };
-    fetchData();
+
+    const noneCartData = async () => {
+      try {
+        const response = await axios.get(`${apiRoot}/api/v1/order/cart`, {
+          withCredentials: true,
+        });
+        setPaymentData(response.data);
+        setPrice(response.data.totalPrice);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    cartId ? fetchData() : noneCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -114,13 +128,22 @@ const CartPage = () => {
         headerProps={{
           pageName: "장바구니",
           isClose: false,
-          linkTo: !storeId ? "/" : `/store?storeId=${storeId}&inout=${inout}`,
+          linkTo:
+            !storeId ||
+            isNaN(parseInt(storeId, 10)) ||
+            !inout ||
+            isNaN(parseInt(inout, 10))
+              ? "/"
+              : `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />
 
       {paymentData && paymentData?.carts.length > 0 ? (
         <div className="cart-page__cart-content">
-          <div className="cart-page__cafe-info">
+          <Link
+            to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
+            className="cart-page__cafe-info"
+          >
             <img
               className="cart-page__cafe-info__img"
               src={paymentData?.imgUrl}
@@ -130,7 +153,7 @@ const CartPage = () => {
             <text className="cart-page__cafe-info__name">
               {paymentData?.name}
             </text>
-          </div>
+          </Link>
 
           <div className="cart-page__order-info">
             {paymentData?.carts.map((item) => (
@@ -149,14 +172,22 @@ const CartPage = () => {
 
                     <div className="cart-page__order-info__item__option">
                       {item.options.map((option) => (
-                        <div>
-                          •{option.name} (+{option.price?.toLocaleString()}원)
+                        <div key={option.optionId}>
+                          •[{option.categoryName}] {option.name} (+
+                          {option.price && option.price.totalPrice
+                            ? option.price.totalPrice
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"
+                            : "가격 없음"}
+                          )
                         </div>
                       ))}
                     </div>
 
                     <div className="cart-page__order-info__item__price">
-                      {(item.totalPrice * item?.count)?.toLocaleString()}원
+                      {(item?.totalPrice * item?.count)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                     </div>
                   </div>
 
@@ -195,23 +226,28 @@ const CartPage = () => {
 
             <Link
               className="cart-page__order-info__item__add"
-              to={`/store?storeId=${storeId}&inout=${inout}`}
+              to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
               style={{ textDecoration: "none" }}
             >
               + 더 담으러 가기
             </Link>
           </div>
 
-          <Link
-            to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${paymentData?.cartId}`}
-            className="cart-page__order-btn"
-          >
-            <span className="cart-page__total-quantity">{totalQuantity}</span>
-            <span className="cart-page__order-text">주문하기</span>
-            <span className="cart-page__total-price">
-              {totalPrice?.toLocaleString()}원
-            </span>
-          </Link>
+          {paymentData?.isOpened ? (
+            <Link
+              to={`/payment?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}&cartId=${paymentData?.cartId}`}
+              className="cart-page__order-btn"
+            >
+              <span className="cart-page__total-quantity">{totalQuantity}</span>
+              <span className="cart-page__order-text">주문하기</span>
+              <span className="cart-page__total-price">
+                {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                  "원"}
+              </span>
+            </Link>
+          ) : (
+            <div className="cart-page__store-close">지금은 준비중입니다.</div>
+          )}
         </div>
       ) : (
         <div className="cart-page__cart-empty">

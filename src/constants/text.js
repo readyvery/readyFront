@@ -1,7 +1,8 @@
 const TEXT = {
-  cartModal: `장바구니는
+  cartModal400: `장바구니는
   같은 가게의 메뉴만 담을 수 있어요.`,
-  
+  cartModal409: `장바구니는 동일한 
+  수령방식의 메뉴만 담을 수 있어요.`,
   tuermsoTitle: `
   제1조 (목적)
   제2조 (용어의 정의)

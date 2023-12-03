@@ -167,6 +167,10 @@ const PaymentPage = () => {
                   {item.totalPrice * item.count}원
                 </div>
               </div>
+
+              <div className="payment-page__order-info__item__count">
+                {item?.count}
+              </div>
             </div>
 
             <div className="payment-page__order-info__item__line"></div>
@@ -237,16 +241,20 @@ const PaymentPage = () => {
         <div className="payment-page__productAmount">
           <span className="payment-page__content">상품금액</span>
           <span className="payment-page__content-price">
-            {isNaN(paymentData?.totalPrice)
-              ? "0원"
-              : (paymentData?.totalPrice).toLocaleString() + "원"}
+            {paymentData?.totalPrice &&
+              paymentData.totalPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
           </span>
         </div>
+
         <div className="payment-page__discountAmount">
           <span className="payment-page__content">할인금액</span>
           {salePrice && (
             <span className="payment-page__content-price">
-              (-) salePrice.toLocaleString() + "원"
+              (-)
+              {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                "원"}
             </span>
           )}
         </div>
@@ -256,9 +264,11 @@ const PaymentPage = () => {
         <div className="payment-page__payment">
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
-            {isNaN(paymentData?.totalPrice - salePrice)
-              ? "0원"
-              : (paymentData?.totalPrice - salePrice).toLocaleString() + "원"}
+            {paymentData?.totalPrice &&
+              salePrice &&
+              (paymentData.totalPrice - salePrice)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
           </span>
         </div>
 

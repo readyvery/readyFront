@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/berry.png";
 // import berry from "../../../assets/images/berry.svg";
+import { useNavigate } from "react-router-dom";
 import clock from "../../../assets/images/icon_clock.svg";
 import close from "../../../assets/images/icon_close.svg";
 import refresh from "../../../assets/images/icon_refresh.svg";
@@ -20,31 +21,19 @@ function OrderStatus() {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [statusList, setStatusList] = useState({});
+  const navigate = useNavigate();
 
-    const progressList = {
-        "ORDER": 0,
-        "MAKE": 1,
-        "COMPLETE": 2,
-        "PICKUP": 3
-    };
+  const progressList = {
+    ORDER: 0,
+    MAKE: 1,
+    COMPLETE: 2,
+    PICKUP: 3,
+  };
 
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const fetchData = () => {
-  //     const config = {
-  //     withCredentials: true
-  //     };
-
-  //     axios.get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
-  //     .then((res) => {
-  //         console.log(res);
-  //         setStatusList(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   const fetchData = () => {
     const config = {
@@ -76,6 +65,8 @@ function OrderStatus() {
       orderId: orderId,
     };
 
+    navigate("/");
+
     axios
       .post(`${apiUrl}/api/v1/order/toss/cancel`, body, config)
       .then((res) => console.log(res));
@@ -102,7 +93,16 @@ function OrderStatus() {
                 <img src={clock} alt={clock} />
               </div>
               <span>
-                <span style={{ color: "#D82356" }}>{Math.abs(moment(statusList?.estimatedTime, 'HH:mm:ss.SSS').diff(moment(), 'minutes'))}분 후</span> 수령 가능!
+                <span style={{ color: "#D82356" }}>
+                  {Math.abs(
+                    moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
+                      moment(),
+                      "minutes"
+                    )
+                  )}
+                  분 후
+                </span>{" "}
+                수령 가능!
               </span>
             </div>
           </div>
@@ -145,7 +145,11 @@ function OrderStatus() {
               <div className="status-content">
                 <span className="status-history">{statusList?.orderName}</span>
                 <div className="status-detail">
-                  <Link to={`/orderDetail?orderId=${orderId}`} style={{ textDecoration: "none" }}>
+                  <Link
+                    to={`/orderDetail?orderId=${orderId}`}
+                    state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
+                    style={{ textDecoration: "none" }}
+                  >
                     주문상세
                   </Link>
                 </div>

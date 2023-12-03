@@ -1,13 +1,11 @@
 import { message } from "antd";
 import axios from "axios";
-import moment from "moment";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
-  isAuthenticatedState,
-  loginState
+  isAuthenticatedState
 } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
@@ -15,9 +13,9 @@ function Auth(SpecificComponent, option) {
     const navigate = useNavigate();
     const location = useLocation();
     // const userInfo = useRecoilValue(getUserSelector);
-    const setIsLoggedIn = useSetRecoilState(loginState);
+    // const setIsLoggedIn = useSetRecoilState(loginState);
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
-    //const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+    console.log(isAuth);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
@@ -28,15 +26,14 @@ function Auth(SpecificComponent, option) {
       };
       axios.get(`${apiUrl}/api/v1/auth`, config)
         .then((res) => {
-          // setUserInfo(res.data);
           console.log(res);
           if (!isAuth && cookies?.accessToken && location.pathname === "/") {
             // 첫 로그인 시
             setIsAuth(true);
-            setIsLoggedIn({
-              accessToken: getAccessTokenFromCookie(),
-              expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
-            });
+            // setIsLoggedIn({
+            //   accessToken: getAccessTokenFromCookie(),
+            //   expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+            // });
             message.success("로그인에 성공하셨습니다.");
             navigate("/"); //homepage
           } 

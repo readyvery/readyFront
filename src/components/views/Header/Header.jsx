@@ -46,20 +46,28 @@ const Header = ({ headerProps }) => {
             ) : (
               //  isClosed가 false인 경우
               <div className="homeAndCart">
-                {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 홈 아이콘 표시 */}
-                {!isCartPage && (
-                  <Link to="/" className="home-link">
+                {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
+                {!isCartPage ? (
+                  <div>
+                    <Link to="/cart" className="cart-link">
+                      <img src={icon_bag} alt="bagIcon" className="bag-icon" />
+                    </Link>
+
+                    <Link to="/" className="home-link">
+                      <img
+                        src={home_logo_bk}
+                        alt="homeIcon"
+                        className="homeIcon"
+                      />
+                    </Link>
+                  </div>
+                ) : (
+                  <Link to="/" className="home-link-2">
                     <img
                       src={home_logo_bk}
                       alt="homeIcon"
-                      className="homeIcon"
+                      className="homeIcon2"
                     />
-                  </Link>
-                )}
-                {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
-                {!isCartPage && (
-                  <Link to="/cart" className="cart-link">
-                    <img src={icon_bag} alt="bagIcon" className="bag-icon" />
                   </Link>
                 )}
               </div>

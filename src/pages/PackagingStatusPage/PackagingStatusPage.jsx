@@ -12,7 +12,7 @@ const PackagingStatusPage = () => {
   const storeId = params.get("storeId");
   const apiRoot = process.env.REACT_APP_API_ROOT;
 
-  const [promotion, setPromotion] = useState(null);
+  const [event, setEvent] = useState(null);
   useEffect(() => {
     // API 엔드포인트
     const apiUrl = `${apiRoot}/api/v1/store/${storeId}/event`;
@@ -23,7 +23,7 @@ const PackagingStatusPage = () => {
       .then((response) => {
         // API 응답을 상태에 저장
         console.log(response.data);
-        setPromotion(response.data.eventImgUrl);
+        setEvent(response.data);
       })
       .catch((error) => {
         console.error("Error fetching store data:", error);
@@ -40,8 +40,8 @@ const PackagingStatusPage = () => {
       </div>
 
       <img
-        className="packaging-status-page__promotion"
-        src={promotion}
+        className="packaging-status-page__event-img"
+        src={event?.eventImgUrl}
         alt="promotion"
       />
 
@@ -55,7 +55,7 @@ const PackagingStatusPage = () => {
             src={takeIn}
             alt="takeOut"
           />
-          <span className="packaging-status-page__text">먹고갈게요</span>
+          <span className="packaging-status-page__text">먹고갈게요 </span>
         </div>
       </Link>
 
@@ -70,6 +70,9 @@ const PackagingStatusPage = () => {
             alt="takeOut"
           />
           <span className="packaging-status-page__text">가져갈게요</span>
+          <span className="packaging-status-page__event">
+            {event?.takeOutEvent}
+          </span>
         </div>
       </Link>
     </div>

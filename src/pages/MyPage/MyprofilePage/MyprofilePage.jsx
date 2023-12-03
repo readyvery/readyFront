@@ -7,58 +7,56 @@ import { useSetRecoilState } from "recoil";
 import { getAuthenticatedSelector } from "../../../Atom/status";
 import profile_icon from "../../../assets/images/profile_icon.svg";
 import Header from "../../../components/views/Header/Header";
+import Modal from "../../../components/views/Modal/Modal";
 import "./MyprofilePage.css";
 
 function MyprofilePage() {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
-  // const setIsLoggedIn = useSetRecoilState(loginState);
   const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isBye, setIsBye] = useState(false);
+
+  const byeText =
+    "계정탈퇴 시, 개인정보 및 레디베리에 저장된 데이터는<br />약관에 따라 3개월 이후 삭제됩니다. 계속하겠습니까?";
 
   const handleLogout = async () => {
-    try{
-    const config = {
-      withCredentials: true,
-    };
-    const response = await axios.get(apiUrl + "/api/v1/user/logout", config)
-      
-    console.log(response);
-    removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-    removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-    setIsAuth(false);
-    message.success("로그아웃에 성공하셨습니다.");
-    navigate("/");
-    } catch(error) {
+    try {
+      const config = {
+        withCredentials: true,
+      };
+      const response = await axios.get(apiUrl + "/api/v1/user/logout", config);
+
+      console.log(response);
+      removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+      removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+      setIsAuth(false);
+      message.success("로그아웃에 성공하셨습니다.");
+      navigate("/");
+    } catch (error) {
       alert("관리자에게 문의하세요.");
       navigate("/");
-      // navigate로 props 보내 그리고 location올 props 있을 때만 해
     }
   };
 
-  const handleLogdelete = () => {
-    const config = {
-      withCredentials: true,
-    };
-    axios
-      .get(apiUrl + "/api/v1/user/remove", config)
-      .then((response) => {
-        console.log(response);
-        // setIsAuthenticated(false);
-        // setIsLoggedIn({
-        //   accessToken: null,
-        //     expiredTime: null
-        //   })
-        navigate("/");
-        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-        window.localStorage.setItem("isAuthenticated", false);
-      })
-      .catch((error) => {
-        alert("관리자에게 문의하세요.");
-        navigate("/");
-        // navigate로 props 보내 그리고 location올 props 있을 때만 해
-      });
+  const handleLogdelete = async () => {
+    try {
+      const config = {
+        withCredentials: true,
+      };
+      const response = await axios.get(apiUrl + "/api/v1/user/remove", config);
+
+      console.log(response);
+      removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+      removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+      setIsAuth(false);
+      message.success("회원탈퇴에 성공하셨습니다.");
+      navigate("/");
+    } catch (error) {
+      alert("관리자에게 문의하세요.");
+      navigate("/");
+    }
   };
 
   const [userData, setUserData] = useState({
@@ -124,13 +122,29 @@ function MyprofilePage() {
           </div>
         </div>
         <div className="myprofile-bye">
-          <div className="myprofile-logout" onClick={handleLogout}>
+          <div className="myprofile-logout" onClick={() => setIsOpen(true)}>
             로그아웃
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div className="myprofile-unregister" onClick={handleLogdelete}>
+          <div className="myprofile-unregister" onClick={() => setIsBye(true)}>
             회원탈퇴
           </div>
+          {isOpen && (
+            <Modal
+              setIsOpen={setIsOpen}
+              handleCancle={handleLogout}
+              title="로그아웃 하시겠습니까?"
+              subtitle=""
+            />
+          )}
+          {isBye && (
+            <Modal
+              setIsOpen={setIsBye}
+              handleCancle={handleLogdelete}
+              title="계정탈퇴"
+              subtitle={<div dangerouslySetInnerHTML={{ __html: byeText }} />}
+            />
+          )}
         </div>
       </div>
     </div>

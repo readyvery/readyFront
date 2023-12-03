@@ -1,10 +1,14 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 // 현재 사용자가 인증되었는지 여부를 나타내는 상태
 export const isAuthenticatedState = atom({
   key: "isAuthenticatedState",
   default: false, // 인증되지 않았다고 가정
+  effects_UNSTABLE: [persistAtom],
 });
 
 // 현재 사용자의 인증 상태를 가져오거나 토글하는 selector
@@ -19,6 +23,7 @@ export const getAuthenticatedSelector = selector({
     // 현재 isAuthenticatedState의 값을 반전
     set(isAuthenticatedState, (currentValue) => !currentValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 // 사용자의 로그인 상태 및 토큰 정보를 저장하는 상태
@@ -28,12 +33,14 @@ export const loginState = atom({
     accessToken: null,
     expiredTime: null,
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 // 사용자 정보를 저장하는 상태
 export const userState = atom({
   key: "userState",
   dafault: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 // 사용자 정보를 가져오는 selector
@@ -65,4 +72,5 @@ export const getUserSelector = selector({
     // 가져온 사용자 정보 userState에 저장
     set(userState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
