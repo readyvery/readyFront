@@ -7,6 +7,7 @@ import { useSetRecoilState } from "recoil";
 import { getAuthenticatedSelector } from "../../../Atom/status";
 import profile_icon from "../../../assets/images/profile_icon.svg";
 import Header from "../../../components/views/Header/Header";
+import Modal from "../../../components/views/Modal/Modal";
 import "./MyprofilePage.css";
 
 function MyprofilePage() {
@@ -14,6 +15,11 @@ function MyprofilePage() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
   const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isBye, setIsBye] = useState(false);
+
+  const byeText =
+    "계정탈퇴 시, 개인정보 및 레디베리에 저장된 데이터는<br />약관에 따라 3개월 이후 삭제됩니다. 계속하겠습니까?";
 
   const handleLogout = async () => {
     try {
@@ -116,13 +122,29 @@ function MyprofilePage() {
           </div>
         </div>
         <div className="myprofile-bye">
-          <div className="myprofile-logout" onClick={handleLogout}>
+          <div className="myprofile-logout" onClick={() => setIsOpen(true)}>
             로그아웃
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div className="myprofile-unregister" onClick={handleLogdelete}>
+          <div className="myprofile-unregister" onClick={() => setIsBye(true)}>
             회원탈퇴
           </div>
+          {isOpen && (
+            <Modal
+              setIsOpen={setIsOpen}
+              handleCancle={handleLogout}
+              title="로그아웃 하시겠습니까?"
+              subtitle=""
+            />
+          )}
+          {isBye && (
+            <Modal
+              setIsOpen={setIsBye}
+              handleCancle={handleLogdelete}
+              title="계정탈퇴"
+              subtitle={<div dangerouslySetInnerHTML={{ __html: byeText }} />}
+            />
+          )}
         </div>
       </div>
     </div>

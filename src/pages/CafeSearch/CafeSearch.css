@@ -24,15 +24,42 @@
   color: black;
 }
 
-.search-img {
-  margin: 0 2%;
-}
-
 .search-details {
   display: flex;
+  position: relative;
   flex-direction: row;
   margin: 2% 0;
   align-items: center;
+}
+/* 가게 이미지 */
+.search-img {
+  margin: 0 2%;
+  position: relative;
+}
+
+.search-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.closed-icon-div {
+  position: absolute;
+
+  margin: 0 2%;
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
 }
 
 .search-detail {
@@ -45,7 +72,6 @@
   display: flex;
   flex-direction: row;
   margin: 2% 0;
-  
 }
 
 .search-name {
