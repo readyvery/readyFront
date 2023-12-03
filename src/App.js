@@ -80,7 +80,6 @@ function App() {
       axios
         .get(`${apiUrl}/api/v1/refresh/token`, config)
         .then((response) => {
-          console.log(response);
           // 현재 쿠키 삭제
           if (!response.data) {
             message.info("다시 로그인해주세요.");
@@ -89,7 +88,6 @@ function App() {
           }
         })
         .catch((error) => {
-          console.log(error);
           message.info("다시 로그인해주세요.");
           navigate("/kakaologin");
         });

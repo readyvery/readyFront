@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
-import "./PaymentRedirectPage.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import paymentFail from "../../../assets/images/payment_fail.png";
-import { Link } from "react-router-dom";
+import "./PaymentRedirectPage.css";
 
 const PaymentFailPage = () => {
   const location = useLocation();
@@ -20,7 +19,6 @@ const PaymentFailPage = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error sending fail URL request:", error);

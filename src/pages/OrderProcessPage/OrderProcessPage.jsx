@@ -33,10 +33,8 @@ const OrderProcessPage = () => {
           `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
           { withCredentials: true }
         );
-        console.log(response.data);
         setFoodOptionInfo(response.data);
       } catch (error) {
-        console.log(error);
       }
     };
     fetchData();
@@ -44,7 +42,6 @@ const OrderProcessPage = () => {
   }, []);
 
   const handleCartUpdate = () => {
-    console.log(essentialOptionIdx, optionIdx);
     let body = {
       storeId: storeId,
       foodieId: foodieId,
@@ -58,7 +55,6 @@ const OrderProcessPage = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
         setOptionIdx(
           foodOptionInfo?.category
             ?.filter((el) => el?.essential)
@@ -102,7 +98,6 @@ const OrderProcessPage = () => {
     const response = axios.delete(apiUrl, { withCredentials: true });
 
     // 성공적으로 처리된 경우에 대한 로직
-    console.log("Cart reset successful", response.data);
 
     let body = {
       storeId: storeId,
@@ -117,7 +112,6 @@ const OrderProcessPage = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
 
@@ -220,7 +214,6 @@ const OrderProcessPage = () => {
     e.target.checked
       ? setTotalAmount((prevAmount) => prevAmount + price)
       : setTotalAmount((prevAmount) => prevAmount - price);
-    console.log(e.target.checked, optionIdx);
     e.target.checked
       ? setOptionIdx((prev) => [...prev, idx])
       : setOptionIdx((prev) => prev.filter((e) => e !== idx));

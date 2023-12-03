@@ -20,7 +20,6 @@ const PaymentSuccessPage = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error sending success URL request:", error);

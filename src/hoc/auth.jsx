@@ -14,16 +14,10 @@ function Auth(SpecificComponent, option) {
     const location = useLocation();
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
     const userInfo = useRecoilValue(getUserSelector);
-    console.log(isAuth);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
       // 성공시 해당 정보 반환
-      // const apiUrl = process.env.REACT_APP_API_ROOT;
-      // const config = {
-      //   withCredentials: true,
-      // };
-      console.log(userInfo);
         if(userInfo !== "404"){
           if (!isAuth && cookies?.accessToken && location.pathname === "/") {
             // 첫 로그인 시
