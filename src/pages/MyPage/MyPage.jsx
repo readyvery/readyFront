@@ -45,17 +45,17 @@ function Mypage() {
         <div className="mypage-profile-list">
           {isAuth ? (
             // 로그인 한 경우 그림 이미지랑 이름 나오게
-            <div className="login-box2">
-              <img
-                src={profile_icon}
-                alt="ProfileIcon"
-                className="profile-icon2"
-              />
-              <div className="profile-name">{userName}</div>
-              <Link to="/myprofile" className="profile-detailBtn">
-                프로필보기
-              </Link>
-            </div>
+            <Link to="/myprofile" className="myprofile-link">
+              <div className="login-box2" style={{ textDecoration: "none" }}>
+                <img
+                  src={profile_icon}
+                  alt="ProfileIcon"
+                  className="profile-icon2"
+                />
+                <div className="profile-name">{userName}</div>
+                <div className="profile-detailBtn">프로필보기</div>
+              </div>
+            </Link>
           ) : (
             // 로그인 안 한 경우 로그인 버튼 나오게
             <Link to="/kakaologin" className="not-login-box2">

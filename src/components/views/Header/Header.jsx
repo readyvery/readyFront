@@ -11,6 +11,7 @@ import "./Header.css";
 const Header = ({ headerProps }) => {
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
+
   return (
     <>
       {/* headerProps가 주어진 경우 */}

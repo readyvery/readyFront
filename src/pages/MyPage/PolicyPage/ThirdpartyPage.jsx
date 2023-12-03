@@ -13,11 +13,21 @@ function ThirdpartyPage() {
         }}
       />
       <div style={{ fontSize: "12px", "fontFamily": "Regular" }}>
-        {TEXT.thirdParty.split("\n").map((line, index) => (
-          <React.Fragment key={index}>
-            {line}
-            <br />
-          </React.Fragment>
+      {TEXT.thirdPartyTitle.split("\n").map((title, index) => (
+        <React.Fragment key={index}>
+          <span style={{'fontSize' : '14px', 'fontFamily': "Bold", 'marginTop' : '5px'}}>{title}</span>
+          <br />
+          {/* Check if there's a corresponding line in privacyPolicy */}
+          {TEXT.thirdParty.split("#")[index] && (
+            <div style={{'marginTop': '10px', 'marginBottom': '10px'}}>
+            <span style={{'fontSize': '12px', 'fontFamily': "Regular"}}>
+              {TEXT.thirdParty.split("#")[index].split("\n").map((e) => (
+                <div>{e}</div>
+              ))}
+            </span>
+            </div>
+          )}
+        </React.Fragment>
         ))}
       </div>
     </div>

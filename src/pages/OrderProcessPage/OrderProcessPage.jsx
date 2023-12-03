@@ -257,7 +257,7 @@ const OrderProcessPage = () => {
       </div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo?.category?.length &&
+        {foodOptionInfo?.category?.length ?
           foodOptionInfo.category
             .filter((c, i) => c?.essential)
             .map((category, index) => (
@@ -340,7 +340,10 @@ const OrderProcessPage = () => {
                   </div>
                 )}
               </div>
-            ))}
+            ))
+          : (
+            <></>
+          )}
         {foodOptionInfo?.category?.filter((e) => !e?.essential).length ? (
           <div className="order-process-page__toggle__container">
             <div

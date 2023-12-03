@@ -32,14 +32,16 @@
 }
 
 .modal-title {
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   margin: 1.56rem auto 0.56rem;
   text-align: center;
 }
 
 .modal-subtitle {
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.8125rem;
   margin-left: auto;
   margin-right: auto;
@@ -58,7 +60,8 @@
   border: 0.0625rem solid #838383;
   border-radius: 0.625rem;
 
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   color: #838383;
   margin: 0 0.3125rem;
@@ -72,7 +75,8 @@
   border: 0.0625rem solid #d82356;
   border-radius: 0.625rem;
   background-color: #d82356;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   color: #fff;
   margin: 0 0.3125rem;

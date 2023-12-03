@@ -35,7 +35,8 @@
   padding: 5% 8%;
 
   font-size: 0.625rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
 }
 
 .status-time span {
@@ -110,13 +111,15 @@
 .status-title {
   color: #4f4f4f;
   font-size: 1.875rem;
-  font-family: "bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
 }
 
 .status-number {
   color: #4f4f4f;
   font-size: 3.125rem;
-  font-family: "bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   margin: 0 auto;
 }
 
@@ -176,7 +179,8 @@
 .status-explain {
   font-size: 0.9375rem;
   color: #d82356;
-  font-family: "bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -199,7 +203,8 @@
 .status-content-subtitle {
   color: #000;
   font-size: 0.8125rem;
-  font-family: "bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   width: 27%;
   white-space: nowrap;
 }
@@ -210,19 +215,27 @@
 
   color: #838383;
   font-size: 0.9375rem;
-  font-family: "bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   width: 63%;
   white-space: nowrap;
 }
 
+.status-detail__wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .status-detail {
+  display: inline-block;
   font-size: 0.625rem;
-  font-family: "medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   border-radius: 0.625rem;
   border: 1px solid #838383;
-  height: 1.5em;
+  /* height: 1.5em; */
   line-height: 1.5em;
-  margin: calc((1.5em - 2px) / 2) 0.9375rem;
+  margin: calc((1.5em - 2px) / 2) 0;
   padding: 1% 4%;
 }
 
@@ -305,7 +318,8 @@
   border-radius: 0.9375rem;
   text-align: center;
   font-size: 1.5625rem;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
 }
 
 /* 모달창 */
