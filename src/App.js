@@ -130,7 +130,7 @@ function App() {
 
             {/* 로그인 해야지 볼 수 있는 페이지 */}
             {/* 주문내역 페이지*/}
-            <Route path="/orderHistory" element={<NewOrderHistory />} />
+            <Route path="/status" element={<NewOrderHistory />} />
             {/* 주문상세 페이지 - 추후 병합 예정*/}
             <Route path="/orderDetail" element={<NewOrderDetail />} />
             {/* 바로주문*/}
