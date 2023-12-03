@@ -17,7 +17,9 @@
 
 .quick-order-text {
   /* 글자 */
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: bold;
+  font-style: normal; 
   font-size: 1.25rem;
   margin-top: 1rem;
   /* 위쪽, 오른쪽, 아래쪽, 왼쪽*/
@@ -53,7 +55,9 @@
 
 .item-name {
   color: #4f4f4f;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: bold;
+  font-style: normal;
   font-size: 0.9375rem;
   margin: 1rem 7% 0 7%;
   white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
@@ -62,7 +66,9 @@
 }
 
 .item-detail {
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
+  font-style: normal;
   font-size: 0.75rem;
   color: black;
   margin: 2rem 7% 0 7%;
@@ -72,7 +78,9 @@
 }
 
 .item-price {
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
+  font-style: normal;
   font-size: 0.75rem;
   color: black;
   margin: 0 7% 0 7%;
@@ -89,7 +97,9 @@
   text-decoration: none;
   color: black;
   font-size: 1.25rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: bold;
+  font-style: normal;
 }
 
 .profile-icon {
@@ -114,7 +124,9 @@
 
 .very-pick-text {
   width: 100%;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: bold;
+  font-style: normal;
   margin-top: 4%;
   margin-bottom: 2.5%;
   font-size: 1.25rem;
@@ -154,7 +166,9 @@
 .pick-name {
   width: 100%;
   font-size: 1.0625rem;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  font-style: normal;
   color: black;
 }
 
@@ -162,7 +176,9 @@
   width: 100%;
   font-size: 0.75rem;
   margin-top: 0.2rem;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-style: normal;
   color: #838383;
 }
 
@@ -181,7 +197,9 @@
   width: 100%;
   font-size: 0.75rem;
   margin-top: 0.1rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: bold;
+  font-style: normal;
   color: #d82356;
 }
 
@@ -196,12 +214,16 @@
 .business-name {
   /* 위쪽, 오른쪽, 아래쪽, 왼쪽 */
   margin: 10% 3% 1% 3%;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
+  font-style: normal;
 }
 
 .business-list {
   margin: 0 3% 0 3%;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
+  font-style: normal;
   font-size: 10px;
   padding-bottom: 6rem;
 }
