@@ -2,7 +2,8 @@
   display: flex;
   color: #000;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.875rem;
   line-height: 130%; /* 2.4375rem */
   letter-spacing: -0.01875rem;
@@ -15,7 +16,8 @@
   display: flex;
   color: #4f4f4f;
   text-align: center;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -61,7 +63,8 @@
 .packaging-status-page__text {
   color: #000;
   text-align: center;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -71,7 +74,8 @@
 
 .packaging-status-page__event {
   color: var(--kakao-logo, #d82356);
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 130%;
   letter-spacing: -0.00938rem;
@@ -83,7 +87,8 @@
 .packaging-status-page__notice {
   display: flex;
   color: #838383;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;

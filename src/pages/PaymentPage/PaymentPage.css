@@ -22,7 +22,8 @@
 
 .payment-page__cafe-info__name {
   color: #000;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.25rem;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
@@ -55,7 +56,8 @@
 .payment-page__order-info__item__name {
   display: flex;
   color: #000;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -64,7 +66,8 @@
   display: flex;
   flex-direction: column;
   color: #838383;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 0.625rem;
   line-height: 130%; /* 0.8125rem */
   letter-spacing: -0.00625rem;
@@ -124,7 +127,8 @@
 .payment-page__title {
   display: flex;
   color: #4f4f4f;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 20px;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -142,7 +146,8 @@
   align-items: center;
   color: #000;
   text-align: center;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   font-style: normal;
   font-weight: 600;
@@ -173,7 +178,8 @@
 
 .payment-page__coupone-price {
   color: #000;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -186,7 +192,8 @@
   border-radius: 0.625rem;
   background: #ffe2ed;
   color: #4f4f4f;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 0.6875rem;
   line-height: 130%; /* 0.89375rem */
   letter-spacing: -0.00688rem;
@@ -196,7 +203,8 @@
 
 .payment-page__content {
   color: #000;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -223,9 +231,8 @@
 .payment-page__content-price {
   display: flex;
   color: #000;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.9375rem;
-  font-style: normal;
   font-weight: 500;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -239,7 +246,8 @@
 .payment-page__total-price {
   color: #d82356;
   text-align: right;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -249,7 +257,8 @@
 .payment-page__notice {
   color: #838383;
   text-align: center;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -266,7 +275,8 @@
   background: #d82356;
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;

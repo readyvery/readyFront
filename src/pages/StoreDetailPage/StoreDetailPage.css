@@ -42,7 +42,8 @@
   display: flex;
   width: fit-content;
   color: #000;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.25rem;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
@@ -58,7 +59,8 @@
   width: 3.25rem;
   height: fit-content;
   color: #4f4f4f;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
@@ -69,7 +71,8 @@
 .store-detail-page__caffeeInfo__contact {
   display: flex;
   color: #838383;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
@@ -78,7 +81,8 @@
 .store-detail-page__caffeeInfo__address {
   display: flex;
   color: #838383;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
@@ -87,7 +91,8 @@
 .store-detail-page__caffeeInfo__time {
   display: flex;
   color: #838383;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
@@ -95,17 +100,40 @@
 }
 
 .store-detail-page__menuCategory {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
+}
+
+.store-detail-page__menuCategory-scroll {
   display: flex;
-  width: 100%;
+  width: calc(100% - 3.5rem);
   max-width: 100vw; /* 화면 너비 이내에서만 확장됩니다. */
   flex: 0 0 auto; /* 고정 높이 */
   overflow-x: auto;
-  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
   scroll-snap-type: x mandatory;
+  position: relative; /* 추가: 상대적 위치 설정 */
+  margin: 0 1.75rem;
 }
 
-.store-detail-page__menuCategory::-webkit-scrollbar {
+.store-detail-page__menuCategory-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.store-detail-page__menuCategory__go-left,
+.store-detail-page__menuCategory__go-right {
+  position: absolute; /* 수정: 절대 위치 대신 상대 위치 사용 */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* 추가: z-index 설정으로 가려진 상태로 위에 위치하도록 함 */
+}
+
+.store-detail-page__menuCategory__go-left {
+  left: 0;
+}
+
+.store-detail-page__menuCategory__go-right {
+  right: 0;
 }
 
 .store-detail-page__menuCategory__item {
@@ -114,7 +142,8 @@
   height: fit-content;
   cursor: pointer;
   color: rgba(216, 35, 86, 0.6);
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
@@ -126,7 +155,8 @@
 }
 
 .store-detail-page__menuCategory__item.selected {
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   line-height: 130%; /* 1.1375rem */
   letter-spacing: -0.00875rem;
   color: #d82356; /* 선택된 아이템의 색상을 변경합니다. */
@@ -162,7 +192,8 @@
 
 .store-detail-page__menuList__item__name {
   color: #000;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -179,7 +210,8 @@
 
 .store-detail-page__menuList__item__cost {
   color: #838383;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.8125rem;
   line-height: 130%; /* 1.05625rem */
   letter-spacing: -0.00813rem;
@@ -189,7 +221,8 @@
 
 .store-detail-page__menuList__item__sale {
   color: #000;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.8125rem;
   line-height: 130%; /* 1.05625rem */
   letter-spacing: -0.00813rem;
@@ -197,7 +230,8 @@
 
 .store-detail-page__menuList__item__price {
   color: #000;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.8125rem;
   line-height: 130%; /* 1.05625rem */
   letter-spacing: -0.00813rem;
@@ -214,7 +248,8 @@
   margin-right: auto;
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
@@ -249,7 +284,8 @@
   flex-shrink: 0;
   background-color: #fff;
   color: #d82356;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
@@ -263,7 +299,8 @@
 .store-detail-page__cart-text {
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
@@ -280,7 +317,8 @@
 .store-detail-page__total-price {
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
