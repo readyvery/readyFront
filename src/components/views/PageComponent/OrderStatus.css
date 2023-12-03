@@ -215,12 +215,18 @@
   white-space: nowrap;
 }
 
+.status-detail__wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .status-detail {
+  display: inline-block;
   font-size: 0.625rem;
   font-family: "medium";
   border-radius: 0.625rem;
   border: 1px solid #838383;
-  height: 1.5em;
+  /* height: 1.5em; */
   line-height: 1.5em;
   margin: calc((1.5em - 2px) / 2) 0.9375rem;
   padding: 1% 4%;

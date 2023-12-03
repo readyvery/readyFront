@@ -67,29 +67,28 @@ const OrderDetail = () => {
                     <div className="detail-order-menu__wrapper">
                       <span className="detail-order-menu__title">{e.name}</span>
                       <div className="detail-order-menu-option__wrapper">
-                        {e.options?.map((option, idx) => {
-                          if (idx !== e.options.length) {
-                            return (
+                        {e.options?.map((option, idx) => (
                               <>
-                                <span className="detail-order-menu-option">
-                                  {option.name}
-                                </span>
-                                <span className="detail-order-menu-option">
-                                  /
-                                </span>
-                              </>
-                            );
-                          } else {
-                            return (
+                              {!option.required ? 
+                              (
                               <span className="detail-order-menu-option">
-                                {e?.count}
+                                [{option.categoryName}] {option.name}
                               </span>
-                            );
-                          }
-                        })}
+                              ) : (
+                              <span className="detail-order-menu-option">
+                                {option.name}
+                              </span>
+                              )}
+                              <span className="detail-order-menu-option">/</span>
+                            </>
+                          )
+                        )}
+                          <span className="detail-order-menu-option">
+                            {e?.count}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   <div className="detail-order-right__box">
                     <span>
                       {e.totalPrice &&
@@ -106,13 +105,10 @@ const OrderDetail = () => {
             <div className="detail-bottom__wrapper">
               <div className="detail-payment__box">
                 <span className="detail-payment__title">총 결제금액</span>
-                <span className="detail-payment-price">
-                  {detailData?.cart?.totalPrice &&
-                    detailData?.cart?.totalPrice
-                      .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
-                  원
-                </span>
+                <span className="detail-payment-price">{
+                  detailData?.cart?.totalPrice.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                }원</span>
               </div>
               <div className="detail-payment__box">
                 <span className="detail-payment__title">결제방법</span>

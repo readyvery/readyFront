@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 .App {
   margin-left: auto;
   margin-right: auto;
@@ -91,57 +92,58 @@
   }
 }
 
+/* 
+@font-face {
+  font-family: "Pretendard GOV";
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css") format('woff2');
+} */
+/* 
 @font-face {
   font-family: "Bold";
+  font-weight: bold;
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-Bold.woff2") format("woff2");
-  unicode-range: U+AC00-D7A3, U+0061-007A, U+AC00-D7A3, U+0030-0039;
-}
-
-@font-face {
-  font-family: "ExtraBold";
-  font-display: swap;
-  src: local("Pretendard"),
-    url("./assets/font/Pretendard-ExtraBold.woff2") format("woff2");
+    url("./assets//font//Pretendard-Bold.woff2") format('woff2');
 }
 
 @font-face {
   font-family: "ExtraLight";
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-ExtraLight.woff2") format("woff2");
+    url("./assets//font//Pretendard-ExtraBold.woff2") format('woff2');
 }
 
 @font-face {
   font-family: "Light";
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-Light.woff2") format("woff2");
+    url("./assets//font//Pretendard-Light.woff2") format('woff2');
 }
 
 @font-face {
   font-family: "Medium";
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-Medium.woff2") format("woff2");
+    url("./assets//font//Pretendard-Medium.woff2") format('woff2');
 }
 
 @font-face {
   font-family: "Regular";
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-Regular.woff2") format("woff2");
+    url("./assets//font//Pretendard-Regular.woff2") format('woff2');
 }
 
 @font-face {
   font-family: "SemiBold";
   font-display: swap;
   src: local("Pretendard"),
-    url("./assets/font/Pretendard-SemiBold.woff2") format("woff2");
+    url("./assets//font//Pretendard-SemiBold.woff2") format('woff2');
 }
+*/
 
 @font-face {
   font-family: "KBold";
   src: url("./assets/font/Kotrahope-Bold.otf");
-}
+} 
