@@ -241,8 +241,9 @@ const CartPage = () => {
               <span className="cart-page__total-quantity">{totalQuantity}</span>
               <span className="cart-page__order-text">주문하기</span>
               <span className="cart-page__total-price">
-                {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                  "원"}
+                {totalPrice &&
+                  totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                    "원"}
               </span>
             </Link>
           ) : (
