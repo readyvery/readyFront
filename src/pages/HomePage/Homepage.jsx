@@ -122,7 +122,7 @@ function Homepage() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        message.warning("쿠폰을 이미 받았아요!");
+        message.warning("쿠폰을 이미 받았어요!");
       });
   };
 

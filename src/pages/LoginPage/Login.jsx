@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Kakaologo from "../../assets/images/kakao_logo.svg";
 import loginpagelogo from "../../assets/images/login_logo.svg";
+import Header from "../../components/views/Header/Header";
 
 const Container = styled.div`
   width: 100%;
@@ -54,26 +55,36 @@ function KaKaoLoginBtn() {
     navigate("/privacypolicyinlogin");
   };
   return (
-    <Container>
-      <LogoContainer>
-        <LogoImage src={loginpagelogo} alt="로고" />
-      </LogoContainer>
-      <LoginContainer>
-        <KakaoButton onClick={handleKakaoLogin}>
-          <img src={Kakaologo} alt="카카오로그인" />
-        </KakaoButton>
-      </LoginContainer>
-      <PolicyContainter onClick={handlePolicyClick}>
-        <div style={{ borderBottom: "0.5px solid #000" }}>
-          레디베리 이용약관
-        </div>
-      </PolicyContainter>
-      <PolicyContainter onClick={handlePrivacyClick}>
-        <div style={{ borderBottom: "0.5px solid #000" }}>
-          레디베리 개인정보 처리방침
-        </div>
-      </PolicyContainter>
-    </Container>
+    <div className="login-div">
+      <Header
+        headerProps={{
+          pageName: "",
+          isClose: true,
+          linkTo: "/",
+        }}
+      />
+
+      <Container>
+        <LogoContainer>
+          <LogoImage src={loginpagelogo} alt="로고" />
+        </LogoContainer>
+        <LoginContainer>
+          <KakaoButton onClick={handleKakaoLogin}>
+            <img src={Kakaologo} alt="카카오로그인" />
+          </KakaoButton>
+        </LoginContainer>
+        <PolicyContainter onClick={handlePolicyClick}>
+          <div style={{ borderBottom: "0.5px solid #000" }}>
+            레디베리 이용약관
+          </div>
+        </PolicyContainter>
+        <PolicyContainter onClick={handlePrivacyClick}>
+          <div style={{ borderBottom: "0.5px solid #000" }}>
+            레디베리 개인정보 처리방침
+          </div>
+        </PolicyContainter>
+      </Container>
+    </div>
   );
 }
 
