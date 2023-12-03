@@ -3,7 +3,7 @@
 }
 
 .content-container{
-    height: 94vh;
+    /* height: 94vh; */
 }
 
 
@@ -87,13 +87,15 @@
 .cafe-name{
     color: #000;
     font-size: 18px;
-    font-family: "SemiBold";
+    font-family: "Pretendard Variable";
+    font-weight: 600;
 }
 
 .menu-name{
     color: #838383;
     font-size: 12px;
-    font-family: "Medium";
+    font-family: "Pretendard Variable";
+    font-weight: 500;
 }
 
 /* 빈 주문 내역  */

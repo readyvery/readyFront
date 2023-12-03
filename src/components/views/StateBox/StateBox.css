@@ -105,19 +105,21 @@
 
     color: #000;
     font-size: 18px;
-    font-family: "SemiBold";
     text-decoration: none;
     /* padding: 0.4375em 0; */
     height: 40%;
     align-items: center;
     white-space: nowrap;
+    font-family: "Pretendard Variable";
+    font-weight: 600;
 }
 
 .menu-name{
     height: 30%;
     color: #838383;
     font-size: 12px;
-    font-family: "Medium";
     text-decoration: none;
     white-space: nowrap;
+    font-family: "Pretendard Variable";
+    font-weight: 500;
 }
