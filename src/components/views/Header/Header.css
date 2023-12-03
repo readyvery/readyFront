@@ -87,7 +87,8 @@
 .header-main__warpper span {
   color: #000;
   font-size: 1.25rem;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
 }
 
 .header-main__warpper div {

@@ -37,8 +37,8 @@ nav {
   margin-top: 0.6875rem;
   font-size: 0.625rem;
   text-decoration: none;
-
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
 }
 .nav-link img[alt="HomeIcon"] {
   margin-top: -0.7rem;
@@ -58,7 +58,8 @@ nav {
   font-size: 0.625rem;
   text-decoration: none;
   color: #fff;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
 }
 
 .nav-item-home {
@@ -66,14 +67,16 @@ nav {
   font-size: 0.625rem;
   font-weight: 400;
   margin-top: 10rem;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
 }
 
 .nav-item-home2 {
   color: black;
   font-size: 0.625rem;
   font-weight: 400;
-  font-family: "Regular";
+  font-family: "Pretendard Variable";
+  font-weight: 400;
   margin-top: -1.3125rem;
 }
 

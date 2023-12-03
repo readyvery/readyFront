@@ -11,7 +11,8 @@
   margin: 2rem auto;
 }
 .service-name {
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 1.125rem;
 }
 
@@ -19,7 +20,8 @@
   margin: 0 auto;
 }
 .service-time {
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 1.125rem;
   color: #838383;
 }
