@@ -19,6 +19,7 @@ const PaymentFailPage = () => {
         { withCredentials: true }
       )
       .then((response) => {
+        console.log(response);
       })
       .catch((error) => {
         console.error("Error sending fail URL request:", error);

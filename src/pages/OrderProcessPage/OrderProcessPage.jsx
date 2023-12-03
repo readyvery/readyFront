@@ -96,7 +96,7 @@ const OrderProcessPage = () => {
 
     // Axios를 사용한 DELETE 요청
     const response = axios.delete(apiUrl, { withCredentials: true });
-
+    console.log(response);
     // 성공적으로 처리된 경우에 대한 로직
 
     let body = {

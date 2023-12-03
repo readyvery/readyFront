@@ -112,7 +112,7 @@ function Homepage() {
         config
       )
       .then((response) => {
-
+        console.log(response);
         message.success("쿠폰 받기 완료!");
         setCouponIssued(true);
       })
