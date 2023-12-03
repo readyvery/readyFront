@@ -24,7 +24,8 @@
 
 .cart-page__cafe-info__name {
   color: #000;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.25rem;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
@@ -60,7 +61,8 @@
 .cart-page__order-info__item__name {
   display: flex;
   color: #000;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -69,7 +71,8 @@
   display: flex;
   flex-direction: column;
   color: #838383;
-  font-family: "Light";
+  font-family: "Pretendard Variable";
+  font-weight: 300;
   font-size: 0.625rem;
   line-height: 130%; /* 0.8125rem */
   letter-spacing: -0.00625rem;
@@ -135,7 +138,8 @@
   justify-content: center;
   gap: 0.36925rem;
   color: #4f4f4f;
-  font-family: "SemiBold";
+  font-family: "Pretendard Variable";
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -166,7 +170,8 @@
   flex-shrink: 0;
   background-color: #fff;
   color: #d82356;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
@@ -180,7 +185,8 @@
 .cart-page__order-text {
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
@@ -197,7 +203,8 @@
 .cart-page__total-price {
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
@@ -215,7 +222,8 @@
   background: #838383;
   color: #fff;
   text-align: center;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
