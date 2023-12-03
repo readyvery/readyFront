@@ -12,14 +12,6 @@ function ReadyPage() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [storageList, setStorageList] = useState([]);
 
-  const progressList = {
-    "ORDER": 0,
-    "MAKE": 1,
-    "COMPELETE": 2,
-    "PICKUP": 3,
-    "CANCEL": 4
-  };
-
   useEffect(() => {
     const config = {
       withCredentials: true
@@ -34,7 +26,7 @@ function ReadyPage() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const storageList = [];
+
 
   return (
     <section className="main-container">
@@ -45,8 +37,8 @@ function ReadyPage() {
         {storageList.length ? (
           storageList.map((e, i) => (
             <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : "/orderDetail"}
-              // to={`/orderHistory?orderId=${e.orderId}`}
+              to={`/orderDetail?orderId=${e.orderId}`}
+              state={{ returnTo: "/ready" }}
               style={{ textDecoration: "none" }}
             >
               <StateBox
@@ -57,7 +49,7 @@ function ReadyPage() {
                 imgUrl={e.imgUrl}
                 amount={e.amount}
                 isLast={storageList.length - 1 === i}
-                state={progressList[e.progress]}
+                state={3}
               />
             </Link>
           ))

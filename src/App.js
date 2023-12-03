@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
@@ -7,6 +8,7 @@ import HomePage from "../src/pages/HomePage/Homepage";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
+import loading from "./assets/animation/loading.json";
 import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
 import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
@@ -63,6 +65,7 @@ function App() {
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   const minute = 1000 * 60 * 60 * 24; // 24시간
+  // const minute = 1000 * 60;
   // 주기적으로 실행되는 함수
   useInterval(() => {
     // 리프레시 토큰이 존재하고, 비어 있지 않은 경우
@@ -81,11 +84,14 @@ function App() {
           console.log(response);
           // 현재 쿠키 삭제
           if (!response.data) {
+            message.info("다시 로그인해주세요.");
             removeCookies();
             navigate("/kakaologin");
           }
         })
         .catch((error) => {
+          console.log(error);
+          message.info("다시 로그인해주세요.");
           navigate("/kakaologin");
         });
     }
@@ -94,7 +100,7 @@ function App() {
   return (
     <div className="App">
       <RecoilRoot>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div><img src={loading} alt="loading"/></div>}>
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
