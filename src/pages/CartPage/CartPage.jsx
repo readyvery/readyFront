@@ -140,7 +140,10 @@ const CartPage = () => {
 
       {paymentData && paymentData?.carts.length > 0 ? (
         <div className="cart-page__cart-content">
-          <div className="cart-page__cafe-info">
+          <Link
+            to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
+            className="cart-page__cafe-info"
+          >
             <img
               className="cart-page__cafe-info__img"
               src={paymentData?.imgUrl}
@@ -150,7 +153,7 @@ const CartPage = () => {
             <text className="cart-page__cafe-info__name">
               {paymentData?.name}
             </text>
-          </div>
+          </Link>
 
           <div className="cart-page__order-info">
             {paymentData?.carts.map((item) => (
@@ -223,24 +226,28 @@ const CartPage = () => {
 
             <Link
               className="cart-page__order-info__item__add"
-              to={`/store?storeId=${storeId}&inout=${inout}`}
+              to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
               style={{ textDecoration: "none" }}
             >
               + 더 담으러 가기
             </Link>
           </div>
 
-          <Link
-            to={`/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
-            className="cart-page__order-btn"
-          >
-            <span className="cart-page__total-quantity">{totalQuantity}</span>
-            <span className="cart-page__order-text">주문하기</span>
-            <span className="cart-page__total-price">
-              {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                "원"}
-            </span>
-          </Link>
+          {paymentData?.isOpened ? (
+            <Link
+              to={`/payment?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}&cartId=${paymentData?.cartId}`}
+              className="cart-page__order-btn"
+            >
+              <span className="cart-page__total-quantity">{totalQuantity}</span>
+              <span className="cart-page__order-text">주문하기</span>
+              <span className="cart-page__total-price">
+                {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                  "원"}
+              </span>
+            </Link>
+          ) : (
+            <div className="cart-page__store-close">지금은 준비중입니다.</div>
+          )}
         </div>
       ) : (
         <div className="cart-page__cart-empty">

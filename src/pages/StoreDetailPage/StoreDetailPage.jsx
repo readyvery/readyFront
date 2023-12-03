@@ -144,7 +144,12 @@ const StoreDetailPage = () => {
               {"영업 시간"}
             </text>
             <text className="store-detail-page__caffeeInfo__time">
-              {caffeeInfo?.openTime}
+              {caffeeInfo?.openTime.split("\n").map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             </text>
           </div>
         </div>

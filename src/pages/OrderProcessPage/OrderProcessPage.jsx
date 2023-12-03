@@ -462,8 +462,8 @@ const OrderProcessPage = () => {
           장바구니 담기
         </div>
       ) : (
-        <div className="order-process-page__is-close">
-          지금은 영업 전입니다.
+        <div className="order-process-page__store-close">
+          지금은 준비중입니다.
         </div>
       )}
 
