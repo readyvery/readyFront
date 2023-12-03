@@ -1,8 +1,3 @@
-.packaging-status-page {
-  /* width: 100%; */
-  height: 94vh;
-}
-
 .packaging-status-page__title {
   display: flex;
   color: #000;
@@ -83,4 +78,19 @@
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 0.2rem;
+}
+
+.packaging-status-page__notice {
+  display: flex;
+  color: #838383;
+  font-family: "Medium";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6.94rem;
 }

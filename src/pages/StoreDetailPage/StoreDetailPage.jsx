@@ -190,21 +190,24 @@ const StoreDetailPage = () => {
                 {inout === "2" && item?.price !== item?.sale ? (
                   <div>
                     <span className="store-detail-page__menuList__item__cost">
-                      {(item?.price)
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
+                      {item?.price &&
+                        (item?.price)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                     </span>
                     <span className="store-detail-page__menuList__item__sale">
-                      {(item?.sale)
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
+                      {item?.sale &&
+                        (item?.sale)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                     </span>
                   </div>
                 ) : (
                   <div className="store-detail-page__menuList__item__price">
-                    {(item?.price)
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
+                    {item?.price &&
+                      (item?.price)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                   </div>
                 )}
               </Link>
@@ -224,8 +227,9 @@ const StoreDetailPage = () => {
             </span>
             <span className="store-detail-page__cart-text">장바구니</span>
             <span className="store-detail-page__total-price">
-              {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                "원"}
+              {totalPrice &&
+                totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                  "원"}
             </span>
           </Link>
         )}
