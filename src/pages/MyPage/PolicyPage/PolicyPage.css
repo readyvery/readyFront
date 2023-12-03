@@ -17,7 +17,8 @@
 .personal-info {
   text-decoration: none;
   color: black;
-  font-family: "Medium";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
   font-size: 1.125rem;
   align-self: flex-start;
   margin: 3% 2%;
