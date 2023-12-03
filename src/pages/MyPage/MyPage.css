@@ -16,12 +16,17 @@
   height: 100%;
 }
 /* 로그인 한 경우 */
+.myprofile-link {
+  text-decoration: none;
+}
+
 .login-box2 {
   text-align: center;
   width: 100%;
   height: 100%;
   display: flex; /* Flexbox를 사용해 가로 정렬 */
   align-items: center;
+  text-decoration: none;
 }
 
 .profile-icon2 {
@@ -29,14 +34,16 @@
 }
 
 .profile-name {
-  width: 20%;
+  width: 40%;
   margin: 0 1%;
   font-size: 1.25rem;
   font-family: "Bold";
+  text-decoration: none;
+  color: black;
 }
 
 .profile-detailBtn {
-  width: 20%;
+  width: 40%;
   margin: 0 18%;
   border: 1px solid #838383;
   border-radius: 2rem;
