@@ -246,12 +246,11 @@ const OrderProcessPage = () => {
         }}
       />
 
-      <div className="order-process-page__menu__img">
-        <img
-          src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
-          alt="menuImg"
-        />
-      </div>
+      <img
+        className="order-process-page__menu__img"
+        src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
+        alt="menuImg"
+      />
 
       <div className="order-process-page__menu__name">
         {foodOptionInfo?.name}
@@ -462,8 +461,8 @@ const OrderProcessPage = () => {
           장바구니 담기
         </div>
       ) : (
-        <div className="order-process-page__is-close">
-          지금은 영업 전입니다.
+        <div className="order-process-page__store-close">
+          지금은 준비중입니다.
         </div>
       )}
 

@@ -2,11 +2,11 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  padding-bottom: 5rem;
 }
 
 .store-detail-page__scroll {
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .store-detail-page__banner {

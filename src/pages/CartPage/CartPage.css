@@ -3,6 +3,7 @@
   width: 100%;
   height: 94vh;
   flex-direction: column;
+  padding-bottom: 2rem;
 }
 
 .cart-page__cafe-info {
@@ -11,6 +12,7 @@
   padding-right: 1.56rem;
   padding-top: 1.38rem;
   padding-bottom: 0.44rem;
+  text-decoration: none;
 }
 
 .cart-page__cafe-info__img {
@@ -150,6 +152,7 @@
   border-radius: 0.625rem;
   background: #d82356;
   text-decoration: none;
+  margin-top: 1.5rem;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -202,6 +205,27 @@
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
   margin-right: 1.06rem;
+}
+
+.cart-page__store-close {
+  display: flex;
+  width: 23.4375rem;
+  height: 3.6875rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #838383;
+  color: #fff;
+  text-align: center;
+  font-family: "Bold";
+  font-size: 1.125rem;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .cart-page__cart-empty {

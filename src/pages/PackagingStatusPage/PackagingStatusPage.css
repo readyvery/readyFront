@@ -31,7 +31,7 @@
   margin-bottom: 2rem;
 }
 
-.packaging-status-page__promotion {
+.packaging-status-page__event-img {
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -72,4 +72,15 @@
   letter-spacing: -0.00938rem;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.packaging-status-page__event {
+  color: var(--kakao-logo, #d82356);
+  font-family: "Semibold";
+  font-size: 0.9375rem;
+  line-height: 130%;
+  letter-spacing: -0.00938rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.2rem;
 }
