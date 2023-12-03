@@ -1,8 +1,12 @@
 .store-detail-page {
   display: flex;
   width: 100%;
-  height: 94vh;
   flex-direction: column;
+}
+
+.store-detail-page__scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .store-detail-page__banner {
@@ -221,9 +225,13 @@
   text-decoration: none;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 3rem;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
+  bottom: 0; /* 화면 하단에 고정되도록 설정 */
+  left: 50%; /* 가운데 정렬을 위해 왼쪽을 50%로 설정 */
+  transform: translateX(-50%); /* 가운데 정렬을 위해 자체의 50%로 이동 */
 }
 
 .store-detail-page__total-quantity {
