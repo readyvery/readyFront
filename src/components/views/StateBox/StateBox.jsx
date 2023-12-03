@@ -19,7 +19,9 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
           </div>
           <div className="cafe-box">
             <div className="cafe-name">{name}</div>
-            <div className="menu-name">{menu} {amount}</div>
+            <div className="menu-name">{menu}</div>
+            <div className="menu-name">{amount.toString()
+              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
           </div>
         </div>
       </div>
