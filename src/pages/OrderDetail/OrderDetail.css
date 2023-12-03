@@ -124,6 +124,7 @@
 }
 
 .detail-order-menu-option{
+    margin: 0 0.15rem;
     font-size: 0.625rem;
     color: #4f4f4f;
     font-family: "Medium";
