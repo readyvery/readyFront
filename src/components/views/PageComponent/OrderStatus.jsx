@@ -90,13 +90,13 @@ function OrderStatus() {
         {degree === 4 ? (
           <div className="status-nav-bar">
             <div></div>
-            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+            <Link to="/status" style={{ textDecoration: "none" }}>
               <img src={close} className="close-btn" alt={close} />
             </Link>
           </div> 
         ) : (
         <div className="status-nav-bar">
-          <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+          <Link to="/status" style={{ textDecoration: "none" }}>
             <img src={close} className="close-btn" alt={close} />
           </Link>
           <img
@@ -186,7 +186,7 @@ function OrderStatus() {
             <div className="status-detail">
               <Link
                 to={`/orderDetail?orderId=${orderId}`}
-                state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
+                state={{ returnTo: `/status?orderId=${orderId}` }}
                 style={{ textDecoration: "none", color: "#000" }}
               >
                 주문상세
@@ -218,7 +218,7 @@ function OrderStatus() {
               <span className="compelete-text">"소중한 주문"</span>
               <span className="compelete-text">감사합니다!</span>
             </div>
-            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+            <Link to="/status" style={{ textDecoration: "none" }}>
               <div className="compelete-btn">확인</div>
             </Link>
           </div>
