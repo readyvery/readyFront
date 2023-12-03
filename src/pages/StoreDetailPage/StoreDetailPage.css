@@ -95,17 +95,40 @@
 }
 
 .store-detail-page__menuCategory {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
+}
+
+.store-detail-page__menuCategory-scroll {
   display: flex;
-  width: 100%;
+  width: calc(100% - 3.5rem);
   max-width: 100vw; /* 화면 너비 이내에서만 확장됩니다. */
   flex: 0 0 auto; /* 고정 높이 */
   overflow-x: auto;
-  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
   scroll-snap-type: x mandatory;
+  position: relative; /* 추가: 상대적 위치 설정 */
+  margin: 0 1.75rem;
 }
 
-.store-detail-page__menuCategory::-webkit-scrollbar {
+.store-detail-page__menuCategory-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.store-detail-page__menuCategory__go-left,
+.store-detail-page__menuCategory__go-right {
+  position: absolute; /* 수정: 절대 위치 대신 상대 위치 사용 */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* 추가: z-index 설정으로 가려진 상태로 위에 위치하도록 함 */
+}
+
+.store-detail-page__menuCategory__go-left {
+  left: 0;
+}
+
+.store-detail-page__menuCategory__go-right {
+  right: 0;
 }
 
 .store-detail-page__menuCategory__item {

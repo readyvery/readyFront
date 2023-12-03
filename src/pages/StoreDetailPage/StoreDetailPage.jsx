@@ -3,6 +3,8 @@ import Header from "../../components/views/Header/Header";
 import "./StoreDetailPage.css";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import goLeft from "../../assets/images/go_left.svg";
+import goRight from "../../assets/images/go_right.svg";
 
 const StoreDetailPage = () => {
   const location = useLocation();
@@ -155,23 +157,35 @@ const StoreDetailPage = () => {
         </div>
 
         <div className="store-detail-page__menuCategory">
-          {menu && menu.menu && Array.isArray(menu.menu) ? (
-            menu.menu.map((category, index) => (
-              <span
-                key={index}
-                className={`store-detail-page__menuCategory__item ${
-                  selectedCategory?.categoryId === category?.categoryId
-                    ? "selected"
-                    : ""
-                }`}
-                onClick={() => handleCategoryClick(category)}
-              >
-                {category?.category}
-              </span>
-            ))
-          ) : (
-            <p>Loading category...</p>
-          )}
+          <img
+            src={goLeft}
+            alt="L"
+            className="store-detail-page__menuCategory__go-left"
+          />
+          <div className="store-detail-page__menuCategory-scroll">
+            {menu && menu.menu && Array.isArray(menu.menu) ? (
+              menu.menu.map((category, index) => (
+                <span
+                  key={index}
+                  className={`store-detail-page__menuCategory__item ${
+                    selectedCategory?.categoryId === category?.categoryId
+                      ? "selected"
+                      : ""
+                  }`}
+                  onClick={() => handleCategoryClick(category)}
+                >
+                  {category?.category}
+                </span>
+              ))
+            ) : (
+              <p>Loading category...</p>
+            )}
+          </div>
+          <img
+            src={goRight}
+            alt="R"
+            className="store-detail-page__menuCategory__go-right"
+          />
         </div>
 
         <div className="store-detail-page__menuList">
