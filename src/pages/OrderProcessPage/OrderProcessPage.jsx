@@ -246,12 +246,11 @@ const OrderProcessPage = () => {
         }}
       />
 
-      <div className="order-process-page__menu__img">
-        <img
-          src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
-          alt="menuImg"
-        />
-      </div>
+      <img
+        className="order-process-page__menu__img"
+        src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
+        alt="menuImg"
+      />
 
       <div className="order-process-page__menu__name">
         {foodOptionInfo?.name}

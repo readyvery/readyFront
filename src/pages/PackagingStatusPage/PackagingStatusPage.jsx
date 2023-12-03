@@ -71,7 +71,7 @@ const PackagingStatusPage = () => {
           />
           <span className="packaging-status-page__text">가져갈게요</span>
           <span className="packaging-status-page__event">
-            ({event?.takeOutEvent})
+            {event?.takeOutEvent}
           </span>
         </div>
       </Link>
