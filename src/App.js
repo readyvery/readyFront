@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { RecoilRoot } from "recoil";
 import HomePage from "../src/pages/HomePage/Homepage";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
@@ -50,7 +49,7 @@ function App() {
   const NewLoginPage = Auth(KakaoLoginPage, false); // 로그인 페이지
 
   //true : 로그인 한 유저 들어감
-  const NewHomePage = Auth(HomePage, true);
+  // const NewHomePage = Auth(HomePage, true);
   const NewOrderHistory = Auth(OrderHistory, true);
   const NewOrderDetail = Auth(OrderDetail, true);
   const NewReadyPage = Auth(ReadyPage, true);
@@ -99,12 +98,11 @@ function App() {
 
   return (
     <div className="App">
-      <RecoilRoot>
         <Suspense fallback={<div><img src={loading} alt="loading"/></div>}>
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
-            <Route path="/" element={<NewHomePage />} />
+            <Route path="/" element={<HomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
             {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
             {/* 카페검색*/}
@@ -130,7 +128,7 @@ function App() {
 
             {/* 로그인 해야지 볼 수 있는 페이지 */}
             {/* 주문내역 페이지*/}
-            <Route path="/orderHistory" element={<NewOrderHistory />} />
+            <Route path="/status" element={<NewOrderHistory />} />
             {/* 주문상세 페이지 - 추후 병합 예정*/}
             <Route path="/orderDetail" element={<NewOrderDetail />} />
             {/* 바로주문*/}
@@ -158,7 +156,6 @@ function App() {
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
           </Routes>
         </Suspense>
-      </RecoilRoot>
     </div>
   );
 }
