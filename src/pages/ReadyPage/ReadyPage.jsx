@@ -17,7 +17,7 @@ function ReadyPage() {
       withCredentials: true
     };
 
-    axios.get(`${apiUrl}/api/v1/order/history/old`, config)
+    axios.get(`${apiUrl}/api/v1/order/history/fast`, config)
       .then((res) => {
         console.log(res);
         setStorageList(res.data.receipts);
