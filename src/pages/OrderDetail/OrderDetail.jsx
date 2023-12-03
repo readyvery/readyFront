@@ -65,7 +65,7 @@ const OrderDetail = () => {
                       <img src={e.imgUrl} alt="americano" with="" />
                     </div>
                     <div className="detail-order-menu__wrapper">
-                      <span className="detail-order-menu__title">{e.name}</span>
+                      <span className="detail-order-menu__title">{e.name} X {e.count}</span>
                       <div className="detail-order-menu-option__wrapper">
                         {e.options?.map((option, idx) => (
                               <>
@@ -79,13 +79,13 @@ const OrderDetail = () => {
                                 {option.name}
                               </span>
                               )}
-                              <span className="detail-order-menu-option">/</span>
+                              {idx !== e.options?.length - 1 && (<span className="detail-order-menu-option">/</span>)}
                             </>
                           )
                         )}
-                          <span className="detail-order-menu-option">
+                          {/* <span className="detail-order-menu-option">
                             {e?.count}
-                          </span>
+                          </span> */}
                         </div>
                       </div>
                     </div>
@@ -106,7 +106,7 @@ const OrderDetail = () => {
               <div className="detail-payment__box">
                 <span className="detail-payment__title">총 결제금액</span>
                 <span className="detail-payment-price">{
-                  detailData?.cart?.totalPrice.toString()
+                  (detailData?.cart?.totalPrice - detailData?.salePrice).toString()
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
                 }원</span>
               </div>
