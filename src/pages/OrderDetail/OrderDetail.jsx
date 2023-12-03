@@ -9,7 +9,7 @@ const OrderDetail = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const orderId = params.get("orderId");
-  const {state} = useLocation();
+  const { state } = useLocation();
 
   const [detailData, setDetailData] = useState({});
 
@@ -58,19 +58,16 @@ const OrderDetail = () => {
             </div>
             <div className="detail-line"></div>
             <div className="detail-middle__wrapper">
-              {
-                detailData?.cart?.carts?.map((e) => (
-                  <div className="detail-order__box" key={e.idx}>
-                    <div className="detail-order-left__box">
-                      <div className="detail-menu-img__wrapper">
-                        <img src={e.imgUrl} alt="americano" with=""/>
-                      </div>
-                      <div className="detail-order-menu__wrapper">
-                        <span className="detail-order-menu__title">{e.name}</span>
-                        <div className="detail-order-menu-option__wrapper">
-                        {e.options?.map((option, idx) => 
-                        { if(idx !== e.options.length){
-                            return (
+              {detailData?.cart?.carts?.map((e) => (
+                <div className="detail-order__box" key={e.idx}>
+                  <div className="detail-order-left__box">
+                    <div className="detail-menu-img__wrapper">
+                      <img src={e.imgUrl} alt="americano" with="" />
+                    </div>
+                    <div className="detail-order-menu__wrapper">
+                      <span className="detail-order-menu__title">{e.name}</span>
+                      <div className="detail-order-menu-option__wrapper">
+                        {e.options?.map((option, idx) => (
                               <>
                               {!option.required ? 
                               (
@@ -84,40 +81,40 @@ const OrderDetail = () => {
                               )}
                               <span className="detail-order-menu-option">/</span>
                             </>
-                          )} 
-                        })}
+                          )
+                        )}
                           <span className="detail-order-menu-option">
                             {e?.count}
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div className="detail-order-right__box">
-                      <span>{e.totalPrice.toString()
-                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                      }원</span>
-                    </div>
+                  <div className="detail-order-right__box">
+                    <span>
+                      {e.totalPrice &&
+                        e.totalPrice
+                          .toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                      원
+                    </span>
                   </div>
-                ))
-              }
+                </div>
+              ))}
             </div>
             <div className="detail-line"></div>
             <div className="detail-bottom__wrapper">
               <div className="detail-payment__box">
                 <span className="detail-payment__title">총 결제금액</span>
                 <span className="detail-payment-price">{
-                // detailData?.salePrice !== "null" 
-                // ? 
-                detailData?.cart?.totalPrice.toString()
+                  detailData?.cart?.totalPrice.toString()
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                // : 
-                // detailData?.salePrice.toString()
-                //     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
                 }원</span>
               </div>
               <div className="detail-payment__box">
                 <span className="detail-payment__title">결제방법</span>
-                <span className="detail-payment__txt">{detailData?.method}</span>
+                <span className="detail-payment__txt">
+                  {detailData?.method}
+                </span>
               </div>
             </div>
             <div className="detail-line"></div>

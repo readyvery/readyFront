@@ -143,6 +143,7 @@
 }
 
 .pick-detail-wrapper {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -151,11 +152,34 @@
   margin: 0 0 1rem 0;
 }
 
+/* 가게 이미지 */
 .pick-detail {
-  width: 100%; /* Set the fixed width for the image */
+  width: 100%;
   height: 7.625rem;
   border-radius: 0.5rem 0.5rem 0 0;
-  object-fit: cover; /* Ensure the image covers the entire container */
+  object-fit: cover;
+}
+
+.closed-image-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  height: 7.625rem;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closed-image {
+  position: absolute;
+  width: 50px; /* 원하는 가로 크기 */
+  height: 50px;
+  background-size: cover;
+  background-position: center;
 }
 
 .pick-info {

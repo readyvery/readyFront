@@ -177,7 +177,7 @@ const OrderProcessPage = () => {
     setEssentialOptionIdx(
       foodOptionInfo?.category
         ?.filter((e) => e?.essential)
-        ?.map((cate) => (cate?.options[0]?.idx))
+        ?.map((cate) => cate?.options[0]?.idx)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodOptionInfo]);
@@ -246,12 +246,11 @@ const OrderProcessPage = () => {
         }}
       />
 
-      <div className="order-process-page__menu__img">
-        <img
-          src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
-          alt="menuImg"
-        />
-      </div>
+      <img
+        className="order-process-page__menu__img"
+        src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
+        alt="menuImg"
+      />
 
       <div className="order-process-page__menu__name">
         {foodOptionInfo?.name}
@@ -276,14 +275,13 @@ const OrderProcessPage = () => {
                     {category.name}
                   </span>
                   <span className="order-process-page__toggle__btn">
-                    {selectedRadioTexts?.length &&
-                      selectedRadioTexts[index] ? (
-                        <span className="order-process-page__selected-radio">
-                          {selectedRadioTexts[index]}
-                        </span>
-                      ) : (
-                        <span className="order-process-page__selected-radio"></span>
-                      )}
+                    {selectedRadioTexts?.length && selectedRadioTexts[index] ? (
+                      <span className="order-process-page__selected-radio">
+                        {selectedRadioTexts[index]}
+                      </span>
+                    ) : (
+                      <span className="order-process-page__selected-radio"></span>
+                    )}
                     <img
                       className="order-process-page__toggle__header__img"
                       src={
@@ -452,7 +450,9 @@ const OrderProcessPage = () => {
         <text className="order-process-page__total-amount__price">
           {isNaN(totalAmount * orderCnt)
             ? "0원"
-            : (totalAmount * orderCnt).toLocaleString() + "원"}
+            : (totalAmount * orderCnt)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
 
@@ -464,8 +464,8 @@ const OrderProcessPage = () => {
           장바구니 담기
         </div>
       ) : (
-        <div className="order-process-page__is-close">
-          지금은 영업 전입니다.
+        <div className="order-process-page__store-close">
+          지금은 준비중입니다.
         </div>
       )}
 

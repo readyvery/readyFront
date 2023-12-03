@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import store_not_open_icon from "../../assets/images/store_not_open_icon.svg";
 // import search_cafedream from "../../assets/images/search_cafedream.svg";
 // import search_harang from "../../assets/images/search_harang.svg";
 // import search_orda from "../../assets/images/search_orda.svg";
@@ -78,6 +79,15 @@ function CafeSearch() {
                   alt="search_cafe"
                   className="search-img"
                 />
+                {!item.status && (
+                  <div className="closed-icon-div">
+                    <img
+                      src={store_not_open_icon} // Replace with your closed image path
+                      alt="closedImage"
+                      className="closed-icon"
+                    />
+                  </div>
+                )}
                 <div className="search-detail">
                   <div className="search-name">{item.name}</div>
                   <div className="search-status-time">

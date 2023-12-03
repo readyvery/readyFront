@@ -1,8 +1,3 @@
-.packaging-status-page {
-  /* width: 100%; */
-  height: 94vh;
-}
-
 .packaging-status-page__title {
   display: flex;
   color: #000;
@@ -20,7 +15,7 @@
   display: flex;
   color: #4f4f4f;
   text-align: center;
-  font-family: "Semibold";
+  font-family: "SemiBold";
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
@@ -31,7 +26,7 @@
   margin-bottom: 2rem;
 }
 
-.packaging-status-page__promotion {
+.packaging-status-page__event-img {
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -66,10 +61,36 @@
 .packaging-status-page__text {
   color: #000;
   text-align: center;
-  font-family: "Semibold";
+  font-family: "SemiBold";
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.packaging-status-page__event {
+  color: var(--kakao-logo, #d82356);
+  font-family: "SemiBold";
+  font-size: 0.9375rem;
+  line-height: 130%;
+  letter-spacing: -0.00938rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.2rem;
+}
+
+.packaging-status-page__notice {
+  display: flex;
+  color: #838383;
+  font-family: "Medium";
+  font-size: 0.9375rem;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6.94rem;
 }
