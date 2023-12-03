@@ -75,19 +75,22 @@
 
 .search-name {
   color: #000;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 0.875rem;
 }
 
 .search-status {
   color: #4f4f4f;
-  font-family: "Bold";
+  font-family: "Pretendard Variable";
+  font-weight: 700;
   font-size: 0.75rem;
   margin-bottom: 1%;
 }
 
 .search-address {
   color: #838383;
-  font-family: "ExtraLight";
+  font-family: "Pretendard Variable";
+  font-weight: 200;
   font-size: 0.75rem;
 }
