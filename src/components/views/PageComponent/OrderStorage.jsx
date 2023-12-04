@@ -29,17 +29,15 @@ function OrderStorage() {
 
     axios.get(`${apiUrl}/api/v1/order/history/new`, config)
       .then((res) => {
-        console.log(res);
         setNewStorageList(res.data.receipts);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
     axios.get(`${apiUrl}/api/v1/order/history/old`, config)
       .then((res) => {
-        console.log(res);
         setOldStorageList(res.data.receipts);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

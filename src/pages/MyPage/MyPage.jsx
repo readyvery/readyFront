@@ -10,7 +10,6 @@ import "./MyPage.css";
 
 function Mypage() {
   const isAuth = useRecoilValue(isAuthenticatedState);
-  console.log(isAuth);
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [userName, setUserName] = useState("");
 

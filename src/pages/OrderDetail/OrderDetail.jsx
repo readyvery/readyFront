@@ -21,10 +21,9 @@ const OrderDetail = () => {
     axios
       .get(`${apiUrl}/api/v1/order/receipt?orderId=${orderId}`, config)
       .then((res) => {
-        console.log(res);
         setDetailData(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

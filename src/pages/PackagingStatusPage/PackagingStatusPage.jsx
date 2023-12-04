@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import takeIn from "../../assets/images/take_in.svg";
 import takeOut from "../../assets/images/take_out.svg";
 import Header from "../../components/views/Header/Header";
 import "./PackagingStatusPage.css";
-import axios from "axios";
 
 const PackagingStatusPage = () => {
   const location = useLocation();
@@ -22,7 +22,6 @@ const PackagingStatusPage = () => {
       .get(apiUrl)
       .then((response) => {
         // API 응답을 상태에 저장
-        console.log(response.data);
         setEvent(response.data);
       })
       .catch((error) => {
