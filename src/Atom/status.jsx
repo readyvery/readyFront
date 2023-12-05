@@ -45,7 +45,7 @@ export const userState = atom({
 
 // 사용자 정보를 가져오는 selector
 export const getUserSelector = selector({
-  key: "user/get",
+  key: "getUserSelector",
   get: async ({ get, set }) => {
     // 백엔드에서 사용자 정보 가져옴
     try {
@@ -54,18 +54,12 @@ export const getUserSelector = selector({
       const config = {
         withCredentials: true,
       };
-      const response = await axios.get(`${apiUrl}/api/v1/auth`, config);
-      const userData = response.data;
-      // if (JSON.stringify(userState) !== JSON.stringify(userData)) {
-      //   // 다르면 userInfo 업데이트
-      //   // set(userState, userData);
-      // }
-      return userData;
-    } catch (err) {
-      // 실해시 404 반환
-      // 에러처리
-      return "404";
-    }
+      const response = await axios.get(`${apiUrl}/api/v1/auth`, config)
+      return response.data;
+        
+      } catch (error) {
+        return "404";
+      }
   },
 
   set: ({ set }, newValue) => {
