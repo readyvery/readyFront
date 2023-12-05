@@ -1,6 +1,6 @@
 import React from "react";
+import home_cherry2 from "../../../assets/images/home_cherry2.png";
 import heart_icon from "../../../assets/images/icon_heart.svg";
-import home_icon from "../../../assets/images/icon_home.svg";
 import list_icon from "../../../assets/images/icon_list.svg";
 import mypage_icon from "../../../assets/images/icon_mypage.svg";
 import search_icon from "../../../assets/images/icon_search.svg";
@@ -30,7 +30,11 @@ const NavBar2 = () => {
       </nav>
 
       <nav className="link-instead">
-        <img src={home_icon} alt="HomeIcon" style={{ opacity: 1 }} />
+        <img
+          src={home_cherry2}
+          alt="HomeIcon"
+          style={{ opacity: 1, width: 70, height: 67 }}
+        />
         <div className="nav-item-home"></div>
       </nav>
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import home_cherry from "../../../assets/images/home_cherry.png";
 import heart_icon from "../../../assets/images/icon_heart.svg";
-import home_icon2 from "../../../assets/images/icon_home2.svg";
 import list_icon from "../../../assets/images/icon_list.svg";
 import mypage_icon from "../../../assets/images/icon_mypage.svg";
 import search_icon from "../../../assets/images/icon_search.svg";
@@ -68,9 +68,10 @@ const NavBar = () => {
       >
         <NavColor>
           <img
-            src={home_icon2}
+            src={home_cherry}
             alt="HomeIcon"
             className={activeNav === 3 ? "nav-item active" : "nav-item"}
+            style={{ width: 56, height: 56 }}
           />
           <div
             className={

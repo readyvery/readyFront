@@ -11,33 +11,6 @@ import "./CafeSearch.css";
 function CafeSearch() {
   const apiRoot = process.env.REACT_APP_API_ROOT;
 
-  // const dummyStoreItems = [
-  //   {
-  //     idx: 1,
-  //     name: "카페 오르다",
-  //     address: "경기도 부천시 지봉로 1",
-  //     status: "영업중",
-  //     time: "23:00에 영업종료",
-  //     imgUrl: search_orda,
-  //   },
-  //   {
-  //     idx: 3,
-  //     name: "카페 하랑",
-  //     address: "경기도 부천시 지봉로 2",
-  //     status: "영업종료",
-  //     time: "09:00에 영업시작",
-  //     imgUrl: search_harang,
-  //   },
-  //   {
-  //     idx: 2,
-  //     name: "카페 드림",
-  //     address: "경기도 부천시 지봉로 3",
-  //     status: "영업중",
-  //     time: "22:00에 영업종료",
-  //     imgUrl: search_cafedream,
-  //   },
-  // ];
-
   const [stores, setStores] = useState([]);
   /* verypick 가게 정보 */
   useEffect(() => {
