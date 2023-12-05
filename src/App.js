@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import HomePage from "../src/pages/HomePage/Homepage";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
@@ -96,7 +97,6 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
       <RecoilRoot>
         <Suspense
           fallback={
@@ -105,9 +105,6 @@ function App() {
             </div>
           }
         >
-=======
-        <Suspense fallback={<div><img src={loading} alt="loading"/></div>}>
->>>>>>> 321a3e8dcf5ca46275cfc329bade4eb071d7c3be
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
@@ -168,6 +165,7 @@ function App() {
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
           </Routes>
         </Suspense>
+      </RecoilRoot>
     </div>
   );
 }
