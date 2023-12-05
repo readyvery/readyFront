@@ -108,7 +108,7 @@ function OrderStatus() {
             />
           </div>
         )}
-        {degree !== 0 && degree !== 2 && degree !== 4 && (
+        {degree === 1 && (
           <div className="status-time-wrapper">
             <div className="status-time">
               <div className="status-time-img__wrapper">
