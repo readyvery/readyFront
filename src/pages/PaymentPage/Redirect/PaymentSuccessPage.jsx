@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import paymentSuccess from "../../../assets/images/payment_success.png";
 import "./PaymentRedirectPage.css";
 
@@ -12,6 +12,7 @@ const PaymentSuccessPage = () => {
   const paymentKey = params.get("paymentKey");
   const amount = params.get("amount");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,6 +22,9 @@ const PaymentSuccessPage = () => {
       )
       .then((response) => {
         console.log(response);
+        if (response.status === 400) {
+          navigate(-1);
+        }
       })
       .catch((error) => {
         console.error("Error sending success URL request:", error);
