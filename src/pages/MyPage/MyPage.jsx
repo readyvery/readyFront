@@ -2,14 +2,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import profile_icon from "../../assets/images/profile_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
 function Mypage() {
-  const isAuth = useRecoilValue(isAuthenticatedState);
+  // const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
+  const [isAuth] = useRecoilState(isAuthenticatedState);
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [userName, setUserName] = useState("");
 
@@ -28,7 +29,8 @@ function Mypage() {
         console.error("Error fetching user info:", error);
         // Handle error, e.g., redirect to login page
       });
-  }, [apiUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="mypage-div">

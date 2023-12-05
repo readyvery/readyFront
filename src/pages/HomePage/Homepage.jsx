@@ -11,11 +11,12 @@ import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
-import profile_icon from "../../assets/images/profile_icon.svg";
+//import profile_icon from "../../assets/images/profile_icon.svg";
 import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
+import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import "./Homepage.css";
 
 function Homepage() {
@@ -24,73 +25,9 @@ function Homepage() {
   // const [cookies] = useCookies(["accessToken"]);
   // const [loggedIn, setLoggedIn] = useState(false);
   const isAuth = useRecoilValue(isAuthenticatedState);
-
-  // useEffect(() => {
-  //   if (cookies?.accessToken) {
-  //     setLoggedIn(true);
-  //   } else {
-  //     setLoggedIn(false);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [cookies]);
-
-  const [quickOrder, setQuickOrder] = useState([]);
-  // {/* 바로주문 */}
-  useEffect(() => {
-    if (isAuth) {
-      const config = {
-        withCredentials: true,
-      };
-      // Fetch data from the backend API
-      axios
-        .get(`${apiRoot}/api/v1/order/history/old`, config)
-        .then((response) => {
-          setQuickOrder(response.data.receipts);
-        })
-        .catch((error) => {
-          console.error("quickOrder Error fetching data:", error);
-        });
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth]);
-
+  //const [quickOrder, setQuickOrder] = useState([]);
   const [stores, setStores] = useState([]);
-  /* verypick 가게 정보 */
-  useEffect(() => {
-    const config = {
-      withCredentials: true,
-    };
-    // Fetch data from the backend API
-    axios
-      .get(`${apiRoot}/api/v1/board/store`, config)
-      .then((response) => {
-        setStores(response.data.stores);
-      })
-      .catch((error) => {
-        console.error("stores Error fetching data:", error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // 홈 이벤트 배너
   const [eventBanner, setEventBanner] = useState([]);
-
-  useEffect(() => {
-    const config = {
-      withCredentials: true,
-    };
-    axios
-      .get(`${apiRoot}/api/v1/event/banner`, config)
-      .then((response) => {
-        setEventBanner(response.data.banners);
-      })
-      .catch((error) => {
-        console.error("eventBanner Error fetching data:", error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const [couponIssued, setCouponIssued] = useState(false);
 
   const handleCouponClick = (couponCode, couponId) => {
@@ -122,6 +59,41 @@ function Homepage() {
       });
   };
 
+  useEffect(() => {
+    console.log("실행");
+    const fetchData = async () => {
+      const config = {
+        withCredentials: true,
+      };
+
+      // 베리pick
+      try {
+        const response2 = await axios.get(
+          `${apiRoot}/api/v1/board/store`,
+          config
+        );
+        setStores(response2.data.stores);
+      } catch (error) {
+        console.error("stores Error fetching data:", error);
+      }
+
+      // 이벤트 배너
+      try {
+        const response3 = await axios.get(
+          `${apiRoot}/api/v1/event/banner`,
+          config
+        );
+        setEventBanner(response3.data.banners);
+      } catch (error) {
+        console.error("eventBanner Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     // <div className="load">
     <div className="homepage">
@@ -129,43 +101,7 @@ function Homepage() {
 
       <div className="quick-order">
         <div className="quick-order-text">바로 주문</div>
-        <div className="quick-order-list">
-          {isAuth ? (
-            quickOrder.length > 0 ? (
-              quickOrder.map((item) => (
-                <Link
-                  to={`/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`}
-                  className="login-box"
-                  key={item.id}
-                >
-                  <div className="quick-order-item">
-                    <div className="item-name">{item.name}</div>
-                    <div className="item-detail">{item.orderName}</div>
-                    <div className="item-price">{item.amount}원</div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <Link to={`/search`} className="not-login-box">
-                <img
-                  src={profile_icon}
-                  alt="ProfileIcon"
-                  className="profile-icon"
-                />
-                <div className="not-loggedIn">첫 주문 후 이용가능합니다</div>
-              </Link>
-            )
-          ) : (
-            <Link to="/kakaologin" className="not-login-box">
-              <img
-                src={profile_icon}
-                alt="ProfileIcon"
-                className="profile-icon"
-              />
-              <div className="not-loggedIn">로그인하고 시작하기</div>
-            </Link>
-          )}
-        </div>
+        <QuickOrderComponent isAuth={isAuth} />
       </div>
 
       {/* 이벤트 div */}
@@ -188,16 +124,6 @@ function Homepage() {
                 className="event-icon"
               />
             ))}
-
-        {/* {eventCase[0].events.map((event) => (
-          <img src={event.imgUrl} alt="event" className="event-icon" />
-        ))} */}
-
-        {/* <EventSlider {...settings}>
-          {eventCase[0].events.map((event) => (
-            <EventImg src={event.imgUrl} alt="event" />
-          ))}
-        </EventSlider> */}
       </div>
 
       {/* 베리pick div */}

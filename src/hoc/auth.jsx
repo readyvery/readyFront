@@ -2,50 +2,43 @@ import { message } from "antd";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  getUserSelector,
-  isAuthenticatedState
-} from "../Atom/status";
+import { useRecoilState } from "recoil";
+import { isAuthenticatedState } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
-  
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
-    const userInfo = useRecoilValue(getUserSelector);
+    //const userInfo = useRecoilValue(getUserSelector);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
-      console.log(userInfo);
-        if (userInfo !== "404") {
-            // if(res.data.auth){
-            // console.log(res);
-            if (!isAuth && cookies?.accessToken && location.pathname === "/") {
-              setIsAuth(true);
-              message.success("로그인에 성공하셨습니다.");
-            } else {
-              if (cookies?.accessToken && location.pathname === "/kakaologin") {
-                navigate("/");
-              }
-            }
-          } else {
-            if (
-              location.pathname !== "/kakaologin" &&
-              location.pathname !== "/"
-            ) {
-              navigate("/kakaologin");
-            }
-          }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); 
+      console.log(cookies?.accessToken);
+      console.log(isAuth);
+      if (!isAuth && cookies?.accessToken) {
+        setIsAuth(true);
+        message.success("로그인에 성공하셨습니다.");
+      }
+      if (!cookies?.accessToken) {
+        if (option && location.pathname !== "/") {
+          navigate("/kakaologin");
+        }
+        // 로그인이 필요한 페이지
+      } else {
+        // 로그인 안해도 보이는 페이지
+        if (option === false) {
+          navigate("/");
+        }
+      }
 
-      return <SpecificComponent />;
-    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return <SpecificComponent />;
+  }
   return AuthenticationCheck;
 }
-
 
 // accessToken을 cookie에서 가져오는 함수
 export const getAccessTokenFromCookie = () => {
