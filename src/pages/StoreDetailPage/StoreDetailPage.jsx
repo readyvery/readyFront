@@ -12,6 +12,8 @@ const StoreDetailPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  // const scrollRef = useRef();
+  // const [isScrollable, setIsScrollable] = useState(false);
   const [caffeeInfo, setCaffeeInfo] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [menu, setMenu] = useState(null);
@@ -94,6 +96,41 @@ const StoreDetailPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // useEffect(() => {
+  //   const currentRef = scrollRef.current;
+
+  //   if (currentRef) {
+  //     const handleScroll = () => {
+  //       const scrollWidth = currentRef.scrollWidth;
+  //       const clientWidth = currentRef.clientWidth;
+  //       setIsScrollable(scrollWidth > clientWidth);
+  //     };
+
+  //     currentRef.addEventListener("scroll", handleScroll);
+
+  //     // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+  //     return () => {
+  //       if (currentRef) {
+  //         currentRef.removeEventListener("scroll", handleScroll);
+  //       }
+  //     };
+  //   }
+  // }, []);
+
+  // const handleGoLeft = () => {
+  //   if (scrollRef.current) {
+  //     // 스크롤을 왼쪽으로 100px 이동
+  //     scrollRef.current.scrollLeft -= 100;
+  //   }
+  // };
+
+  // const handleGoRight = () => {
+  //   if (scrollRef.current) {
+  //     // 스크롤을 오른쪽으로 100px 이동
+  //     scrollRef.current.scrollLeft += 100;
+  //   }
+  // };
+
   return (
     <div className="store-detail-page">
       <Header
@@ -160,7 +197,9 @@ const StoreDetailPage = () => {
             src={goLeft}
             alt="L"
             className="store-detail-page__menuCategory__go-left"
+            // onClick={handleGoLeft}
           />
+
           <div className="store-detail-page__menuCategory-scroll">
             {menu && menu.menu && Array.isArray(menu.menu) ? (
               menu.menu.map((category, index) => (
@@ -180,10 +219,12 @@ const StoreDetailPage = () => {
               <p>Loading category...</p>
             )}
           </div>
+
           <img
             src={goRight}
             alt="R"
             className="store-detail-page__menuCategory__go-right"
+            // onClick={handleGoRight}
           />
         </div>
 
