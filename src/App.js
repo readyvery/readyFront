@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import HomePage from "../src/pages/HomePage/Homepage";
+import { RecoilRoot } from "recoil";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
@@ -12,6 +12,7 @@ import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
 import CafeSearchPage from "./pages/CafeSearch/CafeSearch";
 import CartPage from "./pages/CartPage/CartPage";
+import HomePage from "./pages/HomePage/Homepage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
 import PolicyInLogin from "./pages/LoginPage/PolicyInLogin";
 import PrivacyPolicyLogin from "./pages/LoginPage/PrivacyPolicyLogin";
@@ -96,7 +97,14 @@ function App() {
 
   return (
     <div className="App">
-        <Suspense fallback={<div><img src={loading} alt="loading"/></div>}>
+      <RecoilRoot>
+        <Suspense
+          fallback={
+            <div>
+              <img src={loading} alt="loading" />
+            </div>
+          }
+        >
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
@@ -108,7 +116,10 @@ function App() {
             {/* 로그인*/}
             <Route path="/kakaologin" element={<NewLoginPage />} />
             <Route path="/policyinlogin" element={<PolicyInLogin />} />
-            <Route path="/privacypolicyinlogin" element={<PrivacyPolicyLogin />} />
+            <Route
+              path="/privacypolicyinlogin"
+              element={<PrivacyPolicyLogin />}
+            />
             {/* 마이페이지-약관정책 페이지 */}
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/termsofuse" element={<TermsOfUse />} />
@@ -154,6 +165,7 @@ function App() {
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
           </Routes>
         </Suspense>
+      </RecoilRoot>
     </div>
   );
 }
