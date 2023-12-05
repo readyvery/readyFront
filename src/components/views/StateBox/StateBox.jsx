@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import cafe from "../../../assets/images/cafe_logo.png";
 
 const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
-  const stateList = ["진행중", "수령완료", "취소완료"];
+  const stateList = ["진행중", "수령완료", "취소완료", "결제실패"];
   return (
     <>
       <div
