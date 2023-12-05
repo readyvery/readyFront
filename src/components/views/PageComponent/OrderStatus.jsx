@@ -29,7 +29,7 @@ function OrderStatus() {
     MAKE: 1,
     COMPLETE: 2,
     PICKUP: 3,
-    CANCEL: 4
+    CANCEL: 4,
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function OrderStatus() {
     fetchData();
   };
 
-  const handleCancle = async() => {
+  const handleCancle = async () => {
     setIsOpen((prev) => !prev);
     const config = {
       withCredentials: true,
@@ -70,16 +70,19 @@ function OrderStatus() {
     // navigate("/orderHistory");
     setDegree(4);
 
-    const response = await axios
-      .post(`${apiUrl}/api/v1/order/toss/cancel`, body, config)
-    if(response.status === 200){
-      console.log(response)
-      if(response.data.message === "취소 성공"){
+    const response = await axios.post(
+      `${apiUrl}/api/v1/order/toss/cancel`,
+      body,
+      config
+    );
+    if (response.status === 200) {
+      console.log(response);
+      if (response.data.message === "취소 성공") {
         message.success("주문 취소되었습니다.");
         fetchData();
         setDegree(4);
       }
-    } else{
+    } else {
       message.error("주문 취소에 실패하였습니다.");
     }
   };
@@ -93,21 +96,21 @@ function OrderStatus() {
             <Link to="/orderHistory" style={{ textDecoration: "none" }}>
               <img src={close} className="close-btn" alt={close} />
             </Link>
-          </div> 
+          </div>
         ) : (
-        <div className="status-nav-bar">
-          <Link to="/orderHistory" style={{ textDecoration: "none" }}>
-            <img src={close} className="close-btn" alt={close} />
-          </Link>
-          <img
-            src={refresh}
-            className="refresh-btn"
-            alt={refresh}
-            onClick={refreshDegree}
-          />
-        </div> 
+          <div className="status-nav-bar">
+            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+              <img src={close} className="close-btn" alt={close} />
+            </Link>
+            <img
+              src={refresh}
+              className="refresh-btn"
+              alt={refresh}
+              onClick={refreshDegree}
+            />
+          </div>
         )}
-        {degree !== 0 && degree !== 4 && (
+        {degree !== 0 && degree !== 2 && degree !== 4 && (
           <div className="status-time-wrapper">
             <div className="status-time">
               <div className="status-time-img__wrapper">
@@ -142,9 +145,8 @@ function OrderStatus() {
               <Progressbar degree={degree} />
             </div>
           </div>
-        ) : 
-          degree === 4 ? (
-            <div className="status-top-wrapper" style={{'height': "25vh"}}>
+        ) : degree === 4 ? (
+          <div className="status-top-wrapper" style={{ height: "25vh" }}>
             <div className="status-number-wrapper">
               <div className="logo-img-wrapper center">
                 <img src={cancleLogo} className="logo-img" alt={cancleLogo} />
@@ -156,7 +158,7 @@ function OrderStatus() {
               {/* <Progressbar degree={degree} /> */}
             </div>
           </div>
-          ) : (
+        ) : (
           <div className="status-top-wrapper">
             <div className="status-number-wrapper">
               <div className="logo-img-wrapper center">
@@ -168,8 +170,7 @@ function OrderStatus() {
               <Progressbar degree={degree} />
             </div>
           </div>
-          )
-        }
+        )}
         {degree !== 3 && (
           <div className="status-content-container">
             <div className="status-content-wrapper">
@@ -183,15 +184,15 @@ function OrderStatus() {
               </div>
             </div>
             <div className="status-detail__wrapper">
-            <div className="status-detail">
-              <Link
-                to={`/orderDetail?orderId=${orderId}`}
-                state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
-                style={{ textDecoration: "none", color: "#000" }}
-              >
-                주문상세
-              </Link>
-            </div>
+              <div className="status-detail">
+                <Link
+                  to={`/orderDetail?orderId=${orderId}`}
+                  state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
+                  style={{ textDecoration: "none", color: "#000" }}
+                >
+                  주문상세
+                </Link>
+              </div>
             </div>
             {degree === 4 && (
               <div className="status-content-wrapper">

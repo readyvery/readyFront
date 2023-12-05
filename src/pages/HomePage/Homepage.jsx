@@ -49,7 +49,7 @@ function Homepage() {
           setQuickOrder(response.data.receipts);
         })
         .catch((error) => {
-          console.error("Error fetching data:", error);
+          console.error("quickOrder Error fetching data:", error);
         });
     }
 
@@ -70,7 +70,7 @@ function Homepage() {
         setStores(response.data.stores);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("stores Error fetching data:", error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -88,7 +88,7 @@ function Homepage() {
         setEventBanner(response.data.banners);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("eventBanner Error fetching data:", error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -121,7 +121,7 @@ function Homepage() {
         setCouponIssued(true);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("couponIssued Error fetching data:", error);
         message.warning("쿠폰을 이미 받았어요!");
       });
   };
