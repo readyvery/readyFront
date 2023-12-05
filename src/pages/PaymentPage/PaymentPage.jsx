@@ -1,12 +1,12 @@
+import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
-import Header from "../../components/views/Header/Header";
-import "./PaymentPage.css";
 import takeIn from "../../assets/images/take_in.svg";
 import takeOut from "../../assets/images/take_out.svg";
-import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
-import axios from "axios";
+import Header from "../../components/views/Header/Header";
+import "./PaymentPage.css";
 
 const clientKey = process.env.REACT_APP_TOSS_CLIENT_KEY;
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
@@ -98,7 +98,6 @@ const PaymentPage = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
 
         const paymentWidget = paymentWidgetRef.current;
 

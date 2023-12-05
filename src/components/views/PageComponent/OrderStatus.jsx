@@ -45,13 +45,11 @@ function OrderStatus() {
     axios
       .get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
       .then((res) => {
-        console.log(res);
         setStatusList(res.data);
         const curPro = res.data.progress;
-        console.log(progressList[curPro]);
         setDegree(progressList[curPro]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
 
   const refreshDegree = () => {
@@ -70,6 +68,7 @@ function OrderStatus() {
     // navigate("/orderHistory");
     setDegree(4);
 
+<<<<<<< HEAD
     const response = await axios.post(
       `${apiUrl}/api/v1/order/toss/cancel`,
       body,
@@ -78,6 +77,12 @@ function OrderStatus() {
     if (response.status === 200) {
       console.log(response);
       if (response.data.message === "취소 성공") {
+=======
+    const response = await axios
+      .post(`${apiUrl}/api/v1/order/toss/cancel`, body, config)
+    if(response.status === 200){
+      if(response.data.message === "취소 성공"){
+>>>>>>> 321a3e8dcf5ca46275cfc329bade4eb071d7c3be
         message.success("주문 취소되었습니다.");
         fetchData();
         setDegree(4);
@@ -93,11 +98,12 @@ function OrderStatus() {
         {degree === 4 ? (
           <div className="status-nav-bar">
             <div></div>
-            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+            <Link to="/status" style={{ textDecoration: "none" }}>
               <img src={close} className="close-btn" alt={close} />
             </Link>
           </div>
         ) : (
+<<<<<<< HEAD
           <div className="status-nav-bar">
             <Link to="/orderHistory" style={{ textDecoration: "none" }}>
               <img src={close} className="close-btn" alt={close} />
@@ -111,6 +117,21 @@ function OrderStatus() {
           </div>
         )}
         {degree !== 0 && degree !== 2 && degree !== 4 && (
+=======
+        <div className="status-nav-bar">
+          <Link to="/status" style={{ textDecoration: "none" }}>
+            <img src={close} className="close-btn" alt={close} />
+          </Link>
+          <img
+            src={refresh}
+            className="refresh-btn"
+            alt={refresh}
+            onClick={refreshDegree}
+          />
+        </div> 
+        )}
+        {degree !== 0 && degree !== 2 && degree !== 3 && degree !== 4 && (
+>>>>>>> 321a3e8dcf5ca46275cfc329bade4eb071d7c3be
           <div className="status-time-wrapper">
             <div className="status-time">
               <div className="status-time-img__wrapper">
@@ -118,12 +139,15 @@ function OrderStatus() {
               </div>
               <span>
                 <span style={{ color: "#D82356" }}>
-                  {Math.abs(
+                  {
                     moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
                       moment(),
                       "minutes"
+                    ) < 0 ? 0 : moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
+                      moment(),
+                      "minutes"
                     )
-                  )}
+                  }
                   분 후
                 </span>{" "}
                 수령 가능!
@@ -184,6 +208,7 @@ function OrderStatus() {
               </div>
             </div>
             <div className="status-detail__wrapper">
+<<<<<<< HEAD
               <div className="status-detail">
                 <Link
                   to={`/orderDetail?orderId=${orderId}`}
@@ -193,6 +218,17 @@ function OrderStatus() {
                   주문상세
                 </Link>
               </div>
+=======
+            <div className="status-detail">
+              <Link
+                to={`/orderDetail?orderId=${orderId}`}
+                state={{ returnTo: `/status?orderId=${orderId}` }}
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                주문상세
+              </Link>
+            </div>
+>>>>>>> 321a3e8dcf5ca46275cfc329bade4eb071d7c3be
             </div>
             {degree === 4 && (
               <div className="status-content-wrapper">
@@ -219,7 +255,7 @@ function OrderStatus() {
               <span className="compelete-text">"소중한 주문"</span>
               <span className="compelete-text">감사합니다!</span>
             </div>
-            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+            <Link to="/status" style={{ textDecoration: "none" }}>
               <div className="compelete-btn">확인</div>
             </Link>
           </div>

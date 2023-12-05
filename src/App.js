@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { RecoilRoot } from "recoil";
 import HomePage from "../src/pages/HomePage/Homepage";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
@@ -81,7 +80,6 @@ function App() {
       axios
         .get(`${apiUrl}/api/v1/refresh/token`, config)
         .then((response) => {
-          console.log(response);
           // 현재 쿠키 삭제
           if (!response.data) {
             message.info("다시 로그인해주세요.");
@@ -90,7 +88,6 @@ function App() {
           }
         })
         .catch((error) => {
-          console.log(error);
           message.info("다시 로그인해주세요.");
           navigate("/kakaologin");
         });
@@ -99,6 +96,7 @@ function App() {
 
   return (
     <div className="App">
+<<<<<<< HEAD
       <RecoilRoot>
         <Suspense
           fallback={
@@ -107,6 +105,9 @@ function App() {
             </div>
           }
         >
+=======
+        <Suspense fallback={<div><img src={loading} alt="loading"/></div>}>
+>>>>>>> 321a3e8dcf5ca46275cfc329bade4eb071d7c3be
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             {/* 메인페이지 */}
@@ -139,7 +140,7 @@ function App() {
 
             {/* 로그인 해야지 볼 수 있는 페이지 */}
             {/* 주문내역 페이지*/}
-            <Route path="/orderHistory" element={<NewOrderHistory />} />
+            <Route path="/status" element={<NewOrderHistory />} />
             {/* 주문상세 페이지 - 추후 병합 예정*/}
             <Route path="/orderDetail" element={<NewOrderDetail />} />
             {/* 바로주문*/}
@@ -167,7 +168,6 @@ function App() {
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
           </Routes>
         </Suspense>
-      </RecoilRoot>
     </div>
   );
 }

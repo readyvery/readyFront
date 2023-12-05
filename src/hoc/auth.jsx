@@ -1,62 +1,51 @@
 import { message } from "antd";
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  getUserSelector,
   isAuthenticatedState
 } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
+  
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
-    // const userInfo = useRecoilValue(getUserSelector);
-    // const setIsLoggedIn = useSetRecoilState(loginState);
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
-    console.log(isAuth);
+    const userInfo = useRecoilValue(getUserSelector);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
-      // 성공시 해당 정보 반환
-      const apiUrl = process.env.REACT_APP_API_ROOT;
-      const config = {
-        withCredentials: true,
-      };
-      axios.get(`${apiUrl}/api/v1/auth`, config)
-        .then((res) => {
-          console.log(res);
-          if (!isAuth && cookies?.accessToken && location.pathname === "/") {
-            // 첫 로그인 시
-            setIsAuth(true);
-            // setIsLoggedIn({
-            //   accessToken: getAccessTokenFromCookie(),
-            //   expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
-            // });
-            message.success("로그인에 성공하셨습니다.");
-            navigate("/"); //homepage
-          } 
-          else {
-            if (cookies?.accessToken && location.pathname === "/kakaologin") {
-              // 로그인 상태에서 로그인 화면으로 갔을 경우
-              navigate("/"); // homepage
+      console.log(userInfo);
+        if (userInfo !== "404") {
+            // if(res.data.auth){
+            // console.log(res);
+            if (!isAuth && cookies?.accessToken && location.pathname === "/") {
+              setIsAuth(true);
+              message.success("로그인에 성공하셨습니다.");
+            } else {
+              if (cookies?.accessToken && location.pathname === "/kakaologin") {
+                navigate("/");
+              }
+            }
+          } else {
+            if (
+              location.pathname !== "/kakaologin" &&
+              location.pathname !== "/"
+            ) {
+              navigate("/kakaologin");
             }
           }
-        }) 
-        .catch((err) => {
-          if(location.pathname !== "/kakaologin" && location.pathname !== "/"){
-            navigate("/kakaologin");
-          }
-        })
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return <SpecificComponent />;
-  }
+    }, []); 
 
+      return <SpecificComponent />;
+    }
   return AuthenticationCheck;
 }
+
 
 // accessToken을 cookie에서 가져오는 함수
 export const getAccessTokenFromCookie = () => {

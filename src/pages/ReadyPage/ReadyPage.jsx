@@ -19,10 +19,9 @@ function ReadyPage() {
 
     axios.get(`${apiUrl}/api/v1/order/history/fast`, config)
       .then((res) => {
-        console.log(res);
         setStorageList(res.data.receipts);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,7 +36,7 @@ function ReadyPage() {
         {storageList.length ? (
           storageList.map((e, i) => (
             <Link
-              to={`/orderDetail?orderId=${e.orderId}`}
+              to={`/payment?storeId=${e?.storeId}&inout=${e?.inOut}&cartId=${e?.cartId}`}
               state={{ returnTo: "/ready" }}
               style={{ textDecoration: "none" }}
             >

@@ -1,5 +1,6 @@
 import "./StateBox.css";
 
+import { Link } from "react-router-dom";
 import cafe from "../../../assets/images/cafe_logo.png";
 
 const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
@@ -10,7 +11,14 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
         <div className="status-bar">
           <div className="status-date">{date}</div>
           <div className={`status-box ${(state !== undefined && (state === 0 || state === 1 || state === 2) ) && "selected"}`}>
-            {id !== "" ? "상세보기" : state !== undefined && stateList[state - 2 < 0 ? 0 : state - 2]}
+          {id !== "" ? 
+            (<Link 
+              to={`/orderDetail?orderId=${id}`}
+              state={{ returnTo: "/ready" }}
+              style={{ textDecoration: "none" }}
+            >상세보기</Link>) : 
+            (state !== undefined && <div>{stateList[(state - 2 < 0) ? 0 : state - 2]}</div>)
+          }
           </div>
         </div>
         <div className="order-content">
@@ -21,7 +29,7 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
             <div className="cafe-name">{name}</div>
             <div className="menu-name">{menu}</div>
             <div className="menu-name">{amount.toString()
-              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
           </div>
         </div>
       </div>
