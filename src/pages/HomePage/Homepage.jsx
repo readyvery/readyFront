@@ -1,6 +1,6 @@
 import { message } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 // import event_icon from "../../assets/images/event_icon.svg";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
+import Modal from "../../components/views/Modal/Modal";
 //import profile_icon from "../../assets/images/profile_icon.svg";
 import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
@@ -20,6 +21,7 @@ import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import "./Homepage.css";
 
 function Homepage() {
+  const navigate = useNavigate();
   // const isLoggedIn = window.localStorage.getItem("isAuthenticated");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   // const [cookies] = useCookies(["accessToken"]);
@@ -29,6 +31,16 @@ function Homepage() {
   const [stores, setStores] = useState([]);
   const [eventBanner, setEventBanner] = useState([]);
   const [couponIssued, setCouponIssued] = useState(false);
+  const [notLoggedInbannerClick, setnotLoggedInbannerClick] = useState(false);
+
+  const loginText = "로그인 하신 후<br />이용해 주시기 바랍니다.";
+
+  const handleCancel = () => {
+    console.log("Cancel button clicked");
+    setnotLoggedInbannerClick(false);
+    // Navigate to /kakaologin page
+    navigate("/kakaologin");
+  };
 
   const handleCouponClick = (couponCode, couponId) => {
     const config = {
@@ -122,8 +134,17 @@ function Homepage() {
                 src={item.bannerImg}
                 alt="eventBanner"
                 className="event-icon"
+                onClick={() => setnotLoggedInbannerClick(true)}
               />
             ))}
+        {notLoggedInbannerClick && (
+          <Modal
+            setIsOpen={setnotLoggedInbannerClick} // 취소(모달창 닫기)
+            handleCancle={handleCancel} // 확인(카카오 로그인하기로 이동)
+            title={<div dangerouslySetInnerHTML={{ __html: loginText }} />}
+            subtitle="로그인 후 쿠폰받기를 계속 진행해주세요."
+          />
+        )}
       </div>
 
       {/* 베리pick div */}
