@@ -18,7 +18,8 @@ function OrderStorage() {
     "MAKE": 1,
     "COMPLETE": 2,
     "PICKUP": 3,
-    "CANCEL": 4
+    "CANCEL": 4,
+    "FAIL": 5
   };
 
   useEffect(() => {
@@ -28,17 +29,15 @@ function OrderStorage() {
 
     axios.get(`${apiUrl}/api/v1/order/history/new`, config)
       .then((res) => {
-        console.log(res);
         setNewStorageList(res.data.receipts);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
     axios.get(`${apiUrl}/api/v1/order/history/old`, config)
       .then((res) => {
-        console.log(res);
         setOldStorageList(res.data.receipts);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -53,7 +52,7 @@ function OrderStorage() {
           <>
           {newStorageList?.length ? newStorageList?.map((e, i) => (
             <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
+              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/status?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
               style={{ textDecoration: "none" }}
             >
               <StateBox
@@ -70,8 +69,8 @@ function OrderStorage() {
           )) : (<></>)}
           {oldStorageList?.length ? oldStorageList?.map((e, i) => (
             <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/orderHistory?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
-              state={{ returnTo: "/orderHistory" }}
+              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/status?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
+              state={{ returnTo: "/status" }}
               style={{ textDecoration: "none" }}
             >
               <StateBox

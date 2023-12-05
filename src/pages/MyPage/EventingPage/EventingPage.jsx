@@ -69,7 +69,6 @@ function EventingPage() {
         setMypageEventing(response.data.mainEvents);
       })
       .catch((error) => {
-        console.log("Error fetching data:", error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

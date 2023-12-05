@@ -1,9 +1,8 @@
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import "./PaymentRedirectPage.css";
+import { Link, useLocation } from "react-router-dom";
 import paymentSuccess from "../../../assets/images/payment_success.png";
-import { Link } from "react-router-dom";
+import "./PaymentRedirectPage.css";
 
 const PaymentSuccessPage = () => {
   const location = useLocation();
@@ -21,7 +20,7 @@ const PaymentSuccessPage = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
       })
       .catch((error) => {
         console.error("Error sending success URL request:", error);
@@ -38,7 +37,7 @@ const PaymentSuccessPage = () => {
       />
       <div className="payment-redirect-page__title">결제 완료!</div>
       <Link
-        to={`/orderHistory?orderId=${orderId}`}
+        to={`/status?orderId=${orderId}`}
         className="payment-success-page__done"
         style={{ textDecoration: "none" }}
       >

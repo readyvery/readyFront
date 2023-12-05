@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import empty from "../../../assets/images/storage_empty.svg";
 import Header from "../../../components/views/Header/Header";
 import "./CouponPage.css";
-import empty from "../../../assets/images/storage_empty.svg";
 
 function CouponPage() {
   const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -35,7 +35,6 @@ function CouponPage() {
         setCouponCheck(response.data.coupons);
       })
       .catch((error) => {
-        console.log("Error fetching user coupons: ", error.response);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

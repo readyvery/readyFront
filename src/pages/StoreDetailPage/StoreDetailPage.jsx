@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Header from "../../components/views/Header/Header";
-import "./StoreDetailPage.css";
-import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import goLeft from "../../assets/images/go_left.svg";
 import goRight from "../../assets/images/go_right.svg";
+import Header from "../../components/views/Header/Header";
+import "./StoreDetailPage.css";
 
 const StoreDetailPage = () => {
   const location = useLocation();
@@ -65,7 +65,6 @@ const StoreDetailPage = () => {
         })
         .then((response) => {
           if (response.data.carts.length > 0) {
-            console.log("response.data");
             setHasResponse(true);
             setTotalPrice(response.data.totalPrice);
             setCart(response.data);
