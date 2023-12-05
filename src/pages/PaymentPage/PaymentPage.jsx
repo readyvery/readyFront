@@ -98,7 +98,6 @@ const PaymentPage = () => {
         withCredentials: true,
       })
       .then((res) => {
-
         const paymentWidget = paymentWidgetRef.current;
 
         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
@@ -264,7 +263,6 @@ const PaymentPage = () => {
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
             {paymentData?.totalPrice &&
-              salePrice &&
               (paymentData.totalPrice - salePrice)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
