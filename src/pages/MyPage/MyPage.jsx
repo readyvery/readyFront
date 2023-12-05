@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
-import profile_icon from "../../assets/images/profile_icon.svg";
+import profile_icon from "../../assets/images/profile_icon.png";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 
@@ -52,6 +52,7 @@ function Mypage() {
                   src={profile_icon}
                   alt="ProfileIcon"
                   className="profile-icon2"
+                  style={{ width: 60, height: 60 }}
                 />
                 <div className="profile-name">{userName}</div>
                 <div className="profile-detailBtn">프로필보기</div>
@@ -64,6 +65,7 @@ function Mypage() {
                 src={profile_icon}
                 alt="ProfileIcon2"
                 className="profile-icon2"
+                style={{ width: 60, height: 60 }}
               />
               <div className="not-loggedIn2">로그인하고 시작하기</div>
             </Link>

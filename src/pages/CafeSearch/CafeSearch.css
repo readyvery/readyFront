@@ -1,4 +1,5 @@
 .search-container {
+  height: 94vh;
   width: 100%;
 }
 
@@ -33,6 +34,8 @@
 /* 가게 이미지 */
 .search-img {
   margin: 0 2%;
+  width: 80px;
+  height: 80px;
   position: relative;
 }
 

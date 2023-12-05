@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import profile_icon from "../../assets/images/profile_icon.svg";
-import profile_icon from "../../../assets/images/profile_icon.svg";
+
+import profile_icon from "../../../assets/images/profile_icon.png";
 
 const QuickOrderComponent = ({ isAuth }) => {
   const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -56,6 +56,7 @@ const QuickOrderComponent = ({ isAuth }) => {
                 src={profile_icon}
                 alt="ProfileIcon"
                 className="profile-icon"
+                style={{ width: 60, height: 60 }}
               />
               <div className="not-loggedIn">첫 주문 후 이용가능합니다</div>
             </Link>
@@ -66,6 +67,7 @@ const QuickOrderComponent = ({ isAuth }) => {
               src={profile_icon}
               alt="ProfileIcon"
               className="profile-icon"
+              style={{ width: 60, height: 60 }}
             />
             <div className="not-loggedIn">로그인하고 시작하기</div>
           </Link>
