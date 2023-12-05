@@ -9,46 +9,43 @@ import {
 } from "../Atom/status";
 
 function Auth(SpecificComponent, option) {
+  
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const location = useLocation();
     const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
     const userInfo = useRecoilValue(getUserSelector);
-    console.log(isAuth);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
-      // 성공시 해당 정보 반환
-      // const apiUrl = process.env.REACT_APP_API_ROOT;
-      // const config = {
-      //   withCredentials: true,
-      // };
       console.log(userInfo);
-        if(userInfo !== "404"){
-          if (!isAuth && cookies?.accessToken && location.pathname === "/") {
-            // 첫 로그인 시
-            setIsAuth(true);
-            message.success("로그인에 성공하셨습니다.");
-          } 
-          else {
-            if (cookies?.accessToken && location.pathname === "/kakaologin") {
-              // 로그인 상태에서 로그인 화면으로 갔을 경우
-              navigate("/"); // homepage
+        if (userInfo !== "404") {
+            // if(res.data.auth){
+            // console.log(res);
+            if (!isAuth && cookies?.accessToken && location.pathname === "/") {
+              setIsAuth(true);
+              message.success("로그인에 성공하셨습니다.");
+            } else {
+              if (cookies?.accessToken && location.pathname === "/kakaologin") {
+                navigate("/");
+              }
+            }
+          } else {
+            if (
+              location.pathname !== "/kakaologin" &&
+              location.pathname !== "/"
+            ) {
+              navigate("/kakaologin");
             }
           }
-        } else {
-          if(location.pathname !== "/kakaologin" && location.pathname !== "/"){
-            navigate("/kakaologin");
-          }
-        }
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return <SpecificComponent />;
-  }
+    }, []); 
 
+      return <SpecificComponent />;
+    }
   return AuthenticationCheck;
 }
+
 
 // accessToken을 cookie에서 가져오는 함수
 export const getAccessTokenFromCookie = () => {

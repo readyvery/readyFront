@@ -21,10 +21,9 @@ const OrderDetail = () => {
     axios
       .get(`${apiUrl}/api/v1/order/receipt?orderId=${orderId}`, config)
       .then((res) => {
-        console.log(res);
         setDetailData(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -94,7 +93,7 @@ const OrderDetail = () => {
                       {e.totalPrice &&
                         e.totalPrice
                           .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       원
                     </span>
                   </div>
@@ -107,7 +106,7 @@ const OrderDetail = () => {
                 <span className="detail-payment__title">총 결제금액</span>
                 <span className="detail-payment-price">{
                   (detailData?.cart?.totalPrice - detailData?.salePrice).toString()
-                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }원</span>
               </div>
               <div className="detail-payment__box">

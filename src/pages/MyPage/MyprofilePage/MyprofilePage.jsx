@@ -27,7 +27,6 @@ function MyprofilePage() {
         withCredentials: true,
       };
       const response = await axios.get(apiUrl + "/api/v1/user/logout", config);
-
       console.log(response);
       removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
       removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
@@ -46,7 +45,6 @@ function MyprofilePage() {
         withCredentials: true,
       };
       const response = await axios.get(apiUrl + "/api/v1/user/remove", config);
-
       console.log(response);
       removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
       removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });

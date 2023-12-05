@@ -9,7 +9,6 @@ function OrderHistory() {
   const location = useLocation();
     const params = new URLSearchParams(location.search);
     const orderId = params?.get("orderId");
-    console.log(orderId);
 
   return (
     <>

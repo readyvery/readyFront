@@ -54,13 +54,15 @@
 .status-explain{
     font-size: 0.9375rem;
     color: #FFE2ED;
-    font-family: "bold";
+    font-family: "Pretendard Variable";
+    font-weight: 700;
     flex-shrink: 0;
 }
 
 .status-explain.selected{
     font-size: 0.9375rem;
     color: #D82356;
-    font-family: "bold";
+    font-family: "Pretendard Variable";
+    font-weight: 700;
     flex-shrink: 0;
 }

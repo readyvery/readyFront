@@ -31,7 +31,6 @@ function Homepage() {
   //   } else {
   //     setLoggedIn(false);
   //   }
-  //   console.log(loggedIn);
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [cookies]);
 
@@ -66,7 +65,6 @@ function Homepage() {
     axios
       .get(`${apiRoot}/api/v1/board/store`, config)
       .then((response) => {
-        console.log(response.data);
         setStores(response.data.stores);
       })
       .catch((error) => {
@@ -96,7 +94,6 @@ function Homepage() {
   const [couponIssued, setCouponIssued] = useState(false);
 
   const handleCouponClick = (couponCode, couponId) => {
-    console.log(couponCode, couponId);
     const config = {
       withCredentials: true,
     };
@@ -115,8 +112,7 @@ function Homepage() {
         config
       )
       .then((response) => {
-        console.log("Coupon registration successful:", response.data);
-
+        console.log(response);
         message.success("쿠폰 받기 완료!");
         setCouponIssued(true);
       })
