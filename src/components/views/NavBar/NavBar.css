@@ -2,8 +2,7 @@
 .bottom_navbar {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+
   height: 4.625rem; /*60px*/
   background-color: #d82356;
   z-index: 100;
