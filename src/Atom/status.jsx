@@ -39,7 +39,7 @@ export const loginState = atom({
 // 사용자 정보를 저장하는 상태
 export const userState = atom({
   key: "userState",
-  dafault: null,
+  default: null,
   effects_UNSTABLE: [persistAtom],
 });
 
