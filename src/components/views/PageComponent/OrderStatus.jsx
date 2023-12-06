@@ -97,7 +97,7 @@ function OrderStatus() {
           </div>
         ) : (
           <div className="status-nav-bar">
-            <Link to="/orderHistory" style={{ textDecoration: "none" }}>
+            <Link to="/status" style={{ textDecoration: "none" }}>
               <img src={close} className="close-btn" alt={close} />
             </Link>
             <img
@@ -188,7 +188,7 @@ function OrderStatus() {
               <div className="status-detail">
                 <Link
                   to={`/orderDetail?orderId=${orderId}`}
-                  state={{ returnTo: `/orderHistory?orderId=${orderId}` }}
+                  state={{ returnTo: `/status?orderId=${orderId}` }}
                   style={{ textDecoration: "none", color: "#000" }}
                 >
                   주문상세
