@@ -43,7 +43,8 @@ const OrderDetail = () => {
             <div className="detail-top__wrapper">
               {detailData?.orderStatus === "CANCEL" ? (
                 <span className="detail-order-status fail">
-                  주문 취소 (가게사정)
+                  주문 취소 
+                  {/* {detailData?.cancelReason === null ? <span></span> : <span>({detailData?.cancelReason})</span>} */}
                 </span>
               ) : (
                 <span className="detail-order-status">주문 완료</span>
