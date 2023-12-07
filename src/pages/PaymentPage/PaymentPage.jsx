@@ -274,9 +274,13 @@ const PaymentPage = () => {
         </div>
       </div>
 
-      <div className="payment-page__payment-btn" onClick={paymentRequest}>
-        결제하기
-      </div>
+      {paymentData?.isOpened ? (
+        <div className="payment-page__payment-btn" onClick={paymentRequest}>
+          결제하기
+        </div>
+      ) : (
+        <div className="payment-page__store-close">지금은 준비중입니다.</div>
+      )}
     </div>
   );
 };
