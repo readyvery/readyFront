@@ -194,6 +194,7 @@ function Homepage() {
           </div>
         </div>
       </div>
+
       {/* 사업자 정보 */}
       <div className="business-info">
         <div className="business-name">ReadyVery</div>
@@ -216,6 +217,7 @@ function Homepage() {
           >
             레디베리는 통신판매중개자이며, 통신판매의 당사자가 아닙니다.
           </div>
+
           <div
             style={{
               fontSize: "11px",
