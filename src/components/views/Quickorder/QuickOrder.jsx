@@ -18,7 +18,7 @@ const QuickOrderComponent = ({ isAuth }) => {
       if (isAuth) {
         try {
           const response1 = await axios.get(
-            `${apiRoot}/api/v1/order/history/old`,
+            `${apiRoot}/api/v1/order/history/fast`,
             config
           );
           setQuickOrder(response1.data.receipts);
