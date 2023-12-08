@@ -184,6 +184,18 @@ function OrderStatus() {
                 <span className="status-history">{statusList?.orderName}</span>
               </div>
             </div>
+            <div className="status-content-wrapper">
+              <span className="status-content-subtitle">수령방식</span>
+              <div className="status-content">
+                <span className="status-history">{statusList?.inout ? "매장" : "픽업"}</span>
+              </div>
+            </div>
+            {degree === 4 && (
+              <div className="status-content-wrapper">
+                <span className="status-content-subtitle">취소사유</span>
+                <span className="status-content">{statusList?.cancels?.split(",")[1]?.split("=")[1]}</span>
+              </div>
+            )}
             <div className="status-detail__wrapper">
               <div className="status-detail">
                 <Link
@@ -195,12 +207,6 @@ function OrderStatus() {
                 </Link>
               </div>
             </div>
-            {degree === 4 && (
-              <div className="status-content-wrapper">
-                <span className="status-content-subtitle">취소사유</span>
-                <span className="status-content">매장 사정</span>
-              </div>
-            )}
           </div>
         )}
         {degree === 0 && (
