@@ -126,6 +126,7 @@
 .detail-order-menu-option__wrapper{
     display: flex;
     margin-top: 0.25rem;
+    flex-wrap: wrap;
 }
 
 .detail-order-menu-option{
