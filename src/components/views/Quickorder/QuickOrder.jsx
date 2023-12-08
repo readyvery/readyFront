@@ -21,7 +21,7 @@ const QuickOrderComponent = ({ isAuth }) => {
             `${apiRoot}/api/v1/order/history/fast`,
             config
           );
-          setQuickOrder(response1.data.receipts);
+          setQuickOrder(response1.data.receipts?.reverse());
         } catch (error) {
           console.error("quickOrder Error fetching data:", error);
         }

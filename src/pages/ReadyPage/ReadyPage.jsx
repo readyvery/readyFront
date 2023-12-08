@@ -19,7 +19,7 @@ function ReadyPage() {
 
     axios.get(`${apiUrl}/api/v1/order/history/fast`, config)
       .then((res) => {
-        setStorageList(res.data.receipts);
+        setStorageList(res.data.receipts?.reverse());
       })
       .catch((err) => {});
       // eslint-disable-next-line react-hooks/exhaustive-deps
