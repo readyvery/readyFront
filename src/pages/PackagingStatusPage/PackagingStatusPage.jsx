@@ -76,7 +76,7 @@ const PackagingStatusPage = () => {
       </Link>
 
       <div className="packaging-status-page__notice">
-        매장 컵 사용하실 경우 자리 확인 후 주문해주세요
+        픽업 시 매장에서 일회용 컵 사용 불가능합니다
       </div>
     </div>
   );
