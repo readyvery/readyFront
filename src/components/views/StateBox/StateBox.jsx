@@ -27,7 +27,7 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
               <Link
                 to={`/orderDetail?orderId=${id}`}
                 state={{ returnTo: "/ready" }}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#000" }}
               >
                 상세보기
               </Link>

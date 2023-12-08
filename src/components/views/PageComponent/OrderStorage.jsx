@@ -35,7 +35,7 @@ function OrderStorage() {
 
     axios.get(`${apiUrl}/api/v1/order/history/old`, config)
       .then((res) => {
-        setOldStorageList(res.data.receipts);
+        setOldStorageList(res.data.receipts?.reverse());
       })
       .catch((err) => {});
 
