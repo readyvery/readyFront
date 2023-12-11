@@ -187,7 +187,7 @@ function OrderStatus() {
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">수령방식</span>
               <div className="status-content">
-                <span className="status-history">{statusList?.inout ? "매장" : "픽업"}</span>
+                <span className="status-history">{statusList?.inout === 1 ? "매장" : "픽업"}</span>
               </div>
             </div>
             {degree === 4 && (

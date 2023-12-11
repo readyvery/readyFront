@@ -54,7 +54,7 @@ const OrderDetail = () => {
                 <span>주문일시: {detailData?.orderTime}</span>
                 <span>주문번호: {detailData?.orderId}</span>
                 <span>가게전화: {detailData?.storePhone}</span>
-                <span>수령방식: {detailData?.inout ? "매장" : "픽업"}</span>
+                <span>수령방식: {detailData?.inout === 1 ? "매장" : "픽업"}</span>
               </div>
             </div>
             <div className="detail-line"></div>

@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
@@ -110,7 +110,7 @@ function App() {
             {/* 메인페이지 */}
             <Route path="/" element={<NewHomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
-            {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
+            <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
             {/* 카페검색*/}
             <Route path="/search" element={<CafeSearchPage />} />
             {/* 로그인*/}
