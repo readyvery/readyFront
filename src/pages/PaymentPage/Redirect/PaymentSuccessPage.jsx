@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import paymentSuccess from "../../../assets/images/payment_success.png";
 import "./PaymentRedirectPage.css";
+import Modal from "../../../components/views/Modal/Modal";
 
 const PaymentSuccessPage = () => {
   const location = useLocation();
@@ -13,6 +14,12 @@ const PaymentSuccessPage = () => {
   const amount = params.get("amount");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCancle = async () => {
+    setIsOpen((prev) => !prev);
+    navigate(-1);
+  };
 
   useEffect(() => {
     axios
@@ -24,6 +31,20 @@ const PaymentSuccessPage = () => {
         console.log(response);
         if (response.status === 400) {
           navigate(-1);
+        } else if (response.status === 200) {
+          if (
+            response.message !== "Order is already end." ||
+            response.message !== "결제 성공."
+          ) {
+            isOpen && (
+              <Modal
+                setIsOpen={setIsOpen}
+                handleCancle={handleCancle}
+                title={"결제 실패"}
+                subtitle={response.message}
+              />
+            );
+          }
         }
       })
       .catch((error) => {
