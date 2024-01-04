@@ -187,25 +187,27 @@ function OrderStatus() {
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">수령방식</span>
               <div className="status-content">
-                <span className="status-history">{statusList?.inout === 1 ? "매장" : "픽업"}</span>
+                <span className="status-history">
+                  {statusList?.inout === 1 ? "매장" : "픽업"}
+                </span>
               </div>
             </div>
             {degree === 4 && (
               <div className="status-content-wrapper">
                 <span className="status-content-subtitle">취소사유</span>
-                <span className="status-content">{statusList?.cancels?.split(",")[1]?.split("=")[1]}</span>
+                <span className="status-content">
+                  {statusList?.cancels?.split(",")[1]?.split("=")[1]}
+                </span>
               </div>
             )}
             <div className="status-detail__wrapper">
-              <div className="status-detail">
-                <Link
-                  to={`/orderDetail?orderId=${orderId}`}
-                  state={{ returnTo: `/status?orderId=${orderId}` }}
-                  style={{ textDecoration: "none", color: "#000" }}
-                >
-                  주문상세
-                </Link>
-              </div>
+              <Link
+                to={`/orderDetail?orderId=${orderId}`}
+                state={{ returnTo: `/status?orderId=${orderId}` }}
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                <div className="status-detail">주문상세</div>
+              </Link>
             </div>
           </div>
         )}
