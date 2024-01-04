@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import store_not_open_icon from "../../assets/images/store_not_open_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./CafeSearch.css";
-import StoreListApi from "../../hooks/StoreListApi";
+import useFetchSearch from "../../hooks/useFetchSearch";
 
 function CafeSearch() {
-  const stores = StoreListApi();
+  const stores = useFetchSearch();
 
   return (
     <div className="search-container">

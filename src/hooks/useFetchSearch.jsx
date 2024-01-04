@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
 
-const StoreListApi = () => {
+const useFetchSearch = () => {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const StoreListApi = () => {
   return stores;
 };
 
-export default StoreListApi;
+export default useFetchSearch;
