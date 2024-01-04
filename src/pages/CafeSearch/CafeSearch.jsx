@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import store_not_open_icon from "../../assets/images/store_not_open_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./CafeSearch.css";
-import StoreListApi from "./StoreListApi";
+import StoreListApi from "../../hooks/StoreListApi";
 
 function CafeSearch() {
   const stores = StoreListApi();

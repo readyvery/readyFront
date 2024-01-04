@@ -4,9 +4,9 @@ import noImageMenu from "../../assets/images/no_image_menu.svg";
 import empty from "../../assets/images/storage_empty.svg";
 import Header from "../../components/views/Header/Header";
 import "./CartPage.css";
-import useFetchCartData from "./useFetchCartData";
-import useUpdateCartItem from "./useUpdateCartItem";
-import useDeleteCartItem from "./useDeleteCartItem";
+import useFetchCartData from "../../hooks/useFetchCartData";
+import useUpdateCartItem from "../../hooks/useUpdateCartItem";
+import useDeleteCartItem from "../../hooks/useDeleteCartItem";
 
 const CartPage = () => {
   const location = useLocation();

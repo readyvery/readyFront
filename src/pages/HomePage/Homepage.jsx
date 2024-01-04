@@ -1,35 +1,31 @@
-import { message } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-// import event_icon from "../../assets/images/event_icon.svg";
-// import home_cafedream from "../../assets/images/home_cafedream.svg";
-// import home_harang from "../../assets/images/home_harang.svg";
-// import home_orda from "../../assets/images/home_orda.svg";
-import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import Modal from "../../components/views/Modal/Modal";
-//import profile_icon from "../../assets/images/profile_icon.svg";
 import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import NavBar2 from "../../components/views/NavBar/NavBar2";
 import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import "./Homepage.css";
+import usePostCoupon from "../../hooks/usePostCoupon";
+import useFetchStores from "../../hooks/useFetchStores";
+import useFetchEventBanners from "../../hooks/useFetchEventBanners";
 
 function Homepage() {
   const navigate = useNavigate();
+  const postCoupon = usePostCoupon();
+  const stores = useFetchStores();
+  const eventBanners = useFetchEventBanners();
   // const isLoggedIn = window.localStorage.getItem("isAuthenticated");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
   // const [cookies] = useCookies(["accessToken"]);
   // const [loggedIn, setLoggedIn] = useState(false);
   const isAuth = useRecoilValue(isAuthenticatedState);
   //const [quickOrder, setQuickOrder] = useState([]);
-  const [stores, setStores] = useState([]);
-  const [eventBanner, setEventBanner] = useState([]);
   const [couponIssued, setCouponIssued] = useState(false);
   const [notLoggedInbannerClick, setnotLoggedInbannerClick] = useState(false);
 
@@ -43,68 +39,8 @@ function Homepage() {
   };
 
   const handleCouponClick = (couponCode, couponId) => {
-    const config = {
-      withCredentials: true,
-    };
-
-    if (couponIssued) {
-      return;
-    }
-
-    axios
-      .post(
-        `${apiRoot}/api/v1/coupon`,
-        {
-          couponCode,
-          couponId,
-        },
-        config
-      )
-      .then((response) => {
-        console.log(response);
-        message.success("쿠폰 받기 완료!");
-        setCouponIssued(true);
-      })
-      .catch((error) => {
-        console.error("couponIssued Error fetching data:", error);
-        message.warning("쿠폰을 이미 받았어요!");
-      });
+    postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
   };
-
-  useEffect(() => {
-    console.log("실행");
-    const fetchData = async () => {
-      const config = {
-        withCredentials: true,
-      };
-
-      // 베리pick
-      try {
-        const response2 = await axios.get(
-          `${apiRoot}/api/v1/board/store`,
-          config
-        );
-        setStores(response2.data.stores);
-      } catch (error) {
-        console.error("stores Error fetching data:", error);
-      }
-
-      // 이벤트 배너
-      try {
-        const response3 = await axios.get(
-          `${apiRoot}/api/v1/event/banner`,
-          config
-        );
-        setEventBanner(response3.data.banners);
-      } catch (error) {
-        console.error("eventBanner Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     // <div className="load">
@@ -119,7 +55,7 @@ function Homepage() {
       {/* 이벤트 div */}
       <div className="event">
         {isAuth
-          ? eventBanner.map((item) => (
+          ? eventBanners.map((item) => (
               <img
                 key={item.idx}
                 src={item.bannerImg}
@@ -128,7 +64,7 @@ function Homepage() {
                 onClick={() => handleCouponClick(item.couponCode, item.idx)}
               />
             ))
-          : eventBanner.map((item) => (
+          : eventBanners.map((item) => (
               <img
                 key={item.idx}
                 src={item.bannerImg}
