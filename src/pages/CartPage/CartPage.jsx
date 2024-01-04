@@ -1,11 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import menuDelete from "../../assets/images/menu_delete.svg";
 import noImageMenu from "../../assets/images/no_image_menu.svg";
 import empty from "../../assets/images/storage_empty.svg";
 import Header from "../../components/views/Header/Header";
 import "./CartPage.css";
+import useFetchCartData from "./useFetchCartData";
+import useUpdateCartItem from "./useUpdateCartItem";
+import useDeleteCartItem from "./useDeleteCartItem";
 
 const CartPage = () => {
   const location = useLocation();
@@ -13,105 +14,33 @@ const CartPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const cartId = params.get("cartId");
-  const [paymentData, setPaymentData] = useState(null);
-  const [price, setPrice] = useState(paymentData?.totalPrice);
-  const [Count, setCount] = useState(1);
-  const [Idx, setIdx] = useState(0);
-  const apiRoot = process.env.REACT_APP_API_ROOT;
+  const [paymentData, setPaymentData] = useFetchCartData(cartId);
+  const deleteCartItem = useDeleteCartItem();
+  const updateCartItem = useUpdateCartItem();
 
   const handleDecrease = (item) => {
     if (item?.count > 1) {
+      const newCount = item.count - 1;
       const updatedCarts = paymentData.carts.map((cartItem) =>
-        cartItem.idx === item.idx
-          ? { ...cartItem, count: cartItem?.count - 1 }
-          : cartItem
+        cartItem.idx === item.idx ? { ...cartItem, count: newCount } : cartItem
       );
-      setPaymentData((prevData) => ({ ...prevData, carts: updatedCarts }));
-      const newPrice = price - item.price;
-      setPrice(newPrice);
-      setCount(item?.count - 1);
-      setIdx(item.idx);
+      setPaymentData({ ...paymentData, carts: updatedCarts });
+      updateCartItem(item.idx, newCount, item.price); // PUT 요청
     }
   };
 
   const handleIncrease = (item) => {
+    const newCount = item.count + 1;
     const updatedCarts = paymentData.carts.map((cartItem) =>
-      cartItem.idx === item.idx
-        ? { ...cartItem, count: cartItem?.count + 1 }
-        : cartItem
+      cartItem.idx === item.idx ? { ...cartItem, count: newCount } : cartItem
     );
-    setPaymentData((prevData) => ({ ...prevData, carts: updatedCarts }));
-    const newPrice = price + item.price;
-    setPrice(newPrice);
-    setCount(item?.count + 1);
-    setIdx(item.idx);
+    setPaymentData({ ...paymentData, carts: updatedCarts });
+    updateCartItem(item.idx, newCount, item.price); // PUT 요청
   };
 
-  const handleRemoveItem = async (itemId) => {
-    try {
-      // 서버에 아이템 삭제 요청 보내기
-      await axios.delete(`${apiRoot}/api/v1/order/cart?idx=${itemId}`, {
-        withCredentials: true,
-      });
-
-      // 로컬 상태 및 렌더링 갱신
-      const updatedCarts = paymentData.carts.filter(
-        (cartItem) => cartItem.idx !== itemId
-      );
-      setPaymentData({ ...paymentData, carts: updatedCarts });
-
-      // 가격도 갱신
-      const newPrice = updatedCarts.reduce(
-        (total, cartItem) => total + cartItem.totalPrice * cartItem?.count,
-        0
-      );
-      setPrice(newPrice);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleRemoveItem = (itemId) => {
+    deleteCartItem(itemId, paymentData, setPaymentData); // DELETE 요청
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
-          { withCredentials: true }
-        );
-        setPaymentData(response.data);
-        setPrice(response.data.totalPrice);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const noneCartData = async () => {
-      try {
-        const response = await axios.get(`${apiRoot}/api/v1/order/cart`, {
-          withCredentials: true,
-        });
-        setPaymentData(response.data);
-        setPrice(response.data.totalPrice);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    cartId ? fetchData() : noneCartData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    axios
-      .put(
-        `${apiRoot}/api/v1/order/cart?idx=${Idx}&count=${Count}`,
-        { price: price },
-        { withCredentials: true }
-      )
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [Idx, price, Count, apiRoot]);
 
   const totalQuantity = paymentData?.carts.reduce(
     (total, item) => total + item.count,
