@@ -1,4 +1,3 @@
-// hooks/useLogout.js
 import axios from "axios";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
