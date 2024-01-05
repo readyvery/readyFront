@@ -22,13 +22,30 @@ const OrderProcessPage = () => {
   const inout = params.get("inout");
   const foodieId = params.get("foodie_id");
   const status = params.get("status");
+  const foodOptionInfo = useFetchFoodOptionInfo(storeId, foodieId, inout);
+  const updateCart = useUpdateCart();
+  const resetCart = useResetCart();
   const [optionOpen, setOptionOpen] = useState(false);
   const [orderCnt, setOrderCnt] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
-  const foodOptionInfo = useFetchFoodOptionInfo(storeId, foodieId, inout);
-  const updateCart = useUpdateCart();
-  const resetCart = useResetCart();
+  const [activeToggles, setActiveToggles] = useState(
+    foodOptionInfo?.category?.filter((el) => el?.essential).map(() => false)
+  );
+  const [selectedRadioTexts, setSelectedRadioTexts] = useState(
+    foodOptionInfo &&
+      foodOptionInfo.category
+        ?.filter((el) => el?.essential)
+        .map((e) => `${e.options[0]?.name}`)
+  );
+  const [totalAmount, setTotalAmount] = useState(
+    foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price
+  );
+  const [prevRadioPrice, setPrevRadioPrice] = useState(
+    foodOptionInfo?.category?.map(() => 0)
+  );
+  const [optionIdx, setOptionIdx] = useState([]);
+  const [essentialOptionIdx, setEssentialOptionIdx] = useState({});
 
   const handleCartUpdate = () => {
     let body = {
@@ -101,57 +118,6 @@ const OrderProcessPage = () => {
     setIsOpen(false);
   };
 
-  const [activeToggles, setActiveToggles] = useState(
-    foodOptionInfo?.category?.filter((el) => el?.essential).map(() => false)
-  );
-  const [selectedRadioTexts, setSelectedRadioTexts] = useState(
-    foodOptionInfo &&
-      foodOptionInfo.category
-        ?.filter((el) => el?.essential)
-        .map((e) => `${e.options[0]?.name}`)
-  );
-  const [totalAmount, setTotalAmount] = useState(
-    foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price
-  );
-  const [prevRadioPrice, setPrevRadioPrice] = useState(
-    foodOptionInfo?.category?.map(() => 0)
-  );
-  const [optionIdx, setOptionIdx] = useState([]);
-  const [essentialOptionIdx, setEssentialOptionIdx] = useState({});
-
-  useEffect(() => {
-    setActiveToggles(
-      foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false)
-    );
-    setSelectedRadioTexts(
-      foodOptionInfo.category
-        ?.filter((el) => el?.essential)
-        .map((e) => `${e?.options[0]?.name}`)
-    );
-    setTotalAmount(
-      orderCnt &&
-        orderCnt *
-          (foodOptionInfo?.price +
-            parseInt(
-              foodOptionInfo?.category
-                ?.filter((el) => el?.essential)
-                .map((e) => parseInt(e?.options[0]?.price))
-                .reduce((prev, curr) => prev + curr, 0)
-            ))
-    );
-    setPrevRadioPrice(
-      foodOptionInfo?.category
-        ?.filter((el) => el?.essential)
-        ?.map((e) => e?.options[0]?.price)
-    );
-    setEssentialOptionIdx(
-      foodOptionInfo?.category
-        ?.filter((e) => e?.essential)
-        ?.map((cate) => cate?.options[0]?.idx)
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodOptionInfo]);
-
   const handleToggle = (index) => {
     setActiveToggles((prevToggles) => {
       const toggles = [...prevToggles];
@@ -204,6 +170,39 @@ const OrderProcessPage = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
     setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
   };
+
+  useEffect(() => {
+    setActiveToggles(
+      foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false)
+    );
+    setSelectedRadioTexts(
+      foodOptionInfo.category
+        ?.filter((el) => el?.essential)
+        .map((e) => `${e?.options[0]?.name}`)
+    );
+    setTotalAmount(
+      orderCnt &&
+        orderCnt *
+          (foodOptionInfo?.price +
+            parseInt(
+              foodOptionInfo?.category
+                ?.filter((el) => el?.essential)
+                .map((e) => parseInt(e?.options[0]?.price))
+                .reduce((prev, curr) => prev + curr, 0)
+            ))
+    );
+    setPrevRadioPrice(
+      foodOptionInfo?.category
+        ?.filter((el) => el?.essential)
+        ?.map((e) => e?.options[0]?.price)
+    );
+    setEssentialOptionIdx(
+      foodOptionInfo?.category
+        ?.filter((e) => e?.essential)
+        ?.map((cate) => cate?.options[0]?.idx)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foodOptionInfo]);
 
   return (
     <div className="order-process-page">

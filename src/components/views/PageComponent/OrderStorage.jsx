@@ -24,26 +24,6 @@ function OrderStorage() {
     FAIL: 5,
   };
 
-  // useEffect(() => {
-  //   const config = {
-  //     withCredentials: true
-  //   };
-
-  //   axios.get(`${apiUrl}/api/v1/order/history/new`, config)
-  //     .then((res) => {
-  //       setNewStorageList(res.data.receipts);
-  //     })
-  //     .catch((err) => {});
-
-  //   axios.get(`${apiUrl}/api/v1/order/history/old`, config)
-  //     .then((res) => {
-  //       setOldStorageList(res.data.receipts?.reverse());
-  //     })
-  //     .catch((err) => {});
-
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
     <section className="main-container">
       <Header

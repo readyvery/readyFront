@@ -2,6 +2,8 @@ import axios from "axios";
 import { message } from "antd";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
+const apiUrl = `${apiRoot}/${apiVer}/coupon`;
 
 const usePostCoupon = () => {
   const postCoupon = async (
@@ -17,7 +19,7 @@ const usePostCoupon = () => {
 
     try {
       const response = await axios.post(
-        `${apiRoot}/api/v1/coupon`,
+        apiUrl,
         { couponCode, couponId },
         { withCredentials: true }
       );

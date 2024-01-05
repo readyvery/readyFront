@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useFetchCurrentOrder = (orderId, refreshKey) => {
   const [orderStatus, setOrderStatus] = useState({});
@@ -10,7 +11,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/current?orderId=${orderId}`,
+          `${apiRoot}/${apiVer}/order/current?orderId=${orderId}`,
           { withCredentials: true }
         );
         setOrderStatus(response.data);

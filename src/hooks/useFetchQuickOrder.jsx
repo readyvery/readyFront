@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useFetchQuickOrder = (isAuth) => {
   const [quickOrder, setQuickOrder] = useState([]);
@@ -11,7 +12,7 @@ const useFetchQuickOrder = (isAuth) => {
       if (isAuth) {
         try {
           const response = await axios.get(
-            `${apiRoot}/api/v1/order/history/fast`,
+            `${apiRoot}/${apiVer}/order/history/fast`,
             { withCredentials: true }
           );
           setQuickOrder(response.data.receipts?.reverse());

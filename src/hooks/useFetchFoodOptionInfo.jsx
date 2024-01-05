@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
   const [foodOptionInfo, setFoodOptionInfo] = useState({});
@@ -10,7 +11,7 @@ const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
+          `${apiRoot}/${apiVer}/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
           { withCredentials: true }
         );
         setFoodOptionInfo(response.data);

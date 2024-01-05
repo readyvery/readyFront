@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
+const apiUrl = `${apiRoot}/${apiVer}/coupon`;
 
 const useFetchCoupons = () => {
   const [coupons, setCoupons] = useState([]);
@@ -9,7 +11,7 @@ const useFetchCoupons = () => {
   useEffect(() => {
     const fetchCoupons = async () => {
       try {
-        const response = await axios.get(`${apiRoot}/api/v1/coupon`, {
+        const response = await axios.get(apiUrl, {
           withCredentials: true,
         });
         setCoupons(response.data.coupons);

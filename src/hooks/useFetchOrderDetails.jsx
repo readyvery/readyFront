@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useFetchOrderDetails = (orderId) => {
   const [orderDetails, setOrderDetails] = useState({});
@@ -9,12 +10,9 @@ const useFetchOrderDetails = (orderId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const config = {
-          withCredentials: true,
-        };
         const response = await axios.get(
-          `${apiRoot}/api/v1/order/receipt?orderId=${orderId}`,
-          config
+          `${apiRoot}/${apiVer}/order/receipt?orderId=${orderId}`,
+          { withCredentials: true }
         );
         setOrderDetails(response.data);
       } catch (error) {

@@ -10,10 +10,10 @@ const useFetchCartData = (cartId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = cartId
+        const apiUrl = cartId
           ? `${apiRoot}/api/v1/order/cart?cartId=${cartId}`
           : `${apiRoot}/api/v1/order/cart`;
-        const response = await axios.get(url, { withCredentials: true });
+        const response = await axios.get(apiUrl, { withCredentials: true });
         setPaymentData(response.data);
       } catch (error) {
         console.error(error);

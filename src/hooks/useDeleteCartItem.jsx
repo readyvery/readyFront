@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useDeleteCartItem = () => {
   const deleteCartItem = async (itemId, paymentData, setPaymentData) => {
     try {
-      await axios.delete(`${apiRoot}/api/v1/order/cart?idx=${itemId}`, {
+      await axios.delete(`${apiRoot}/${apiVer}/order/cart?idx=${itemId}`, {
         withCredentials: true,
       });
 

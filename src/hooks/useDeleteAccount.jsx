@@ -4,13 +4,15 @@ import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
+const apiUrl = `${apiRoot}/${apiVer}/user/remove`;
 
 const useDeleteAccount = (removeCookie, setIsAuth) => {
   const navigate = useNavigate();
 
   const deleteAccount = async () => {
     try {
-      const response = await axios.get(`${apiRoot}/api/v1/user/remove`, {
+      const response = await axios.get(apiUrl, {
         withCredentials: true,
       });
       console.log(response);

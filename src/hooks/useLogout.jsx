@@ -3,13 +3,14 @@ import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
+const apiVer = "api/v1";
 
 const useLogout = (removeCookie, setIsAuth) => {
   const navigate = useNavigate();
 
   const logout = async () => {
     try {
-      const response = await axios.get(`${apiRoot}/api/v1/user/logout`, {
+      const response = await axios.get(`${apiRoot}/${apiVer}/user/logout`, {
         withCredentials: true,
       });
       console.log(response);
