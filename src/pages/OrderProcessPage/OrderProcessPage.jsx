@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import minus from "../../assets/images/icon_minus.png";
@@ -11,6 +10,9 @@ import Header from "../../components/views/Header/Header";
 import Modal from "../../components/views/Modal/Modal";
 import TEXT from "../../constants/text";
 import "./OrderProcess.css";
+import useFetchFoodOptionInfo from "../../hooks/useFetchFoodOptionInfo";
+import useUpdateCart from "../../hooks/useUpdateCart";
+import useResetCart from "../../hooks/useResetCart";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -21,25 +23,12 @@ const OrderProcessPage = () => {
   const foodieId = params.get("foodie_id");
   const status = params.get("status");
   const [optionOpen, setOptionOpen] = useState(false);
-  const [foodOptionInfo, setFoodOptionInfo] = useState({});
   const [orderCnt, setOrderCnt] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_ROOT}/api/v1/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
-          { withCredentials: true }
-        );
-        setFoodOptionInfo(response.data);
-      } catch (error) {
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const foodOptionInfo = useFetchFoodOptionInfo(storeId, foodieId, inout);
+  const updateCart = useUpdateCart();
+  const resetCart = useResetCart();
 
   const handleCartUpdate = () => {
     let body = {
@@ -50,11 +39,9 @@ const OrderProcessPage = () => {
       inout: inout,
     };
 
-    axios
-      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
-        withCredentials: true,
-      })
+    updateCart(body)
       .then((res) => {
+        // 성공적으로 처리된 경우의 로직
         setOptionIdx(
           foodOptionInfo?.category
             ?.filter((el) => el?.essential)
@@ -67,8 +54,6 @@ const OrderProcessPage = () => {
         );
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
-
-      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
       .catch((error) => {
         let title = "에러 발생";
         // 에러가 발생한 경우에 대한 로직
@@ -91,36 +76,27 @@ const OrderProcessPage = () => {
   const handleCancle = () => {
     setIsOpen((prev) => !prev);
 
-    const apiRoot = process.env.REACT_APP_API_ROOT;
-    const apiUrl = `${apiRoot}/api/v1/order/cart/reset`;
+    resetCart()
+      .then(() => {
+        // 성공적으로 리셋된 후, 장바구니 업데이트 로직
+        let body = {
+          storeId: storeId,
+          foodieId: foodieId,
+          options: [...essentialOptionIdx, ...optionIdx],
+          count: orderCnt,
+          inout: inout,
+        };
 
-    // Axios를 사용한 DELETE 요청
-    const response = axios.delete(apiUrl, { withCredentials: true });
-    console.log(response);
-    // 성공적으로 처리된 경우에 대한 로직
-
-    let body = {
-      storeId: storeId,
-      foodieId: foodieId,
-      options: [...essentialOptionIdx, ...optionIdx],
-      count: orderCnt,
-      inout: inout,
-    };
-
-    axios
-      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/cart`, body, {
-        withCredentials: true,
+        return updateCart(body); // 장바구니 업데이트 함수 호출, body 데이터 전달
       })
-      .then((res) => {
+      .then(() => {
+        // 장바구니 업데이트 후의 로직
         navigate(`/store?storeId=${storeId}&inout=${inout}`);
       })
-
-      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
       .catch((error) => {
-        // 에러가 발생한 경우에 대한 로직
-        console.error("Error resetting cart", error);
+        // 에러 처리 로직
+        console.error("Error in cart operation", error);
       });
-
     // 모달을 닫습니다.
     setIsOpen(false);
   };
@@ -250,7 +226,7 @@ const OrderProcessPage = () => {
       </div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo?.category?.length ?
+        {foodOptionInfo?.category?.length ? (
           foodOptionInfo.category
             .filter((c, i) => c?.essential)
             .map((category, index) => (
@@ -334,9 +310,9 @@ const OrderProcessPage = () => {
                 )}
               </div>
             ))
-          : (
-            <></>
-          )}
+        ) : (
+          <></>
+        )}
         {foodOptionInfo?.category?.filter((e) => !e?.essential).length ? (
           <div className="order-process-page__toggle__container">
             <div
