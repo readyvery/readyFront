@@ -22,7 +22,11 @@ const OrderProcessPage = () => {
   const inout = params.get("inout");
   const foodieId = params.get("foodie_id");
   const status = params.get("status");
-  const foodOptionInfo = useFetchFoodOptionInfo(storeId, foodieId, inout);
+  const { category, imgUrl, name, price } = useFetchFoodOptionInfo(
+    storeId,
+    foodieId,
+    inout
+  );
   const updateCart = useUpdateCart();
   const resetCart = useResetCart();
   const [optionOpen, setOptionOpen] = useState(false);
@@ -30,20 +34,11 @@ const OrderProcessPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [activeToggles, setActiveToggles] = useState(
-    foodOptionInfo?.category?.filter((el) => el?.essential).map(() => false)
+    category?.filter((el) => el?.essential).map(() => false)
   );
-  const [selectedRadioTexts, setSelectedRadioTexts] = useState(
-    foodOptionInfo &&
-      foodOptionInfo.category
-        ?.filter((el) => el?.essential)
-        .map((e) => `${e.options[0]?.name}`)
-  );
-  const [totalAmount, setTotalAmount] = useState(
-    foodOptionInfo && foodOptionInfo.price && foodOptionInfo?.price
-  );
-  const [prevRadioPrice, setPrevRadioPrice] = useState(
-    foodOptionInfo?.category?.map(() => 0)
-  );
+  const [selectedRadioTexts, setSelectedRadioTexts] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(price);
+  const [prevRadioPrice, setPrevRadioPrice] = useState(category?.map(() => 0));
   const [optionIdx, setOptionIdx] = useState([]);
   const [essentialOptionIdx, setEssentialOptionIdx] = useState({});
 
@@ -60,12 +55,12 @@ const OrderProcessPage = () => {
       .then((res) => {
         // 성공적으로 처리된 경우의 로직
         setOptionIdx(
-          foodOptionInfo?.category
+          category
             ?.filter((el) => el?.essential)
             ?.map((e) => e?.options[0]?.idx)
         );
         setEssentialOptionIdx(
-          foodOptionInfo?.category
+          category
             ?.filter((e) => e.essential)
             ?.map((cate) => cate.options[0].idx)
         );
@@ -172,37 +167,46 @@ const OrderProcessPage = () => {
   };
 
   useEffect(() => {
-    setActiveToggles(
-      foodOptionInfo?.category?.filter((e) => e?.essential).map(() => false)
-    );
+    setTotalAmount(price);
+  }, [price]);
+
+  useEffect(() => {
+    if (category && category.length > 0) {
+      const essentialOptions = category
+        .filter((el) => el?.essential)
+        .map((e) => e.options[0]?.name);
+      setSelectedRadioTexts(essentialOptions);
+    }
+  }, [category]);
+
+  useEffect(() => {
+    setActiveToggles(category?.filter((e) => e?.essential).map(() => false));
     setSelectedRadioTexts(
-      foodOptionInfo.category
+      category
         ?.filter((el) => el?.essential)
         .map((e) => `${e?.options[0]?.name}`)
     );
     setTotalAmount(
       orderCnt &&
         orderCnt *
-          (foodOptionInfo?.price +
+          (price +
             parseInt(
-              foodOptionInfo?.category
+              category
                 ?.filter((el) => el?.essential)
                 .map((e) => parseInt(e?.options[0]?.price))
                 .reduce((prev, curr) => prev + curr, 0)
             ))
     );
     setPrevRadioPrice(
-      foodOptionInfo?.category
-        ?.filter((el) => el?.essential)
-        ?.map((e) => e?.options[0]?.price)
+      category?.filter((el) => el?.essential)?.map((e) => e?.options[0]?.price)
     );
     setEssentialOptionIdx(
-      foodOptionInfo?.category
+      category
         ?.filter((e) => e?.essential)
         ?.map((cate) => cate?.options[0]?.idx)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodOptionInfo]);
+  }, [category, price, orderCnt]);
 
   return (
     <div className="order-process-page">
@@ -216,17 +220,15 @@ const OrderProcessPage = () => {
 
       <img
         className="order-process-page__menu__img"
-        src={foodOptionInfo?.imgUrl ? foodOptionInfo.imgUrl : noImageMenu}
+        src={imgUrl ? imgUrl : noImageMenu}
         alt="menuImg"
       />
 
-      <div className="order-process-page__menu__name">
-        {foodOptionInfo?.name}
-      </div>
+      <div className="order-process-page__menu__name">{name}</div>
 
       <div className="order-process-page__toggle">
-        {foodOptionInfo?.category?.length ? (
-          foodOptionInfo.category
+        {category?.length ? (
+          category
             .filter((c, i) => c?.essential)
             .map((category, index) => (
               <div
@@ -312,7 +314,7 @@ const OrderProcessPage = () => {
         ) : (
           <></>
         )}
-        {foodOptionInfo?.category?.filter((e) => !e?.essential).length ? (
+        {category?.filter((e) => !e?.essential).length ? (
           <div className="order-process-page__toggle__container">
             <div
               className={`order-process-page__toggle__header ${
@@ -339,8 +341,8 @@ const OrderProcessPage = () => {
               }}
             >
               {optionOpen &&
-                foodOptionInfo?.category?.length &&
-                foodOptionInfo.category
+                category?.length &&
+                category
                   .filter((c, i) => !c.essential)
                   .map((category, index) => (
                     <React.Fragment key={index}>

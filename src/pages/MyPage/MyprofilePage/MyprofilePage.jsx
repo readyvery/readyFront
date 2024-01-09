@@ -15,7 +15,7 @@ function MyprofilePage() {
   const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
   const [isOpen, setIsOpen] = useState(false);
   const [isBye, setIsBye] = useState(false);
-  const userData = useFetchUserInfo();
+  const { email, name, phone } = useFetchUserInfo();
   const logout = useLogout(removeCookie, setIsAuth);
   const deleteAccount = useDeleteAccount(removeCookie, setIsAuth);
 
@@ -46,15 +46,15 @@ function MyprofilePage() {
         <div className="myprofile-detail">
           <div className="detail-box">
             <div className="detail-item-name">이름 </div>
-            <div className="detail-item">{userData.name}</div>
+            <div className="detail-item">{name}</div>
           </div>
           <div className="detail-box">
             <div className="detail-item-name">이메일</div>
-            <div className="detail-item">{userData.email}</div>
+            <div className="detail-item">{email}</div>
           </div>
           <div className="detail-box">
             <div className="detail-item-name">휴대폰</div>
-            <div className="detail-item">{userData.phone}</div>
+            <div className="detail-item">{phone}</div>
           </div>
         </div>
 

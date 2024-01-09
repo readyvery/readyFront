@@ -5,7 +5,13 @@ const apiRoot = process.env.REACT_APP_API_ROOT;
 const apiVer = "api/v1";
 
 const useFetchCurrentOrder = (orderId, refreshKey) => {
-  const [orderStatus, setOrderStatus] = useState({});
+  const [cancels, setCancels] = useState(null);
+  const [estimatedTime, setEstimatedTime] = useState(null);
+  const [inout, setInout] = useState(1);
+  const [name, setName] = useState("");
+  const [orderName, setOrderName] = useState("");
+  const [orderNum, setOrderNum] = useState("");
+  const [progress, setProgress] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +20,13 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
           `${apiRoot}/${apiVer}/order/current?orderId=${orderId}`,
           { withCredentials: true }
         );
-        setOrderStatus(response.data);
+        setCancels(response.data.cancels);
+        setEstimatedTime(response.data.estimatedTime);
+        setInout(response.data.inout);
+        setName(response.data.name);
+        setOrderName(response.data.orderName);
+        setOrderNum(response.data.orderNum);
+        setProgress(response.data.progress);
       } catch (error) {
         console.error("Error fetching current order status:", error);
       }
@@ -23,7 +35,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
     fetchData();
   }, [orderId, refreshKey]); // refreshKey를 의존성 배열에 추가
 
-  return orderStatus;
+  return { cancels, estimatedTime, inout, name, orderName, orderNum, progress };
 };
 
 export default useFetchCurrentOrder;

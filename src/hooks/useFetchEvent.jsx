@@ -2,7 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const useFetchEvent = (storeId) => {
-  const [event, setEvent] = useState(null);
+  const [eventImgUrl, setEventImgUrl] = useState("");
+  const [takeOutEvent, setTakeOutEvent] = useState("");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const version = "api/v1";
 
@@ -12,7 +13,8 @@ const useFetchEvent = (storeId) => {
         const response = await axios.get(
           `${apiRoot}/${version}/store/${storeId}/event`
         );
-        setEvent(response.data);
+        setEventImgUrl(response.data.eventImgUrl);
+        setTakeOutEvent(response.data.takeOutEvent);
       } catch (error) {
         console.error("Error fetching event data:", error);
       }
@@ -21,7 +23,7 @@ const useFetchEvent = (storeId) => {
     fetchEvent();
   }, [storeId]);
 
-  return event;
+  return { eventImgUrl, takeOutEvent };
 };
 
 export default useFetchEvent;

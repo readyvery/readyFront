@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
 const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/toss/cancel`;
+const apiUrl = `${apiRoot}/${apiVer}/order/history/new`;
 
 const useFetchNewOrderHistory = () => {
   const [newStorageList, setNewStorageList] = useState([]);

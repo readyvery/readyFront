@@ -19,7 +19,8 @@ function OrderStatus() {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const orderStatus = useFetchCurrentOrder(orderId, refreshKey);
+  const { cancels, estimatedTime, inout, name, orderName, orderNum, progress } =
+    useFetchCurrentOrder(orderId, refreshKey);
   const cancelOrder = useCancelOrder();
 
   const progressList = {
@@ -31,11 +32,11 @@ function OrderStatus() {
   };
 
   useEffect(() => {
-    if (orderStatus && orderStatus.progress) {
-      const currentProgress = progressList[orderStatus.progress];
+    if (progress) {
+      const currentProgress = progressList[progress];
       setDegree(currentProgress);
     }
-  }, [orderStatus]);
+  }, [progress]); // 'progress'가 변경될 때마다 useEffect 실행
 
   // 주문 상태 새로고침 함수
   const refreshOrderStatus = () => {
@@ -85,12 +86,12 @@ function OrderStatus() {
               </div>
               <span>
                 <span style={{ color: "#D82356" }}>
-                  {moment(orderStatus?.estimatedTime, "HH:mm:ss.SSS").diff(
+                  {moment(estimatedTime, "HH:mm:ss.SSS").diff(
                     moment(),
                     "minutes"
                   ) < 0
                     ? 0
-                    : moment(orderStatus?.estimatedTime, "HH:mm:ss.SSS").diff(
+                    : moment(estimatedTime, "HH:mm:ss.SSS").diff(
                         moment(),
                         "minutes"
                       )}
@@ -134,7 +135,7 @@ function OrderStatus() {
               <div className="logo-img-wrapper center">
                 <img src={logo} className="logo-img" alt={logo} />
               </div>
-              <span className="status-number">{orderStatus?.orderNum}번</span>
+              <span className="status-number">{orderNum}번</span>
             </div>
             <div className="progressbar-wrapper">
               <Progressbar degree={degree} />
@@ -145,19 +146,19 @@ function OrderStatus() {
           <div className="status-content-container">
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">주문매장</span>
-              <span className="status-content">{orderStatus?.name}</span>
+              <span className="status-content">{name}</span>
             </div>
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">주문내역</span>
               <div className="status-content">
-                <span className="status-history">{orderStatus?.orderName}</span>
+                <span className="status-history">{orderName}</span>
               </div>
             </div>
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">수령방식</span>
               <div className="status-content">
                 <span className="status-history">
-                  {orderStatus?.inout === 1 ? "매장" : "픽업"}
+                  {inout === 1 ? "매장" : "픽업"}
                 </span>
               </div>
             </div>
@@ -165,7 +166,7 @@ function OrderStatus() {
               <div className="status-content-wrapper">
                 <span className="status-content-subtitle">취소사유</span>
                 <span className="status-content">
-                  {orderStatus?.cancels?.split(",")[1]?.split("=")[1]}
+                  {cancels?.split(",")[1]?.split("=")[1]}
                 </span>
               </div>
             )}

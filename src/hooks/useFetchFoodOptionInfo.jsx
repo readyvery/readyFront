@@ -5,7 +5,10 @@ const apiRoot = process.env.REACT_APP_API_ROOT;
 const apiVer = "api/v1";
 
 const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
-  const [foodOptionInfo, setFoodOptionInfo] = useState({});
+  const [category, setCategory] = useState([]);
+  const [imgUrl, setImgUrl] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +17,10 @@ const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
           `${apiRoot}/${apiVer}/order/${storeId}?foody_id=${foodieId}&inout=${inout}`,
           { withCredentials: true }
         );
-        setFoodOptionInfo(response.data);
+        setCategory(response.data?.category);
+        setImgUrl(response.data?.imgUrl);
+        setName(response.data?.name);
+        setPrice(response.data?.price);
       } catch (error) {
         console.error("Error fetching food option info:", error);
       }
@@ -22,7 +28,7 @@ const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
     fetchData();
   }, [storeId, foodieId, inout]);
 
-  return foodOptionInfo;
+  return { category, imgUrl, name, price };
 };
 
 export default useFetchFoodOptionInfo;

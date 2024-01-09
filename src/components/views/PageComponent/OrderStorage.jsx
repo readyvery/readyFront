@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./OrderStorage.css";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
@@ -10,8 +10,6 @@ import StateBox from "../StateBox/StateBox";
 import empty from "../../../assets/images/storage_empty.svg";
 
 function OrderStorage() {
-  // const [newStorageList, setNewStorageList] = useState([]);
-  // const [oldStorageList, setOldStorageList] = useState([]);
   const newStorageList = useFetchNewOrderHistory();
   const oldStorageList = useFetchOldOrderHistory();
 
