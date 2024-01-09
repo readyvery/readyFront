@@ -1,31 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./ReadyPage.css";
-
 import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";
-
 import empty from "../../assets/images/storage_empty.svg";
+import useFetchFastOrderHistory from "../../hooks/useFetchFastOrderHistory";
 
 function ReadyPage() {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [storageList, setStorageList] = useState([]);
-
-  useEffect(() => {
-    const config = {
-      withCredentials: true
-    };
-
-    axios.get(`${apiUrl}/api/v1/order/history/fast`, config)
-      .then((res) => {
-        setStorageList(res.data.receipts?.reverse());
-      })
-      .catch((err) => {});
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
+  const storageList = useFetchFastOrderHistory();
 
   return (
     <section className="main-container">
