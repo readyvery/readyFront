@@ -1,135 +1,35 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import goLeft from "../../assets/images/go_left.svg";
 import goRight from "../../assets/images/go_right.svg";
 import Header from "../../components/views/Header/Header";
 import "./StoreDetailPage.css";
+import useFetchStoreInfo from "../../hooks/useFetchStoreInfo";
+import useFetchStoreMenu from "../../hooks/useFetchStoreMenu";
+import useFetchCartData from "../../hooks/useFetchCartData";
+import useFetchCartCount from "../../hooks/useFetchCartCount";
 
 const StoreDetailPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const storeId = params.get("storeId");
+  const storeIdParam = params.get("storeId");
   const inout = params.get("inout");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  // const scrollRef = useRef();
-  // const [isScrollable, setIsScrollable] = useState(false);
-  const [caffeeInfo, setCaffeeInfo] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const [menu, setMenu] = useState(null);
-  const [hasResponse, setHasResponse] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [cart, setCart] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${apiRoot}/api/v1/store/${storeId}`);
-        setCaffeeInfo(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    // API 엔드포인트
-    const apiUrl = `${apiRoot}/api/v1/store/${storeId}/menu?inout=${inout}`;
-
-    // axios 라이브러리를 사용하여 API에 GET 요청 보내기
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        // API 응답을 상태에 저장
-        setMenu(response.data);
-        setSelectedCategory(response.data.menu[0]);
-      })
-      .catch((error) => {
-        console.error("Error fetching store data:", error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // 두 번째 인자로 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+  const { address, imgs, storeName, openTime, phone, status } =
+    useFetchStoreInfo(storeIdParam);
+  const menu = useFetchStoreMenu(storeIdParam, inout);
+  const { cartIdApi, storeId, totalPrice } = useFetchCartData();
+  const totalCount = useFetchCartCount();
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      axios
-        .get(`${apiRoot}/api/v1/order/cart`, {
-          withCredentials: true,
-        })
-        .then((response) => {
-          if (response.data.carts.length > 0) {
-            setHasResponse(true);
-            setTotalPrice(response.data.totalPrice);
-            setCart(response.data);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          // 만약 에러가 발생하면 false를 설정
-          setHasResponse(false);
-        });
-    };
-
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiRoot, inout]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${apiRoot}/api/v1/order/cart/count`, {
-          withCredentials: true,
-        });
-        setTotalCount(response.data.count);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // useEffect(() => {
-  //   const currentRef = scrollRef.current;
-
-  //   if (currentRef) {
-  //     const handleScroll = () => {
-  //       const scrollWidth = currentRef.scrollWidth;
-  //       const clientWidth = currentRef.clientWidth;
-  //       setIsScrollable(scrollWidth > clientWidth);
-  //     };
-
-  //     currentRef.addEventListener("scroll", handleScroll);
-
-  //     // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
-  //     return () => {
-  //       if (currentRef) {
-  //         currentRef.removeEventListener("scroll", handleScroll);
-  //       }
-  //     };
-  //   }
-  // }, []);
-
-  // const handleGoLeft = () => {
-  //   if (scrollRef.current) {
-  //     // 스크롤을 왼쪽으로 100px 이동
-  //     scrollRef.current.scrollLeft -= 100;
-  //   }
-  // };
-
-  // const handleGoRight = () => {
-  //   if (scrollRef.current) {
-  //     // 스크롤을 오른쪽으로 100px 이동
-  //     scrollRef.current.scrollLeft += 100;
-  //   }
-  // };
+    if (menu && menu.menu && menu.menu.length > 0) {
+      setSelectedCategory(menu.menu[0]);
+    }
+  }, [menu]);
 
   return (
     <div className="store-detail-page">
@@ -144,13 +44,13 @@ const StoreDetailPage = () => {
       <div className="store-detail-page__scroll">
         <img
           className="store-detail-page__banner"
-          src={caffeeInfo?.imgs?.[0]}
+          src={imgs?.[0]}
           alt="caffee banner"
         />
 
         <div className="store-detail-page__caffeeInfo">
           <div className="store-detail-page__caffeeInfo__title">
-            {caffeeInfo?.name}
+            {storeName}
           </div>
 
           <div className="store-detail-page__caffeeInfo__list">
@@ -158,7 +58,7 @@ const StoreDetailPage = () => {
               {"연락처"}
             </text>
             <text className="store-detail-page__caffeeInfo__contact">
-              {caffeeInfo?.phone}
+              {phone}
             </text>
           </div>
 
@@ -170,7 +70,7 @@ const StoreDetailPage = () => {
               {"주소"}
             </text>
             <text className="store-detail-page__caffeeInfo__address">
-              {caffeeInfo?.address}
+              {address}
             </text>
           </div>
 
@@ -182,7 +82,7 @@ const StoreDetailPage = () => {
               {"영업 시간"}
             </text>
             <text className="store-detail-page__caffeeInfo__time">
-              {caffeeInfo?.openTime.split("\n").map((line, index) => (
+              {openTime.split("\n").map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
                   <br />
@@ -234,7 +134,7 @@ const StoreDetailPage = () => {
           Array.isArray(selectedCategory.menuItems) ? (
             selectedCategory.menuItems.map((item, index) => (
               <Link
-                to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}&status=${caffeeInfo?.status}`}
+                to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}&status=${status}`}
                 key={index}
                 className="store-detail-page__menuList__item"
               >
@@ -276,9 +176,9 @@ const StoreDetailPage = () => {
           )}
         </div>
 
-        {hasResponse && cart.storeId === parseInt(storeId) && (
+        {storeId === parseInt(storeId) && (
           <Link
-            to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cart.cartId}`}
+            to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartIdApi}`}
             className="store-detail-page__cart-btn"
           >
             <span className="store-detail-page__total-quantity">

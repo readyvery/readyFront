@@ -6,7 +6,7 @@ const apiRoot = process.env.REACT_APP_API_ROOT;
 
 const useFetchCartData = (cartId) => {
   // const [paymentData, setPaymentData] = useState(null);
-  // const [cartId, setCartId] = useState(0);
+  const [cartIdApi, setCartIdApi] = useState(0);
   const [carts, setCarts] = useState([]);
   const [edit, setEdit] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
@@ -23,7 +23,7 @@ const useFetchCartData = (cartId) => {
           ? `${apiRoot}/api/v1/order/cart?cartId=${cartId}`
           : `${apiRoot}/api/v1/order/cart`;
         const response = await axios.get(apiUrl, { withCredentials: true });
-        // setCartId(response.data.cartId);
+        setCartIdApi(response.data.cartId);
         setCarts(response.data.carts);
         setEdit(response.data.edit);
         setImgUrl(response.data.imgUrl);
@@ -42,6 +42,7 @@ const useFetchCartData = (cartId) => {
   }, [cartId]);
 
   return {
+    cartIdApi,
     carts,
     edit,
     imgUrl,
