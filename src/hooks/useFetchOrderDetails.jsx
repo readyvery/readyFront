@@ -43,6 +43,7 @@ const useFetchOrderDetails = (orderId) => {
     if (orderId) {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   return {

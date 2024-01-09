@@ -21,6 +21,7 @@ const useFetchEvent = (storeId) => {
     };
 
     fetchEvent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeId]);
 
   return { eventImgUrl, takeOutEvent };

@@ -33,6 +33,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId, refreshKey]); // refreshKey를 의존성 배열에 추가
 
   return { cancels, estimatedTime, inout, name, orderName, orderNum, progress };

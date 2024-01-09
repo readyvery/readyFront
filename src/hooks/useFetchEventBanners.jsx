@@ -21,6 +21,7 @@ const useFetchEventBanners = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return eventBanners;

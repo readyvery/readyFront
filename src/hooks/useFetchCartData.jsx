@@ -38,6 +38,7 @@ const useFetchCartData = (cartId) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartId]);
 
   return {

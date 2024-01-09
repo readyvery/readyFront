@@ -1,8 +1,7 @@
-import axios from "axios";
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import paymentFail from "../../../assets/images/payment_fail.png";
 import "./PaymentRedirectPage.css";
+import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
 
 const PaymentFailPage = () => {
   const location = useLocation();
@@ -10,22 +9,7 @@ const PaymentFailPage = () => {
   const message = params.get("message");
   const orderId = params.get("orderId");
   const code = params.get("code");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-
-  useEffect(() => {
-    axios
-      .get(
-        `${apiRoot}/api/v1/order/toss/fail?message=${message}&orderId=${orderId}&code=${code}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("Error sending fail URL request:", error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useFetchPaymentFail(message, orderId, code);
 
   return (
     <div className="payment-fail-page">

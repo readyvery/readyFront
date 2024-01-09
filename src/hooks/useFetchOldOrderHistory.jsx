@@ -21,6 +21,7 @@ const useFetchOldOrderHistory = () => {
     };
 
     fetchOldOrderHistory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return oldStorageList;

@@ -26,6 +26,7 @@ const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
       }
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeId, foodieId, inout]);
 
   return { category, imgUrl, name, price };
