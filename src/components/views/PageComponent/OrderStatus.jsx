@@ -36,7 +36,7 @@ function OrderStatus() {
       const currentProgress = progressList[progress];
       setDegree(currentProgress);
     }
-  }, [progress]); // 'progress'가 변경될 때마다 useEffect 실행
+  }, [progress, progressList]);
 
   // 주문 상태 새로고침 함수
   const refreshOrderStatus = () => {
