@@ -1,36 +1,15 @@
-// import React, { useEffect, useState } from "react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import profile_icon from "../../assets/images/profile_icon.png";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
+import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 
 function Mypage() {
-  // const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
   const [isAuth] = useRecoilState(isAuthenticatedState);
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    const config = {
-      withCredentials: true,
-    };
-
-    axios
-      .get(`${apiUrl}/api/v1/user/info`, config)
-      .then((response) => {
-        const { name } = response.data;
-        setUserName(name);
-      })
-      .catch((error) => {
-        console.error("Error fetching user info:", error);
-        // Handle error, e.g., redirect to login page
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { name: userName } = useFetchUserInfo();
 
   return (
     <div className="mypage-div">

@@ -1,36 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-
 import profile_icon from "../../../assets/images/profile_icon.png";
+import useFetchQuickOrder from "../../../hooks/useFetchQuickOrder";
 
 const QuickOrderComponent = ({ isAuth }) => {
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  const [quickOrder, setQuickOrder] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const config = {
-        withCredentials: true,
-      };
-
-      // 바로주문
-      if (isAuth) {
-        try {
-          const response1 = await axios.get(
-            `${apiRoot}/api/v1/order/history/fast`,
-            config
-          );
-          setQuickOrder(response1.data.receipts?.reverse());
-        } catch (error) {
-          console.error("quickOrder Error fetching data:", error);
-        }
-      }
-    };
-
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth]);
+  const quickOrder = useFetchQuickOrder(isAuth);
 
   return (
     <>

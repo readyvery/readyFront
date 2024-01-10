@@ -1,9 +1,8 @@
 import Header from "../../components/views/Header/Header";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import "./ApplyCouponPage.css";
 import empty from "../../assets/images/storage_empty.svg";
+import useFetchCoupons from "../../hooks/useFetchCoupons";
 
 const ApplyCouponPage = () => {
   const location = useLocation();
@@ -11,24 +10,7 @@ const ApplyCouponPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const cartId = params.get("cartId");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  const [coupon, setCoupon] = useState(null);
-  // const [selectedCoupon, setSelectedCoupon] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${apiRoot}/api/v1/coupon`, {
-          withCredentials: true,
-        });
-        setCoupon(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const coupons = useFetchCoupons();
 
   return (
     <div className="coupon-page">
@@ -41,9 +23,9 @@ const ApplyCouponPage = () => {
       />
 
       <div className="coupon-page__coupon">
-        {coupon && coupon.coupons.length > 0 ? (
+        {coupons && coupons.length > 0 ? (
           <div className="coupon-page__coupon-list">
-            {coupon.coupons.map((item) => (
+            {coupons.map((item) => (
               <Link
                 to={{
                   pathname: "/payment",
@@ -52,7 +34,6 @@ const ApplyCouponPage = () => {
                 }}
                 className="coupon-page__coupon-item"
                 key={item.couponId}
-                // onClick={() => setSelectedCoupon(item)}
                 style={{ textDecoration: "none" }}
               >
                 <div className="coupon-page__coupon-item">

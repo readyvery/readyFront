@@ -1,87 +1,60 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/berry.png";
 import cancleLogo from "../../../assets/images/icon_cancleLogo.png";
-// import berry from "../../../assets/images/berry.svg";
 import clock from "../../../assets/images/icon_clock.svg";
 import close from "../../../assets/images/icon_close.svg";
 import refresh from "../../../assets/images/icon_refresh.svg";
 import Modal from "../../views/Modal/Modal";
 import "./OrderStatus.css";
-
-import { message } from "antd";
 import moment from "moment/moment";
 import Progressbar from "../ProgressBar/ProgressBar";
+import useFetchCurrentOrder from "../../../hooks/useFetchCurrentOrder";
+import useCancelOrder from "../../../hooks/useCancelOrder";
 
 function OrderStatus() {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const orderId = params.get("orderId");
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [statusList, setStatusList] = useState({});
-  // const navigate = useNavigate();
+  const [refreshKey, setRefreshKey] = useState(0);
+  const { cancels, estimatedTime, inout, name, orderName, orderNum, progress } =
+    useFetchCurrentOrder(orderId, refreshKey);
+  const cancelOrder = useCancelOrder();
 
-  const progressList = {
-    ORDER: 0,
-    MAKE: 1,
-    COMPLETE: 2,
-    PICKUP: 3,
-    CANCEL: 4,
-  };
+  const progressList = useMemo(
+    () => ({
+      ORDER: 0,
+      MAKE: 1,
+      COMPLETE: 2,
+      PICKUP: 3,
+      CANCEL: 4,
+    }),
+    []
+  );
 
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (progress) {
+      const currentProgress = progressList[progress];
+      setDegree(currentProgress);
+    }
+  }, [progress, progressList]);
 
-  const fetchData = () => {
-    const config = {
-      withCredentials: true,
-    };
-
-    axios
-      .get(`${apiUrl}/api/v1/order/current?orderId=${orderId}`, config)
-      .then((res) => {
-        setStatusList(res.data);
-        const curPro = res.data.progress;
-        setDegree(progressList[curPro]);
-      })
-      .catch((err) => {});
+  // 주문 상태 새로고침 함수
+  const refreshOrderStatus = () => {
+    setRefreshKey((prevKey) => prevKey + 1);
   };
 
-  const refreshDegree = () => {
-    fetchData();
-  };
-
-  const handleCancle = async () => {
-    setIsOpen((prev) => !prev);
-    const config = {
-      withCredentials: true,
-    };
-    const body = {
-      orderId: orderId,
-    };
-
-    // navigate("/orderHistory");
-    setDegree(4);
-
-    const response = await axios.post(
-      `${apiUrl}/api/v1/order/toss/cancel`,
-      body,
-      config
-    );
-    if (response.status === 200) {
-      console.log(response);
-      if (response.data.message === "취소 성공") {
-        message.success("주문 취소되었습니다.");
-        fetchData();
-        setDegree(4);
-      }
-    } else {
-      message.error("주문 취소에 실패하였습니다.");
+  const handleCancel = async () => {
+    try {
+      await cancelOrder(orderId); // 주문 취소 요청
+      setDegree(progressList.CANCEL); // 취소 상태로 UI 업데이트
+    } catch (error) {
+      console.error("주문 취소 중 오류 발생:", error);
+      // 오류 처리 로직 (선택적)
+    } finally {
+      setIsOpen(false); // 성공, 실패, 예외에 관계없이 모달 닫기
     }
   };
 
@@ -104,7 +77,7 @@ function OrderStatus() {
               src={refresh}
               className="refresh-btn"
               alt={refresh}
-              onClick={refreshDegree}
+              onClick={refreshOrderStatus}
             />
           </div>
         )}
@@ -116,17 +89,17 @@ function OrderStatus() {
               </div>
               <span>
                 <span style={{ color: "#D82356" }}>
-                  {moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
+                  {moment(estimatedTime, "HH:mm:ss.SSS").diff(
                     moment(),
                     "minutes"
                   ) < 0
                     ? 0
-                    : moment(statusList?.estimatedTime, "HH:mm:ss.SSS").diff(
+                    : moment(estimatedTime, "HH:mm:ss.SSS").diff(
                         moment(),
                         "minutes"
                       )}
                   분 후
-                </span>{" "}
+                </span>
                 수령 가능!
               </span>
             </div>
@@ -165,7 +138,7 @@ function OrderStatus() {
               <div className="logo-img-wrapper center">
                 <img src={logo} className="logo-img" alt={logo} />
               </div>
-              <span className="status-number">{statusList?.orderNum}번</span>
+              <span className="status-number">{orderNum}번</span>
             </div>
             <div className="progressbar-wrapper">
               <Progressbar degree={degree} />
@@ -176,36 +149,38 @@ function OrderStatus() {
           <div className="status-content-container">
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">주문매장</span>
-              <span className="status-content">{statusList?.name}</span>
+              <span className="status-content">{name}</span>
             </div>
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">주문내역</span>
               <div className="status-content">
-                <span className="status-history">{statusList?.orderName}</span>
+                <span className="status-history">{orderName}</span>
               </div>
             </div>
             <div className="status-content-wrapper">
               <span className="status-content-subtitle">수령방식</span>
               <div className="status-content">
-                <span className="status-history">{statusList?.inout === 1 ? "매장" : "픽업"}</span>
+                <span className="status-history">
+                  {inout === 1 ? "매장" : "픽업"}
+                </span>
               </div>
             </div>
             {degree === 4 && (
               <div className="status-content-wrapper">
                 <span className="status-content-subtitle">취소사유</span>
-                <span className="status-content">{statusList?.cancels?.split(",")[1]?.split("=")[1]}</span>
+                <span className="status-content">
+                  {cancels?.split(",")[1]?.split("=")[1]}
+                </span>
               </div>
             )}
             <div className="status-detail__wrapper">
-              <div className="status-detail">
-                <Link
-                  to={`/orderDetail?orderId=${orderId}`}
-                  state={{ returnTo: `/status?orderId=${orderId}` }}
-                  style={{ textDecoration: "none", color: "#000" }}
-                >
-                  주문상세
-                </Link>
-              </div>
+              <Link
+                to={`/orderDetail?orderId=${orderId}`}
+                state={{ returnTo: `/status?orderId=${orderId}` }}
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                <div className="status-detail">주문상세</div>
+              </Link>
             </div>
           </div>
         )}
@@ -236,7 +211,7 @@ function OrderStatus() {
       {isOpen && (
         <Modal
           setIsOpen={setIsOpen}
-          handleCancle={handleCancle}
+          handleCancle={handleCancel}
           title={"주문을 취소하시겠습니까?"}
           subtitle={"확인 버튼을 누르시면, 주문이 취소됩니다."}
         />
