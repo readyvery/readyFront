@@ -23,13 +23,16 @@ function OrderStatus() {
     useFetchCurrentOrder(orderId, refreshKey);
   const cancelOrder = useCancelOrder();
 
-  const progressList = {
-    ORDER: 0,
-    MAKE: 1,
-    COMPLETE: 2,
-    PICKUP: 3,
-    CANCEL: 4,
-  };
+  const progressList = useMemo(
+    () => ({
+      ORDER: 0,
+      MAKE: 1,
+      COMPLETE: 2,
+      PICKUP: 3,
+      CANCEL: 4,
+    }),
+    []
+  );
 
   useEffect(() => {
     if (progress) {
