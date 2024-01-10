@@ -229,13 +229,13 @@ const PaymentPage = () => {
 
         <div className="payment-page__discountAmount">
           <span className="payment-page__content">할인금액</span>
-          {salePrice && (
-            <span className="payment-page__content-price">
-              (-)
-              {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                "원"}
-            </span>
-          )}
+          <span className="payment-page__content-price">
+            {salePrice > 0
+              ? "(-)" +
+                salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                "원"
+              : "0원"}
+          </span>
         </div>
 
         <div className="payment-page__order-info__pay__line"></div>

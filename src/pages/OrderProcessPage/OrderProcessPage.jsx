@@ -110,7 +110,7 @@ const OrderProcessPage = () => {
         console.error("Error in cart operation", error);
       });
     // 모달을 닫습니다.
-    setIsOpen(false);
+    setIsOpen((prev) => !prev);
   };
 
   const handleToggle = (index) => {

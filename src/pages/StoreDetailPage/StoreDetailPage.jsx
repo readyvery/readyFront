@@ -18,7 +18,7 @@ const StoreDetailPage = () => {
   const { address, imgs, storeName, openTime, phone, status } =
     useFetchStoreInfo(storeIdParam);
   const menu = useFetchStoreMenu(storeIdParam, inout);
-  const { cartIdApi, storeId, totalPrice } = useFetchCartData();
+  const { cartIdApi, carts, storeId, totalPrice } = useFetchCartData();
   const totalCount = useFetchCartCount();
 
   const handleCategoryClick = (category) => {
@@ -134,7 +134,7 @@ const StoreDetailPage = () => {
           Array.isArray(selectedCategory.menuItems) ? (
             selectedCategory.menuItems.map((item, index) => (
               <Link
-                to={`/order?storeId=${storeId}&inout=${inout}&foodie_id=${item.foodyId}&status=${status}`}
+                to={`/order?storeId=${storeIdParam}&inout=${inout}&foodie_id=${item.foodyId}&status=${status}`}
                 key={index}
                 className="store-detail-page__menuList__item"
               >
@@ -176,7 +176,7 @@ const StoreDetailPage = () => {
           )}
         </div>
 
-        {storeId === parseInt(storeId) && (
+        {storeId === parseInt(storeIdParam) && carts.length > 0 && (
           <Link
             to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartIdApi}`}
             className="store-detail-page__cart-btn"
