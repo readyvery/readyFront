@@ -5,7 +5,6 @@ import axios from "axios";
 const apiRoot = process.env.REACT_APP_API_ROOT;
 
 const useFetchCartData = (cartId) => {
-  // const [paymentData, setPaymentData] = useState(null);
   const [cartIdApi, setCartIdApi] = useState(0);
   const [carts, setCarts] = useState([]);
   const [edit, setEdit] = useState(false);

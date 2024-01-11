@@ -38,7 +38,9 @@ import ReadyPage from "./pages/ReadyPage/ReadyPage";
 function App() {
   const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const apiRoot = process.env.REACT_APP_API_ROOT;
+  const apiVer = "api/v1";
+  const apiUrl = `${apiRoot}/${apiVer}/refresh/token`;
   // const navigate = useNavigate();
   // // const [isLoggedIn, setisLoggedIn] = useRecoilState(isAuthenticatedState); // 인증 상태 (로그인이 되어있으면 true, 아니면 false)
   // // 토큰 받아서 시간관리
@@ -79,7 +81,7 @@ function App() {
         withCredentials: true,
       };
       axios
-        .get(`${apiUrl}/api/v1/refresh/token`, config)
+        .get(apiUrl, config)
         .then((response) => {
           // 현재 쿠키 삭제
           if (!response.data) {
