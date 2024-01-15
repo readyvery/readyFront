@@ -32,7 +32,7 @@ const PaymentSuccessPage = () => {
     }
   }, [paymentStatus, paymentMessage]);
 
-  const handleCancle = async () => {
+  const handleCancel = async () => {
     setIsOpen((prev) => !prev);
     navigate(-1);
   };
@@ -55,7 +55,7 @@ const PaymentSuccessPage = () => {
   //           isOpen && (
   //             <Modal
   //               setIsOpen={setIsOpen}
-  //               handleCancle={handleCancle}
+  //               handleCancel={handleCancel}
   //               title={"결제 실패"}
   //               subtitle={response.message}
   //             />
@@ -90,7 +90,7 @@ const PaymentSuccessPage = () => {
       {isOpen && (
         <Modal
           setIsOpen={setIsOpen}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           title={"결제 실패"}
           subtitle={paymentStatus.message}
         />

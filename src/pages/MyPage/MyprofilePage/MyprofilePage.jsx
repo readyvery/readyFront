@@ -69,7 +69,7 @@ function MyprofilePage() {
           {isOpen && (
             <Modal
               setIsOpen={setIsOpen}
-              handleCancle={logout}
+              handleCancel={logout}
               title="로그아웃 하시겠습니까?"
               subtitle=""
             />
@@ -77,7 +77,7 @@ function MyprofilePage() {
           {isBye && (
             <Modal
               setIsOpen={setIsBye}
-              handleCancle={deleteAccount}
+              handleCancel={deleteAccount}
               title="계정탈퇴"
               subtitle={<div dangerouslySetInnerHTML={{ __html: byeText }} />}
             />

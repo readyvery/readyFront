@@ -1,7 +1,7 @@
 import berry from "../../../assets/images/berry.png";
 import "./Modal.css";
 
-const Modal = ({ setIsOpen, handleCancle, title, subtitle }) => {
+const Modal = ({ setIsOpen, handleCancel, title, subtitle }) => {
   return (
     <div className="modal-wrapper">
       <div className="modal-box">
@@ -17,7 +17,7 @@ const Modal = ({ setIsOpen, handleCancle, title, subtitle }) => {
           >
             취소
           </span>
-          <span className="modal-check-btn" onClick={handleCancle}>
+          <span className="modal-check-btn" onClick={handleCancel}>
             확인
           </span>
         </div>

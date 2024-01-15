@@ -1,4 +1,6 @@
 const TEXT = {
+  cartModal: `로그인 하신 후 
+  이용해 주시기 바랍니다.`,
   cartModal400: `장바구니는
   같은 가게의 메뉴만 담을 수 있어요.`,
   cartModal409: `장바구니는 동일한 
