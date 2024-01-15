@@ -85,7 +85,7 @@ const OrderProcessPage = () => {
       });
   };
 
-  const handleCancle = () => {
+  const handleCancel = () => {
     setIsOpen((prev) => !prev);
 
     resetCart()
@@ -442,7 +442,7 @@ const OrderProcessPage = () => {
       {isOpen && (
         <Modal
           setIsOpen={setIsOpen}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           title={modalTitle.split("\n").map((line, index) => (
             <React.Fragment key={index}>
               {line}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
-import { recoilPersist } from 'recoil-persist';
+import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
@@ -50,16 +50,17 @@ export const getUserSelector = selector({
     // 백엔드에서 사용자 정보 가져옴
     try {
       // 성공시 해당 정보 반환
-      const apiUrl = process.env.REACT_APP_API_ROOT;
+      const apiRoot = process.env.REACT_APP_API_ROOT;
+      const apiVer = "api/v1";
+      const apiUrl = `${apiRoot}/${apiVer}/auth`;
       const config = {
         withCredentials: true,
       };
-      const response = await axios.get(`${apiUrl}/api/v1/auth`, config)
+      const response = await axios.get(apiUrl, config);
       return response.data;
-        
-      } catch (error) {
-        return "404";
-      }
+    } catch (error) {
+      return "404";
+    }
   },
 
   set: ({ set }, newValue) => {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import cart_icon from "../../../assets/images/cart_icon.svg";
 import home_logo from "../../../assets/images/home_logo.svg";
 import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
@@ -7,10 +7,41 @@ import arrow from "../../../assets/images/icon_arrow.svg";
 import icon_bag from "../../../assets/images/icon_bag.svg";
 import close from "../../../assets/images/icon_close.svg";
 import "./Header.css";
+import { useRecoilValue } from "recoil";
+import { isAuthenticatedState } from "../../../Atom/status";
+import Modal from "../Modal/Modal";
+import TEXT from "../../../constants/text";
 
 const Header = ({ headerProps }) => {
+  const isAuth = useRecoilValue(isAuthenticatedState);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
+
+  const toggleModal = () => {
+    if (!isAuth) {
+      setIsOpen(!isOpen);
+    } else {
+      navigate(`/cart`);
+    }
+  };
+
+  useEffect(() => {
+    // 모달 상태가 변경될 때만 실행
+    if (isOpen && !isAuth) {
+      setIsOpen(true);
+    }
+  }, [isOpen, isAuth]);
+
+  const handleCartClick = () => {
+    toggleModal();
+  };
+
+  const handleCancel = () => {
+    setIsOpen(false);
+    navigate("/kakaoLogin");
+  };
 
   return (
     <>
@@ -83,10 +114,27 @@ const Header = ({ headerProps }) => {
             <img src={home_logo} alt="Logo" className="header-logo" />
           </Link>
           {/* 장바구니 (흰) */}
-          <Link to="/cart" className="header-cart">
+          {/* <Link to="/cart" className="header-cart">
             <img src={cart_icon} alt="CartIcon" className="cart-icon" />
-          </Link>
+          </Link> */}
+          <div onClick={handleCartClick} className="header-cart">
+            <img src={cart_icon} alt="CartIcon" className="cart-icon" />
+          </div>
         </header>
+      )}
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancel={handleCancel}
+          title={TEXT.cartModal.split("\n").map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+          subtitle={"로그인 후 장바구니를 담아주세요."}
+        />
       )}
     </>
   );

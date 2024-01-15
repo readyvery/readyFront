@@ -15,7 +15,7 @@ function Auth(SpecificComponent, option) {
 
     useEffect(() => {
       console.log(cookies?.accessToken);
-      console.log(isAuth);
+      console.log("isAuth" + isAuth);
       if (!isAuth && cookies?.accessToken) {
         setIsAuth(true);
         message.success("로그인에 성공하셨습니다.");

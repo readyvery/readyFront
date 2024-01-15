@@ -76,7 +76,7 @@ function Homepage() {
         {notLoggedInbannerClick && (
           <Modal
             setIsOpen={setnotLoggedInbannerClick} // 취소(모달창 닫기)
-            handleCancle={handleCancel} // 확인(카카오 로그인하기로 이동)
+            handleCancel={handleCancel} // 확인(카카오 로그인하기로 이동)
             title={<div dangerouslySetInnerHTML={{ __html: loginText }} />}
             subtitle="로그인 후 쿠폰받기를 계속 진행해주세요."
           />
