@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import cart_icon from "../../../assets/images/cart_icon.svg";
 import home_logo from "../../../assets/images/home_logo.svg";
 import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
-import arrow from "../../../assets/images/icon_arrow.svg";
+import back from "../../../assets/images/icon_back.svg";
 import icon_bag from "../../../assets/images/icon_bag.svg";
 import close from "../../../assets/images/icon_close.svg";
 import "./Header.css";
@@ -51,15 +51,11 @@ const Header = ({ headerProps }) => {
           <div className="header-main__warpper">
             {/* isClosed가 false인 경우 */}
             {!headerProps.isClose ? (
-              <div>
-                {/* 링크를 가지는 화살표 이미지 */}
-                <Link
-                  to={headerProps.linkTo}
-                  style={{ textDecoration: "none" }}
-                  className="arrow-link"
-                >
-                  <img src={arrow} alt="arrow" />
-                </Link>
+              <div
+                onClick={() => navigate(headerProps.linkTo, { replace: true })}
+                className="back-link"
+              >
+                <img src={back} alt="back" />
               </div>
             ) : (
               // isClosed가 true인 경우면 빈 div
@@ -69,14 +65,13 @@ const Header = ({ headerProps }) => {
             <span>{headerProps.pageName}</span>
             {/* isClosed가 true인 경우 */}
             {headerProps.isClose ? (
-              <div>
-                {/* 링크를 가지는 닫기 아이콘 이미지 */}
-                <Link to={headerProps.linkTo} className="close-link">
-                  <img src={close} alt="close" />
-                </Link>
+              <div
+                onClick={() => navigate(headerProps.linkTo, { replace: true })}
+                className="close-link"
+              >
+                <img src={close} alt="close" />
               </div>
             ) : (
-              //  isClosed가 false인 경우
               <div className="homeAndCart">
                 {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
                 {!isCartPage ? (
