@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import cart_icon from "../../../assets/images/cart_icon.svg";
 import home_logo from "../../../assets/images/home_logo.svg";
 import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
 import back from "../../../assets/images/icon_back.svg";
-import icon_bag from "../../../assets/images/icon_bag.svg";
+import cart from "../../../assets/images/icon_cart.svg";
 import close from "../../../assets/images/icon_close.svg";
 import "./Header.css";
 import { useRecoilValue } from "recoil";
@@ -76,26 +76,27 @@ const Header = ({ headerProps }) => {
                 {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
                 {!isCartPage ? (
                   <div>
-                    <Link to="/cart" className="cart-link">
-                      <img src={icon_bag} alt="bagIcon" className="bag-icon" />
-                    </Link>
+                    <img
+                      src={cart}
+                      alt="cart"
+                      className="cart-icon"
+                      onClick={() => navigate(`/cart`, { replace: true })}
+                    />
 
-                    <Link to="/" className="home-link">
-                      <img
-                        src={home_logo_bk}
-                        alt="homeIcon"
-                        className="homeIcon"
-                      />
-                    </Link>
-                  </div>
-                ) : (
-                  <Link to="/" className="home-link-2">
                     <img
                       src={home_logo_bk}
                       alt="homeIcon"
-                      className="homeIcon2"
+                      className="homeIcon"
+                      onClick={() => navigate(`/`, { replace: true })}
                     />
-                  </Link>
+                  </div>
+                ) : (
+                  <img
+                    src={home_logo_bk}
+                    alt="homeIcon"
+                    className="homeIcon2"
+                    onClick={() => navigate(`/`, { replace: true })}
+                  />
                 )}
               </div>
             )}
@@ -105,13 +106,13 @@ const Header = ({ headerProps }) => {
         // headerProps가 주어지지 않은 경우
         <header className="top_header">
           {/* 홈 로고 (흰) */}
-          <Link to="/" className="header-link">
-            <img src={home_logo} alt="Logo" className="header-logo" />
-          </Link>
+          <img
+            src={home_logo}
+            alt="Logo"
+            className="header-logo"
+            onClick={() => navigate(`/`, { replace: true })}
+          />
           {/* 장바구니 (흰) */}
-          {/* <Link to="/cart" className="header-cart">
-            <img src={cart_icon} alt="CartIcon" className="cart-icon" />
-          </Link> */}
           <div onClick={handleCartClick} className="header-cart">
             <img src={cart_icon} alt="CartIcon" className="cart-icon" />
           </div>

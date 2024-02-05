@@ -9,7 +9,6 @@ import Modal from "../../components/views/Modal/Modal";
 import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
-import NavBar2 from "../../components/views/NavBar/NavBar2";
 import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import "./Homepage.css";
 import usePostCoupon from "../../hooks/usePostCoupon";
@@ -167,7 +166,6 @@ function Homepage() {
         </div>
       </div>
 
-      <NavBar2 />
       <NavBar />
     </div>
     // </div>

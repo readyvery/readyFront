@@ -41,13 +41,12 @@
   margin-right: 2rem;
 }
 
-/* home-link 및 homeIcon 스타일 조정 */
 .home-link {
   display: inline-block;
 }
 
 .homeIcon {
-  margin-left: 1rem; /* 간격을 주기 위한 마진 값 설정 */
+  margin-left: 1rem;
 }
 
 .home-link2 {
@@ -57,20 +56,16 @@
 
 .homeIcon2 {
   margin: 0 2rem;
-  /* margin-left: 2rem; */
-  /* 간격을 주기 위한 마진 값 설정 */
 }
 
-/* cart-link 및 bagIcon 스타일 조정 */
 .cart-link {
   display: inline-block;
 }
 
-.bagIcon {
-  margin-right: 1rem; /* 간격을 주기 위한 마진 값 설정 */
+.cart-icon {
+  margin-right: 1rem;
 }
 
-/* homeAndCart 간격 조정 */
 .homeAndCart {
   display: flex;
   align-items: center;
