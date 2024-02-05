@@ -28,14 +28,15 @@
 
 .status-time {
   display: flex;
-  border: 1.5px solid #d82356;
   border-radius: 1.25rem;
+  border: 1.5px solid #d82356;
+  background: #fff;
   width: 100%;
   padding: 5% 8%;
-
   font-size: 0.625rem;
   font-family: "Pretendard Variable";
   font-weight: 700;
+  margin-top: 0.47rem;
 }
 
 .status-time span {
@@ -48,7 +49,9 @@
 .status-time-img__wrapper {
   display: flex;
   align-items: center;
-  margin-right: 3%;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-right: 0.19rem;
 }
 
 .status-main-wrapper {
@@ -326,75 +329,14 @@
   font-weight: 600;
 }
 
-/* 모달창 */
-/* .modal-wrapper{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.5);
+.status_close {
+  width: 1.51144rem;
+  height: 1.54225rem;
+  margin-left: 1.64rem;
 }
 
-.modal-box{
-    position: absolute;
-    top: calc(50% - 8.5rem);
-    left: calc(50% - 10.15625rem);
-
-    display: flex;
-    flex-direction: column;
-    width: 20.3125rem;
-    height: 15rem;
-    background-color: #fff;
-    border-radius: 0.625rem;
-    align-items: center;
-    justify-content: center;
+.status_refresh {
+  width: 1.63738rem;
+  height: 1.86356rem;
+  margin-right: 1.51rem;
 }
-
-.modal-title{
-    font-family: "Bold";
-    font-size: 1.125rem;
-    margin: 0.75rem 0 0.375rem 0;
-}
-
-.modal-subtitle{
-    font-family: "Regular";
-    font-size: 0.8125rem;
-    margin: 0.375rem 0 0.75rem 0;
-}
-
-.modal-btn__wrapper{
-    display: flex;
-    margin: 1.25rem auto;
-}
-
-.modal-cancle-btn{
-    width: 7.875rem;
-    height: 1.875rem;
-    text-align: center;
-    line-height: 1.875rem;
-    border: 0.0625rem solid #838383;
-    border-radius: 0.625rem;
-    
-    font-family: "Bold";
-    font-size: 1.125rem;
-    color: #838383;
-    margin: 0 0.3125rem;
-}
-
-.modal-check-btn{
-    width: 7.875rem;
-    height: 1.875rem;
-    text-align: center;
-    line-height: 1.875rem;
-    border: 0.0625rem solid #D82356;
-    border-radius: 0.625rem;
-    background-color: #D82356;
-    
-    font-family: "Bold";
-    font-size: 1.125rem;
-    color: #fff;
-    margin: 0 0.3125rem;
-} */

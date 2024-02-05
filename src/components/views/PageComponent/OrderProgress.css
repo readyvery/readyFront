@@ -1,0 +1,139 @@
+.order_progress {
+  width: 100%;
+  height: 94vh;
+  background: linear-gradient(180deg, #fff 34.11%, #ffe2ed 100%);
+}
+
+.order_progress__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.36rem;
+  padding-left: 1.64rem;
+  padding-right: 1.5rem;
+}
+
+.order_progress__controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* 전체 너비를 사용 */
+}
+
+.order_progress__close {
+  display: flex;
+  width: 1.51144rem;
+  height: 1.54225rem;
+}
+
+.order_progress__refresh {
+  display: flex;
+  width: 1.63738rem;
+  height: 1.86356rem;
+}
+
+.order_progress__pick_up_time img {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-right: 0.19rem;
+}
+
+.order_progress__pick_up_time {
+  display: flex;
+  width: fit-content;
+  height: 1.375rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #4f4f4f;
+  font-family: "Pretendard";
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: -0.00625rem;
+  border-radius: 1.25rem;
+  border: 1.5px solid #d82356;
+  padding-left: 0.44rem;
+  padding-right: 0.5rem;
+  margin-left: auto;
+  margin-top: 0.47rem;
+}
+
+.order_progress__num {
+  color: #4f4f4f;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 4.0625rem */
+  letter-spacing: -0.03125rem;
+  margin-top: 3.63rem;
+  margin-bottom: 0.75rem;
+}
+
+.order_progress__img {
+  display: flex;
+  width: 17.5625rem;
+  height: 17.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.order_progress__status {
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin-top: 0.56rem;
+  margin-bottom: 0.31rem;
+}
+
+.order_progress__guide {
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+}
+
+.order_progress__detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.375rem;
+  height: 1.6875rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--frame-text, #838383);
+  color: #838383;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  margin-bottom: 4.25rem;
+}
+
+.order_progress__cancel {
+  color: #838383;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+}
