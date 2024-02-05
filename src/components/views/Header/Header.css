@@ -17,15 +17,39 @@
 .top_header_page {
   position: absolute;
   top: 0;
-  height: 4rem;
+  height: 3.5rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 86%;
+  margin: auto;
+}
+
+.top_header_page span {
+  color: #000;
+  font-size: 1.25rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+}
+
+.top_header_page div {
+  width: 4rem;
 }
 
 .header-link {
   margin-top: 1rem;
   margin-left: 2rem;
+}
+
+.header_back {
+  width: 0.8125rem;
+  height: 1.5625rem;
+  margin-left: 1.56rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .close-link {
@@ -35,18 +59,19 @@
   margin-left: 1.56rem;
 }
 
-.header-cart {
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: 2rem;
-}
-
 .home-link {
   display: inline-block;
 }
 
-.homeIcon {
-  margin-left: 1rem;
+.header_cart {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.header_home1 {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.88rem;
 }
 
 .home-link2 {
@@ -54,16 +79,10 @@
   margin-right: 2rem;
 }
 
-.homeIcon2 {
+.header_home2 {
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0 2rem;
-}
-
-.cart-link {
-  display: inline-block;
-}
-
-.cart-icon {
-  margin-right: 1rem;
 }
 
 .homeAndCart {
@@ -79,13 +98,15 @@
   margin: auto;
 }
 
-.header-main__warpper span {
-  color: #000;
-  font-size: 1.25rem;
-  font-family: "Pretendard Variable";
-  font-weight: 700;
+.header_cart_home {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  margin-left: auto;
+  margin-right: 1.56rem;
 }
 
-.header-main__warpper div {
-  width: 4rem;
+.header_logo {
+  width: 10.5rem;
+  margin-left: 1.44rem;
 }
