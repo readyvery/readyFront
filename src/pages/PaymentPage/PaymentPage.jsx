@@ -1,9 +1,9 @@
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import noImageMenu from "../../assets/images/no_image_menu.svg";
-import takeIn from "../../assets/images/take_in.svg";
-import takeOut from "../../assets/images/take_out.svg";
+// import noImageMenu from "../../assets/images/no_image_menu.svg";
+// import takeIn from "../../assets/images/take_in.svg";
+// import takeOut from "../../assets/images/take_out.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
 import useFetchCartData from "../../hooks/useFetchCartData";
@@ -115,7 +115,7 @@ const PaymentPage = () => {
       <div className="payment-page__cafe-info">
         <img
           className="payment-page__cafe-info__img"
-          src={imgUrl}
+          // src={imgUrl}
           alt="cafeImg"
         ></img>
 
@@ -128,7 +128,7 @@ const PaymentPage = () => {
             <div className="payment-page__order-info__item">
               <img
                 className="payment-page__order-info__item__img"
-                src={item.imgUrl || noImageMenu}
+                // src={item.imgUrl || noImageMenu}
                 alt="menuImg"
               ></img>
 
@@ -170,7 +170,7 @@ const PaymentPage = () => {
             <>
               <img
                 className="payment-page__packaging-status__img"
-                src={takeIn}
+                // src={takeIn}
                 alt="Take In"
               />
               <span>먹고갈게요</span>
@@ -179,7 +179,7 @@ const PaymentPage = () => {
             <>
               <img
                 className="payment-page__packaging-status__img"
-                src={takeOut}
+                // src={takeOut}
                 alt="Take Out"
               />
               <span>가져갈게요</span>

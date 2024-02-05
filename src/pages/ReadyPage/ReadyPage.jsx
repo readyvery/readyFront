@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./ReadyPage.css";
 import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";
-import empty from "../../assets/images/storage_empty.svg";
+// import empty from "../../assets/images/storage_empty.svg";
 import useFetchFastOrderHistory from "../../hooks/useFetchFastOrderHistory";
 
 function ReadyPage() {
@@ -37,7 +37,7 @@ function ReadyPage() {
         ) : (
           <div className="empty-order-wrapper">
             <div className="empty-img-wrapper">
-              <img src={empty} className="empty-img" alt={empty} />
+              {/* <img src={empty} className="empty-img" alt={empty} /> */}
             </div>
             <span className="empty-text">주문 내역이 없습니다</span>
           </div>

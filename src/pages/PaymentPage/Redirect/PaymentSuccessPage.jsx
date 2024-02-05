@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import paymentSuccess from "../../../assets/images/payment_success.png";
 import "./PaymentRedirectPage.css";
 import Modal from "../../../components/views/Modal/Modal";
 import usePaymentSuccess from "../../../hooks/usePaymentSuccess";

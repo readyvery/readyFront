@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../../assets/images/berry.png";
-import cancleLogo from "../../../assets/images/icon_cancleLogo.png";
-import clock from "../../../assets/images/icon_clock.svg";
-import close from "../../../assets/images/icon_close.svg";
-import refresh from "../../../assets/images/icon_refresh.svg";
 import Modal from "../../views/Modal/Modal";
 import "./OrderStatus.css";
 import moment from "moment/moment";
@@ -65,18 +60,18 @@ function OrderStatus() {
           <div className="status-nav-bar">
             <div></div>
             <Link to="/status" style={{ textDecoration: "none" }}>
-              <img src={close} className="close-btn" alt={close} />
+              {/* <img src={close} className="close-btn" alt={close} /> */}
             </Link>
           </div>
         ) : (
           <div className="status-nav-bar">
             <Link to="/status" style={{ textDecoration: "none" }}>
-              <img src={close} className="close-btn" alt={close} />
+              {/* <img src={close} className="close-btn" alt={close} /> */}
             </Link>
             <img
-              src={refresh}
+              // src={refresh}
               className="refresh-btn"
-              alt={refresh}
+              // alt={refresh}
               onClick={refreshOrderStatus}
             />
           </div>
@@ -85,7 +80,7 @@ function OrderStatus() {
           <div className="status-time-wrapper">
             <div className="status-time">
               <div className="status-time-img__wrapper">
-                <img src={clock} alt={clock} />
+                {/* <img src={clock} alt={clock} /> */}
               </div>
               <span>
                 <span style={{ color: "#D82356" }}>
@@ -111,7 +106,7 @@ function OrderStatus() {
           <div className="status-top-wrapper space">
             <div className="status-title-wrapper">
               <div className="logo-img-wrapper">
-                <img src={logo} className="logo-img" alt={logo} />
+                {/* <img src={logo} className="logo-img" alt={logo} /> */}
               </div>
               <span className="status-title">주문 요청 중 ...</span>
             </div>
@@ -123,7 +118,7 @@ function OrderStatus() {
           <div className="status-top-wrapper" style={{ height: "25vh" }}>
             <div className="status-number-wrapper">
               <div className="logo-img-wrapper center">
-                <img src={cancleLogo} className="logo-img" alt={cancleLogo} />
+                {/* <img src={cancleLogo} className="logo-img" alt={cancleLogo} /> */}
               </div>
               <span className="status-number">주문 취소</span>
             </div>
@@ -136,7 +131,7 @@ function OrderStatus() {
           <div className="status-top-wrapper">
             <div className="status-number-wrapper">
               <div className="logo-img-wrapper center">
-                <img src={logo} className="logo-img" alt={logo} />
+                {/* <img src={logo} className="logo-img" alt={logo} /> */}
               </div>
               <span className="status-number">{orderNum}번</span>
             </div>

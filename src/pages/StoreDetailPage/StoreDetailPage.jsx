@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import goLeft from "../../assets/images/go_left.svg";
-import goRight from "../../assets/images/go_right.svg";
+// import goLeft from "../../assets/images/go_left.svg";
+// import goRight from "../../assets/images/go_right.svg";
 import Header from "../../components/views/Header/Header";
 import "./StoreDetailPage.css";
 import useFetchStoreInfo from "../../hooks/useFetchStoreInfo";
@@ -44,7 +44,7 @@ const StoreDetailPage = () => {
       <div className="store-detail-page__scroll">
         <img
           className="store-detail-page__banner"
-          src={imgs?.[0]}
+          // src={imgs?.[0]}
           alt="caffee banner"
         />
 
@@ -94,7 +94,7 @@ const StoreDetailPage = () => {
 
         <div className="store-detail-page__menuCategory">
           <img
-            src={goLeft}
+            // src={goLeft}
             alt="L"
             className="store-detail-page__menuCategory__go-left"
             // onClick={handleGoLeft}
@@ -121,7 +121,7 @@ const StoreDetailPage = () => {
           </div>
 
           <img
-            src={goRight}
+            // src={goRight}
             alt="R"
             className="store-detail-page__menuCategory__go-right"
             // onClick={handleGoRight}

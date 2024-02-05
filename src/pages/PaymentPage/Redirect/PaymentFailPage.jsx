@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import paymentFail from "../../../assets/images/payment_fail.png";
 import "./PaymentRedirectPage.css";
 import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
 

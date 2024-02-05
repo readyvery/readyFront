@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Kakaologo from "../../assets/images/kakao_logo.svg";
-import loginpagelogo from "../../assets/images/login_logo.svg";
+import { IMAGES } from "../../constants/images";
 import Header from "../../components/views/Header/Header";
 
 const Container = styled.div`
@@ -67,11 +66,11 @@ function KaKaoLoginBtn() {
 
       <Container>
         <LogoContainer>
-          <LogoImage src={loginpagelogo} alt="로고" />
+          {/* <LogoImage src={loginpagelogo} alt="로고" /> */}
         </LogoContainer>
         <LoginContainer>
           <KakaoButton onClick={handleKakaoLogin}>
-            <img src={Kakaologo} alt="카카오로그인" />
+            <img src={IMAGES.kakaoLogin} alt="카카오로그인" />
           </KakaoButton>
         </LoginContainer>
         <PolicyContainter onClick={handlePolicyClick}>

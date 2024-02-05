@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import store_not_open_icon from "../../assets/images/store_not_open_icon.svg";
+// import store_not_open_icon from "../../assets/images/store_not_open_icon.svg";
 import Header from "../../components/views/Header/Header";
 import "./CafeSearch.css";
 import useFetchSearch from "../../hooks/useFetchSearch";
@@ -39,7 +39,7 @@ function CafeSearch() {
                   {!status && (
                     <div className="closed-icon-div">
                       <img
-                        src={store_not_open_icon} // Replace with your closed image path
+                        // src={store_not_open_icon} // Replace with your closed image path
                         alt="closedImage"
                         className="closed-icon"
                       />

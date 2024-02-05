@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSetRecoilState } from "recoil";
 import { getAuthenticatedSelector } from "../../../Atom/status";
-import profile_icon from "../../../assets/images/profile_icon.svg";
 import Header from "../../../components/views/Header/Header";
 import Modal from "../../../components/views/Modal/Modal";
 import "./MyprofilePage.css";
@@ -34,7 +33,7 @@ function MyprofilePage() {
 
       <div className="myprofile-head">
         <img
-          src={profile_icon}
+          // src={profile_icon}
           alt="MyProfileIcon"
           className="myprofile-icon"
         />

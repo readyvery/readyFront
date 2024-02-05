@@ -1,7 +1,7 @@
 import Header from "../../components/views/Header/Header";
 import { Link, useLocation } from "react-router-dom";
 import "./ApplyCouponPage.css";
-import empty from "../../assets/images/storage_empty.svg";
+// import empty from "../../assets/images/storage_empty.svg";
 import useFetchCoupons from "../../hooks/useFetchCoupons";
 
 const ApplyCouponPage = () => {
@@ -56,7 +56,7 @@ const ApplyCouponPage = () => {
         ) : (
           <div className="coupon-page__coupon-empty">
             <img
-              src={empty}
+              // src={empty}
               alt="empty coupon"
               className="coupon-page__coupon-empty__img"
             />

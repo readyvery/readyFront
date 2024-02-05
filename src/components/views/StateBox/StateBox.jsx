@@ -1,7 +1,6 @@
 import "./StateBox.css";
 
 import { Link } from "react-router-dom";
-import cafe from "../../../assets/images/cafe_logo.png";
 
 const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
   const stateList = ["진행중", "수령완료", "취소완료", "결제실패"];
@@ -40,7 +39,11 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
         </div>
         <div className="order-content">
           <div className="cafe-img-box">
-            <img src={imgUrl} alt={cafe} style={{ width: 80, height: 80 }} />
+            <img
+              src={imgUrl}
+              alt="cafe-img"
+              style={{ width: 80, height: 80, background: "#DADADA" }}
+            />
           </div>
           <div className="cafe-box">
             <div className="cafe-name">{name}</div>

@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
-import eventTextIcon from "../../assets/images/icon_eventText.svg";
+// import eventTextIcon from "../../assets/images/icon_eventText.svg";
 import Modal from "../../components/views/Modal/Modal";
-import store_not_open from "../../assets/images/store_not_open.svg";
+// import store_not_open from "../../assets/images/store_not_open.svg";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
@@ -102,7 +102,7 @@ function Homepage() {
                     {!item.status && (
                       <div className="closed-image-div">
                         <img
-                          src={store_not_open} // Replace with your closed image path
+                          // src={store_not_open} // Replace with your closed image path
                           alt="closedImage"
                           className="closed-image"
                         />
@@ -113,7 +113,7 @@ function Homepage() {
                       <div className="pick-address">{item.address}</div>
                       <div className="pick-event-info">
                         <img
-                          src={eventTextIcon}
+                          // src={eventTextIcon}
                           alt="eventTextIcon"
                           className="pick-eventTextIcon"
                         />

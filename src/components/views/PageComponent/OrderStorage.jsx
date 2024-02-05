@@ -7,7 +7,7 @@ import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
 import StateBox from "../StateBox/StateBox";
 
-import empty from "../../../assets/images/storage_empty.svg";
+// import empty from "../../../assets/images/storage_empty.svg";
 
 function OrderStorage() {
   const newStorageList = useFetchNewOrderHistory();
@@ -94,7 +94,7 @@ function OrderStorage() {
         ) : (
           <div className="empty-order-wrapper">
             <div className="empty-img-wrapper">
-              <img src={empty} className="empty-img" alt={empty} />
+              {/* <img src={empty} className="empty-img" alt={empty} /> */}
             </div>
             <span className="empty-text">주문 내역이 없습니다</span>
           </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import cart_icon from "../../../assets/images/cart_icon.svg";
-import home_logo from "../../../assets/images/home_logo.svg";
-import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
-import back from "../../../assets/images/icon_back.svg";
-import cart from "../../../assets/images/icon_cart.svg";
-import close from "../../../assets/images/icon_close.svg";
+// import cart_icon from "../../../assets/images/cart_icon.svg";
+// import home_logo from "../../../assets/images/home_logo.svg";
+// import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
+// import back from "../../../assets/images/icon_back.svg";
+// import cart from "../../../assets/images/icon_cart.svg";
+// import close from "../../../assets/images/icon_close.svg";
 import "./Header.css";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../../Atom/status";
@@ -55,7 +55,7 @@ const Header = ({ headerProps }) => {
                 onClick={() => navigate(headerProps.linkTo, { replace: true })}
                 className="back-link"
               >
-                <img src={back} alt="back" />
+                {/* <img src={back} alt="back" /> */}
               </div>
             ) : (
               // isClosed가 true인 경우면 빈 div
@@ -69,7 +69,7 @@ const Header = ({ headerProps }) => {
                 onClick={() => navigate(headerProps.linkTo, { replace: true })}
                 className="close-link"
               >
-                <img src={close} alt="close" />
+                {/* <img src={close} alt="close" /> */}
               </div>
             ) : (
               <div className="homeAndCart">
@@ -77,14 +77,14 @@ const Header = ({ headerProps }) => {
                 {!isCartPage ? (
                   <div>
                     <img
-                      src={cart}
+                      // src={cart}
                       alt="cart"
                       className="cart-icon"
                       onClick={() => navigate(`/cart`, { replace: true })}
                     />
 
                     <img
-                      src={home_logo_bk}
+                      // src={home_logo_bk}
                       alt="homeIcon"
                       className="homeIcon"
                       onClick={() => navigate(`/`, { replace: true })}
@@ -92,7 +92,7 @@ const Header = ({ headerProps }) => {
                   </div>
                 ) : (
                   <img
-                    src={home_logo_bk}
+                    // src={home_logo_bk}
                     alt="homeIcon"
                     className="homeIcon2"
                     onClick={() => navigate(`/`, { replace: true })}
@@ -107,14 +107,14 @@ const Header = ({ headerProps }) => {
         <header className="top_header">
           {/* 홈 로고 (흰) */}
           <img
-            src={home_logo}
+            // src={home_logo}
             alt="Logo"
             className="header-logo"
             onClick={() => navigate(`/`, { replace: true })}
           />
           {/* 장바구니 (흰) */}
           <div onClick={handleCartClick} className="header-cart">
-            <img src={cart_icon} alt="CartIcon" className="cart-icon" />
+            {/* <img src={cart_icon} alt="CartIcon" className="cart-icon" /> */}
           </div>
         </header>
       )}

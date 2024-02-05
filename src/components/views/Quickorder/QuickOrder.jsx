@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import profile_icon from "../../../assets/images/profile_icon.png";
 import useFetchQuickOrder from "../../../hooks/useFetchQuickOrder";
 
 const QuickOrderComponent = ({ isAuth }) => {
@@ -27,7 +26,7 @@ const QuickOrderComponent = ({ isAuth }) => {
           ) : (
             <Link to={`/search`} className="not-login-box">
               <img
-                src={profile_icon}
+                // src={profile_icon}
                 alt="ProfileIcon"
                 className="profile-icon"
                 style={{ width: 60, height: 60 }}
@@ -38,7 +37,7 @@ const QuickOrderComponent = ({ isAuth }) => {
         ) : (
           <Link to="/kakaologin" className="not-login-box">
             <img
-              src={profile_icon}
+              // src={profile_icon}
               alt="ProfileIcon"
               className="profile-icon"
               style={{ width: 60, height: 60 }}
