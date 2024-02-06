@@ -34,6 +34,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import ReadyPage from "./pages/ReadyPage/ReadyPage";
+import Splash from "./pages/Splash/Splash";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -109,6 +110,7 @@ function App() {
         >
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
+            <Route path="/splash" element={<Splash />} />
             {/* 메인페이지 */}
             <Route path="/" element={<NewHomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
@@ -130,7 +132,7 @@ function App() {
             <Route path="/position" element={<PositionpolicyPage />} />
             {/* 마이페이지-이벤트 페이지 */}
             <Route path="/eventing" element={<EventingPage />} />
-            {/* 카페 상세 페이지*/}
+            {/* 가게상세 페이지*/}
             <Route path="/store" element={<StoreDetailPage />} />
             {/* 마이페이지*/}
             <Route path="/mypage" element={<MyPage />} />

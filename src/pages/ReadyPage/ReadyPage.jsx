@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ReadyPage.css";
 import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";

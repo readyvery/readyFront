@@ -27,6 +27,7 @@ export const IMAGES = {
   progress3: require("../assets/images/ic_order_progress3.png"),
 
   berryGrey: require("../assets/images/ic_berry_grey.png"),
+  berryWhite: require("../assets/images/ic_berry_white.png"),
   berry: require("../assets/images/ic_berry.png"),
   empty: require("../assets/images/ic_empty.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
