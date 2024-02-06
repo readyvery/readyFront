@@ -1,17 +1,51 @@
-/* 로그인 되어 있을 때 */
-.login-box {
+.quick_order {
+  display: flex;
+  flex-direction: column;
+  width: 21.5625rem;
+  overflow-x: auto;
+  gap: 3%;
+  white-space: nowrap;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quick_order::-webkit-scrollbar {
+  display: none;
+}
+
+.quick_order_title {
+  display: flex;
+  align-items: center;
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+}
+
+.quick_order_guide {
+  width: 1.32181rem;
+  height: 1.32181rem;
+  margin-left: 0.31rem;
+}
+
+.quick_order_list {
   width: 10.375rem;
   height: 7rem;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   text-decoration: none;
 }
-.quick-order-item {
+
+.quick_order_item {
   padding: 0 4rem 0 0;
   width: 10.375rem;
 }
 
-.item-name {
+.quick_order_item_name {
   color: #4f4f4f;
   font-family: "Pretendard Variable";
   font-weight: bold;
@@ -23,7 +57,7 @@
   text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
 
-.item-detail {
+.quick_order_item_name_detail {
   font-family: "Pretendard Variable";
   font-weight: 400;
   font-style: normal;
@@ -35,7 +69,7 @@
   text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
 
-.item-price {
+.quick_order_item_name_price {
   font-family: "Pretendard Variable";
   font-weight: 400;
   font-style: normal;
@@ -44,22 +78,19 @@
   margin: 0 7% 0 7%;
 }
 
-/* 로그인 되어있지 않을 때 */
-.not-login-box {
-  width: 99%;
-  height: 7rem;
-  display: flex; /* Flexbox를 사용해 가로 정렬 */
+.quick_order_none {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  width: 21.5625rem;
+  height: 5.75rem;
   border-radius: 0.5rem;
-  text-decoration: none;
-  color: black;
-  font-size: 1.25rem;
-  font-family: "Pretendard Variable";
-  font-weight: bold;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: #4f4f4f;
+  font-family: Pretendard;
+  font-size: 0.875rem;
   font-style: normal;
-}
-
-.profile-icon {
-  margin: 0 5%;
+  font-weight: 700;
+  line-height: 1.0625rem; /* 121.429% */
 }

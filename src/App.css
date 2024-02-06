@@ -44,15 +44,10 @@
     background-color: white;
     padding-top: 4rem;
   }
-  .bottom_navbar {
+  .navbar {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
   }
-  .bottom_navbar2 {
-    left: calc(50% - 215px); /* Center the navbar */
-    right: calc(50% - 215px); /* Center the navbar */
-  }
-
   .top_header {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
@@ -71,12 +66,8 @@
     padding-top: 4rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
   }
-  .bottom_navbar {
-    left: calc(50% - 300px); /* Center the navbar */
-    right: calc(50% - 300px); /* Center the navbar */
-  }
 
-  .bottom_navbor2 {
+  .navbar {
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
   }

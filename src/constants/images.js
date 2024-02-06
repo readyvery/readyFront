@@ -7,6 +7,9 @@ export const IMAGES = {
   headerClose: require("../assets/images/btn_header_close.png"),
   headerHome: require("../assets/images/btn_header_home.png"),
   homeCart: require("../assets/images/btn_home_cart.png"),
+  toLogin: require("../assets/images/btn_home_to_login.png"),
+  couponBox: require("../assets/images/btn_home_coupon_box.png"),
+  quickOrderGuide: require("../assets/images/ic_quick_order_guide.png"),
 
   navHome: require("../assets/images/ic_nav_home.png"),
   navMembership: require("../assets/images/ic_nav_membership.png"),
@@ -28,6 +31,9 @@ export const IMAGES = {
   empty: require("../assets/images/ic_empty.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
   logo: require("../assets/images/ic_logo.png"),
+
+  cafeClose: require("../assets/images/ic_cafe_close.png"),
+  cafeEvent: require("../assets/images/ic_cafe_event.png"),
 
   quantityMinus: require("../assets/images/ic_quantity_minus.png"),
   quantityMinusDisabled: require("../assets/images/ic_quantity_minus_disabled.png"),
