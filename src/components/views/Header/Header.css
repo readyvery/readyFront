@@ -29,6 +29,10 @@
 }
 
 .top_header_page span {
+  position: absolute; /* 절대 위치 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #000;
   font-size: 1.25rem;
   font-family: "Pretendard Variable";
@@ -47,7 +51,7 @@
 .header_back {
   width: 0.8125rem;
   height: 1.5625rem;
-  margin-left: 1.56rem;
+  /* margin-left: 1.56rem; */
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -71,7 +75,7 @@
 .header_home1 {
   width: 1.5rem;
   height: 1.5rem;
-  margin-left: 0.88rem;
+  margin-left: 0.75rem;
 }
 
 .home-link2 {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ReadyPage.css";
 import Header from "../../components/views/Header/Header";
 import StateBox from "../../components/views/StateBox/StateBox";
@@ -7,6 +7,7 @@ import StateBox from "../../components/views/StateBox/StateBox";
 import useFetchFastOrderHistory from "../../hooks/useFetchFastOrderHistory";
 
 function ReadyPage() {
+  const navigate = useNavigate();
   const storageList = useFetchFastOrderHistory();
 
   return (
@@ -17,10 +18,15 @@ function ReadyPage() {
       <main className="content-container">
         {storageList.length ? (
           storageList.map((e, i) => (
-            <Link
-              to={`/payment?storeId=${e?.storeId}&inout=${e?.inOut}&cartId=${e?.cartId}`}
-              state={{ returnTo: "/ready" }}
-              style={{ textDecoration: "none" }}
+            <div
+              onClick={() =>
+                navigate(
+                  `/payment?storeId=${e?.storeId}&inout=${e?.inOut}&cartId=${e?.cartId}`,
+                  {
+                    state: { returnTo: `/ready` },
+                  }
+                )
+              }
             >
               <StateBox
                 id={e.orderId}
@@ -32,7 +38,7 @@ function ReadyPage() {
                 isLast={storageList.length - 1 === i}
                 state={3}
               />
-            </Link>
+            </div>
           ))
         ) : (
           <div className="empty-order-wrapper">

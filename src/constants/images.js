@@ -25,6 +25,7 @@ export const IMAGES = {
 
   berryGrey: require("../assets/images/ic_berry_grey.png"),
   berry: require("../assets/images/ic_berry.png"),
+  empty: require("../assets/images/ic_empty.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
   logo: require("../assets/images/ic_logo.png"),
 

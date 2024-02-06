@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./OrderStorage.css";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
 import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
-
 import Header from "../Header/Header";
 import StateBox from "../StateBox/StateBox";
-
-// import empty from "../../../assets/images/storage_empty.svg";
+import { IMAGES } from "../../../constants/images";
 
 function OrderStorage() {
+  const navigate = useNavigate();
   const newStorageList = useFetchNewOrderHistory();
   const oldStorageList = useFetchOldOrderHistory();
 
@@ -22,23 +21,32 @@ function OrderStorage() {
     FAIL: 5,
   };
 
+  const handleNavigation = (e, orderId, progress) => {
+    e.preventDefault(); // 기본 이벤트를 막습니다.
+
+    const path =
+      progressList[progress] === 0 ||
+      progressList[progress] === 1 ||
+      progressList[progress] === 2
+        ? `/status?orderId=${orderId}`
+        : `/orderDetail?orderId=${orderId}`;
+
+    navigate(path, { state: { returnTo: "/status" } });
+  };
+
   return (
-    <section className="main-container">
+    <section className="order_storage">
       <Header
         headerProps={{ pageName: "주문내역", isClose: false, linkTo: "/" }}
       />
-      <main className="content-container">
+      <main className="order_storage__container">
         {newStorageList?.length || oldStorageList?.length ? (
-          <>
+          <div className="order_storage__list">
             {newStorageList?.length ? (
               newStorageList?.map((e, i) => (
-                <Link
-                  to={
-                    progressList[e.progress] === 0 ||
-                    progressList[e.progress] === 1 ||
-                    progressList[e.progress] === 2
-                      ? `/status?orderId=${e.orderId}`
-                      : `/orderDetail?orderId=${e.orderId}`
+                <div
+                  onClick={(event) =>
+                    handleNavigation(event, e.orderId, e.progress)
                   }
                   style={{ textDecoration: "none" }}
                 >
@@ -55,22 +63,17 @@ function OrderStorage() {
                     }
                     state={progressList[e.progress]}
                   />
-                </Link>
+                </div>
               ))
             ) : (
               <></>
             )}
             {oldStorageList?.length ? (
               oldStorageList?.map((e, i) => (
-                <Link
-                  to={
-                    progressList[e.progress] === 0 ||
-                    progressList[e.progress] === 1 ||
-                    progressList[e.progress] === 2
-                      ? `/status?orderId=${e.orderId}`
-                      : `/orderDetail?orderId=${e.orderId}`
+                <div
+                  onClick={(event) =>
+                    handleNavigation(event, e.orderId, e.progress)
                   }
-                  state={{ returnTo: "/status" }}
                   style={{ textDecoration: "none" }}
                 >
                   <StateBox
@@ -85,18 +88,16 @@ function OrderStorage() {
                     }
                     state={progressList[e.progress]}
                   />
-                </Link>
+                </div>
               ))
             ) : (
               <></>
             )}
-          </>
+          </div>
         ) : (
           <div className="empty-order-wrapper">
-            <div className="empty-img-wrapper">
-              {/* <img src={empty} className="empty-img" alt={empty} /> */}
-            </div>
-            <span className="empty-text">주문 내역이 없습니다</span>
+            <img src={IMAGES.empty} className="empty-img" alt="empty" />
+            <span className="empty-text">비어있습니다</span>
           </div>
         )}
       </main>
