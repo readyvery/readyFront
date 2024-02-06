@@ -10,6 +10,7 @@ import useFetchEventBanners from "../../hooks/useFetchEventBanners";
 import usePostCoupon from "../../hooks/usePostCoupon";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import StoreList from "../../components/views/StoreList/StoreList";
 // import EventBannerSlider from "../../components/views/EventBannerSlider/EventBannerSlider";
 import useFetchStores from "../../hooks/useFetchStores";
 
@@ -108,40 +109,8 @@ const HomePage = () => {
         {/* <EventBannerSlider banners={banners} /> */}
       </div>
 
-      <div className="home_berry_pick">
-        베리 PICK
-        <div className="home_berry_pick_list">
-          {stores.map((item) => (
-            <div
-              className="home_berry_pick_item"
-              onClick={() => navigate(`/packagingStatus?storeId=${item.idx}`)}
-            >
-              <img
-                src={item.imgUrl}
-                alt="veryPickimg"
-                className="home_berry_pick_cafe_img"
-              />
-              {!item.status && (
-                <img
-                  src={IMAGES.cafeClose}
-                  alt="closedImage"
-                  className="home_berry_pick_cafe_close"
-                />
-              )}
-              <div className="home_berry_pick_cafe_name">{item.name}</div>
-              <div className="home_berry_pick_cafe_address">{item.address}</div>
-              <div className="home_berry_pick_cafe_event">
-                <img
-                  src={IMAGES.cafeEvent}
-                  alt="eventTextIcon"
-                  className="home_berry_pick_cafe_event_icon"
-                />
-                {item.eventMessage}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <div className="home_berry_pick">베리 PICK</div>
+      <StoreList stores={stores} />
 
       <div className="home_business_info">
         <div className="home_business_info_name">ReadyVery</div>

@@ -31,6 +31,7 @@
   margin: 2% 0;
   align-items: center;
 }
+
 /* 가게 이미지 */
 .search-img {
   margin: 0 2%;
@@ -52,7 +53,6 @@
 
 .closed-icon-div {
   position: absolute;
-
   margin: 0 2%;
   width: 80px;
   height: 80px;
