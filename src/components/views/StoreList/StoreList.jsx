@@ -1,9 +1,11 @@
 import "./StoreList.css";
 import { IMAGES } from "../../../constants/images";
 import { useNavigate } from "react-router-dom";
+import useFetchSearch from "../../../hooks/useFetchSearch";
 
-const StoreList = ({ stores }) => {
+const StoreList = () => {
   const navigate = useNavigate();
+  const stores = useFetchSearch();
 
   return (
     <div className="store_list">

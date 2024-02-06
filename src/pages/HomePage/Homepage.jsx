@@ -12,7 +12,6 @@ import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import StoreList from "../../components/views/StoreList/StoreList";
 // import EventBannerSlider from "../../components/views/EventBannerSlider/EventBannerSlider";
-import useFetchStores from "../../hooks/useFetchStores";
 
 const HomePage = () => {
   const isAuth = useRecoilValue(isAuthenticatedState);
@@ -22,7 +21,6 @@ const HomePage = () => {
   const [couponIssued, setCouponIssued] = useState(false);
   const [current, setCurrent] = useState(0);
   const length = eventBanners.length;
-  const stores = useFetchStores();
 
   const handleSwiper = useSwipeable({
     onSwipedLeft: () => setCurrent(current === length - 1 ? 0 : current + 1),
@@ -110,7 +108,7 @@ const HomePage = () => {
       </div>
 
       <div className="home_berry_pick">베리 PICK</div>
-      <StoreList stores={stores} />
+      <StoreList />
 
       <div className="home_business_info">
         <div className="home_business_info_name">ReadyVery</div>

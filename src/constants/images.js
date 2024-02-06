@@ -31,6 +31,7 @@ export const IMAGES = {
   empty: require("../assets/images/ic_empty.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
   logo: require("../assets/images/ic_logo.png"),
+  search: require("../assets/images/ic_search.png"),
 
   cafeClose: require("../assets/images/ic_cafe_close.png"),
   cafeEvent: require("../assets/images/ic_cafe_event.png"),

@@ -17,11 +17,8 @@
     background-color: white;
     padding-top: 4rem;
   }
-  .bottom_navbar {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
-  }
-  .bottom_navbar2 {
+
+  .navbar {
     left: calc(50% - 207px); /* Center the navbar */
     right: calc(50% - 207px); /* Center the navbar */
   }
@@ -44,14 +41,17 @@
     background-color: white;
     padding-top: 4rem;
   }
+
   .navbar {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
   }
+
   .top_header {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
   }
+
   .top_header_page {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
@@ -61,7 +61,6 @@
 @media (min-width: 800px) {
   .App {
     width: 600px;
-
     background-color: white;
     padding-top: 4rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
