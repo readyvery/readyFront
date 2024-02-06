@@ -73,10 +73,19 @@
   margin-bottom: 0.75rem;
 }
 
+.order_progress__bar {
+  display: flex;
+  width: 13.375rem;
+  height: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.69rem;
+}
+
 .order_progress__img {
   display: flex;
-  width: 17.5625rem;
-  height: 17.5rem;
+  width: 16.0625rem;
+  height: 16.0625rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -136,4 +145,5 @@
   font-weight: 700;
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
+  margin-bottom: 3.63rem;
 }

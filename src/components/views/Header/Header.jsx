@@ -22,6 +22,10 @@ const Header = ({ headerProps }) => {
     }
   };
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   useEffect(() => {
     // 모달 상태가 변경될 때만 실행
     if (isOpen && !isAuth) {
@@ -49,7 +53,7 @@ const Header = ({ headerProps }) => {
               src={IMAGES.headerBack}
               alt="back"
               className="header_back"
-              onClick={() => navigate(headerProps.linkTo, { replace: true })}
+              onClick={() => handleGoBack()}
             />
           ) : (
             // isClosed가 true인 경우면 빈 div

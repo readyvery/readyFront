@@ -5,6 +5,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import useFetchCurrentOrder from "../../../hooks/useFetchCurrentOrder";
 import useCancelOrder from "../../../hooks/useCancelOrder";
 import moment from "moment/moment";
+import Modal from "../../views/Modal/Modal";
 
 const OrderProgress = () => {
   const navigate = useNavigate();
@@ -101,9 +102,33 @@ const OrderProgress = () => {
         )}
       </div>
 
-      <div className="order_progress__num">{orderNum}번</div>
+      {degree === 1 ? (
+        <div className="order_progress__num">결제완료</div>
+      ) : (
+        <div className="order_progress__num">{orderNum}번</div>
+      )}
 
-      <div style={{ height: "2.5rem", background: "#4F4F4F" }}></div>
+      <img
+        src={
+          degree === 1
+            ? IMAGES.progressBar1
+            : degree === 2
+            ? IMAGES.progressBar2
+            : degree === 3
+            ? IMAGES.progressBar3
+            : IMAGES.logo
+        }
+        alt={
+          degree === 1
+            ? "접수 대기 중"
+            : degree === 2
+            ? "제조 중"
+            : degree === 3
+            ? "제조 완료"
+            : "진행 과정"
+        }
+        className="order_progress__bar"
+      />
 
       <img
         src={
@@ -151,12 +176,35 @@ const OrderProgress = () => {
         {degree === 1 ? (
           <div>
             <div className="order_progress__detail">주문상세</div>
-            <div className="order_progress__cancel">주문취소</div>
+            <div
+              className="order_progress__cancel"
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              주문취소
+            </div>
           </div>
         ) : (
-          <div className="order_progress__detail">주문상세</div>
+          <div
+            className="order_progress__detail"
+            onClick={() =>
+              navigate(`/orderDetail?orderId=${orderId}`, {
+                state: { returnTo: `/status?orderId=${orderId}` },
+              })
+            }
+          >
+            주문상세
+          </div>
         )}
       </div>
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancel={handleCancel}
+          title={"주문을 취소하시겠습니까?"}
+          subtitle={"확인 버튼을 누르시면, 주문이 취소됩니다."}
+        />
+      )}
     </div>
   );
 };
