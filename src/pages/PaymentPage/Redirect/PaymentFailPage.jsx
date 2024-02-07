@@ -13,7 +13,7 @@ const PaymentFailPage = () => {
   return (
     <div className="payment-fail-page">
       <img
-        src={paymentFail}
+        // src={paymentFail}
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />

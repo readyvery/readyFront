@@ -71,7 +71,7 @@ const PaymentSuccessPage = () => {
   return (
     <div className="payment-success-page">
       <img
-        src={paymentSuccess}
+        // src={paymentSuccess}
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />
