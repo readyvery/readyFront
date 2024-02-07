@@ -10,7 +10,7 @@ const PackagingStatusPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
-  const { eventImgUrl, takeOutEvent } = useFetchEvent(storeId);
+  const eventImgUrl = useFetchEvent(storeId);
 
   // useEffect(() => {
   //   // API 엔드포인트

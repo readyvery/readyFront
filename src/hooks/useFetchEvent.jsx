@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const useFetchEvent = (storeId) => {
   const [eventImgUrl, setEventImgUrl] = useState("");
-  const [takeOutEvent, setTakeOutEvent] = useState("");
+  // const [takeOutEvent, setTakeOutEvent] = useState("");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const version = "api/v1";
 
@@ -14,7 +14,7 @@ const useFetchEvent = (storeId) => {
           `${apiRoot}/${version}/store/${storeId}/event`
         );
         setEventImgUrl(response.data.eventImgUrl);
-        setTakeOutEvent(response.data.takeOutEvent);
+        // setTakeOutEvent(response.data.takeOutEvent);
       } catch (error) {
         console.error("Error fetching event data:", error);
       }
@@ -24,7 +24,7 @@ const useFetchEvent = (storeId) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeId]);
 
-  return { eventImgUrl, takeOutEvent };
+  return eventImgUrl;
 };
 
 export default useFetchEvent;
