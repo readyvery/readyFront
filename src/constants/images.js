@@ -1,5 +1,6 @@
 export const IMAGES = {
   appleLogin: require("../assets/images/btn_apple_login.png"),
+  googleLogin: require("../assets/images/btn_google_login.png"),
   kakaoLogin: require("../assets/images/btn_kakao_login.png"),
 
   headerBack: require("../assets/images/btn_header_back.png"),
@@ -7,9 +8,12 @@ export const IMAGES = {
   headerClose: require("../assets/images/btn_header_close.png"),
   headerHome: require("../assets/images/btn_header_home.png"),
   homeCart: require("../assets/images/btn_home_cart.png"),
+
   toLogin: require("../assets/images/btn_home_to_login.png"),
   couponBox: require("../assets/images/btn_home_coupon_box.png"),
   quickOrderGuide: require("../assets/images/ic_quick_order_guide.png"),
+  event1: require("../assets/images/ic_home_event1.png"),
+  event2: require("../assets/images/ic_home_event2.png"),
 
   navHome: require("../assets/images/ic_nav_home.png"),
   navMembership: require("../assets/images/ic_nav_membership.png"),
