@@ -1,10 +1,12 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import "./PackagingStatusPage.css";
+import { IMAGES } from "../../constants/images";
 import useFetchEvent from "../../hooks/useFetchEvent";
 
 const PackagingStatusPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
@@ -41,34 +43,30 @@ const PackagingStatusPage = () => {
         alt="promotion"
       />
 
-      <Link
-        to={`/store?storeId=${storeId}&inout=1`}
-        style={{ textDecoration: "none" }}
+      <div
+        className="packaging-status-page__btn"
+        onClick={() => navigate(`/store?storeId=${storeId}&inout=1`)}
       >
-        <div className="packaging-status-page__btn">
-          <img
-            className="packaging-status-page__btn__img"
-            // src={takeIn}
-            alt="takeOut"
-          />
-          <span className="packaging-status-page__text">먹고갈게요 </span>
-        </div>
-      </Link>
+        <img
+          className="packaging-status-page__btn__img"
+          src={IMAGES.takeIn}
+          alt="takeOut"
+        />
+        <span className="packaging-status-page__text">먹고갈게요</span>
+      </div>
 
-      <Link
-        to={`/store?storeId=${storeId}&inout=2`}
-        style={{ textDecoration: "none" }}
+      <div
+        className="packaging-status-page__btn"
+        onClick={() => navigate(`/store?storeId=${storeId}&inout=2`)}
       >
-        <div className="packaging-status-page__btn">
-          <img
-            className="packaging-status-page__btn__img"
-            // src={takeOut}
-            alt="takeOut"
-          />
-          <span className="packaging-status-page__text">가져갈게요</span>
-          <span className="packaging-status-page__event">{takeOutEvent}</span>
-        </div>
-      </Link>
+        <img
+          className="packaging-status-page__btn__img"
+          src={IMAGES.takeOut}
+          alt="takeOut"
+        />
+        <span className="packaging-status-page__text">가져갈게요</span>
+        {/* <span className="packaging-status-page__event">{takeOutEvent}</span> */}
+      </div>
 
       <div className="packaging-status-page__notice">
         픽업 시 매장에서 일회용 컵 사용 불가능합니다

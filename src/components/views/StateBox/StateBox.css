@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: row;
   margin: 0 auto;
+  width: 95%;
+  height: 2rem;
   justify-content: space-between;
 }
 
@@ -52,10 +54,8 @@
 .order-content {
   display: flex;
   flex-direction: row;
-
-  /* width: calc(100% - 3rem); */
   width: 94%;
-  /* height: 80%; */
+  height: 70%;
   margin: 0 auto;
 }
 
@@ -70,31 +70,31 @@
   margin-right: 0.0625rem;
 }
 
-/* .cafe-box{
-    width: 70%;
-    height: 100%;
-    margin: 0 auto;
+.cafe-box {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
 }
 
-.cafe-name{
-    display: flex;
+.cafe-name {
+  display: flex;
 
-    color: #000;
-    font-size: 18px;
-    text-decoration: none;
-    height: 40%;
-    align-items: center;
-    white-space: nowrap;
-    font-family: "Pretendard Variable";
-    font-weight: 600;
+  color: #000;
+  font-size: 18px;
+  text-decoration: none;
+  height: 40%;
+  align-items: center;
+  white-space: nowrap;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
 }
 
-.menu-name{
-    height: 30%;
-    color: #838383;
-    font-size: 12px;
-    text-decoration: none;
-    white-space: nowrap;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-} */
+.menu-name {
+  height: 30%;
+  color: #838383;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
+import NavBar from "../../components/views/NavBar/NavBar";
 import "./MyPage.css";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 
@@ -84,6 +85,8 @@ function Mypage() {
           <div className="mypage-etc-sos">고객센터</div>
         </Link>
       </div>
+
+      <NavBar />
     </div>
   );
 }
