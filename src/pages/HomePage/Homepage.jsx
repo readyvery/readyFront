@@ -4,8 +4,10 @@ import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
+import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import { useNavigate } from "react-router-dom";
-import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
+import useFetchQuickOrder from "../../hooks/useFetchQuickOrder";
+// import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import useFetchEventBanners from "../../hooks/useFetchEventBanners";
 import usePostCoupon from "../../hooks/usePostCoupon";
 import React, { useState } from "react";
@@ -15,7 +17,9 @@ import StoreList from "../../components/views/StoreList/StoreList";
 
 const HomePage = () => {
   const isAuth = useRecoilValue(isAuthenticatedState);
+  const { name: userName } = useFetchUserInfo();
   const navigate = useNavigate();
+  const quickOrder = useFetchQuickOrder(isAuth);
   const eventBanners = useFetchEventBanners();
   const postCoupon = usePostCoupon();
   const [couponIssued, setCouponIssued] = useState(false);
@@ -47,7 +51,7 @@ const HomePage = () => {
             <div className="home_individual_benefits">
               <div className="home_individual_user">
                 오늘도 준비된,&nbsp;
-                <span className="home_individual_user_name">김베리</span>님
+                <span className="home_individual_user_name">{userName}</span>님
               </div>
               <div className="home_individual_point">
                 231,552 P
@@ -61,7 +65,48 @@ const HomePage = () => {
             </div>
 
             <div className="home_individual_quick_order">
-              <QuickOrderComponent />
+              {/* <QuickOrderComponent /> */}
+              <div className="home_individual_quick_order_title">
+                바로 주문
+                <img
+                  src={IMAGES.quickOrderGuide}
+                  alt="guide"
+                  className="home_individual_quick_order_guide"
+                />
+              </div>
+
+              {quickOrder.length > 0 ? (
+                quickOrder.map((item) => (
+                  <div
+                    className="home_individual_quick_order_list"
+                    key={item.id}
+                    onClick={() =>
+                      navigate(
+                        `/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`
+                      )
+                    }
+                  >
+                    <div className="home_individual_quick_order_item">
+                      <div className="home_individual_quick_order_item_name">
+                        {item.name}
+                      </div>
+                      <div className="home_individual_quick_order_item_name_detail">
+                        {item.orderName}
+                      </div>
+                      <div className="home_individual_quick_order_item_name_price">
+                        {item.amount}원
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div
+                  className="home_individual_quick_order_none"
+                  onClick={() => navigate(`/search`)}
+                >
+                  첫 주문 후 이용 가능합니다!
+                </div>
+              )}
             </div>
           </div>
         ) : (
