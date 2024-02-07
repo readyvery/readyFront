@@ -64,12 +64,12 @@ const Header = ({ headerProps }) => {
           <span>{headerProps.pageName}</span>
           {/* isClosed가 true인 경우 */}
           {headerProps.isClose ? (
-            <div
-              onClick={() => navigate(headerProps.linkTo, { replace: true })}
+            <img
+              src={IMAGES.headerClose}
+              alt="close"
               className="close-link"
-            >
-              <img src={IMAGES.headerClose} alt="close" />
-            </div>
+              onClick={() => navigate(headerProps.linkTo, { replace: true })}
+            />
           ) : (
             <div className="homeAndCart">
               {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}

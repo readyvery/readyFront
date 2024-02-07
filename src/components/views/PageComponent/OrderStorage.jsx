@@ -4,6 +4,7 @@ import "./OrderStorage.css";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
 import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
+import NavBar from "../NavBar/NavBar";
 import StateBox from "../StateBox/StateBox";
 import { IMAGES } from "../../../constants/images";
 
@@ -39,6 +40,7 @@ function OrderStorage() {
       <Header
         headerProps={{ pageName: "주문내역", isClose: false, linkTo: "/" }}
       />
+
       <main className="order_storage__container">
         {newStorageList?.length || oldStorageList?.length ? (
           <div className="order_storage__list">
@@ -101,6 +103,8 @@ function OrderStorage() {
           </div>
         )}
       </main>
+
+      <NavBar />
     </section>
   );
 }

@@ -15,7 +15,6 @@
     max-width: 390px;
     /* height: 94vh; */
     background-color: white;
-    padding-top: 4rem;
   }
 
   .navbar {
@@ -39,7 +38,6 @@
     max-width: 430px;
     /* height: 94vh; */
     background-color: white;
-    padding-top: 4rem;
   }
 
   .navbar {
@@ -62,7 +60,6 @@
   .App {
     width: 600px;
     background-color: white;
-    padding-top: 4rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
   }
 
