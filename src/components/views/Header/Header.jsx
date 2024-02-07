@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./Header.css";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../../Atom/status";
-import Modal from "../Modal/Modal";
-import TEXT from "../../../constants/text";
 import { IMAGES } from "../../../constants/images";
+import TEXT from "../../../constants/text";
+import Modal from "../Modal/Modal";
+import "./Header.css";
 
 const Header = ({ headerProps }) => {
   const isAuth = useRecoilValue(isAuthenticatedState);
@@ -104,19 +104,21 @@ const Header = ({ headerProps }) => {
         // headerProps가 주어지지 않은 경우
         <header className="top_header">
           {/* 홈 로고 (흰) */}
-          <img
-            src={IMAGES.logoWhite}
-            alt="Logo"
-            className="header_logo"
-            onClick={() => navigate(`/`, { replace: true })}
-          />
-          {/* 장바구니 (흰) */}
-          <img
-            src={IMAGES.homeCart}
-            alt="cart"
-            className="header_cart_home"
-            onClick={handleCartClick}
-          />
+          <div className="top_header_img_wrapper">
+            <img
+              src={IMAGES.logoWhite}
+              alt="Logo"
+              className="header_logo"
+              onClick={() => navigate(`/`, { replace: true })}
+            />
+            {/* 장바구니 (흰) */}
+            <img
+              src={IMAGES.homeCart}
+              alt="cart"
+              className="header_cart_home"
+              onClick={handleCartClick}
+            />
+          </div>
         </header>
       )}
 

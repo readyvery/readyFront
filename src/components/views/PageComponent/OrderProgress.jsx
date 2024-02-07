@@ -1,11 +1,11 @@
-import "./OrderProgress.css";
-import { IMAGES } from "../../../constants/images";
-import { useLocation, useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useMemo } from "react";
-import useFetchCurrentOrder from "../../../hooks/useFetchCurrentOrder";
-import useCancelOrder from "../../../hooks/useCancelOrder";
 import moment from "moment/moment";
+import React, { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IMAGES } from "../../../constants/images";
+import useCancelOrder from "../../../hooks/useCancelOrder";
+import useFetchCurrentOrder from "../../../hooks/useFetchCurrentOrder";
 import Modal from "../../views/Modal/Modal";
+import "./OrderProgress.css";
 
 const OrderProgress = () => {
   const navigate = useNavigate();
@@ -131,7 +131,7 @@ const OrderProgress = () => {
         }
         className="order_progress__bar"
       />
-
+<div className="order_progress__img animatedIcon">
       <img
         src={
           degree === 1
@@ -152,7 +152,8 @@ const OrderProgress = () => {
             : "진행 과정"
         }
         className="order_progress__img"
-      />
+        />
+        </div>
 
       <div className="order_progress__status">
         {degree === 1
