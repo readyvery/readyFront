@@ -107,18 +107,29 @@
   margin: auto;
 }
 
-.header_cart_home {
+.top_header_img_wrapper {
   display: flex;
+  align-items: center;
+  margin-top: 4.065rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 2.625rem;
+  width: 90%;
+}
+.header_logo {
+  height: 2rem;
+  width: 10.5rem;
+}
+.header_cart_home {
+  margin-left: auto;
   width: 2rem;
   height: 2rem;
-  margin-top: 3.94rem;
-  margin-left: auto;
-  margin-right: 1.56rem;
 }
 
-.header_logo {
-  width: 10.5rem;
-  height: fit-content;
-  margin-top: 3.94rem;
-  margin-left: 1.44rem;
-}
+/* 이거 왜 걸어놓으신건가요..?! 
+  @media only screen and (min-width: 400px) and (max-width: 800px) {
+    .top_header {
+      left: calc(50% - 215px);
+      right: calc(50% - 215px);
+    }
+  } */
