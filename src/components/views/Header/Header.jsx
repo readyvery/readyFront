@@ -22,9 +22,9 @@ const Header = ({ headerProps }) => {
     }
   };
 
-  const handleGoBack = () => {
-    window.history.back();
-  };
+  // const handleGoBack = () => {
+  //   window.history.back();
+  // };
 
   useEffect(() => {
     // 모달 상태가 변경될 때만 실행
@@ -53,7 +53,8 @@ const Header = ({ headerProps }) => {
               src={IMAGES.headerBack}
               alt="back"
               className="header_back"
-              onClick={() => handleGoBack()}
+              // onClick={() => handleGoBack()}
+              onClick={() => navigate(headerProps.linkTo, { replace: true })}
             />
           ) : (
             // isClosed가 true인 경우면 빈 div

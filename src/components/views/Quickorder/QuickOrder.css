@@ -1,4 +1,4 @@
-.quick_order {
+.home_individual_quick_order {
   display: flex;
   flex-direction: column;
   width: 21.5625rem;
@@ -10,11 +10,11 @@
   margin-right: auto;
 }
 
-.quick_order::-webkit-scrollbar {
+.home_individual_quick_order::-webkit-scrollbar {
   display: none;
 }
 
-.quick_order_title {
+.home_individual_quick_order_title {
   display: flex;
   align-items: center;
   color: var(--title, #2e2d2d);
@@ -26,13 +26,13 @@
   letter-spacing: -0.01125rem;
 }
 
-.quick_order_guide {
+.home_individual_quick_order_guide {
   width: 1.32181rem;
   height: 1.32181rem;
   margin-left: 0.31rem;
 }
 
-.quick_order_list {
+.home_individual_quick_order_list {
   width: 10.375rem;
   height: 7rem;
   box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
@@ -40,12 +40,12 @@
   text-decoration: none;
 }
 
-.quick_order_item {
+.home_individual_quick_order_item {
   padding: 0 4rem 0 0;
   width: 10.375rem;
 }
 
-.quick_order_item_name {
+.home_individual_quick_order_item_name {
   color: #4f4f4f;
   font-family: "Pretendard Variable";
   font-weight: bold;
@@ -57,7 +57,7 @@
   text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
 
-.quick_order_item_name_detail {
+.home_individual_quick_order_item_name_detail {
   font-family: "Pretendard Variable";
   font-weight: 400;
   font-style: normal;
@@ -69,7 +69,7 @@
   text-overflow: ellipsis; /* 생략 부호(...) 표시 */
 }
 
-.quick_order_item_name_price {
+.home_individual_quick_order_item_name_price {
   font-family: "Pretendard Variable";
   font-weight: 400;
   font-style: normal;
@@ -78,7 +78,7 @@
   margin: 0 7% 0 7%;
 }
 
-.quick_order_none {
+.home_individual_quick_order_none {
   display: flex;
   justify-content: center;
   align-items: center;
