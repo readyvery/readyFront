@@ -1,9 +1,6 @@
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import noImageMenu from "../../assets/images/no_image_menu.svg";
-// import takeIn from "../../assets/images/take_in.svg";
-// import takeOut from "../../assets/images/take_out.svg";
 import Header from "../../components/views/Header/Header";
 import "./PaymentPage.css";
 import useFetchCartData from "../../hooks/useFetchCartData";
@@ -115,7 +112,7 @@ const PaymentPage = () => {
       <div className="payment-page__cafe-info">
         <img
           className="payment-page__cafe-info__img"
-          // src={imgUrl}
+          src={imgUrl}
           alt="cafeImg"
         ></img>
 

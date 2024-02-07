@@ -15,9 +15,9 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
-const LogoImage = styled.img`
-  margin: 35% 0 10% 0;
-`;
+// const LogoImage = styled.img`
+//   margin: 35% 0 10% 0;
+// `;
 
 const LoginContainer = styled.div`
   display: flex;

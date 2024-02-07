@@ -1,7 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-// import takeIn from "../../assets/images/take_in.svg";
-// import takeOut from "../../assets/images/take_out.svg";
 import Header from "../../components/views/Header/Header";
 import "./PackagingStatusPage.css";
 import useFetchEvent from "../../hooks/useFetchEvent";
@@ -39,7 +37,7 @@ const PackagingStatusPage = () => {
 
       <img
         className="packaging-status-page__event-img"
-        // src={eventImgUrl}
+        src={eventImgUrl}
         alt="promotion"
       />
 

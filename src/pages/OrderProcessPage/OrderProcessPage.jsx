@@ -214,7 +214,7 @@ const OrderProcessPage = () => {
 
       <img
         className="order-process-page__menu__img"
-        // src={imgUrl ? imgUrl : noImageMenu}
+        src={imgUrl}
         alt="menuImg"
       />
 

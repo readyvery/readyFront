@@ -15,8 +15,10 @@ const OrderProgress = () => {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { cancels, estimatedTime, inout, name, orderName, orderNum, progress } =
-    useFetchCurrentOrder(orderId, refreshKey);
+  const { estimatedTime, orderNum, progress } = useFetchCurrentOrder(
+    orderId,
+    refreshKey
+  );
   const cancelOrder = useCancelOrder();
 
   const progressList = useMemo(

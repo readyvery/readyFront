@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "../../views/Modal/Modal";
 import "./OrderStatus.css";
 import moment from "moment/moment";
-import Progressbar from "../ProgressBar/ProgressBar";
 import useFetchCurrentOrder from "../../../hooks/useFetchCurrentOrder";
 import useCancelOrder from "../../../hooks/useCancelOrder";
 import { IMAGES } from "../../../constants/images";

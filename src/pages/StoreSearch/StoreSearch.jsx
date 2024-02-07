@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../../constants/images";
 import "./StoreSearch.css";
 import Header from "../../components/views/Header/Header";
@@ -7,7 +6,6 @@ import NavBar from "../../components/views/NavBar/NavBar";
 import StoreList from "../../components/views/StoreList/StoreList";
 
 function StoreSearch() {
-  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e) => {
