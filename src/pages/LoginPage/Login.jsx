@@ -9,6 +9,8 @@ function KaKaoLoginBtn() {
 
   return (
     <div className="login">
+      <img src={IMAGES.berryTrans} alt="berry" className="login_logo_img" />
+
       <div className="login_logo">
         실속형 대학생활 플랫폼
         <img src={IMAGES.logo} alt="ReadyVery" />

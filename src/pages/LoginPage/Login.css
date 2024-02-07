@@ -2,10 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   width: 100%;
   height: 100vh;
   background: linear-gradient(0deg, #fff 28.64%, #ffe3e5 104.64%);
+}
+
+.login_logo_img {
+  width: 11.07319rem;
+  height: 11.22806rem;
+  margin-top: 5.56rem;
+  margin-left: auto;
 }
 
 .login_logo {
@@ -16,6 +23,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  z-index: 10;
+  margin-top: -1.105rem;
+  margin-bottom: 12.44rem;
 }
 
 .login_logo img {

@@ -30,9 +30,10 @@ export const IMAGES = {
   progress2: require("../assets/images/ic_order_progress2.png"),
   progress3: require("../assets/images/ic_order_progress3.png"),
 
+  berry: require("../assets/images/ic_berry.png"),
   berryGrey: require("../assets/images/ic_berry_grey.png"),
   berryWhite: require("../assets/images/ic_berry_white.png"),
-  berry: require("../assets/images/ic_berry.png"),
+  berryTrans: require("../assets/images/ic_berry_trans.png"),
   empty: require("../assets/images/ic_empty.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
   logo: require("../assets/images/ic_logo.png"),
