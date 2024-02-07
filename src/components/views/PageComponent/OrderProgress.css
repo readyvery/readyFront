@@ -9,27 +9,28 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 1.36rem;
   padding-left: 1.64rem;
-  padding-right: 1.5rem;
+  padding-right: 1.51rem;
 }
 
 .order_progress__controls {
   display: flex;
   justify-content: space-between;
-  width: 100%; /* 전체 너비를 사용 */
+  width: 100%;
 }
 
 .order_progress__close {
   display: flex;
   width: 1.51144rem;
   height: 1.54225rem;
+  margin-top: 2.8rem;
 }
 
 .order_progress__refresh {
   display: flex;
   width: 1.63738rem;
   height: 1.86356rem;
+  margin-top: 2.48rem;
 }
 
 .order_progress__pick_up_time img {
@@ -89,14 +90,23 @@
   margin-left: auto;
   margin-right: auto;
 }
-.animatedIcon img{
+
+.animatedIcon img {
   animation: motion 0.5s linear 0s infinite alternate;
 }
 
 @keyframes motion {
-  0% { margin-top: 0px; margin-left: 1px; }
-  50% { margin-top: 3px; margin-left: 0px; }
-  100% { margin-top: 10px; }
+  0% {
+    margin-top: 0px;
+    margin-left: 1px;
+  }
+  50% {
+    margin-top: 3px;
+    margin-left: 0px;
+  }
+  100% {
+    margin-top: 10px;
+  }
 }
 
 .order_progress__status {

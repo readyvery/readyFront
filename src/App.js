@@ -33,7 +33,6 @@ import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
-import ReadyPage from "./pages/ReadyPage/ReadyPage";
 import Splash from "./pages/Splash/Splash";
 
 function App() {
@@ -56,7 +55,6 @@ function App() {
   const NewHomePage = Auth(HomePage, true);
   const NewOrderHistory = Auth(OrderHistory, true);
   const NewOrderDetail = Auth(OrderDetail, true);
-  const NewReadyPage = Auth(ReadyPage, true);
   const NewMyprofilePage = Auth(MyprofilePage, true);
 
   const NewOrderProcessPage = Auth(OrderProcessPage, true);
@@ -144,8 +142,6 @@ function App() {
             <Route path="/status" element={<NewOrderHistory />} />
             {/* 주문상세 페이지 - 추후 병합 예정*/}
             <Route path="/orderDetail" element={<NewOrderDetail />} />
-            {/* 바로주문*/}
-            <Route path="/ready" element={<NewReadyPage />} />
             {/* 마이페이지-마이프로필 확인 페이지 */}
             <Route path="/myprofile" element={<NewMyprofilePage />} />
             {/* 포장 여부 선택 페이지 */}

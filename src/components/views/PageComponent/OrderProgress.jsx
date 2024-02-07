@@ -131,29 +131,29 @@ const OrderProgress = () => {
         }
         className="order_progress__bar"
       />
-<div className="order_progress__img animatedIcon">
-      <img
-        src={
-          degree === 1
-            ? IMAGES.progress1
-            : degree === 2
-            ? IMAGES.progress2
-            : degree === 3
-            ? IMAGES.progress3
-            : IMAGES.berry
-        }
-        alt={
-          degree === 1
-            ? "접수 대기 중"
-            : degree === 2
-            ? "제조 중"
-            : degree === 3
-            ? "제조 완료"
-            : "진행 과정"
-        }
-        className="order_progress__img"
+      <div className="order_progress__img animatedIcon">
+        <img
+          src={
+            degree === 1
+              ? IMAGES.progress1
+              : degree === 2
+              ? IMAGES.progress2
+              : degree === 3
+              ? IMAGES.progress3
+              : IMAGES.berry
+          }
+          alt={
+            degree === 1
+              ? "접수 대기 중"
+              : degree === 2
+              ? "제조 중"
+              : degree === 3
+              ? "제조 완료"
+              : "진행 과정"
+          }
+          className="order_progress__img"
         />
-        </div>
+      </div>
 
       <div className="order_progress__status">
         {degree === 1

@@ -1,6 +1,7 @@
 .store_search {
   height: 94vh;
   width: 100%;
+  padding-top: 3.5rem;
 }
 
 .store_search_form {
