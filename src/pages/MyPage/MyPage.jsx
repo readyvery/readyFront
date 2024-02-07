@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
-import profile_icon from "../../assets/images/profile_icon.png";
 import Header from "../../components/views/Header/Header";
 import "./MyPage.css";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
@@ -28,7 +27,7 @@ function Mypage() {
             <Link to="/myprofile" className="myprofile-link">
               <div className="login-box2" style={{ textDecoration: "none" }}>
                 <img
-                  src={profile_icon}
+                  // src={profile_icon}
                   alt="ProfileIcon"
                   className="profile-icon2"
                   style={{ width: 60, height: 60 }}
@@ -41,7 +40,7 @@ function Mypage() {
             // 로그인 안 한 경우 로그인 버튼 나오게
             <Link to="/kakaologin" className="not-login-box2">
               <img
-                src={profile_icon}
+                // src={profile_icon}
                 alt="ProfileIcon2"
                 className="profile-icon2"
                 style={{ width: 60, height: 60 }}

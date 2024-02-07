@@ -1,13 +1,11 @@
-import berry from "../../../assets/images/berry.png";
 import "./Modal.css";
+import { IMAGES } from "../../../constants/images";
 
 const Modal = ({ setIsOpen, handleCancel, title, subtitle }) => {
   return (
     <div className="modal-wrapper">
       <div className="modal-box">
-        <div>
-          <img src={berry} alt="berry" />
-        </div>
+        <img src={IMAGES.berry} alt="berry" />
         <div className="modal-title">{title}</div>
         <div className="modal-subtitle">{subtitle}</div>
         <div className="modal-btn__wrapper">

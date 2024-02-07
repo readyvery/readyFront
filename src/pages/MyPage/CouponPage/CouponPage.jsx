@@ -1,5 +1,5 @@
 import React from "react";
-import empty from "../../../assets/images/storage_empty.svg";
+// import empty from "../../../assets/images/storage_empty.svg";
 import Header from "../../../components/views/Header/Header";
 import "./CouponPage.css";
 import useFetchCoupons from "../../../hooks/useFetchCoupons";
@@ -32,7 +32,7 @@ function CouponPage() {
         ) : (
           <div className="coupon-list-empty">
             <img
-              src={empty}
+              // src={empty}
               alt="empty coupon"
               className="coupon-list-empty__img"
             />

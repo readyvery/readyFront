@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import menuDelete from "../../assets/images/menu_delete.svg";
-import noImageMenu from "../../assets/images/no_image_menu.svg";
-import empty from "../../assets/images/storage_empty.svg";
+// import menuDelete from "../../assets/images/menu_delete.svg";
+// import noImageMenu from "../../assets/images/no_image_menu.svg";
+// import empty from "../../assets/images/storage_empty.svg";
 import Header from "../../components/views/Header/Header";
 import "./CartPage.css";
 
@@ -161,7 +161,7 @@ const CartPage = () => {
                 <div className="cart-page__order-info__item">
                   <img
                     className="cart-page__order-info__item__img"
-                    src={item.imgUrl || noImageMenu}
+                    // src={item.imgUrl || noImageMenu}
                     alt="menuImg"
                   ></img>
 
@@ -194,7 +194,7 @@ const CartPage = () => {
                   <div className="cart-page__order-info__item__control">
                     <img
                       className="cart-page__order-info__item__delete"
-                      src={menuDelete}
+                      // src={menuDelete}
                       alt="X"
                       onClick={() => handleRemoveItem(item.idx)}
                     />
@@ -253,7 +253,7 @@ const CartPage = () => {
       ) : (
         <div className="cart-page__cart-empty">
           <img
-            src={empty}
+            // src={empty}
             alt="empty cart"
             className="cart-page__cart-empty__img"
           />

@@ -6,9 +6,9 @@ import useFetchOrderDetails from "../../hooks/useFetchOrderDetails";
 
 const OrderDetail = () => {
   const location = useLocation();
+  const { returnTo } = location.state || {};
   const params = new URLSearchParams(location.search);
   const orderId = params.get("orderId");
-  const { state } = useLocation();
   const {
     cancelReason,
     cart,
@@ -28,7 +28,7 @@ const OrderDetail = () => {
         headerProps={{
           pageName: "주문상세",
           isClose: true,
-          linkTo: state.returnTo,
+          linkTo: returnTo,
         }}
       />
       <div className="detail-content__wrapper">

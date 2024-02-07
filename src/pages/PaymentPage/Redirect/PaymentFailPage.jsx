@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import paymentFail from "../../../assets/images/payment_fail.png";
 import "./PaymentRedirectPage.css";
 import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
 
@@ -14,7 +13,7 @@ const PaymentFailPage = () => {
   return (
     <div className="payment-fail-page">
       <img
-        src={paymentFail}
+        // src={paymentFail}
         alt="ReadyVery"
         className="payment-redirect-page__berry"
       />
