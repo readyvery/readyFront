@@ -7,10 +7,10 @@ import { RecoilRoot } from "recoil";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
-import loading from "./assets/animation/loading.json";
+// import loading from "./assets/animation/loading.json";
+import ic_berry from "./assets/images/ic_berry.png";
 import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
-import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 import CartPage from "./pages/CartPage/CartPage";
 import HomePage from "./pages/HomePage/Homepage";
 import KakaoLoginPage from "./pages/LoginPage/Login";
@@ -34,6 +34,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
 import Splash from "./pages/Splash/Splash";
+import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -101,9 +102,12 @@ function App() {
       <RecoilRoot>
         <Suspense
           fallback={
-            <div>
-              <img src={loading} alt="loading" />
+            <div className="loading-div">
+              <div className="loading-loader" />
+              <div className="loading-berry"> 
+                <img src={ic_berry} alt="berry"/>
             </div>
+          </div>
           }
         >
           <Routes>
