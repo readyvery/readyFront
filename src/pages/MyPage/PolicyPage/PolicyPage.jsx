@@ -1,5 +1,5 @@
 import React from "react";
-import { div, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../../components/views/Header/Header";
 import "./PolicyPage.css";
 
