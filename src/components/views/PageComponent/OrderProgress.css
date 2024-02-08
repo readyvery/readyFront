@@ -92,7 +92,7 @@
 }
 
 .animatedIcon img {
-  animation: motion 0.5s linear 0s infinite alternate;
+  animation: motion 0.53s linear 0s infinite alternate;
 }
 
 @keyframes motion {
