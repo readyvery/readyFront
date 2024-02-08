@@ -6,6 +6,7 @@ import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import "./MyPage.css";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
+import { IMAGES } from "../../constants/images";
 
 function Mypage() {
   const [isAuth] = useRecoilState(isAuthenticatedState);
@@ -28,7 +29,7 @@ function Mypage() {
             <Link to="/myprofile" className="myprofile-link">
               <div className="login-box2" style={{ textDecoration: "none" }}>
                 <img
-                  // src={profile_icon}
+                  src={IMAGES.profile}
                   alt="ProfileIcon"
                   className="profile-icon2"
                   style={{ width: 60, height: 60 }}
@@ -39,7 +40,7 @@ function Mypage() {
             </Link>
           ) : (
             // 로그인 안 한 경우 로그인 버튼 나오게
-            <Link to="/kakaologin" className="not-login-box2">
+            <Link to="/login" className="not-login-box2">
               <img
                 // src={profile_icon}
                 alt="ProfileIcon2"
@@ -56,7 +57,7 @@ function Mypage() {
       <div className="mypage-order">
         <div className="mypage-order-text">주문 및 결제</div>
         <Link
-          to={isAuth ? "/status" : "/kakaologin"}
+          to={isAuth ? "/status" : "/login"}
           className="mypage-order-list-link"
         >
           <div className="mypage-order-list">주문내역</div>
@@ -65,7 +66,7 @@ function Mypage() {
           <div className="mypage-order-type">결제 수단 등록 (준비중)</div>
         </Link>
         <Link
-          to={isAuth ? "/coupon" : "/kakaologin"}
+          to={isAuth ? "/coupon" : "/login"}
           className="mypage-order-coupon-link"
         >
           <div className="mypage-order-coupon">할인쿠폰</div>
