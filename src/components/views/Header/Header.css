@@ -26,11 +26,11 @@
   background-color: #ffffff;
   display: flex;
   align-items: center;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 86%;
-  margin: auto;
+  margin-top: 0.94rem;
+  padding-left: 1.56rem;
+  padding-right: 1.59rem;
 }
 
 .top_header_page span {

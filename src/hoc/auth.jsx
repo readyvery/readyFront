@@ -22,7 +22,7 @@ function Auth(SpecificComponent, option) {
       }
       if (!cookies?.accessToken) {
         if (option && location.pathname !== "/") {
-          navigate("/kakaologin");
+          navigate("/login");
         }
         // 로그인이 필요한 페이지
       } else {

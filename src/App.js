@@ -13,9 +13,7 @@ import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
 import CartPage from "./pages/CartPage/CartPage";
 import HomePage from "./pages/HomePage/Homepage";
-import KakaoLoginPage from "./pages/LoginPage/Login";
-import PolicyInLogin from "./pages/LoginPage/PolicyInLogin";
-import PrivacyPolicyLogin from "./pages/LoginPage/PrivacyPolicyLogin";
+import LoginPage from "./pages/LoginPage/Login";
 import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
 import CustomerServicePage from "./pages/MyPage/CustomerServicePage/CustomerServicePage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
@@ -50,7 +48,7 @@ function App() {
   // ]);
 
   //false : 로그인 한 유저 못들어감
-  const NewLoginPage = Auth(KakaoLoginPage, false); // 로그인 페이지
+  const NewLoginPage = Auth(LoginPage, false); // 로그인 페이지
 
   //true : 로그인 한 유저 들어감
   const NewHomePage = Auth(HomePage, true);
@@ -87,12 +85,12 @@ function App() {
           if (!response.data) {
             message.info("다시 로그인해주세요.");
             removeCookies();
-            navigate("/kakaologin");
+            navigate("/login");
           }
         })
         .catch((error) => {
           message.info("다시 로그인해주세요.");
-          navigate("/kakaologin");
+          navigate("/login");
         });
     }
   }, minute - 60000); // 24시간 주기에서 1분을 뺀 주기로 주기적 실행
@@ -104,10 +102,10 @@ function App() {
           fallback={
             <div className="loading-div">
               <div className="loading-loader" />
-              <div className="loading-berry"> 
-                <img src={ic_berry} alt="berry"/>
+              <div className="loading-berry">
+                <img src={ic_berry} alt="berry" />
+              </div>
             </div>
-          </div>
           }
         >
           <Routes>
@@ -120,12 +118,7 @@ function App() {
             {/* 카페검색*/}
             <Route path="/search" element={<StoreSearchPage />} />
             {/* 로그인*/}
-            <Route path="/kakaologin" element={<NewLoginPage />} />
-            <Route path="/policyinlogin" element={<PolicyInLogin />} />
-            <Route
-              path="/privacypolicyinlogin"
-              element={<PrivacyPolicyLogin />}
-            />
+            <Route path="/login" element={<NewLoginPage />} />
             {/* 마이페이지-약관정책 페이지 */}
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/termsofuse" element={<TermsOfUse />} />

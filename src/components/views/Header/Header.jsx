@@ -39,7 +39,7 @@ const Header = ({ headerProps }) => {
 
   const handleCancel = () => {
     setIsOpen(false);
-    navigate("/kakaoLogin");
+    navigate("/login");
   };
 
   return (

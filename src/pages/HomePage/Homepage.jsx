@@ -118,7 +118,7 @@ const HomePage = () => {
                 src={IMAGES.toLogin}
                 alt="login"
                 className="home_individual_login_btn"
-                onClick={() => navigate(`/kakaoLogin`)}
+                onClick={() => navigate(`/login`)}
               />
             </div>
           </div>

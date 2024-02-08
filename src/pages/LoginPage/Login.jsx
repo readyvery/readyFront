@@ -2,7 +2,7 @@ import "./Login.css";
 import { IMAGES } from "../../constants/images";
 import React from "react";
 
-function KaKaoLoginBtn() {
+function Login() {
   const handleKakaoLogin = () => {
     window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
   };
@@ -32,4 +32,4 @@ function KaKaoLoginBtn() {
   );
 }
 
-export default KaKaoLoginBtn;
+export default Login;
