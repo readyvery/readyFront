@@ -7,7 +7,7 @@ function PolicyPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="policy">
+    <div className="policy" style={{ height: "94vh" }}>
       <Header
         headerProps={{
           pageName: "약관 및 정책",
