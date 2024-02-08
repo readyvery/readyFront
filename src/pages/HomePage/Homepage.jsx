@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useFetchQuickOrder from "../../hooks/useFetchQuickOrder";
 // import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 import useFetchEventBanners from "../../hooks/useFetchEventBanners";
-import usePostCoupon from "../../hooks/usePostCoupon";
+// import usePostCoupon from "../../hooks/usePostCoupons";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import StoreList from "../../components/views/StoreList/StoreList";
@@ -21,8 +21,8 @@ const HomePage = () => {
   const navigate = useNavigate();
   const quickOrder = useFetchQuickOrder(isAuth);
   const eventBanners = useFetchEventBanners();
-  const postCoupon = usePostCoupon();
-  const [couponIssued, setCouponIssued] = useState(false);
+  // const postCoupon = usePostCoupon();
+  // const [couponIssued, setCouponIssued] = useState(false);
   const [current, setCurrent] = useState(0);
   const length = eventBanners.length;
 
@@ -37,9 +37,9 @@ const HomePage = () => {
     return null;
   }
 
-  const handleCouponClick = (couponCode, couponId) => {
-    postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
-  };
+  // const handleCouponClick = (couponCode, couponId) => {
+  //   postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
+  // };
 
   return (
     <div className="home">
@@ -126,24 +126,22 @@ const HomePage = () => {
       </div>
 
       <div className="home_event" {...handleSwiper}>
-        {eventBanners.map((item, index) => (
-          <div
-            className={
-              index === current ? "home_event_slide_active" : "home_event_slide"
-            }
-            key={index}
-          >
-            {index === current && (
-              <img
-                key={item.idx}
-                src={item.bannerImg}
-                alt="event"
-                className="home_event_banner"
-                onClick={() => handleCouponClick(item.couponCode, item.idx)}
-              />
-            )}
-          </div>
-        ))}
+        <div
+          className="home_event_slider"
+          style={{
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {eventBanners.map((banner, index) => {
+            return (
+              <div className="home_event_banner" key={index}>
+                <img src={banner.bannerImg} alt={`Banner ${index}`} />
+              </div>
+            );
+          })}
+        </div>
         <div className="home_event_slide_index">
           <span className="home_event_slide_index_now">{current + 1}</span>/
           {length}
