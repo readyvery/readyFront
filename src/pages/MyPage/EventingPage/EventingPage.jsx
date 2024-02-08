@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -27,6 +27,7 @@ const EventingImg = styled.img`
 `;
 
 function EventingPage() {
+  const navigate = useNavigate();
   const events = useFetchEvents();
 
   const settings = {
@@ -50,9 +51,9 @@ function EventingPage() {
       <div className="eventing-img">
         <StyleSlider {...settings}>
           {events.map((item) => (
-            <Link to={item.redirectUrl}>
+            <div onClick={() => navigate(item.redirectUrl)}>
               <EventingImg src={item.imgUrl} alt="eventing" />
-            </Link>
+            </div>
           ))}
         </StyleSlider>
       </div>
