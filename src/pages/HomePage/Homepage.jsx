@@ -1,17 +1,18 @@
-import "./Homepage.css";
-import { IMAGES } from "../../constants/images";
-import Header from "../../components/views/Header/Header";
-import NavBar from "../../components/views/NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
-import useFetchUserInfo from "../../hooks/useFetchUserInfo";
-import { useNavigate } from "react-router-dom";
+import Header from "../../components/views/Header/Header";
+import NavBar from "../../components/views/NavBar/NavBar";
+import { IMAGES } from "../../constants/images";
 import useFetchQuickOrder from "../../hooks/useFetchQuickOrder";
+import useFetchUserInfo from "../../hooks/useFetchUserInfo";
+import "./Homepage.css";
 // import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
-import useFetchEventBanners from "../../hooks/useFetchEventBanners";
 // import usePostCoupon from "../../hooks/usePostCoupons";
-import React, { useState } from "react";
-import { useSwipeable } from "react-swipeable";
+import React from "react";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import Banner from "../../components/views/Home/Banner/Banner";
 import StoreList from "../../components/views/StoreList/StoreList";
 // import EventBannerSlider from "../../components/views/EventBannerSlider/EventBannerSlider";
 
@@ -20,27 +21,11 @@ const HomePage = () => {
   const { name: userName } = useFetchUserInfo();
   const navigate = useNavigate();
   const quickOrder = useFetchQuickOrder(isAuth);
-  const eventBanners = useFetchEventBanners();
   // const postCoupon = usePostCoupon();
   // const [couponIssued, setCouponIssued] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const length = eventBanners.length;
-
-  const handleSwiper = useSwipeable({
-    onSwipedLeft: () => setCurrent(current === length - 1 ? 0 : current + 1),
-    onSwipedRight: () => setCurrent(current === 0 ? length - 1 : current - 1),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
-  if (!Array.isArray(eventBanners) || eventBanners.length <= 0) {
-    return null;
-  }
-
   // const handleCouponClick = (couponCode, couponId) => {
   //   postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
   // };
-
   return (
     <div className="home">
       <Header headerProps={null} />
@@ -124,31 +109,7 @@ const HomePage = () => {
           </div>
         )}
       </div>
-
-      <div className="home_event" {...handleSwiper}>
-        <div
-          className="home_event_slider"
-          style={{
-            overflow: "hidden",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          {eventBanners.map((banner, index) => {
-            return (
-              <div className="home_event_banner" key={index}>
-                <img src={banner.bannerImg} alt={`Banner ${index}`} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="home_event_slide_index">
-          <span className="home_event_slide_index_now">{current + 1}</span>/
-          {length}
-        </div>
-
-        {/* <EventBannerSlider banners={banners} /> */}
-      </div>
+      <Banner />
 
       <div className="home_berry_pick">베리 PICK</div>
       <StoreList />

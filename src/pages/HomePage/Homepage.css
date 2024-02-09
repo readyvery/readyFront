@@ -199,69 +199,8 @@
   margin-right: 2rem;
 }
 
-.home_event {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 6.25rem;
-  margin-top: 2.81rem;
-}
 
-/* .swiper-wrapper {
-  width: 100%;
-  height: 6.25rem;
-}
-
-.home_event_swiper {
-  width: 100%;
-}
-
-.home_event_swiper_slide {
-  width: 100%;
-} */
-
-.home_event_slide_active {
-  opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1);
-}
-
-.home_event_banner {
-  display: flex;
-  width: 21.5625rem;
-  height: 6.25rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.home_event_slide {
-  opacity: 0;
-  transition-duration: 1s ease;
-}
-
-.home_event_slider {
-  display: flex;
-  justify-content: center;
-  overflow: hidden; /* 화면 밖의 배너는 숨김 처리 */
-  width: 100%; /* 또는 특정 너비 */
-}
-
-.home_event_banner {
-  flex: 0 0 auto;
-  flex-shrink: 0; /* 배너 크기를 유지 */
-  width: 21.5625rem;
-  transition: transform 0.5s ease-out;
-  position: relative; /* 배너 위치 조정을 위해 필요 */
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-
-.home_event_banner img {
-  width: 21.5625rem;
-}
-
+/* 배너 카운팅 */
 .home_event_slide_index {
   display: flex;
   justify-content: center;
