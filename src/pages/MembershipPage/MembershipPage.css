@@ -1,0 +1,43 @@
+.membershippage-div {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  /* 수정된 헤더 기준으로 */
+  margin-top: 8.44rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.membershippage-point-box-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 87.8%;
+  height: 10.5rem;
+  margin: 0 auto;
+  border-radius: 0.625rem;
+  background: #d82356;
+  box-shadow: 0px 0px 8px 2px rgba(216, 35, 86, 0.3);
+}
+
+.membershippage-point-box-top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.19rem;
+  width: 90%;
+  color: #fff;
+  font-family: "Pretendard";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+/* .membershippage-point-box-top-img-wrapper{
+    width: 6.125rem;
+    height: 1.5rem;
+} */
+.membershippage-point-box-wrapper img {
+  height: 1.22294rem;
+  padding-top: 0.44rem;
+}
