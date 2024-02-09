@@ -1,7 +1,7 @@
-.slider {
+/* .slider {
   position: relative;
-  height: 100px; /* 배너 높이에 맞게 조절 */
-  width: 300px; /* 배너 너비에 맞게 조절 */
+  height: 100px; 
+  width: 300px; 
   overflow: hidden;
 }
 
@@ -49,4 +49,4 @@
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 14px;
-}
+} */
