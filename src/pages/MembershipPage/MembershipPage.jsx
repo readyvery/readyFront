@@ -12,6 +12,20 @@ function MembershipPage() {
   // const [isAuth] = useRecoilState(isAuthenticatedState);
   // const { name: userName } = useFetchUserInfo();
   const point = 10000;
+  const membershipList = [
+    // {
+    //   status: true,
+    //   point: "+1000",
+    //   store: "오르다",
+    //   date: "2023-11-25 19:09",
+    // },
+    // {
+    //   status: false,
+    //   point: "-1000",
+    //   store: "오르다",
+    //   date: "2023-11-25 19:09",
+    // },
+  ];
   return (
     <section className="membershippage-div">
       <Header
@@ -45,64 +59,34 @@ function MembershipPage() {
           <div className="membershippage-use-point-box-title">
             <span>포인트 사용내역</span>
           </div>
-          {/* {newStorageList?.length ? (
-            newStorageList?.map((e, i) => (
+          {membershipList?.length ? (
+            membershipList?.map((e, i) => (
+              // {/* 매핑될 요소 */}
               <div
-                onClick={(event) =>
-                  handleNavigation(event, e.orderId, e.progress)
-                }
+                className="membershippage-use-point-box-content"
+                // onClick={(event) =>
+                //   handleNavigation(event, e.orderId, e.progress)
+                // }
                 style={{ textDecoration: "none" }}
-              > */}
-          {/* 매핑될 요소 */}
-          <div className="membershippage-use-point-box-content">
-            <PointStateBox
-              status={true}
-              point={"+1000"}
-              store={"오르다"}
-              date="2023-11-25 19:09"
-            />
-          </div>
-          <div className="membershippage-use-point-box-content">
-            <PointStateBox
-              status={true}
-              point={"+2000"}
-              store={"오르다"}
-              date="2023-11-25 19:09"
-            />
-          </div>
-          <div className="membershippage-use-point-box-content">
-            <PointStateBox
-              status={true}
-              point={"+3000"}
-              store={"오르다"}
-              date="2023-11-25 19:09"
-            />
-          </div>
-          <div className="membershippage-use-point-box-content">
-            <PointStateBox
-              status={true}
-              point={"+4000"}
-              store={"오르다"}
-              date="2023-11-25 19:09"
-            />
-          </div>
-          <div className="membershippage-use-point-box-content">
-            <PointStateBox
-              status={true}
-              point={"+5000"}
-              store={"오르다"}
-              date="2023-11-25 19:09"
-            />
-          </div>
-
-          {/* </div>
+              >
+                <PointStateBox
+                  status={e.status}
+                  point={e.point}
+                  store={e.store}
+                  date={e.date}
+                />
+              </div>
             ))
           ) : (
-            <div className="empty-order-wrapper">
-              <img src={IMAGES.empty} className="empty-img" alt="empty" />
-              <span className="empty-text">비어있습니다</span>
+              <div className="membershippage-empty-order-wrapper">
+                <img
+                  src={IMAGES.empty}
+                  className="membershippage-empty-img"
+                  alt="empty"
+                />
+                <span className="membershippage-empty-text">내역이 없습니다.</span>
             </div>
-          )} */}
+          )}
         </div>
       </main>
 

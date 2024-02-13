@@ -1,6 +1,5 @@
-import berryWhite from "../../../assets/images/ic_berry_white.png";
+import { IMAGES } from "../../../constants/images";
 import "./PointStateBox.css";
-
 const PointStateBox = ({ status, point, store, date }) => {
   const stateText = status ? "적립" : "사용";
   return (
@@ -13,7 +12,7 @@ const PointStateBox = ({ status, point, store, date }) => {
               : "membership-box-img-use-color"
           }`}
         >
-          <img src={berryWhite} alt="berry" />
+          <img src={IMAGES.berryWhite} alt="berry" />
         </div>
 
         <div className="point-box-content">

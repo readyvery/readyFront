@@ -103,3 +103,32 @@
 .membershippage-use-point-box-content {
   width: 100%;
 }
+
+/* 빈 포인트 내역*/
+
+/* 빈 주문 내역  */
+.membershippage-empty-order-wrapper {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.membershippage-empty-img {
+  display: flex;
+  width: 8.625rem;
+  height: 8.625rem;
+}
+
+.membershippage-empty-text {
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
