@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./OrderStorage.css";
+import { IMAGES } from "../../../constants/images";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
 import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import StateBox from "../StateBox/StateBox";
-import { IMAGES } from "../../../constants/images";
+import "./OrderStorage.css";
 
 function OrderStorage() {
   const navigate = useNavigate();

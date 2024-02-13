@@ -8,6 +8,7 @@ import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
 // import loading from "./assets/animation/loading.json";
+import MembershipPage from "../src/pages/MembershipPage/MembershipPage";
 import ic_berry from "./assets/images/ic_berry.png";
 import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
@@ -57,6 +58,7 @@ function App() {
   const NewMyprofilePage = Auth(MyprofilePage, true);
 
   const NewOrderProcessPage = Auth(OrderProcessPage, true);
+  const NewMembershipPage = Auth(MembershipPage, true);
   const NewCouponPage = Auth(CouponPage, true);
   const NewCartPage = Auth(CartPage, true);
   const NewPaymentPage = Auth(PaymentPage, true);
@@ -147,6 +149,8 @@ function App() {
             <Route path="/order" element={<NewOrderProcessPage />} />
             {/* 마이페이지-쿠폰 확인 페이지 */}
             <Route path="/coupon" element={<NewCouponPage />} />
+            {/* 멤버쉽 포인트 페이지 */}
+            <Route path="/membership" element={<NewMembershipPage />} />
             {/* 장바구니 페이지 */}
             <Route path="/cart" element={<NewCartPage />} />
             {/* 결제 페이지 */}
