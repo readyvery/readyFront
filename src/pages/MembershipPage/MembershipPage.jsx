@@ -13,18 +13,18 @@ function MembershipPage() {
   // const { name: userName } = useFetchUserInfo();
   const point = 10000;
   const membershipList = [
-    // {
-    //   status: true,
-    //   point: "+1000",
-    //   store: "오르다",
-    //   date: "2023-11-25 19:09",
-    // },
-    // {
-    //   status: false,
-    //   point: "-1000",
-    //   store: "오르다",
-    //   date: "2023-11-25 19:09",
-    // },
+    {
+      status: true,
+      point: "+1000",
+      store: "오르다",
+      date: "2023-11-25 19:09",
+    },
+    {
+      status: false,
+      point: "-1000",
+      store: "오르다",
+      date: "2023-11-25 19:09",
+    },
   ];
   return (
     <section className="membershippage-div">
@@ -43,7 +43,9 @@ function MembershipPage() {
             <div className="membershippage-point-box-top-img-wrapper">
               <img src={IMAGES.logoWhite} alt="logoWhite" />
             </div>
-            <div>{point} P</div>
+            <div>
+              {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
+            </div>
           </div>
           {/* 멤버쉽 박스 아랫부분_쿠폰함&FAQ */}
           <div className="membershippage-point-box-bottom-wrapper">
@@ -78,13 +80,15 @@ function MembershipPage() {
               </div>
             ))
           ) : (
-              <div className="membershippage-empty-order-wrapper">
-                <img
-                  src={IMAGES.empty}
-                  className="membershippage-empty-img"
-                  alt="empty"
-                />
-                <span className="membershippage-empty-text">내역이 없습니다.</span>
+            <div className="membershippage-empty-order-wrapper">
+              <img
+                src={IMAGES.empty}
+                className="membershippage-empty-img"
+                alt="empty"
+              />
+              <span className="membershippage-empty-text">
+                내역이 없습니다.
+              </span>
             </div>
           )}
         </div>

@@ -24,7 +24,9 @@ const PointStateBox = ({ status, point, store, date }) => {
             {stateText}매장: {store}
           </div>
         </div>
-        <div className="point-box-point-span">{point} P</div>
+        <div className="point-box-point-span">
+          {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
+        </div>
       </div>
     </div>
   );
