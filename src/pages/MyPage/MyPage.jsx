@@ -18,7 +18,6 @@ function Mypage() {
       <Header
         headerProps={{
           pageName: "마이페이지",
-          isClose: false,
           linkTo: "/",
         }}
       />

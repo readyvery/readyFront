@@ -11,7 +11,6 @@ function CustomerServicePage() {
       <Header
         headerProps={{
           pageName: "고객센터",
-          isClose: false,
           linkTo: "/mypage",
         }}
       />

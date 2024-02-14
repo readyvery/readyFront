@@ -127,7 +127,6 @@ const CartPage = () => {
       <Header
         headerProps={{
           pageName: "장바구니",
-          isClose: false,
           linkTo:
             !storeId ||
             isNaN(parseInt(storeId, 10)) ||

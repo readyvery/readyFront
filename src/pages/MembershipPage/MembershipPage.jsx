@@ -31,7 +31,6 @@ function MembershipPage() {
       <Header
         headerProps={{
           pageName: "멤버십",
-          isClose: false,
           linkTo: "/",
         }}
       />

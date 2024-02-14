@@ -17,7 +17,6 @@ const ApplyCouponPage = () => {
       <Header
         headerProps={{
           pageName: "할인쿠폰",
-          isClose: false,
           linkTo: `/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`,
         }}
       />

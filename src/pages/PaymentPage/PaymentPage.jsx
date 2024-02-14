@@ -104,7 +104,6 @@ const PaymentPage = () => {
       <Header
         headerProps={{
           pageName: "주문결제",
-          isClose: !edit,
           linkTo: !edit ? "/" : `/cart?storeId=${storeId}&inout=${inOut}`,
         }}
       />

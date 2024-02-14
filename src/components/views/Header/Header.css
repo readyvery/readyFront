@@ -44,30 +44,15 @@
   font-weight: 700;
 }
 
-.top_header_page div {
+/* .top_header_page div {
   width: 4rem;
-}
-
-.header-link {
-  margin-top: 1rem;
-  margin-left: 2rem;
-}
+} */
 
 .header_back {
   width: 0.8125rem;
   height: 1.5625rem;
-  /* margin-left: 1.56rem; */
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.close-link {
-  width: 1.51144rem;
-  height: 1.54225rem;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: auto;
-  margin-left: 1.56rem;
 }
 
 .home-link {

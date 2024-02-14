@@ -27,7 +27,6 @@ const OrderDetail = () => {
       <Header
         headerProps={{
           pageName: "주문상세",
-          isClose: false,
           linkTo: returnTo,
         }}
       />
