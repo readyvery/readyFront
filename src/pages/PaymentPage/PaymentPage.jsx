@@ -13,8 +13,8 @@ const PaymentPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const cartId = params.get("cartId");
-  const couponId = params.get("couponId");
-  const salePrice = params.get("salePrice");
+  const couponId = location.state?.selectedCoupon;
+  const salePrice = location.state?.salePrice;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
   const { carts, edit, imgUrl, inOut, isOpened, name, storeId, totalPrice } =
@@ -203,7 +203,7 @@ const PaymentPage = () => {
                 </span>
               )}
               <Link
-                to={`/payment/coupon?storeId=${storeId}&inout=${inOut}&cartId=${cartId}`}
+                to={`/coupon?storeId=${storeId}&inout=${inOut}&cartId=${cartId}`}
                 className="payment-page__coupone-btn"
                 style={{ textDecoration: "none" }}
               >
