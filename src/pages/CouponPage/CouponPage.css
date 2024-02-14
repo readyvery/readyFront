@@ -1,20 +1,27 @@
 .coupon-page {
   display: flex;
+  width: 100%;
+  padding-top: 4.44rem;
+  padding-bottom: 5.0625rem;
 }
 
 .coupon-page__coupon {
   display: flex;
+  width: 100%;
+  margin: 1.5rem auto 0 auto;
+  border-top: 0.3rem solid #d82356;
 }
 
 .coupon-page__coupon-list {
   display: flex;
+  width: 90%;
   flex-direction: column;
   margin-top: 3.44rem;
 }
 
 .coupon-page__coupon-item {
   display: flex;
-  width: 21.5625rem;
+  width: 100%;
   height: 9rem;
   flex-shrink: 0;
   background: #fff;
@@ -69,38 +76,19 @@
 
 .coupon-page__coupon-empty {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  margin-top: 14.56rem;
-  margin-bottom: 20rem;
-}
-
-.coupon-page__coupon-empty__text {
-  color: #838383;
-  font-family: "KBold";
-  font-size: 1.5rem;
-  line-height: 130%; /* 1.95rem */
-  letter-spacing: -0.015rem;
+  color: var(--title, #2e2d2d);
   text-align: center;
-  margin-top: 0.63rem;
+  font-family: "Pretendard Variable";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin: 17rem auto;
 }
 
-.coupon-list-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 14.56rem;
-  margin-bottom: 20rem;
-}
-
-.coupon-list-empty__text {
-  color: #838383;
-  font-family: "KBold";
-  font-size: 1.5rem;
-  line-height: 130%; /* 1.95rem */
-  letter-spacing: -0.015rem;
-  text-align: center;
-  margin-top: 0.63rem;
+.coupon-page__coupon-empty img {
+  width: 8.625rem;
+  height: 8.625rem;
 }

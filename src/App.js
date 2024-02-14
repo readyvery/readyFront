@@ -15,7 +15,7 @@ import useInterval from "./hooks/useInterval";
 import CartPage from "./pages/CartPage/CartPage";
 import HomePage from "./pages/HomePage/Homepage";
 import LoginPage from "./pages/LoginPage/Login";
-import CouponPage from "./pages/MyPage/CouponPage/CouponPage";
+import CouponPage from "./pages/CouponPage/CouponPage";
 import CustomerServicePage from "./pages/MyPage/CustomerServicePage/CustomerServicePage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
 import MyprofilePage from "./pages/MyPage/MyprofilePage/MyprofilePage";
@@ -28,7 +28,6 @@ import OrderDetail from "./pages/OrderDetail/OrderDetail";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
-import ApplyCouponPage from "./pages/PaymentPage/ApplyCouponPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
@@ -155,8 +154,6 @@ function App() {
             <Route path="/cart" element={<NewCartPage />} />
             {/* 결제 페이지 */}
             <Route path="/payment" element={<NewPaymentPage />} />
-            {/* 쿠폰 적용 페이지 */}
-            <Route path="/payment/coupon" element={<ApplyCouponPage />} />
             {/* 결제 성공 리다이렉트 페이지 */}
             <Route
               path="/payment/success"

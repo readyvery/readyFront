@@ -1,10 +1,11 @@
 import Header from "../../components/views/Header/Header";
-import { Link, useLocation } from "react-router-dom";
-import "./ApplyCouponPage.css";
-// import empty from "../../assets/images/storage_empty.svg";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./CouponPage.css";
+import { IMAGES } from "../../constants/images";
 import useFetchCoupons from "../../hooks/useFetchCoupons";
 
-const ApplyCouponPage = () => {
+const CouponPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
@@ -16,8 +17,11 @@ const ApplyCouponPage = () => {
     <div className="coupon-page">
       <Header
         headerProps={{
-          pageName: "할인쿠폰",
-          linkTo: `/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`,
+          pageName: "쿠폰함",
+          linkTo:
+            storeId && inout && cartId
+              ? `/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`
+              : `/`,
         }}
       />
 
@@ -25,15 +29,22 @@ const ApplyCouponPage = () => {
         {coupons && coupons.length > 0 ? (
           <div className="coupon-page__coupon-list">
             {coupons.map((item) => (
-              <Link
-                to={{
-                  pathname: "/payment",
-                  search: `?storeId=${storeId}&inout=${inout}&cartId=${cartId}&couponId=${item.couponId}&salePrice=${item.salePrice}`,
-                  state: { selectedCoupon: item.salePrice },
-                }}
+              <div
                 className="coupon-page__coupon-item"
                 key={item.couponId}
-                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  if (storeId) {
+                    navigate(
+                      `/payment?storeId=${storeId}&inout=${inout}&cartId=${cartId}`,
+                      {
+                        state: {
+                          selectedCoupon: item.couponId,
+                          salePrice: item.salePrice,
+                        },
+                      }
+                    );
+                  }
+                }}
               >
                 <div className="coupon-page__coupon-item">
                   <div className="coupon-page__coupon-item__name">
@@ -49,23 +60,17 @@ const ApplyCouponPage = () => {
                     {item.description}
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         ) : (
           <div className="coupon-page__coupon-empty">
-            <img
-              // src={empty}
-              alt="empty coupon"
-              className="coupon-page__coupon-empty__img"
-            />
-            <span className="coupon-page__coupon-empty__text">
-              사용 가능한 쿠폰이 없습니다
-            </span>
+            <img src={IMAGES.empty} alt="empty" />
+            비어있습니다
           </div>
         )}
       </div>
     </div>
   );
 };
-export default ApplyCouponPage;
+export default CouponPage;
