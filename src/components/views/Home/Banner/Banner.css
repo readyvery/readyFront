@@ -27,7 +27,7 @@
   height: 6.25rem;
 }
 /* 여기가 배너요소 크기 수정하는 곳입니다 */
-.slick-slide {
+.home_event_slider_benner_wrapper .slick-slide {
   width: 22.0625rem; /* 배너 요소의 너비 조정 */
   height: 6.25rem;
   padding: 0 0.25rem;
