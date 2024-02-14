@@ -37,9 +37,7 @@ function OrderStorage() {
 
   return (
     <section className="order_storage">
-      <Header
-        headerProps={{ pageName: "주문내역", isClose: false, linkTo: "/" }}
-      />
+      <Header headerProps={{ pageName: "주문내역", linkTo: "/" }} />
 
       <main className="order_storage__container">
         {newStorageList?.length || oldStorageList?.length ? (

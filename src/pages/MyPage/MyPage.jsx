@@ -18,7 +18,6 @@ function Mypage() {
       <Header
         headerProps={{
           pageName: "마이페이지",
-          isClose: false,
           linkTo: "/",
         }}
       />
@@ -66,7 +65,12 @@ function Mypage() {
         >
           주문 내역
         </div>
-        <div className="mypage_profile_category">멤버쉽 내역</div>
+        <div
+          className="mypage_profile_category"
+          onClick={() => navigate(isAuth ? `/membership` : `/login`)}
+        >
+          멤버쉽 내역
+        </div>
       </div>
 
       <div className="mypage_profile_line"></div>

@@ -8,7 +8,6 @@ function PrivacypolicyPage() {
       <Header
         headerProps={{
           pageName: "개인정보 처리방침",
-          isClose: false,
           linkTo: "/policy",
         }}
       />

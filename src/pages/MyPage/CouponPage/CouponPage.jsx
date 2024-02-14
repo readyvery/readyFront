@@ -12,7 +12,6 @@ function CouponPage() {
       <Header
         headerProps={{
           pageName: "할인쿠폰",
-          isClose: false,
           linkTo: "/mypage",
         }}
       />

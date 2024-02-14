@@ -207,7 +207,6 @@ const OrderProcessPage = () => {
       <Header
         headerProps={{
           pageName: "",
-          isClose: false,
           linkTo: `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />

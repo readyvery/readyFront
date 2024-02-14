@@ -44,7 +44,6 @@ function EventingPage() {
       <Header
         headerProps={{
           pageName: "진행 중인 이벤트",
-          isClose: false,
           linkTo: "/mypage",
         }}
       />

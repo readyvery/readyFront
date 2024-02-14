@@ -8,7 +8,6 @@ function PositionpolicyPage() {
       <Header
         headerProps={{
           pageName: "위치 기반 서비스 이용약관",
-          isClose: false,
           linkTo: "/policy",
         }}
       />

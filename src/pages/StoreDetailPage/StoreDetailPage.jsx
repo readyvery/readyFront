@@ -34,7 +34,6 @@ const StoreDetailPage = () => {
       <Header
         headerProps={{
           pageName: "",
-          isClose: false,
           linkTo: `/packagingStatus?storeId=${storeId}`,
         }}
       />

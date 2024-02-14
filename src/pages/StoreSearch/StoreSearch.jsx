@@ -24,7 +24,6 @@ function StoreSearch() {
       <Header
         headerProps={{
           pageName: "매장검색",
-          isClose: false,
           linkTo: "/",
         }}
       />

@@ -1,178 +1,174 @@
-.detail-container{
-    width: 100%;
-    height: 100%;
-    
+.order_detail {
+  width: 100%;
+  height: 100%;
+  padding-top: 4.44rem;
 }
 
-.detail-content__wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    width: 100%;
-    height: 100vh;
-    margin-top: 1.5625rem;
+.detail-content__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100vh;
+  margin-top: 1.5625rem;
 }
 
-.detail-content{
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    box-shadow: 0 1px 12px rgba(0,0,0,0.25);
-    border-radius: 1.875rem 1.875rem 0 0;
-    padding: 1.9375rem 0;
+.detail-content {
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 1.875rem 1.875rem 0 0;
+  padding: 1.9375rem 0;
 }
-
 
 .detail-content::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-.detail-top__wrapper{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
+.detail-top__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.detail-order-status{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #038C56;
+.detail-order-status {
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #038c56;
 }
 
-.detail-order-status.fail{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #EC0000;
+.detail-order-status.fail {
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #ec0000;
 }
 
-.detail-cafe-name{
-    font-size: 1.375rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
-    margin-top: 0.71875rem;
+.detail-cafe-name {
+  font-size: 1.375rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #000;
+  margin-top: 0.71875rem;
 }
 
-.detail-order__wrapper{
-    display: flex;
-    flex-direction: column;
-    margin: 2.3125rem 0;
-    gap: 0.78125rem;
+.detail-order__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 2.3125rem 0;
+  gap: 0.78125rem;
 }
 
-.detail-order__wrapper span{
-    color: #838383;
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
+.detail-order__wrapper span {
+  color: #838383;
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
 }
 
-.detail-line{
-    width: 90%;
-    height: 0.0625rem;
-    background-color: #dadada;
-    margin: 0 auto;
+.detail-line {
+  width: 90%;
+  height: 0.0625rem;
+  background-color: #dadada;
+  margin: 0 auto;
 }
 
-.detail-middle__wrapper{
-    width: 90%;
-    margin: 0 auto;
+.detail-middle__wrapper {
+  width: 90%;
+  margin: 0 auto;
 }
 
-.detail-order__box{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.8125rem 0;
-    margin: 0.25rem 0;
+.detail-order__box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8125rem 0;
+  margin: 0.25rem 0;
 }
 
-.detail-order-left__box{
-    display: flex;
+.detail-order-left__box {
+  display: flex;
 }
 
-.detail-menu-img__wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
-    width: 3.125rem;
-    height: 3.125rem;
+.detail-menu-img__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 .detail-menu-img__wrapper img {
-    width: 3.125rem;
-    height: 3.125rem;
-
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
-.detail-order-menu__wrapper{
-    display: flex;
-    flex-direction: column;
-    padding-left: 1rem;
-    padding-top: 0.15rem;
+.detail-order-menu__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-top: 0.15rem;
 }
 
-.detail-order-menu__title{
-    font-size: 0.8125rem;
-    font-family: "Pretendard Variable";
-    font-weight: 600;
-    color: #000;
+.detail-order-menu__title {
+  font-size: 0.8125rem;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  color: #000;
 }
 
-.detail-order-menu-option__wrapper{
-    display: flex;
-    margin-top: 0.25rem;
-    flex-wrap: wrap;
+.detail-order-menu-option__wrapper {
+  display: flex;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
 }
 
-.detail-order-menu-option{
-    margin: 0 0.15rem;
-    font-size: 0.625rem;
-    color: #4f4f4f;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
+.detail-order-menu-option {
+  margin: 0 0.15rem;
+  font-size: 0.625rem;
+  color: #4f4f4f;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
 }
 
-.detail-order-right__box{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    color: #000;
+.detail-order-right__box {
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  color: #000;
 }
 
-.detail-bottom__wrapper{
-    width: 90%;
-    margin: 0 auto;
+.detail-bottom__wrapper {
+  width: 90%;
+  margin: 0 auto;
 }
 
-.detail-payment__box{
-    display: flex;
-    justify-content: space-between;
-    margin: 1.34375rem 0;
+.detail-payment__box {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.34375rem 0;
 }
 
-.detail-payment__title{
-    font-size: 0.8125rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
+.detail-payment__title {
+  font-size: 0.8125rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #000;
 }
 
-.detail-payment-price{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
+.detail-payment-price {
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #000;
 }
 
-.detail-payment__txt{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    color: #000;
-
+.detail-payment__txt {
+  font-size: 0.75rem;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  color: #000;
 }
