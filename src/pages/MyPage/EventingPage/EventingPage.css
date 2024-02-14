@@ -3,11 +3,42 @@
   height: 94vh;
   padding-top: 4.44rem;
 }
-
 .eventing-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 6rem;
-  width: 100%;
   border-top: 0.3rem solid #d82356;
   padding-top: 5.38rem;
   margin-top: 1.5rem;
+}
+
+.eventing_slider_benner {
+  position: relative;
+  width: 100%;
+  height: 28.0625rem;
+}
+.eventing-img .slick-dots {
+  /* 28.0625+3.5rem; */
+  top: 31.5625rem;
+}
+.eventing-img .slick-slide {
+  width: 14.76375rem;
+  height: 28.0625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5rem;
+  /* transition: all 0.3s ease; */
+}
+
+.eventing-img .slick-slide.slick-active img {
+  width: 18.75rem;
+  height: 28.0625rem;
+  transition: all 0.4s ease;
+}
+.eventing-img .slick-slide img {
+  /* width: 18.75rem; */
+  height: 20.875rem;
+  margin: 3.63rem 0;
 }

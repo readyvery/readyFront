@@ -13,7 +13,6 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: "0.25rem",
     autoplay: true,
     variableWidth: true,
     autoplaySpeed: 1800, //1.8s

@@ -3,28 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import styled from "styled-components";
 import Header from "../../../components/views/Header/Header";
-import "./EventingPage.css";
 import useFetchEvents from "../../../hooks/useFetchEvents";
-
-const StyleSlider = styled(Slider)`
-  width: 100%;
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-dots {
-    bottom: -50px;
-  }
-`;
-
-const EventingImg = styled.img`
-  width: 17.75rem;
-  margin: 0 auto;
-`;
+import "./EventingPage.css";
 
 function EventingPage() {
   const navigate = useNavigate();
@@ -37,6 +18,7 @@ function EventingPage() {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
+    variableWidth: true,
   };
 
   return (
@@ -44,17 +26,19 @@ function EventingPage() {
       <Header
         headerProps={{
           pageName: "진행 중인 이벤트",
+          isClose: false,
           linkTo: "/mypage",
         }}
       />
       <div className="eventing-img">
-        <StyleSlider {...settings}>
+        <Slider className="eventing_slider_benner" {...settings}>
           {events.map((item) => (
-            <div onClick={() => navigate(item.redirectUrl)}>
-              <EventingImg src={item.imgUrl} alt="eventing" />
+            <div key={item} onClick={() => navigate(item.redirectUrl)}>
+              <img src={item.imgUrl} alt="eventing" />
+              {console.log(item)}
             </div>
           ))}
-        </StyleSlider>
+        </Slider>
       </div>
     </div>
   );
