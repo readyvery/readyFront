@@ -109,6 +109,7 @@
   box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   text-decoration: none;
+  flex-direction: row;
 }
 
 .home_individual_quick_order_item {
