@@ -23,13 +23,14 @@
   top: 31.5625rem;
 }
 .eventing-img .slick-slide {
-  width: 14.76375rem;
+  /* width: 14.76375rem; */
+  width: 18.75rem;
   height: 28.0625rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 0.5rem;
-  /* transition: all 0.3s ease; */
+  transition: all 0.3s ease;
 }
 
 .eventing-img .slick-slide.slick-active img {
@@ -38,7 +39,7 @@
   transition: all 0.4s ease;
 }
 .eventing-img .slick-slide img {
-  /* width: 18.75rem; */
+  width: 18.75rem;
   height: 20.875rem;
   margin: 3.63rem 0;
 }
