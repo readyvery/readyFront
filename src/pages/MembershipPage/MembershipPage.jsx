@@ -69,6 +69,7 @@ function MembershipPage() {
                 //   handleNavigation(event, e.orderId, e.progress)
                 // }
                 style={{ textDecoration: "none" }}
+                key={i}
               >
                 <PointStateBox
                   status={e.status}
