@@ -2,9 +2,10 @@ import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
-import "./PaymentPage.css";
 import useFetchCartData from "../../hooks/useFetchCartData";
+import useGetPoint from "../../hooks/useGetPoint";
 import useRequestPayment from "../../hooks/useRequestPayment";
+import "./PaymentPage.css";
 
 const clientKey = process.env.REACT_APP_TOSS_CLIENT_KEY;
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
@@ -14,18 +15,17 @@ const PaymentPage = () => {
   const params = new URLSearchParams(location.search);
   const cartId = params.get("cartId");
   const couponId = location.state?.selectedCoupon;
-  const salePrice = location.state?.salePrice;
+  const salePrice = location.state?.salePrice ?? 0;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
   const { carts, edit, imgUrl, inOut, isOpened, name, storeId, totalPrice } =
     useFetchCartData(cartId);
   const requestPayment = useRequestPayment();
-
+  const getPoint = useGetPoint();
   const paymentRequest = () => {
     const paymentWidget = paymentWidgetRef.current;
     requestPayment(cartId, couponId, paymentWidget);
   };
-
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -39,7 +39,8 @@ const PaymentPage = () => {
       // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
         "#payment-page__payment-widget",
-        { value: totalPrice - salePrice },
+        { value: Math.max(totalPrice - salePrice, 1) },
+
         // 렌더링하고 싶은 결제 UI의 variantKey
         // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
         // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
@@ -68,7 +69,7 @@ const PaymentPage = () => {
     // ------ 금액 업데이트 ------
     // 새로운 결제 금액을 넣어주세요.
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(totalPrice - salePrice);
+    paymentMethodsWidget.updateAmount(Math.max(totalPrice - salePrice, 1));
   }, [totalPrice, salePrice]);
 
   // const paymentRequest = async () => {
@@ -142,7 +143,10 @@ const PaymentPage = () => {
                 </div>
 
                 <div className="payment-page__order-info__item__price">
-                  {item.totalPrice * item.count}원
+                  {(item.totalPrice * item.count)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
                 </div>
               </div>
 
@@ -199,7 +203,7 @@ const PaymentPage = () => {
             <span className="payment-page__coupone-price">
               {salePrice && (
                 <span className="payment-page__coupone-price">
-                  {salePrice}원
+                  {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
                 </span>
               )}
               <Link
@@ -212,7 +216,29 @@ const PaymentPage = () => {
             </span>
           </span>
         </div>
-
+        <div className="payment-page__point">
+          {/* 포인트 적용 */}
+          <span className="payment-page__content">통합 포인트</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {salePrice && (
+                <span className="payment-page__coupone-price">
+                  {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                </span>
+              )}
+              {/* 적용취소, 적용 금액 한계 설정 */}
+              <div
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+              >
+                적용
+              </div>
+            </span>
+          </span>
+        </div>
+        <div className="payment-page__point__available">
+          <span>보유: {getPoint} P</span>
+        </div>
         <div className="payment-page__order-info__pay__line"></div>
 
         <div className="payment-page__title">결제금액</div>
@@ -240,9 +266,10 @@ const PaymentPage = () => {
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
             {totalPrice &&
-              (totalPrice - salePrice)
+              Math.max(totalPrice - salePrice, 0)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
+            {console.log(totalPrice, salePrice)}
           </span>
         </div>
 
