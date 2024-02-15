@@ -21,11 +21,13 @@ const HomePage = () => {
   const { name: userName } = useFetchUserInfo();
   const navigate = useNavigate();
   const quickOrder = useFetchQuickOrder(isAuth);
+  const point = 231552;
   // const postCoupon = usePostCoupon();
   // const [couponIssued, setCouponIssued] = useState(false);
   // const handleCouponClick = (couponCode, couponId) => {
   //   postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
   // };
+
   return (
     <div className="home">
       <Header headerProps={null} />
@@ -39,7 +41,9 @@ const HomePage = () => {
                 <span className="home_individual_user_name">{userName}</span>님
               </div>
               <div className="home_individual_point">
-                231,552 P
+                <span onClick={() => navigate(`/membership`)}>
+                  {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
+                </span>
                 <span
                   className="home_individual_coupon_box"
                   onClick={() => navigate(`/coupon`)}
@@ -124,7 +128,8 @@ const HomePage = () => {
           <br />
           대표: 오남택 &nbsp;|&nbsp; 고객센터: 070-8064-6199
           <br />
-          주소: 경기도 부천시 원미구 지봉로 43, 산학협력관 창업 랩실(역곡동, 가톨릭대학교 성심교정)
+          주소: 경기도 부천시 원미구 지봉로 43, 산학협력관 창업 랩실(역곡동,
+          가톨릭대학교 성심교정)
           <br />
           E-Mail: ohnt0307@gmail.com
           <br />

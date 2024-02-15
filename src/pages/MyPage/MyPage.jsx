@@ -12,6 +12,7 @@ function Mypage() {
   const navigate = useNavigate();
   const [isAuth] = useRecoilState(isAuthenticatedState);
   const { name: userName } = useFetchUserInfo();
+  const point = 10000;
 
   return (
     <div className="mypage">
@@ -36,8 +37,12 @@ function Mypage() {
             <span className="mypage_profile_name">{userName}</span>
             <span className="mypage_profile_management">계정 관리</span>
           </div>
-          <div className="mypage_profile_point">
-            <img src={IMAGES.logoWhite} alt="ReadyVery" />0 P
+          <div
+            className="mypage_profile_point"
+            onClick={() => navigate(`/membership`)}
+          >
+            <img src={IMAGES.logoWhite} alt="ReadyVery" />
+            {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
           </div>
         </div>
       ) : (
