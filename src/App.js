@@ -13,9 +13,10 @@ import ic_berry from "./assets/images/ic_berry.png";
 import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
 import CartPage from "./pages/CartPage/CartPage";
+import CouponPage from "./pages/CouponPage/CouponPage";
 import HomePage from "./pages/HomePage/Homepage";
 import LoginPage from "./pages/LoginPage/Login";
-import CouponPage from "./pages/CouponPage/CouponPage";
+import FrequentlyAskedQuestionPage from "./pages/MembershipPage/FrequentlyAskedQuestionPage/FrequentlyAskedQuestionPage";
 import CustomerServicePage from "./pages/MyPage/CustomerServicePage/CustomerServicePage";
 import EventingPage from "./pages/MyPage/EventingPage/EventingPage";
 import MyprofilePage from "./pages/MyPage/MyprofilePage/MyprofilePage";
@@ -120,6 +121,8 @@ function App() {
             <Route path="/search" element={<StoreSearchPage />} />
             {/* 로그인*/}
             <Route path="/login" element={<NewLoginPage />} />
+            {/* 쿠폰 및 포인트  faq페이지*/}
+            <Route path="/faq" element={<FrequentlyAskedQuestionPage />} />
             {/* 마이페이지-약관정책 페이지 */}
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/termsofuse" element={<TermsOfUse />} />
