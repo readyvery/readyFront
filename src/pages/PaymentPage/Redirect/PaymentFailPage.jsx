@@ -1,8 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./PaymentRedirectPage.css";
 import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
+import { IMAGES } from "../../../constants/images";
 
 const PaymentFailPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const message = params.get("message");
@@ -13,18 +15,27 @@ const PaymentFailPage = () => {
   return (
     <div className="payment-fail-page">
       <img
-        // src={paymentFail}
-        alt="ReadyVery"
-        className="payment-redirect-page__berry"
+        src={IMAGES.headerClose}
+        alt="close"
+        className="payment-fail-page__close"
+        onClick={() => navigate(`/`)}
       />
-      <div className="payment-redirect-page__title">결제 실패</div>
-      <Link
-        to={`/`}
-        className="payment-fail-page__done"
-        style={{ textDecoration: "none" }}
-      >
+
+      <img
+        src={IMAGES.berryGrey}
+        alt="ReadyVery"
+        className="payment-fail-page__berry"
+      />
+
+      <div className="payment-fail-page__title">결제 실패</div>
+
+      <div className="payment-fail-page__notice">
+        네트워크 및 통장 잔액를 확인해주세요
+      </div>
+
+      <div className="payment-fail-page__done" onClick={() => navigate(`/`)}>
         다른 주문하러 가기
-      </Link>
+      </div>
     </div>
   );
 };
