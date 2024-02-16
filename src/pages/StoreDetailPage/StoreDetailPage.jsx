@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import "./StoreDetailPage.css";
 import useFetchStoreInfo from "../../hooks/useFetchStoreInfo";
@@ -8,12 +8,13 @@ import useFetchCartData from "../../hooks/useFetchCartData";
 import useFetchCartCount from "../../hooks/useFetchCartCount";
 
 const StoreDetailPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeIdParam = params.get("storeId");
   const inout = params.get("inout");
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const { address, imgs, storeName, openTime, phone, status } =
+  const { address, imgs, name, openTime, phone, status, eventMessage } =
     useFetchStoreInfo(storeIdParam);
   const menu = useFetchStoreMenu(storeIdParam, inout);
   const { cartIdApi, carts, storeId, totalPrice } = useFetchCartData();
@@ -46,56 +47,49 @@ const StoreDetailPage = () => {
         />
 
         <div className="store-detail-page__caffeeInfo">
-          <div className="store-detail-page__caffeeInfo__title">
-            {storeName}
+          <div className="store-detail-page__caffeeInfo__header">
+            <span className="store-detail-page__caffeeInfo__title">{name}</span>
+            <span className="store-detail-page__caffeeInfo__origin">
+              원산지 표시
+            </span>
           </div>
 
           <div className="store-detail-page__caffeeInfo__list">
-            <text className="store-detail-page__caffeeInfo__list__title">
-              {"연락처"}
-            </text>
-            <text className="store-detail-page__caffeeInfo__contact">
-              {phone}
-            </text>
+            <span className="store-detail-page__caffeeInfo__list__title">
+              연락처
+            </span>
+            {phone}
           </div>
 
-          <div
-            className="store-detail-page__caffeeInfo__list"
-            style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}
-          >
-            <text className="store-detail-page__caffeeInfo__list__title">
-              {"주소"}
-            </text>
-            <text className="store-detail-page__caffeeInfo__address">
-              {address}
-            </text>
+          <div className="store-detail-page__caffeeInfo__list">
+            <span className="store-detail-page__caffeeInfo__list__title">
+              주소
+            </span>
+            {address}
           </div>
 
-          <div
-            className="store-detail-page__caffeeInfo__list"
-            style={{ marginBottom: "1.37rem" }}
-          >
-            <text className="store-detail-page__caffeeInfo__list__title">
-              {"영업 시간"}
-            </text>
-            <text className="store-detail-page__caffeeInfo__time">
-              {openTime.split("\n").map((line, index) => (
-                <React.Fragment key={index}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ))}
-            </text>
+          <div className="store-detail-page__caffeeInfo__list">
+            <span className="store-detail-page__caffeeInfo__list__title">
+              영업 시간
+            </span>
+            {openTime.split("\n").map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
+        <div className="store-detail-page__event">{eventMessage}</div>
+
         <div className="store-detail-page__menuCategory">
-          <img
-            // src={goLeft}
+          {/* <img
+            src={goLeft}
             alt="L"
             className="store-detail-page__menuCategory__go-left"
             // onClick={handleGoLeft}
-          />
+          /> */}
 
           <div className="store-detail-page__menuCategory-scroll">
             {menu && menu.menu && Array.isArray(menu.menu) ? (
@@ -117,12 +111,12 @@ const StoreDetailPage = () => {
             )}
           </div>
 
-          <img
-            // src={goRight}
+          {/* <img
+            src={goRight}
             alt="R"
             className="store-detail-page__menuCategory__go-right"
             // onClick={handleGoRight}
-          />
+          /> */}
         </div>
 
         <div className="store-detail-page__menuList">
@@ -130,10 +124,14 @@ const StoreDetailPage = () => {
           selectedCategory.menuItems &&
           Array.isArray(selectedCategory.menuItems) ? (
             selectedCategory.menuItems.map((item, index) => (
-              <Link
-                to={`/order?storeId=${storeIdParam}&inout=${inout}&foodie_id=${item.foodyId}&status=${status}`}
-                key={index}
+              <div
                 className="store-detail-page__menuList__item"
+                key={index}
+                onClick={() =>
+                  navigate(
+                    `/order?storeId=${storeIdParam}&inout=${inout}&foodie_id=${item.foodyId}&status=${status}`
+                  )
+                }
               >
                 <div className="store-detail-page__menuList__item__name">
                   {item?.name}
@@ -166,7 +164,7 @@ const StoreDetailPage = () => {
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                   </div>
                 )}
-              </Link>
+              </div>
             ))
           ) : (
             <p>Loading menu...</p>
@@ -174,9 +172,13 @@ const StoreDetailPage = () => {
         </div>
 
         {storeId === parseInt(storeIdParam) && carts.length > 0 && (
-          <Link
-            to={`/cart?storeId=${storeId}&inout=${inout}&cartId=${cartIdApi}`}
+          <div
             className="store-detail-page__cart-btn"
+            onClick={() =>
+              navigate(
+                `/cart?storeId=${storeId}&inout=${inout}&cartId=${cartIdApi}`
+              )
+            }
           >
             <span className="store-detail-page__total-quantity">
               {totalCount}
@@ -187,7 +189,7 @@ const StoreDetailPage = () => {
                 totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
                   "원"}
             </span>
-          </Link>
+          </div>
         )}
       </div>
     </div>
