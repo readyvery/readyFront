@@ -7,6 +7,7 @@ import "./OrderProcess.css";
 import useFetchFoodOptionInfo from "../../hooks/useFetchFoodOptionInfo";
 import useUpdateCart from "../../hooks/useUpdateCart";
 import useResetCart from "../../hooks/useResetCart";
+import { IMAGES } from "../../constants/images";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -247,11 +248,11 @@ const OrderProcessPage = () => {
                     )}
                     <img
                       className="order-process-page__toggle__header__img"
-                      // src={
-                      //   activeToggles?.length && activeToggles[index]
-                      //     ? toggleUp
-                      //     : toggleDown
-                      // }
+                      src={
+                        activeToggles?.length && activeToggles[index]
+                          ? IMAGES.toggleUp
+                          : IMAGES.toggleDown
+                      }
                       alt={
                         activeToggles?.length && activeToggles[index]
                           ? "Toggle Up"
@@ -318,7 +319,7 @@ const OrderProcessPage = () => {
               <span className="order-process-page__toggle__name">추가옵션</span>
               <img
                 className="order-process-page__toggle__header__img"
-                // src={optionOpen ? toggleUp : toggleDown}
+                src={optionOpen ? IMAGES.toggleUp : IMAGES.toggleDown}
                 alt={optionOpen ? "Toggle Up" : "Toggle Down"}
               />
             </div>
@@ -390,7 +391,11 @@ const OrderProcessPage = () => {
                 onClick={handleCntDown}
               >
                 <img
-                  // src={orderCnt === 1 ? minusDisabled : minus}
+                  src={
+                    orderCnt === 1
+                      ? IMAGES.quantityMinusDisabled
+                      : IMAGES.quantityMinus
+                  }
                   alt={orderCnt === 1 ? "minusDisabled" : "minus"}
                 />
               </span>
@@ -401,7 +406,7 @@ const OrderProcessPage = () => {
                 className="order-process-page__img__wrapper"
                 onClick={handleCntUp}
               >
-                {/* <img src={plus} alt="plus" /> */}
+                <img src={IMAGES.quantityPlus} alt="plus" />
               </span>
             </div>
           </div>

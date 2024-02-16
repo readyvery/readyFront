@@ -52,6 +52,8 @@ export const IMAGES = {
   quantityPlus: require("../assets/images/ic_quantity_plus.png"),
   takeIn: require("../assets/images/ic_take_in.png"),
   takeOut: require("../assets/images/ic_take_out.png"),
+  toggleDown: require("../assets/images/ic_toggle_down.png"),
+  toggleUp: require("../assets/images/ic_toggle_up.png"),
 
   // 마이페이지
   profile: require("../assets/images/ic_profile.png"),

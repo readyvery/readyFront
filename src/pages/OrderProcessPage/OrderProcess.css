@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  padding-top: 4.44rem;
   padding-bottom: 2rem;
 }
 
@@ -94,6 +95,11 @@
 
 .order-process-page__selected-radio {
   margin-right: 1.4rem;
+}
+
+.order-process-page__toggle__header__img {
+  width: 1.125rem;
+  height: 0.631rem;
 }
 
 .order-process-page__toggle__body__container.open {
