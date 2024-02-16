@@ -30,6 +30,7 @@ const OrderDetail = () => {
           linkTo: returnTo,
         }}
       />
+
       <div className="detail-content__wrapper">
         <div className="detail-content">
           <div className="detail-top__wrapper">
