@@ -1,71 +1,61 @@
-.payment-success-page {
-  width: 100%;
-}
-
 .payment-fail-page {
-  width: 100%;
-}
-
-.payment-redirect-page__berry {
   display: flex;
-  margin-top: 10.75rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
 }
 
-.payment-redirect-page__title {
-  color: #242424;
+.payment-fail-page__close {
+  width: 1.51144rem;
+  height: 1.56513rem;
+  margin-left: 1.64rem;
+  margin-top: 2.86rem;
+}
+
+.payment-fail-page__berry {
+  width: 5.68494rem;
+  height: 5.68494rem;
+  margin: 12.26rem auto 1.5rem auto;
+}
+
+.payment-fail-page__title {
+  color: #4f4f4f;
   text-align: center;
   font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 1.5625rem;
+  font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 130%; /* 2.03125rem */
-  letter-spacing: -0.01563rem;
-  margin-top: 2.28rem;
+  line-height: 130%; /* 3.25rem */
+  letter-spacing: -0.025rem;
 }
 
-.payment-success-page__done {
-  display: flex;
-  width: 21.5625rem;
-  height: 2.6875rem;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  border-radius: 0.9375rem;
-  background: #d82356;
-  color: #fff;
+.payment-fail-page__notice {
+  color: #838383;
   text-align: center;
   font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 1.5625rem;
-  line-height: 130%; /* 2.03125rem */
-  letter-spacing: -0.01563rem;
-  margin-top: 10.12rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 6.94rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+  margin-top: 0.81rem;
 }
 
 .payment-fail-page__done {
   display: flex;
-  width: 21.5625rem;
-  height: 2.6875rem;
-  flex-direction: column;
   justify-content: center;
-  flex-shrink: 0;
-  border-radius: 0.9375rem;
-  background: #838383;
+  align-items: center;
+  width: 21.75rem;
+  height: 2.6875rem;
+  border-radius: 0.625rem;
+  background: #4f4f4f;
   color: #fff;
   text-align: center;
   font-family: "Pretendard Variable";
+  font-size: 1.25rem;
+  font-style: normal;
   font-weight: 700;
-  font-size: 1.5625rem;
-  line-height: 130%; /* 2.03125rem */
-  letter-spacing: -0.01563rem;
-  margin-top: 10.12rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 6.94rem;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin: 10.69rem auto 0 auto;
 }
