@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../../Atom/status";
 import { IMAGES } from "../../../constants/images";
 import TEXT from "../../../constants/text";
+import CartItemCount from "../CartItemCount/CartItemCount";
 import Modal from "../Modal/Modal";
 import "./Header.css";
 
@@ -58,14 +59,16 @@ const Header = ({ headerProps }) => {
           <div className="homeAndCart">
             {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
             {!isCartPage ? (
-              <div>
-                <img
-                  src={IMAGES.headerCart}
-                  alt="cart"
-                  className="header_cart"
-                  onClick={() => navigate(`/cart`, { replace: true })}
-                />
-
+              <div className="homeAndCart">
+                <div className="header_cart1">
+                  <img
+                    src={IMAGES.headerCart}
+                    alt="cart"
+                    className="header_cart"
+                    onClick={() => navigate(`/cart`, { replace: true })}
+                  />
+                  <CartItemCount />
+                </div>
                 <img
                   src={IMAGES.headerHome}
                   alt="home"
