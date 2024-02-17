@@ -8,52 +8,114 @@
   flex-direction: column;
   position: relative;
 }
-
-/* iphone 14 Pro */
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 375px) {
   .App {
-    max-width: 430px;
-    /* height: 94vh; */
+    max-width: 360px;
+  }
+
+  .navbar,
+  .top_header,
+  .top_header_page {
+    left: calc(50% - 180px); /* Center the navbar */
+    right: calc(50% - 180px); /* Center the navbar */
+  }
+  .navbar,
+  .top_header {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 380px) {
+  .App {
+    max-width: 375px;
     background-color: white;
   }
 
-  .navbar {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .top_header {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
-    width: 100%;
-    margin: 0 auto;
-  }
-
+  .navbar,
+  .top_header,
   .top_header_page {
-    left: calc(50% - 207px); /* Center the navbar */
-    right: calc(50% - 207px); /* Center the navbar */
+    left: calc(50% - 187.5px); /* Center the navbar */
+    right: calc(50% - 187.5px); /* Center the navbar */
+  }
+}
+@media only screen and (min-width: 380px) and (max-width: 400px) {
+  .App {
+    max-width: 380px;
+  }
+
+  .navbar,
+  .top_header,
+  .top_header_page {
+    left: calc(50% - 190px); /* Center the navbar */
+    right: calc(50% - 190px); /* Center the navbar */
+  }
+  .navbar,
+  .top_header {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 410px) {
+  .App {
+    max-width: 400px;
+  }
+
+  .navbar,
+  .top_header,
+  .top_header_page {
+    left: calc(50% - 200px); /* Center the navbar */
+    right: calc(50% - 200px); /* Center the navbar */
+  }
+  .navbar,
+  .top_header {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 410px) and (max-width: 420px) {
+  .App {
+    max-width: 410px;
+  }
+
+  .navbar,
+  .top_header,
+  .top_header_page {
+    left: calc(50% - 205px); /* Center the navbar */
+    right: calc(50% - 205px); /* Center the navbar */
+  }
+  .navbar,
+  .top_header {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* iphone 14 Pro */
+@media only screen and (min-width: 420px) and (max-width: 430px) {
+  .App {
+    max-width: 420px;
+  }
+
+  .navbar,
+  .top_header,
+  .top_header_page {
+    left: calc(50% - 210px); /* Center the navbar */
+    right: calc(50% - 210px); /* Center the navbar */
+  }
+  .navbar,
+  .top_header {
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
 @media only screen and (min-width: 430px) and (max-width: 800px) {
   .App {
     max-width: 430px;
-    /* height: 94vh; */
-    background-color: white;
   }
 
-  .navbar {
-    left: calc(50% - 215px); /* Center the navbar */
-    right: calc(50% - 215px); /* Center the navbar */
-  }
-
-  .top_header {
-    left: calc(50% - 215px); /* Center the navbar */
-    right: calc(50% - 215px); /* Center the navbar */
-  }
-
+  .navbar,
+  .top_header,
   .top_header_page {
     left: calc(50% - 215px); /* Center the navbar */
     right: calc(50% - 215px); /* Center the navbar */
@@ -63,20 +125,11 @@
 @media (min-width: 800px) {
   .App {
     width: 600px;
-    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 36px;
   }
 
-  .navbar {
-    left: calc(50% - 300px); /* Center the navbar */
-    right: calc(50% - 300px); /* Center the navbar */
-  }
-
-  .top_header {
-    left: calc(50% - 300px); /* Center the navbar */
-    right: calc(50% - 300px); /* Center the navbar */
-  }
-
+  .navbar,
+  .top_header,
   .top_header_page {
     left: calc(50% - 300px); /* Center the navbar */
     right: calc(50% - 300px); /* Center the navbar */
