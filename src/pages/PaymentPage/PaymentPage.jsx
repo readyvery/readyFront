@@ -14,7 +14,7 @@ const PaymentPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const cartId = params.get("cartId");
-  const couponId = location.state?.selectedCoupon;
+  const couponId = location.state?.selectedCoupon?? null;
   const salePrice = location.state?.salePrice ?? 0;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
@@ -39,7 +39,7 @@ const PaymentPage = () => {
       // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
         "#payment-page__payment-widget",
-        { value: Math.max(totalPrice - salePrice, 1) },
+        { value: Math.max(totalPrice - salePrice, 0) },
 
         // 렌더링하고 싶은 결제 UI의 variantKey
         // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
@@ -69,7 +69,7 @@ const PaymentPage = () => {
     // ------ 금액 업데이트 ------
     // 새로운 결제 금액을 넣어주세요.
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(Math.max(totalPrice - salePrice, 1));
+    paymentMethodsWidget.updateAmount(Math.max(totalPrice - salePrice, 0));
   }, [totalPrice, salePrice]);
 
   // const paymentRequest = async () => {
