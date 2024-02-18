@@ -42,6 +42,7 @@ export const IMAGES = {
   progress1: require("../assets/images/ic_order_progress1.png"),
   progress2: require("../assets/images/ic_order_progress2.png"),
   progress3: require("../assets/images/ic_order_progress3.png"),
+  backgroundEarnPoint: require("../assets/images/bg_earn_point_info.png"),
 
   // 카페
   cafeClose: require("../assets/images/ic_cafe_close.png"),
