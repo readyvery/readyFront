@@ -20,6 +20,7 @@ const OrderProgress = () => {
     refreshKey
   );
   const cancelOrder = useCancelOrder();
+  const point = 175;
 
   const progressList = useMemo(
     () => ({
@@ -178,7 +179,16 @@ const OrderProgress = () => {
       <div>
         {degree === 1 ? (
           <div>
-            <div className="order_progress__detail">주문상세</div>
+            <div
+              className="order_progress__detail"
+              onClick={() =>
+                navigate(`/orderDetail?orderId=${orderId}`, {
+                  state: { returnTo: `/status?orderId=${orderId}` },
+                })
+              }
+            >
+              주문상세
+            </div>
             <div
               className="order_progress__cancel"
               onClick={() => setIsOpen((prev) => !prev)}
@@ -187,15 +197,22 @@ const OrderProgress = () => {
             </div>
           </div>
         ) : (
-          <div
-            className="order_progress__detail"
-            onClick={() =>
-              navigate(`/orderDetail?orderId=${orderId}`, {
-                state: { returnTo: `/status?orderId=${orderId}` },
-              })
-            }
-          >
-            주문상세
+          <div>
+            <div
+              className="order_progress__detail"
+              onClick={() =>
+                navigate(`/orderDetail?orderId=${orderId}`, {
+                  state: { returnTo: `/status?orderId=${orderId}` },
+                })
+              }
+            >
+              주문상세
+            </div>
+            <div className="order_progress__point">
+              <span className="order_progress__point_text">
+                <span>{point}</span>원 적립되었습니다
+              </span>
+            </div>
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 .order_progress {
   width: 100%;
-  height: 100vh;
   background: linear-gradient(180deg, #fff 34.11%, #ffe2ed 100%);
 }
 
@@ -47,7 +46,7 @@
   justify-content: center;
   align-items: center;
   color: #4f4f4f;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 600;
@@ -64,7 +63,7 @@
 .order_progress__num {
   color: #4f4f4f;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 3.125rem;
   font-style: normal;
   font-weight: 700;
@@ -112,7 +111,7 @@
 .order_progress__status {
   color: var(--title, #2e2d2d);
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 800;
@@ -125,7 +124,7 @@
 .order_progress__guide {
   color: var(--title, #2e2d2d);
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
@@ -143,7 +142,7 @@
   border: 1px solid var(--frame-text, #838383);
   color: #838383;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -152,17 +151,40 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 4rem;
-  margin-bottom: 4.25rem;
 }
 
 .order_progress__cancel {
   color: #838383;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
+  margin-top: 4.25rem;
   margin-bottom: 3.63rem;
+}
+
+.order_progress__point {
+  display: flex;
+  justify-content: center;
+  width: 10.125rem;
+  height: 2.44275rem;
+  background: url(../../../assets//images/bg_earn_point_info.png) no-repeat
+    center center;
+  background-size: cover;
+  color: #fff;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+  margin: 0.69rem auto 7.12rem auto;
+}
+
+.order_progress__point_text {
+  margin-top: 0.96rem;
+  margin-bottom: 0.48rem;
 }
