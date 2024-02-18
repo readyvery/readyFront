@@ -31,7 +31,7 @@ import OrderProcessPage from "./pages/OrderProcessPage/OrderProcessPage";
 import PackagingStatusPage from "./pages/PackagingStatusPage/PackagingStatusPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
-import PaymentSuccessPage from "./pages/PaymentPage/Redirect/PaymentSuccessPage";
+import PaymentLoadingPage from "./pages/PaymentPage/Redirect/PaymentLoadingPage";
 import Splash from "./pages/Splash/Splash";
 import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 
@@ -62,7 +62,7 @@ function App() {
   const NewCouponPage = Auth(CouponPage, true);
   const NewCartPage = Auth(CartPage, true);
   const NewPaymentPage = Auth(PaymentPage, true);
-  const NewPaymentSuccessPage = Auth(PaymentSuccessPage, true);
+  const NewPaymentLoadingPage = Auth(PaymentLoadingPage, true);
   const NewPaymentFailPage = Auth(PaymentFailPage, true);
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
@@ -157,10 +157,10 @@ function App() {
             <Route path="/cart" element={<NewCartPage />} />
             {/* 결제 페이지 */}
             <Route path="/payment" element={<NewPaymentPage />} />
-            {/* 결제 성공 리다이렉트 페이지 */}
+            {/* 결제 중 리다이렉트 페이지 */}
             <Route
-              path="/payment/success"
-              element={<NewPaymentSuccessPage />}
+              path="/payment/loading"
+              element={<NewPaymentLoadingPage />}
             />
             {/* 결제 실패 리다이렉트 페이지 */}
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />

@@ -31,10 +31,9 @@ export const IMAGES = {
   toLogin: require("../assets/images/btn_home_to_login.png"),
   couponBox: require("../assets/images/btn_home_coupon_box.png"),
   quickOrderGuide: require("../assets/images/ic_quick_order_guide.png"),
-  // event1: require("../assets/images/ic_home_event1.png"),
-  // event2: require("../assets/images/ic_home_event2.png"),
 
   // 음료진행상황
+  payLoading: require("../assets/images/ic_pay_loading.gif"),
   progressBar1: require("../assets/images/ic_order_progress_bar1.png"),
   progressBar2: require("../assets/images/ic_order_progress_bar2.png"),
   progressBar3: require("../assets/images/ic_order_progress_bar3.png"),
