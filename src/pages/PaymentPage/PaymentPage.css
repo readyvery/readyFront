@@ -183,7 +183,7 @@
 .payment-page__point__available span{
   color: var(--kakao-logo, #000);
   text-align: right;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.5rem;
   font-style: normal;
   font-weight: 500;

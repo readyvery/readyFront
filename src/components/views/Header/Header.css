@@ -58,7 +58,6 @@
 .home-link {
   display: inline-block;
 }
-
 .header_cart {
   width: 1.5rem;
   height: 1.5rem;
@@ -78,12 +77,17 @@
 .header_home2 {
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0 2rem;
+  margin-left: 0 2rem;
 }
 
 .homeAndCart {
   display: flex;
   align-items: center;
+}
+.header_cart1{
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .header-main__warpper {

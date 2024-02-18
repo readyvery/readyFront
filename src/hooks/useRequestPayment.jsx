@@ -14,7 +14,7 @@ const useRequestPayment = () => {
         withCredentials: true,
       });
 
-      if (response.data.amount <= 1) {
+      if (response.data.amount <= 0) {
         const orderIds = response.data.orderId;
         const amounts = response.data.amount;
         requestZoreCostPayment({ orderId: orderIds, amount: amounts });
