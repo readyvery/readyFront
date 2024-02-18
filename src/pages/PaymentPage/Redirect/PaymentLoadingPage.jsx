@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./PaymentLoadingPage.css";
 import { IMAGES } from "../../../constants/images";
 import usePaymentSuccess from "../../../hooks/usePaymentSuccess";
-import axios from "axios";
 
 const PaymentLoadingPage = () => {
   const navigate = useNavigate();
