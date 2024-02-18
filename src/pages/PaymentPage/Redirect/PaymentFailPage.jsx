@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import "./PaymentRedirectPage.css";
+import "./PaymentFailPage.css";
 import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
 import { IMAGES } from "../../../constants/images";
 
