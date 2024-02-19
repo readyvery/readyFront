@@ -1,7 +1,6 @@
 import Header from "../../components/views/Header/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./CouponPage.css";
-import { IMAGES } from "../../constants/images";
 import useFetchCoupons from "../../hooks/useFetchCoupons";
 import Empty from "../../components/views/PageComponent/Empty";
 
