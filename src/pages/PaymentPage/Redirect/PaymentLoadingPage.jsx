@@ -20,13 +20,15 @@ const PaymentLoadingPage = () => {
   );
 
   if (paymentStatus === 400) {
+    if (paymentMessage !== "Order is already end.") {
+      navigate(`/status?orderId=${orderId}`);
+    }
     navigate(-1);
   } else if (paymentStatus === 200) {
-    if (
-      paymentMessage !== "Order is already end." ||
-      paymentMessage !== "결제 성공."
-    ) {
+    if (paymentMessage !== "결제 성공") {
       navigate(`/payment/fail`);
+    } else {
+      navigate(`/status?orderId=${orderId}`);
     }
   }
 

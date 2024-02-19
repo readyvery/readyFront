@@ -164,7 +164,7 @@ const CartPage = () => {
                 <div className="cart-page__order-info__item">
                   <img
                     className="cart-page__order-info__item__img"
-                    src={item.imgUrl}
+                    src={item.imgUrl || IMAGES.cartItemImgNull}
                     alt="menuImg"
                   ></img>
 

@@ -48,6 +48,7 @@ const OrderProgress = () => {
     try {
       await cancelOrder(orderId); // 주문 취소 요청
       setDegree(progressList.CANCEL); // 취소 상태로 UI 업데이트
+      navigate(`/status`); // 주문 취소 후 주문 내역 페이지로 이동
     } catch (error) {
       console.error("주문 취소 중 오류 발생:", error);
       // 오류 처리 로직 (선택적)
@@ -132,6 +133,7 @@ const OrderProgress = () => {
         }
         className="order_progress__bar"
       />
+
       <div className="order_progress__img animatedIcon">
         <img
           src={
@@ -197,24 +199,25 @@ const OrderProgress = () => {
             </div>
           </div>
         ) : (
-          <div>
-            <div
-              className="order_progress__detail"
-              onClick={() =>
-                navigate(`/orderDetail?orderId=${orderId}`, {
-                  state: { returnTo: `/status?orderId=${orderId}` },
-                })
-              }
-            >
-              주문상세
-            </div>
-            <div className="order_progress__point">
-              <span className="order_progress__point_text">
-                <span>{point}</span>원 적립되었습니다
-              </span>
-            </div>
+          <div
+            className="order_progress__detail"
+            onClick={() =>
+              navigate(`/orderDetail?orderId=${orderId}`, {
+                state: { returnTo: `/status?orderId=${orderId}` },
+              })
+            }
+          >
+            주문상세
           </div>
         )}
+
+        {degree === 3 ? (
+          <div className="order_progress__point">
+            <span className="order_progress__point_text">
+              <span>{point}</span>원 적립되었습니다
+            </span>
+          </div>
+        ) : null}
       </div>
 
       {isOpen && (

@@ -61,38 +61,39 @@ const HomePage = () => {
                 />
               </div>
 
-              {quickOrder.length > 0 ? (
-                quickOrder.map((item) => (
-                  <div
-                    className="home_individual_quick_order_list"
-                    key={item.id}
-                    onClick={() =>
-                      navigate(
-                        `/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`
-                      )
-                    }
-                  >
-                    <div className="home_individual_quick_order_item">
-                      <div className="home_individual_quick_order_item_name">
-                        {item.name}
-                      </div>
-                      <div className="home_individual_quick_order_item_name_detail">
-                        {item.orderName}
-                      </div>
-                      <div className="home_individual_quick_order_item_name_price">
-                        {item.amount}원
+              <div className="home_individual_quick_order_container">
+                {quickOrder.length > 0 ? (
+                  quickOrder.map((item) => (
+                    <div
+                      className="home_individual_quick_order_list"
+                      key={item.id}
+                      onClick={() =>
+                        navigate(
+                          `/payment?storeId=${item.storeId}&inout=${item.inOut}&cartId=${item.cartId}`
+                        )
+                      }
+                    >
+                      <div className="home_individual_quick_order_item">
+                        <div className="home_individual_quick_order_item_name">
+                          {item.name}
+                        </div>
+                        <div className="home_individual_quick_order_item_name_detail">
+                          {item.orderName}
+                          <br />
+                          {item.amount}원
+                        </div>
                       </div>
                     </div>
+                  ))
+                ) : (
+                  <div
+                    className="home_individual_quick_order_none"
+                    onClick={() => navigate(`/search`)}
+                  >
+                    첫 주문 후 이용 가능합니다!
                   </div>
-                ))
-              ) : (
-                <div
-                  className="home_individual_quick_order_none"
-                  onClick={() => navigate(`/search`)}
-                >
-                  첫 주문 후 이용 가능합니다!
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         ) : (
