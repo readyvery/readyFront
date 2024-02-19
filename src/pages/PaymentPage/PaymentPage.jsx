@@ -6,6 +6,7 @@ import useFetchCartData from "../../hooks/useFetchCartData";
 import useGetPoint from "../../hooks/useGetPoint";
 import useRequestPayment from "../../hooks/useRequestPayment";
 import "./PaymentPage.css";
+import { IMAGES } from "../../constants/images";
 
 const clientKey = process.env.REACT_APP_TOSS_CLIENT_KEY;
 const customerKey = "OSlBWOomTvjxwqJTcNtEB";
@@ -98,7 +99,7 @@ const PaymentPage = () => {
             <div className="payment-page__order-info__item">
               <img
                 className="payment-page__order-info__item__img"
-                // src={item.imgUrl || noImageMenu}
+                src={item.imgUrl || IMAGES.cartItemImgNull}
                 alt="menuImg"
               ></img>
 
@@ -143,7 +144,7 @@ const PaymentPage = () => {
             <>
               <img
                 className="payment-page__packaging-status__img"
-                // src={takeIn}
+                src={IMAGES.takeIn}
                 alt="Take In"
               />
               <span>먹고갈게요</span>
@@ -152,7 +153,7 @@ const PaymentPage = () => {
             <>
               <img
                 className="payment-page__packaging-status__img"
-                // src={takeOut}
+                src={IMAGES.takeOut}
                 alt="Take Out"
               />
               <span>가져갈게요</span>

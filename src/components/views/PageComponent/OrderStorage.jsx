@@ -95,7 +95,9 @@ function OrderStorage() {
             )}
           </div>
         ) : (
-          <Empty />
+          <div className="order_storage__empty">
+            <Empty />
+          </div>
         )}
       </main>
 

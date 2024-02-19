@@ -1,6 +1,7 @@
 .order_progress {
   width: 100%;
   background: linear-gradient(180deg, #fff 34.11%, #ffe2ed 100%);
+  padding-bottom: 5rem;
 }
 
 .order_progress__header {
@@ -163,7 +164,7 @@
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
   margin-top: 4.25rem;
-  margin-bottom: 3.63rem;
+  /* margin-bottom: 3.63rem; */
 }
 
 .order_progress__point {
@@ -181,7 +182,7 @@
   font-weight: 600;
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
-  margin: 0.69rem auto 7.12rem auto;
+  margin: 0.69rem auto 0 auto;
 }
 
 .order_progress__point_text {

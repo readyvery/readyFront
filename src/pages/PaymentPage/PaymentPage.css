@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  padding-top: 4.44rem;
 }
 
 .payment-page__cafe-info {
@@ -157,6 +158,8 @@
 }
 
 .payment-page__packaging-status__img {
+  width: 1.25rem;
+  height: 1.26144rem;
   margin-right: 1rem;
   margin-left: 1rem;
 }
@@ -180,7 +183,7 @@
   justify-content: flex-end;
   margin-bottom: 1.75rem;
 }
-.payment-page__point__available span{
+.payment-page__point__available span {
   color: var(--kakao-logo, #000);
   text-align: right;
   font-family: "Pretendard Variable";

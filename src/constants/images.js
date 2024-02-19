@@ -53,9 +53,11 @@ export const IMAGES = {
   progress1: require("../assets/images/ic_order_progress1.png"),
   progress2: require("../assets/images/ic_order_progress2.png"),
   progress3: require("../assets/images/ic_order_progress3.png"),
+  orderItemImgNull: require("../assets/images/ic_order_item_img_null.png"),
 
   // 장바구니 및 결제
   cartItemDelete: require("../assets/images/btn_cart_item_delete.png"),
+  cartItemImgNull: require("../assets/images/ic_cart_item_img_null.png"),
 
   // 마이페이지
   profile: require("../assets/images/ic_profile.png"),

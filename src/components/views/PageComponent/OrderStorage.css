@@ -10,6 +10,7 @@
 .order_storage__container {
   display: flex;
   flex-direction: column;
+  padding-bottom: 6rem;
 }
 
 .order_storage__list {
@@ -17,46 +18,10 @@
   border-top: 0.3rem solid #d82356;
 }
 
-.status-bar {
+.order_storage__empty {
   display: flex;
-  flex-direction: row;
-  width: 95%;
-  height: 2rem;
-  margin: 0 auto;
-  justify-content: space-between;
-}
-
-.cafe-img {
-  width: 28%;
-  height: 100%;
-  border-radius: 10px;
-  background-color: #666;
-}
-
-/* 빈 주문 내역  */
-.empty-order-wrapper {
-  display: flex;
-  width: fit-content;
-  height: fit-content;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.empty-img {
-  display: flex;
-  width: 8.625rem;
-  height: 8.625rem;
-  margin-top: 18.19rem;
-}
-
-.empty-text {
-  color: var(--title, #2e2d2d);
-  text-align: center;
-  font-family: "Pretendard Variable";
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 130%; /* 1.625rem */
-  letter-spacing: -0.0125rem;
+  width: 100%;
+  height: 93vh;
 }
