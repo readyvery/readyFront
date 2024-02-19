@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { IMAGES } from "../../../constants/images";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
 import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import StateBox from "../StateBox/StateBox";
 import "./OrderStorage.css";
+import Empty from "./Empty";
 
 function OrderStorage() {
   const navigate = useNavigate();
@@ -95,10 +95,7 @@ function OrderStorage() {
             )}
           </div>
         ) : (
-          <div className="empty-order-wrapper">
-            <img src={IMAGES.empty} className="empty-img" alt="empty" />
-            <span className="empty-text">비어있습니다</span>
-          </div>
+          <Empty />
         )}
       </main>
 

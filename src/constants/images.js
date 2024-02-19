@@ -32,18 +32,6 @@ export const IMAGES = {
   couponBox: require("../assets/images/btn_home_coupon_box.png"),
   quickOrderGuide: require("../assets/images/ic_quick_order_guide.png"),
 
-  // 음료진행상황
-  payLoading: require("../assets/images/ic_pay_loading.gif"),
-  progressBar1: require("../assets/images/ic_order_progress_bar1.png"),
-  progressBar2: require("../assets/images/ic_order_progress_bar2.png"),
-  progressBar3: require("../assets/images/ic_order_progress_bar3.png"),
-  progressRefresh: require("../assets/images/btn_order_progress_refresh.png"),
-  progressClock: require("../assets/images/ic_order_progress_clock.png"),
-  progress1: require("../assets/images/ic_order_progress1.png"),
-  progress2: require("../assets/images/ic_order_progress2.png"),
-  progress3: require("../assets/images/ic_order_progress3.png"),
-  backgroundEarnPoint: require("../assets/images/bg_earn_point_info.png"),
-
   // 카페
   cafeClose: require("../assets/images/ic_cafe_close.png"),
   cafeEvent: require("../assets/images/ic_cafe_event.png"),
@@ -54,6 +42,20 @@ export const IMAGES = {
   takeOut: require("../assets/images/ic_take_out.png"),
   toggleDown: require("../assets/images/ic_toggle_down.png"),
   toggleUp: require("../assets/images/ic_toggle_up.png"),
+
+  // 음료진행상황
+  payLoading: require("../assets/images/ic_pay_loading.gif"),
+  progressBar1: require("../assets/images/ic_order_progress_bar1.png"),
+  progressBar2: require("../assets/images/ic_order_progress_bar2.png"),
+  progressBar3: require("../assets/images/ic_order_progress_bar3.png"),
+  progressRefresh: require("../assets/images/btn_order_progress_refresh.png"),
+  progressClock: require("../assets/images/ic_order_progress_clock.png"),
+  progress1: require("../assets/images/ic_order_progress1.png"),
+  progress2: require("../assets/images/ic_order_progress2.png"),
+  progress3: require("../assets/images/ic_order_progress3.png"),
+
+  // 장바구니 및 결제
+  cartItemDelete: require("../assets/images/btn_cart_item_delete.png"),
 
   // 마이페이지
   profile: require("../assets/images/ic_profile.png"),

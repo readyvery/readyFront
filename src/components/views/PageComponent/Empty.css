@@ -1,0 +1,19 @@
+.empty_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-family: "Pretendard Variable";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
+
+.empty_page img {
+  width: 8.625rem;
+  height: 8.625rem;
+}
