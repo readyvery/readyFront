@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./CouponPage.css";
 import { IMAGES } from "../../constants/images";
 import useFetchCoupons from "../../hooks/useFetchCoupons";
+import Empty from "../../components/views/PageComponent/Empty";
 
 const CouponPage = () => {
   const navigate = useNavigate();
@@ -64,9 +65,8 @@ const CouponPage = () => {
             ))}
           </div>
         ) : (
-          <div className="coupon-page__coupon-empty">
-            <img src={IMAGES.empty} alt="empty" />
-            비어있습니다
+          <div className="coupon-page__empty">
+            <Empty />
           </div>
         )}
       </div>

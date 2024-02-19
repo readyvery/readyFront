@@ -14,7 +14,7 @@ const PaymentPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const cartId = params.get("cartId");
-  const couponId = location.state?.selectedCoupon?? null;
+  const couponId = location.state?.selectedCoupon ?? null;
   const salePrice = location.state?.salePrice ?? 0;
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
@@ -26,6 +26,7 @@ const PaymentPage = () => {
     const paymentWidget = paymentWidgetRef.current;
     requestPayment(cartId, couponId, paymentWidget);
   };
+
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -71,34 +72,6 @@ const PaymentPage = () => {
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
     paymentMethodsWidget.updateAmount(Math.max(totalPrice - salePrice, 0));
   }, [totalPrice, salePrice]);
-
-  // const paymentRequest = async () => {
-  //   let body = {
-  //     cartId: cartId,
-  //     couponId: couponId,
-  //   };
-
-  //   await axios
-  //     .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/toss`, body, {
-  //       withCredentials: t
-  //       const requestPayment = useRequestPayment();rue,
-  //     })
-  //     .then((res) => {
-  //       const paymentWidget = paymentWidgetRef.current;
-
-  //       // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-  //       // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
-  //       // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
-  //       paymentWidget?.requestPayment(res.data);
-  //     })
-
-  //     // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
-  //     .catch((error) => {
-  //       // 에러가 발생한 경우에 대한 로직
-  //       console.error("Error resetting cart", error);
-  //       // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
-  //     });
-  // };
 
   return (
     <div className="payment-page">

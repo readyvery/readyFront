@@ -7,14 +7,12 @@ import { IMAGES } from "../../constants/images";
 import useFetchQuickOrder from "../../hooks/useFetchQuickOrder";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import "./Homepage.css";
-// import QuickOrderComponent from "../../components/views/Quickorder/QuickOrder";
 // import usePostCoupon from "../../hooks/usePostCoupons";
 import React from "react";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Banner from "../../components/views/Home/Banner/Banner";
 import StoreList from "../../components/views/StoreList/StoreList";
-// import EventBannerSlider from "../../components/views/EventBannerSlider/EventBannerSlider";
 
 const HomePage = () => {
   const isAuth = useRecoilValue(isAuthenticatedState);
@@ -54,7 +52,6 @@ const HomePage = () => {
             </div>
 
             <div className="home_individual_quick_order">
-              {/* <QuickOrderComponent /> */}
               <div className="home_individual_quick_order_title">
                 바로 주문
                 <img

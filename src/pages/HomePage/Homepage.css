@@ -104,6 +104,8 @@
 }
 
 .home_individual_quick_order_list {
+  display: flex;
+  flex-direction: row;
   width: 10.375rem;
   height: 7rem;
   box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
@@ -199,7 +201,6 @@
   margin-left: auto;
   margin-right: 2rem;
 }
-
 
 /* 배너 카운팅 */
 .home_event_slide_index {

@@ -8,6 +8,7 @@ import { IMAGES } from "../../constants/images";
 import { useNavigate } from "react-router-dom";
 import PointStateBox from "../../components/views/PointStateBox/PointStateBox";
 import "./MembershipPage.css";
+import Empty from "../../components/views/PageComponent/Empty";
 
 function MembershipPage() {
   // const [isAuth] = useRecoilState(isAuthenticatedState);
@@ -15,19 +16,20 @@ function MembershipPage() {
   const navigate = useNavigate();
   const point = 10000;
   const membershipList = [
-    {
-      status: true,
-      point: "+1000",
-      store: "오르다",
-      date: "2023-11-25 19:09",
-    },
-    {
-      status: false,
-      point: "-1000",
-      store: "오르다",
-      date: "2023-11-25 19:09",
-    },
+    // {
+    //   status: true,
+    //   point: "+1000",
+    //   store: "오르다",
+    //   date: "2023-11-25 19:09",
+    // },
+    // {
+    //   status: false,
+    //   point: "-1000",
+    //   store: "오르다",
+    //   date: "2023-11-25 19:09",
+    // },
   ];
+
   return (
     <section className="membershippage-div">
       <Header
@@ -83,14 +85,7 @@ function MembershipPage() {
             ))
           ) : (
             <div className="membershippage-empty-order-wrapper">
-              <img
-                src={IMAGES.empty}
-                className="membershippage-empty-img"
-                alt="empty"
-              />
-              <span className="membershippage-empty-text">
-                내역이 없습니다.
-              </span>
+              <Empty />
             </div>
           )}
         </div>

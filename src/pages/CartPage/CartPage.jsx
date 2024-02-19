@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-// import menuDelete from "../../assets/images/menu_delete.svg";
-// import noImageMenu from "../../assets/images/no_image_menu.svg";
-// import empty from "../../assets/images/storage_empty.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import "./CartPage.css";
+import { IMAGES } from "../../constants/images";
+import Empty from "../../components/views/PageComponent/Empty";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
@@ -139,20 +139,24 @@ const CartPage = () => {
 
       {paymentData && paymentData?.carts.length > 0 ? (
         <div className="cart-page__cart-content">
-          <Link
-            to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
+          <div
             className="cart-page__cafe-info"
+            onClick={() =>
+              navigate(
+                `/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`
+              )
+            }
           >
             <img
               className="cart-page__cafe-info__img"
               src={paymentData?.imgUrl}
               alt="cafeImg"
-            ></img>
+            />
 
-            <text className="cart-page__cafe-info__name">
+            <span className="cart-page__cafe-info__name">
               {paymentData?.name}
-            </text>
-          </Link>
+            </span>
+          </div>
 
           <div className="cart-page__order-info">
             {paymentData?.carts.map((item) => (
@@ -160,7 +164,7 @@ const CartPage = () => {
                 <div className="cart-page__order-info__item">
                   <img
                     className="cart-page__order-info__item__img"
-                    // src={item.imgUrl || noImageMenu}
+                    src={item.imgUrl}
                     alt="menuImg"
                   ></img>
 
@@ -193,7 +197,7 @@ const CartPage = () => {
                   <div className="cart-page__order-info__item__control">
                     <img
                       className="cart-page__order-info__item__delete"
-                      // src={menuDelete}
+                      src={IMAGES.cartItemDelete}
                       alt="X"
                       onClick={() => handleRemoveItem(item.idx)}
                     />
@@ -223,19 +227,26 @@ const CartPage = () => {
               </div>
             ))}
 
-            <Link
+            <div
               className="cart-page__order-info__item__add"
-              to={`/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`}
-              style={{ textDecoration: "none" }}
+              onClick={() =>
+                navigate(
+                  `/store?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}`
+                )
+              }
             >
               + 더 담으러 가기
-            </Link>
+            </div>
           </div>
 
           {paymentData?.isOpened ? (
-            <Link
-              to={`/payment?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}&cartId=${paymentData?.cartId}`}
+            <div
               className="cart-page__order-btn"
+              onClick={() =>
+                navigate(
+                  `/payment?storeId=${paymentData?.storeId}&inout=${paymentData?.inOut}&cartId=${paymentData?.cartId}`
+                )
+              }
             >
               <span className="cart-page__total-quantity">{totalQuantity}</span>
               <span className="cart-page__order-text">주문하기</span>
@@ -244,21 +255,14 @@ const CartPage = () => {
                   totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
                     "원"}
               </span>
-            </Link>
+            </div>
           ) : (
             <div className="cart-page__store-close">지금은 준비중입니다.</div>
           )}
         </div>
       ) : (
-        <div className="cart-page__cart-empty">
-          <img
-            // src={empty}
-            alt="empty cart"
-            className="cart-page__cart-empty__img"
-          />
-          <span className="cart-page__cart-empty__text">
-            장바구니가 비었습니다
-          </span>
+        <div className="cart-page__empty">
+          <Empty />
         </div>
       )}
     </div>
