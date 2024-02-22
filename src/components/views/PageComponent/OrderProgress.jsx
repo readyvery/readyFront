@@ -65,7 +65,7 @@ const OrderProgress = () => {
             src={IMAGES.headerClose}
             alt="close"
             className="order_progress__close"
-            onClick={() => navigate(`/status`)}
+            onClick={() => window.history.back()}
           />
         ) : (
           <div className="order_progress__controls">
@@ -73,7 +73,7 @@ const OrderProgress = () => {
               src={IMAGES.headerClose}
               alt="close"
               className="order_progress__close"
-              onClick={() => navigate(`/status`)}
+              onClick={() => window.history.back()}
             />
             <img
               src={IMAGES.progressRefresh}

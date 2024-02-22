@@ -128,11 +128,13 @@ const CartPage = () => {
         headerProps={{
           pageName: "장바구니",
           linkTo:
-            !storeId ||
-            isNaN(parseInt(storeId, 10)) ||
-            !inout ||
-            isNaN(parseInt(inout, 10))
+            (!storeId || isNaN(parseInt(storeId, 10))) &&
+            (!inout || isNaN(parseInt(inout, 10)))
               ? "/"
+              : storeId &&
+                !isNaN(parseInt(storeId, 10)) &&
+                (!inout || isNaN(parseInt(inout, 10)))
+              ? `/packagingStatus?storeId=${storeId}`
               : `/store?storeId=${storeId}&inout=${inout}`,
         }}
       />

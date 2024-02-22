@@ -13,19 +13,10 @@ const Header = ({ headerProps }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const storeId = params.get("storeId");
+  const inout = params.get("inout");
   const isCartPage = location.pathname === "/cart";
-
-  const toggleModal = () => {
-    if (!isAuth) {
-      setIsOpen(!isOpen);
-    } else {
-      navigate(`/cart`);
-    }
-  };
-
-  // const handleGoBack = () => {
-  //   window.history.back();
-  // };
 
   useEffect(() => {
     // 모달 상태가 변경될 때만 실행
@@ -35,7 +26,11 @@ const Header = ({ headerProps }) => {
   }, [isOpen, isAuth]);
 
   const handleCartClick = () => {
-    toggleModal();
+    if (!isAuth) {
+      setIsOpen(!isOpen);
+    } else {
+      navigate(`/cart`);
+    }
   };
 
   const handleCancel = () => {
@@ -53,7 +48,14 @@ const Header = ({ headerProps }) => {
             alt="back"
             className="header_back"
             // onClick={() => handleGoBack()}
-            onClick={() => navigate(headerProps.linkTo, { replace: true })}
+            // onClick={() => navigate(headerProps.linkTo, { replace: true })}
+            onClick={() => {
+              if (headerProps.linkTo) {
+                navigate(headerProps.linkTo, { replace: true });
+              } else {
+                window.history.back();
+              }
+            }}
           />
           <span>{headerProps.pageName}</span>
           <div className="homeAndCart">
@@ -65,7 +67,19 @@ const Header = ({ headerProps }) => {
                     src={IMAGES.headerCart}
                     alt="cart"
                     className="header_cart"
-                    onClick={() => navigate(`/cart`, { replace: true })}
+                    onClick={() => {
+                      let path = `/cart`; // 기본 경로 설정
+                      if (storeId && !isNaN(parseInt(storeId, 10))) {
+                        // storeId가 유효한 경우
+                        path += `?storeId=${storeId}`; // 기본적으로 storeId만 사용하여 경로 설정
+                        if (inout && !isNaN(parseInt(inout, 10))) {
+                          // inout도 유효한 경우
+                          path += `&inout=${inout}`; // inout 값을 경로에 추가
+                        }
+                      }
+
+                      navigate(path, { replace: true }); // 조건에 따른 경로로 이동
+                    }}
                   />
                   <CartItemCount />
                 </div>

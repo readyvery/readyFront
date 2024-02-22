@@ -35,7 +35,7 @@ function MembershipPage() {
       <Header
         headerProps={{
           pageName: "멤버십",
-          linkTo: "/",
+          // linkTo: "/",
         }}
       />
       <main className="membershippage-point-box-container">
