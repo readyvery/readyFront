@@ -8,7 +8,7 @@ function TermsofusePage() {
       <Header
         headerProps={{
           pageName: "서비스 이용약관",
-          linkTo: "/policy",
+          // linkTo: "/policy",
         }}
       />
       {TEXT.tuermsoTitle.split("\n").map((title, index) => (

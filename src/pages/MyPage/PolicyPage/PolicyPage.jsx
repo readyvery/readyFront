@@ -11,7 +11,7 @@ function PolicyPage() {
       <Header
         headerProps={{
           pageName: "약관 및 정책",
-          linkTo: "/mypage",
+          // linkTo: "/mypage",
         }}
       />
 

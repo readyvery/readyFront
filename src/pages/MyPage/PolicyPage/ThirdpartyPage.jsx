@@ -8,7 +8,7 @@ function ThirdpartyPage() {
       <Header
         headerProps={{
           pageName: "개인정보 제3자 제공 동의",
-          linkTo: "/policy",
+          // linkTo: "/policy",
         }}
       />
       <div style={{ fontSize: "12px", fontFamily: "Regular" }}>

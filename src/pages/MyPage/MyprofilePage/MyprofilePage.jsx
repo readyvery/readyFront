@@ -26,7 +26,7 @@ function MyprofilePage() {
       <Header
         headerProps={{
           pageName: "계정 관리",
-          linkTo: "/mypage",
+          // linkTo: "/mypage",
         }}
       />
 

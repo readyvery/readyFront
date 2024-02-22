@@ -35,7 +35,7 @@ const StoreDetailPage = () => {
       <Header
         headerProps={{
           pageName: "",
-          linkTo: `/packagingStatus?storeId=${storeId}`,
+          linkTo: `/packagingStatus?storeId=${storeIdParam}`,
         }}
       />
 

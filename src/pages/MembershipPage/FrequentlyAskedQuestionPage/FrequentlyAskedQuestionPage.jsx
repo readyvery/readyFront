@@ -9,7 +9,7 @@ function FrequentlyAskedQuestionPage() {
       <Header
         headerProps={{
           pageName: "FAQ",
-          linkTo: "/faq",
+          // linkTo: "/faq",
         }}
       />
       <main className="faq-container">
