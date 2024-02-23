@@ -4,15 +4,15 @@ import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
-import "./MyPage.css";
-import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import { IMAGES } from "../../constants/images";
-
+import useFetchUserInfo from "../../hooks/useFetchUserInfo";
+import useGetPoint from "../../hooks/useGetPoint";
+import "./MyPage.css";
 function Mypage() {
   const navigate = useNavigate();
   const [isAuth] = useRecoilState(isAuthenticatedState);
   const { name: userName } = useFetchUserInfo();
-  const point = 10000;
+  const point  = useGetPoint();
 
   return (
     <div className="mypage">
