@@ -48,7 +48,8 @@
 }
 
 .membershippage-point-box-wrapper img {
-  height: 1.22294rem;
+  width: 6.125rem;
+  /* height: 1.22294rem; */
   padding-top: 0.44rem;
 }
 
