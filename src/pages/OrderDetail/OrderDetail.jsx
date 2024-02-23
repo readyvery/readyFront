@@ -13,7 +13,7 @@ const OrderDetail = () => {
     cancelReason,
     cart,
     inout,
-    method,
+    // method,
     orderNumber,
     orderStatus,
     orderTime,
