@@ -2,33 +2,34 @@
   display: flex;
   width: 100%;
   padding-top: 4.44rem;
-  padding-bottom: 5.0625rem;
 }
 
 .coupon-page__coupon {
   display: flex;
   width: 100%;
+  height: 87vh;
+  overflow-y: auto;
   margin: 1.5rem auto 0 auto;
   border-top: 0.3rem solid #d82356;
 }
 
 .coupon-page__coupon-list {
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
   margin-top: 3.44rem;
 }
 
 .coupon-page__coupon-item {
   display: flex;
-  width: 100%;
+  width: auto;
   height: 9rem;
   flex-shrink: 0;
   background: #fff;
   border-radius: 0.8125rem;
   border: 1px solid #bababa;
   flex-direction: column;
-  margin-bottom: 1.19rem;
+  margin: 0 1.5rem 1.19rem 1.5rem;
 }
 
 .coupon-page__coupon-item__name {

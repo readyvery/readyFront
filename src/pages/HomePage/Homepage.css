@@ -11,14 +11,14 @@
 .home_individual_benefits {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: auto;
   height: 9.4375rem;
   border-radius: 0.5rem;
   background: #fff;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
   margin-top: 1.13rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .home_individual_user {
@@ -72,12 +72,10 @@
 .home_individual_quick_order {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: auto;
   gap: 3%;
   white-space: nowrap;
   margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .home_individual_quick_order_title {
@@ -90,6 +88,7 @@
   font-weight: 700;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
+  margin-left: 1.5rem;
 }
 
 .home_individual_quick_order_guide {
@@ -121,6 +120,14 @@
   border-radius: 0.5rem;
   text-decoration: none;
   flex-direction: row;
+}
+
+.first-item {
+  margin-left: 1.5rem;
+}
+
+.last-item {
+  margin-right: 1.5rem;
 }
 
 .home_individual_quick_order_item {
@@ -250,7 +257,6 @@
 }
 
 .home_berry_pick {
-  width: 90%;
   margin: 2.5rem auto 0.5rem;
   color: var(--title, #2e2d2d);
   font-family: "Pretendard Variable";
@@ -259,6 +265,7 @@
   font-weight: 700;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
+  margin-left: 1.44rem;
 }
 
 .home_business_info {

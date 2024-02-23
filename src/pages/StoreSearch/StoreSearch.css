@@ -7,11 +7,11 @@
 .store_search_form {
   display: flex;
   align-items: center;
-  width: 90%;
+  width: auto;
   height: 2.5rem;
   border-radius: 0.5rem;
   background: #fff5fa;
-  margin: 1.06rem auto 2.06rem;
+  margin: 1.06rem 1.5rem 2.06rem 1.5rem;
 }
 
 .store_search_form img {
