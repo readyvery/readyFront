@@ -7,52 +7,35 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-      <span className="navbar__btn">
-        <img
-          src={IMAGES.navSearch}
-          alt="search"
-          className="navbar__btn-img"
-          onClick={() => navigate(`/search`)}
-        />
+      <span className="navbar__btn" onClick={() => navigate(`/search`)}>
+        <img src={IMAGES.navSearch} alt="search" className="navbar__btn-img" />
         매장검색
       </span>
 
-      <span className="navbar__btn">
+      <span className="navbar__btn" onClick={() => navigate(`/status`)}>
         <img
           src={IMAGES.navOrderDetails}
           alt="orderDetails"
           className="navbar__btn-img"
-          onClick={() => navigate(`/status`)}
         />
         주문내역
       </span>
 
-      <span className="navbar__btn">
-        <img
-          src={IMAGES.navHome}
-          alt="orderDetails"
-          className="navbar__home"
-          onClick={() => navigate(`/`)}
-        />
+      <span className="navbar__btn" onClick={() => navigate(`/`)}>
+        <img src={IMAGES.navHome} alt="orderDetails" className="navbar__home" />
       </span>
 
-      <span className="navbar__btn">
+      <span className="navbar__btn" onClick={() => navigate(`/membership`)}>
         <img
           src={IMAGES.navMembership}
           alt="membership"
           className="navbar__btn-img"
-          onClick={() => navigate(`/membership`)}
         />
         멤버십
       </span>
 
-      <span className="navbar__btn">
-        <img
-          src={IMAGES.navMypage}
-          alt="mypage"
-          className="navbar__btn-img"
-          onClick={() => navigate(`/mypage`)}
-        />
+      <span className="navbar__btn" onClick={() => navigate(`/mypage`)}>
+        <img src={IMAGES.navMypage} alt="mypage" className="navbar__btn-img" />
         마이페이지
       </span>
     </div>
