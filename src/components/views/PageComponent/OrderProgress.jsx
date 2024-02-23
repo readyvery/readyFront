@@ -48,7 +48,7 @@ const OrderProgress = () => {
     try {
       await cancelOrder(orderId); // 주문 취소 요청
       setDegree(progressList.CANCEL); // 취소 상태로 UI 업데이트
-      navigate(`/status`); // 주문 취소 후 주문 내역 페이지로 이동
+      navigate(`/status`, { replace: true }); // 주문 취소 후 주문 내역 페이지로 이동
     } catch (error) {
       console.error("주문 취소 중 오류 발생:", error);
       // 오류 처리 로직 (선택적)
@@ -65,7 +65,7 @@ const OrderProgress = () => {
             src={IMAGES.headerClose}
             alt="close"
             className="order_progress__close"
-            onClick={() => window.history.back()}
+            onClick={() => navigate(`/status`, { replace: true })}
           />
         ) : (
           <div className="order_progress__controls">
@@ -73,7 +73,7 @@ const OrderProgress = () => {
               src={IMAGES.headerClose}
               alt="close"
               className="order_progress__close"
-              onClick={() => window.history.back()}
+              onClick={() => navigate(`/status`, { replace: true })}
             />
             <img
               src={IMAGES.progressRefresh}
