@@ -49,7 +49,6 @@
 
 .membershippage-point-box-wrapper img {
   width: 6.125rem;
-  /* height: 1.22294rem; */
   padding-top: 0.44rem;
 }
 
@@ -78,9 +77,9 @@
   margin: 0;
   padding: 0;
 }
-/* .membershippage-point-box-bottom-wrapper li{
-  margin: 0 1.735rem;
-} */
+.membershippage-point-box-bottom-wrapper li{
+  margin: 0 auto;
+}
 /* 사용내역 */
 .membershippage-use-point-box-wrapper {
   display: flex;
