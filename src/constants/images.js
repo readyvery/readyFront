@@ -2,10 +2,10 @@ export const IMAGES = {
   berry: require("../assets/images/ic_berry.png"),
   berryGrey: require("../assets/images/ic_berry_grey.png"),
   berryWhite: require("../assets/images/ic_berry_white.png"),
-  berryTrans: require("../assets/images/ic_berry_trans.png"),
-  empty: require("../assets/images/ic_empty.png"),
+  berryLogo: require("../assets/images/ic_berry_logo.png"),
   logoWhite: require("../assets/images/ic_logo_white.png"),
   logo: require("../assets/images/ic_logo.png"),
+  empty: require("../assets/images/ic_empty.png"),
   search: require("../assets/images/ic_search.png"),
 
   // 헤더

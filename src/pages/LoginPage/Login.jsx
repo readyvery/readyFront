@@ -9,25 +9,26 @@ function Login() {
 
   return (
     <div className="login">
-      <img src={IMAGES.berryTrans} alt="berry" className="login_logo_img" />
+      <img
+        src={IMAGES.headerClose}
+        alt="X"
+        className="login_close"
+        onClick={() => window.history.back()}
+      />
 
-      <div className="login_logo">
-        실속형 대학생활 플랫폼
-        <img src={IMAGES.logo} alt="ReadyVery" />
+      <img src={IMAGES.berryLogo} alt="ReadyVery" className="login_logo" />
+
+      <div className="login_slogan">
+        <span className="login_slogan_text">준비는 빠르게 혜택은 다르게</span>
       </div>
 
-      <div className="login_content">
-        준비는 빠르게 혜택은 다르게
-        <div className="login_btn">
-          <img src={IMAGES.googleLogin} alt="googleLogin" />
-          <img src={IMAGES.appleLogin} alt="appleLogin" />
-          <img
-            src={IMAGES.kakaoLogin}
-            alt="kakaoLogin"
-            onClick={handleKakaoLogin}
-          />
-        </div>
-      </div>
+      <img
+        src={IMAGES.kakaoLogin}
+        alt="kakaoLogin"
+        className="login_kakao"
+        onClick={handleKakaoLogin}
+      />
+      <img src={IMAGES.appleLogin} alt="appleLogin" className="login_apple" />
     </div>
   );
 }

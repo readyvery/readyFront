@@ -169,12 +169,17 @@
 
 .order_progress__point {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 10.125rem;
   height: 2.44275rem;
-  background: url(../../../assets//images/bg_earn_point_info.png) no-repeat
+  background: url(../../../assets/images/bg_earn_point_info.png) no-repeat
     center center;
   background-size: cover;
+  margin: 0.69rem auto 0 auto;
+}
+
+.order_progress__point_text {
   color: #fff;
   font-family: "Pretendard Variable";
   font-size: 0.75rem;
@@ -182,10 +187,6 @@
   font-weight: 600;
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
-  margin: 0.69rem auto 0 auto;
-}
-
-.order_progress__point_text {
   margin-top: 0.96rem;
   margin-bottom: 0.48rem;
 }
