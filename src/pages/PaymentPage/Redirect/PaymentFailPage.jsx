@@ -18,7 +18,7 @@ const PaymentFailPage = () => {
         src={IMAGES.headerClose}
         alt="close"
         className="payment-fail-page__close"
-        onClick={() => navigate(`/`)}
+        onClick={() => navigate(`/status`, { replace: true })}
       />
 
       <img
@@ -33,7 +33,10 @@ const PaymentFailPage = () => {
         네트워크 및 통장 잔액를 확인해주세요
       </div>
 
-      <div className="payment-fail-page__done" onClick={() => navigate(`/`)}>
+      <div
+        className="payment-fail-page__done"
+        onClick={() => navigate(`/search`, { replace: true })}
+      >
         다른 주문하러 가기
       </div>
     </div>
