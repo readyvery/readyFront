@@ -179,11 +179,9 @@ const CartPage = () => {
                       {item.options.map((option) => (
                         <div key={option.optionId}>
                           •[{option.categoryName}] {option.name} (+
-                          {option.price && option.price.totalPrice
-                            ? option.price.totalPrice
-                                .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"
-                            : "가격 없음"}
+                          {option.price
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
                           )
                         </div>
                       ))}

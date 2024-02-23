@@ -46,19 +46,17 @@ const CouponPage = () => {
                   }
                 }}
               >
-                <div className="coupon-page__coupon-item">
-                  <div className="coupon-page__coupon-item__name">
-                    {item.couponName}
-                  </div>
-                  <div className="coupon-page__coupon-item__publisher">
-                    {item.publisher}
-                  </div>
-                  <div className="coupon-page__coupon-item__expirationDate">
-                    {item.expirationDate}
-                  </div>
-                  <div className="coupon-page__coupon-item__description">
-                    {item.description}
-                  </div>
+                <div className="coupon-page__coupon-item__name">
+                  {item.couponName}
+                </div>
+                <div className="coupon-page__coupon-item__publisher">
+                  {item.publisher}
+                </div>
+                <div className="coupon-page__coupon-item__expirationDate">
+                  {item.expirationDate}
+                </div>
+                <div className="coupon-page__coupon-item__description">
+                  {item.description}
                 </div>
               </div>
             ))}

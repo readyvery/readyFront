@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import Header from "../../components/views/Header/Header";
 import "./OrderDetail.css";
+import Header from "../../components/views/Header/Header";
 import useFetchOrderDetails from "../../hooks/useFetchOrderDetails";
 
 const OrderDetail = () => {
@@ -13,7 +13,7 @@ const OrderDetail = () => {
     cancelReason,
     cart,
     inout,
-    method,
+    // method,
     orderNumber,
     orderStatus,
     orderTime,
@@ -31,120 +31,91 @@ const OrderDetail = () => {
         }}
       />
 
-      <div className="detail-content__wrapper">
-        <div className="detail-content">
-          <div className="detail-top__wrapper">
-            {orderStatus === "CANCEL" ? (
-              <span className="detail-order-status fail">
-                주문 취소
-                {cancelReason === null ? (
-                  <span></span>
-                ) : (
-                  <span>({cancelReason?.split(",")[1]?.split("=")[1]})</span>
-                )}
-              </span>
+      <div className="order_detail__container">
+        <div className="order_detail__info">
+          {orderStatus === "CANCEL" ? (
+            <span className="order_detail__fail">
+              주문 취소 ({cancelReason?.split(",")[1]?.split("=")[1]})
+              {/* {cancelReason === null ? (
+              <span></span>
             ) : (
-              <span className="detail-order-status">주문 완료</span>
-            )}
+              <span>({cancelReason?.split(",")[1]?.split("=")[1]})</span>
+            )} */}
+            </span>
+          ) : (
+            <span className="order_detail__done">주문 완료</span>
+          )}
+          <div className="order_detail__store">{storeName}</div>
 
-            <span className="detail-cafe-name">{storeName}</span>
-
-            <div className="detail-order__wrapper">
-              <span>주문일시: {orderTime}</span>
-              <span>주문번호: {orderNumber}</span>
-              <span>결제방식: {method}</span>
-              <span>가게전화: {storePhone}</span>
-              <span>수령방식: {inout === 1 ? "매장" : "픽업"}</span>
-            </div>
+          <div className="order_detail__list">주문일시 : {orderTime}</div>
+          <div className="order_detail__list">주문번호 : {orderNumber}</div>
+          <div className="order_detail__list">가게전화 : {storePhone}</div>
+          <div className="order_detail__list">
+            수령방식 : {inout === 1 ? "매장" : "픽업"}
           </div>
+        </div>
 
-          <div className="detail-line"></div>
+        <div className="order_detail__menu">
+          {cart?.carts?.map((e) => (
+            <div className="order_detail__menu_item" key={e.idx}>
+              <img src={e.imgUrl} alt="menu img" />
 
-          <div className="detail-middle__wrapper">
-            {cart?.carts?.map((e) => (
-              <div className="detail-order__box" key={e.idx}>
-                <div className="detail-order-left__box">
-                  <div className="detail-menu-img__wrapper">
-                    <img src={e.imgUrl} alt="americano" with="" />
-                  </div>
+              <span className="order_detail__menu_item__option">
+                <div className="order_detail__menu_item__name">{e.name}</div>
+                {e.options?.map((option, idx) => (
+                  <>
+                    {option.name}
+                    {idx !== e.options?.length - 1 && <span>/</span>}
+                  </>
+                ))}
+              </span>
 
-                  <div className="detail-order-menu__wrapper">
-                    <span className="detail-order-menu__title">
-                      {e.name} X {e.count}
-                    </span>
-
-                    <div className="detail-order-menu-option__wrapper">
-                      {e.options?.map((option, idx) => (
-                        <>
-                          <span className="detail-order-menu-option">
-                            [{option.categoryName}] {option.name}
-                          </span>
-                          {idx !== e.options?.length - 1 && (
-                            <span className="detail-order-menu-option">/</span>
-                          )}
-                        </>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="detail-order-right__box">
-                  <span>
-                    {e.totalPrice &&
-                      e.totalPrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    원
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="detail-line"></div>
-
-          <div className="detail-bottom__wrapper">
-            <div className="detail-payment__box">
-              <span className="detail-payment__title">상품금액</span>
-              <span className="detail-payment-price">
-                {cart?.totalPrice
-                  ?.toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              <span className="order_detail__menu_item__price">
+                {e.totalPrice &&
+                  e.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 원
               </span>
             </div>
+          ))}
+        </div>
 
-            <div className="detail-payment__box">
-              <span className="detail-payment__title">할인금액</span>
-              <span className="detail-payment-price">
-                {salePrice &&
-                  (salePrice === 0
-                    ? 0
-                    : `(-) ${
-                        salePrice !== undefined &&
-                        !isNaN(salePrice) &&
-                        salePrice
-                          ?.toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      }`)}
-                원
-              </span>
-            </div>
-
-            <div className="detail-payment__box">
-              <span className="detail-payment__title">총 결제금액</span>
-              <span className="detail-payment-price">
-                {salePrice !== undefined &&
-                  !isNaN(salePrice) &&
-                  (cart?.totalPrice - salePrice)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                원
-              </span>
-            </div>
+        <div className="order_detail__price">
+          <div className="order_detail__price_list">
+            상품금액
+            <span className="order_detail__price_value">
+              {cart?.totalPrice
+                ?.toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              원
+            </span>
           </div>
 
-          <div className="detail-line"></div>
+          <div className="order_detail__price_list">
+            할인금액
+            <span className="order_detail__price_value">
+              {salePrice &&
+                (salePrice === 0
+                  ? 0
+                  : `(-) ${
+                      salePrice !== undefined &&
+                      !isNaN(salePrice) &&
+                      salePrice
+                        ?.toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    }`)}
+              원
+            </span>
+          </div>
+
+          <div className="order_detail__price_list">
+            <span>총 결제금액</span>
+            {salePrice !== undefined &&
+              !isNaN(salePrice) &&
+              (cart?.totalPrice - salePrice)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            원
+          </div>
         </div>
       </div>
     </div>

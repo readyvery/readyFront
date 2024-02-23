@@ -9,9 +9,10 @@
 .mypage_profile {
   display: flex;
   align-items: center;
-  width: 90%;
+  width: auto;
   height: 6rem;
-  padding: 0 1.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .mypage_profile_img {
@@ -52,7 +53,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 90%;
+  width: auto;
   height: 5rem;
   border-radius: 0.625rem;
   background: #d82356;
@@ -64,7 +65,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin: 0.5rem auto 1.13rem;
+  margin: 0.5rem 1.5rem 1.13rem 1.5rem;
 }
 
 .mypage_profile_point img {
@@ -75,7 +76,7 @@
 .mypage_profile_category_title {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: auto;
   color: #4f4f4f;
   font-family: "Pretendard Variable";
   font-size: 0.9375rem;
@@ -84,8 +85,8 @@
   line-height: 130%; /* 1.21875rem */
   padding-top: 0.87rem;
   padding-bottom: 0.81rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 1.81rem;
+  margin-right: 1.81rem;
 }
 
 .mypage_profile_category {
@@ -104,11 +105,9 @@
 
 .mypage_profile_line {
   display: flex;
-  width: 90%;
+  width: auto;
   height: 0.01rem;
   stroke-width: 1px;
   background: #dadada;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.51rem;
+  margin: 0 1.5rem 0.5rem 1.5rem;
 }
