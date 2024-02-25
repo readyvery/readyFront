@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
 const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/point`;
+const apiUrl = `${apiRoot}/${apiVer}/point/`;
 
 const useGetPoint = () => {
   const [point, setPoint] = useState(0);
