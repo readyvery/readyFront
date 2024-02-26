@@ -13,13 +13,14 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Banner from "../../components/views/Home/Banner/Banner";
 import StoreList from "../../components/views/StoreList/StoreList";
+import useGetPoint from "../../hooks/useGetPoint";
 
 const HomePage = () => {
   const isAuth = useRecoilValue(isAuthenticatedState);
   const { name: userName } = useFetchUserInfo();
   const navigate = useNavigate();
   const quickOrder = useFetchQuickOrder(isAuth);
-  const point = 231552;
+  const point = useGetPoint();
   // const postCoupon = usePostCoupon();
   // const [couponIssued, setCouponIssued] = useState(false);
   // const handleCouponClick = (couponCode, couponId) => {
