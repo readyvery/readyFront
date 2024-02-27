@@ -20,7 +20,7 @@ const StoreList = ({ searchTerm = "" }) => {
     <div className="store_list">
       {displayStores.map((item) => (
         <div
-          key={item.idx} // React 리스트에서 각 요소는 고유한 key prop을 가져야 합니다.
+          key={item.idx}
           className="store_list_item"
           onClick={() => navigate(`/packagingStatus?storeId=${item.idx}`)}
         >

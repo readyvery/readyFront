@@ -70,6 +70,7 @@
 }
 
 .home_individual_quick_order {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: auto;
@@ -91,10 +92,42 @@
   margin-left: 1.5rem;
 }
 
-.home_individual_quick_order_guide {
+.home_individual_quick_order_guide_btn {
   width: 1.32181rem;
   height: 1.32181rem;
   margin-left: 0.31rem;
+}
+
+.home_individual_quick_order_guide {
+  position: absolute; /* 절대 위치 설정 */
+  left: 4.6rem;
+  bottom: 8rem;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  width: 8.6875rem;
+  height: 2.90338rem;
+  background: url(../../assets/images/bg_quick_order_guide.png) no-repeat center
+    center;
+  background-size: contain;
+}
+
+.home_individual_quick_order_guide span {
+  color: #fff;
+  font-family: "Pretendard Variable";
+  font-size: 0.4375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.6875rem; /* 157.143% */
+  margin: 0.5rem 0 1.03rem 0.62rem;
+}
+
+.home_individual_quick_order_guide img {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  flex-shrink: 0;
+  margin-top: 0.44rem;
+  margin-right: 0.38rem;
 }
 
 .home_individual_quick_order_container {

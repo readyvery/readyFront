@@ -14,13 +14,14 @@ function StoreSearch() {
   // 사용자 입력 처리
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
+    // console.log("검색어:", searchTerm);
   };
 
   // 디바운싱 구현
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-      console.log("검색어:", searchTerm);
+      console.log("디바운싱:", searchTerm);
     }, debounceDelay);
 
     // 컴포넌트가 unmount되거나 다음 useEffect가 실행되기 전에 타이머를 정리

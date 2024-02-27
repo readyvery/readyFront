@@ -8,7 +8,7 @@ import useFetchQuickOrder from "../../hooks/useFetchQuickOrder";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import "./Homepage.css";
 // import usePostCoupon from "../../hooks/usePostCoupons";
-import React from "react";
+import React, { useState } from "react";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Banner from "../../components/views/Home/Banner/Banner";
@@ -26,6 +26,11 @@ const HomePage = () => {
   // const handleCouponClick = (couponCode, couponId) => {
   //   postCoupon(couponCode, couponId, couponIssued, setCouponIssued);
   // };
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const toggleTooltip = () => {
+    setShowTooltip(!showTooltip); // 말풍선 표시 상태를 토글
+  };
 
   return (
     <div className="home">
@@ -58,8 +63,23 @@ const HomePage = () => {
                 <img
                   src={IMAGES.quickOrderGuide}
                   alt="guide"
-                  className="home_individual_quick_order_guide"
+                  className="home_individual_quick_order_guide_btn"
+                  onClick={toggleTooltip}
                 />
+                {showTooltip && (
+                  <div className="home_individual_quick_order_guide">
+                    <span>
+                      최근에 주문하신 주문건이에요.
+                      <br />
+                      클릭하면 바로 결제화면으로 넘어가요!
+                    </span>
+                    <img
+                      src={IMAGES.quickOrderGuideClose}
+                      alt="X"
+                      onClick={() => setShowTooltip(false)}
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="home_individual_quick_order_container">

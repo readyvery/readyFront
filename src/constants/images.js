@@ -31,6 +31,7 @@ export const IMAGES = {
   toLogin: require("../assets/images/btn_home_to_login.png"),
   couponBox: require("../assets/images/btn_home_coupon_box.png"),
   quickOrderGuide: require("../assets/images/ic_quick_order_guide.png"),
+  quickOrderGuideClose: require("../assets/images/btn_quick_order_guide_close.png"),
 
   // 카페
   cafeClose: require("../assets/images/ic_cafe_close.png"),
