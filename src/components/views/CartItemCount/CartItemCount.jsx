@@ -22,7 +22,7 @@ const CartItemCount = () => {
   }, []);
 
   return (
-    <>{count === 0 ? null : <div className="cart-item-count">{ count}</div>}</>
+    <>{count === 0 ? null : <div className="cart-item-count">{count}</div>}</>
   );
 };
 

@@ -1,11 +1,10 @@
 .cart-item-count {
   position: absolute;
-  top: 0.825rem;
-  /* transform: translateX(50%); */
-  left: 0.725rem;
+  bottom: -0.06rem;
+  right: -0.14rem;
 
-  width: 0.77606rem;
-  height: 0.77606rem;
+width: 0.77606rem;
+height: 0.77606rem;
   background-color: #d82356;
   border-radius: 50%;
 
@@ -15,9 +14,10 @@
   color: #fff;
   text-align: center;
   font-family: "Pretendard Variable";
-  font-size: 0.375rem;
+  font-size: 0.5rem;
   font-style: normal;
   font-weight: 800;
-  line-height: 1rem; /* 266.667% */
+  text-align: center;
+  /* line-height: 248.345% */
 }
 

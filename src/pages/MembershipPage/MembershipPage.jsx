@@ -1,36 +1,20 @@
 import React from "react";
 // import { useRecoilState } from "recoil";
 // import { isAuthenticatedState } from "../../Atom/status";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
-import { IMAGES } from "../../constants/images";
-// import useFetchUserInfo from "../../hooks/useFetchUserInfo";
-import { useNavigate } from "react-router-dom";
 import Empty from "../../components/views/PageComponent/Empty";
 import PointStateBox from "../../components/views/PointStateBox/PointStateBox";
-// import useGetPoint from "../../hooks/useGetPoint";
-// import useGetPointHistory from "../../hooks/useGetPointHistory";
+import { IMAGES } from "../../constants/images";
+import useGetPoint from "../../hooks/useGetPoint";
+import useGetPointHistory from "../../hooks/useGetPointHistory";
 import "./MembershipPage.css";
 
 function MembershipPage() {
   const navigate = useNavigate();
-  // const point = useGetPoint();
-  // const pointHistory = useGetPointHistory();
-  const point = 10000;
-  const membershipList = [
-    {
-      status: true,
-      point: "+1000",
-      store: "오르다",
-      date: "2023-11-25 19:09",
-    },
-    {
-      status: false,
-      point: "-1000",
-      store: "오르다",
-      date: "2023-11-25 19:09",
-    },
-  ];
+  const point = useGetPoint();
+  const pointHistory = useGetPointHistory();
 
   return (
     <section className="membershippage-div">
@@ -65,10 +49,8 @@ function MembershipPage() {
           <div className="membershippage-use-point-box-title">
             <span>멤버십 내역</span>
           </div>
-          {/* {pointHistory?.length ? (
-            pointHistory?.map((e, i) => ( */}
-          {membershipList?.length ? (
-            membershipList?.map((e, i) => (
+          {pointHistory?.length ? (
+            pointHistory?.map((e, i) => (
               // {/* 매핑될 요소 */}
               <div
                 className="membershippage-use-point-box-content"
