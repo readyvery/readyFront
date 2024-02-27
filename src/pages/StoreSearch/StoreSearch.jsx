@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IMAGES } from "../../constants/images";
 import "./StoreSearch.css";
 import Header from "../../components/views/Header/Header";
@@ -7,28 +7,33 @@ import StoreList from "../../components/views/StoreList/StoreList";
 
 function StoreSearch() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const debounceDelay = 500; // 디바운스 지연 시간
+  const inputRef = useRef(null);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // 검색어와 함께 다른 페이지로 이동하거나 검색 결과를 표시할 수 있습니다.
-    // 예: navigate(`/search-results?query=${searchTerm}`);
-    console.log("검색어:", searchTerm);
-  };
-
+  // 사용자 입력 처리
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  // 디바운싱 구현
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+      console.log("검색어:", searchTerm);
+    }, debounceDelay);
+
+    // 컴포넌트가 unmount되거나 다음 useEffect가 실행되기 전에 타이머를 정리
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm, debounceDelay]);
+
   return (
     <div className="store_search">
-      <Header
-        headerProps={{
-          pageName: "매장검색",
-          // linkTo: "/",
-        }}
-      />
+      <Header headerProps={{ pageName: "매장검색" }} />
 
-      <form className="store_search_form" onSubmit={handleSearch}>
+      <form className="store_search_form" onSubmit={(e) => e.preventDefault()}>
         <img src={IMAGES.search} alt="search" />
         <input
           type="text"
@@ -36,10 +41,12 @@ function StoreSearch() {
           placeholder="Search"
           value={searchTerm}
           onChange={handleInputChange}
+          ref={inputRef}
         />
       </form>
 
-      <StoreList />
+      {/* Debounced search term을 사용하여 StoreList에 prop으로 전달 */}
+      <StoreList searchTerm={debouncedSearchTerm} />
 
       <NavBar />
     </div>
