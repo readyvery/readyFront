@@ -50,7 +50,7 @@ function MembershipPage() {
             <span>멤버십 내역</span>
           </div>
           {pointHistory?.length ? (
-            pointHistory?.map((e, i) => (
+            pointHistory.reverse()?.map((e, i) => (
               // {/* 매핑될 요소 */}
               <div
                 className="membershippage-use-point-box-content"
@@ -58,7 +58,6 @@ function MembershipPage() {
                 key={i}
               >
                 <PointStateBox
-                  status={e.status}
                   point={e.point}
                   store={e.store}
                   date={e.date}

@@ -13,7 +13,14 @@ const CartItemCount = () => {
         });
         setCount(response.data.count);
       } catch (error) {
-        console.error(error);
+        if (axios.isAxiosError(error)) {
+          const err = error.response?.data.status;
+          if (err === 404) {
+            setCount(0);
+          } else {
+            console.error(error);
+          }
+        }
       }
     };
 

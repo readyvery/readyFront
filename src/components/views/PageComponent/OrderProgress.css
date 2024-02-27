@@ -1,7 +1,4 @@
 .order_progress {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
   overflow-y: auto;
@@ -35,6 +32,18 @@
   width: 1.63738rem;
   height: 1.86356rem;
   margin-top: 2.48rem;
+}
+@keyframes rotateAnimation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(-720deg);
+  }
+}
+.rotate-on-click {
+  /* 여기도 0.5초 */
+  animation: rotateAnimation 0.5s linear;
 }
 
 .order_progress__pick_up_time img {

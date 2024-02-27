@@ -21,7 +21,8 @@ const OrderProgress = () => {
   );
   const cancelOrder = useCancelOrder();
   const point = 175;
-
+  const [rotate, setRotate] = useState(false); //새로고침 클릭시 회전용
+  const [debounceTimeout, setDebounceTimeout] = useState(null); // 디바운싱 상태
   const progressList = useMemo(
     () => ({
       CANCEL: 0, // 주문 취소
@@ -39,9 +40,24 @@ const OrderProgress = () => {
     }
   }, [progress, progressList]);
 
+  useEffect(() => {
+    const intervalId = setInterval(refreshOrderStatus, 10000); // 10초
+    return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounceTimeout]);
+
   // 주문 상태 새로고침 함수
   const refreshOrderStatus = () => {
-    setRefreshKey((prevKey) => prevKey + 1);
+    // 기존에 설정된 타이머가 있다면 취소
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+    // 새로운 디바운스 타이머 설정
+    const timeout = setTimeout(() => {
+      setRefreshKey((prevKey) => prevKey + 1);
+    }, 500); // 0.5s 디바운싱 시간
+    setRotate(!rotate);
+    setDebounceTimeout(timeout);
   };
 
   const handleCancel = async () => {
@@ -78,7 +94,9 @@ const OrderProgress = () => {
             <img
               src={IMAGES.progressRefresh}
               alt="refresh"
-              className="order_progress__refresh"
+              className={`order_progress__refresh ${
+                rotate ? "rotate-on-click" : ""
+              }`}
               onClick={refreshOrderStatus}
             />
           </div>
