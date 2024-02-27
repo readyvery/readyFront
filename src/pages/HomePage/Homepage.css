@@ -100,7 +100,7 @@
 
 .home_individual_quick_order_guide {
   position: absolute; /* 절대 위치 설정 */
-  left: 5rem;
+  left: 4.6rem;
   bottom: 8rem;
   z-index: 100;
   display: flex;
