@@ -1,13 +1,13 @@
 import { IMAGES } from "../../../constants/images";
 import "./PointStateBox.css";
-const PointStateBox = ({ status, point, store, date }) => {
-  const stateText = status ? "적립" : "사용";
+const PointStateBox = ({ point, store, date }) => {
+  const stateText = point > 0 ? "적립" : "사용";
   return (
     <div className="membership-box-container">
       <div className="membership-box">
         <div
           className={`membership-box-img ${
-            status
+            point > 0
               ? "membership-box-img-accumulate-color"
               : "membership-box-img-use-color"
           }`}
