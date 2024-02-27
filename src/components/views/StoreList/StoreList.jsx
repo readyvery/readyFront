@@ -1,22 +1,32 @@
+import React from "react";
 import "./StoreList.css";
 import { IMAGES } from "../../../constants/images";
 import { useNavigate } from "react-router-dom";
 import useFetchSearch from "../../../hooks/useFetchSearch";
 
-const StoreList = () => {
+const StoreList = ({ searchTerm = "" }) => {
   const navigate = useNavigate();
   const stores = useFetchSearch();
 
+  // 검색어에 따라 필터링된 목록을 반환하는 로직
+  const filteredStores = stores.filter((item) => {
+    return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  // 검색어가 있을 경우 filteredStores를 사용하고, 없을 경우 기존 stores를 사용
+  const displayStores = searchTerm ? filteredStores : stores;
+
   return (
     <div className="store_list">
-      {stores.map((item) => (
+      {displayStores.map((item) => (
         <div
+          key={item.idx} // React 리스트에서 각 요소는 고유한 key prop을 가져야 합니다.
           className="store_list_item"
           onClick={() => navigate(`/packagingStatus?storeId=${item.idx}`)}
         >
           <img
             src={item.imgUrl}
-            alt="veryPickimg"
+            alt="storeImage"
             className="store_list_cafe_img"
           />
           {!item.status && (

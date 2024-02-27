@@ -26,9 +26,9 @@ const PaymentLoadingPage = () => {
     navigate(-1);
   } else if (paymentStatus === 200) {
     if (paymentMessage !== "결제 성공") {
-      navigate(`/payment/fail`);
+      navigate(`/payment/fail`, { replace: true });
     } else {
-      navigate(`/status?orderId=${orderId}`);
+      navigate(`/status?orderId=${orderId}`, { replace: true });
     }
   }
 
