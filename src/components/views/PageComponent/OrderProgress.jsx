@@ -178,7 +178,7 @@ const OrderProgress = () => {
           : "안내 문구"}
       </div>
 
-      <div>
+      <div className="order_progress__wrapper">
         {degree === 1 ? (
           <div>
             <div

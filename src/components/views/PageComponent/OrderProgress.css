@@ -1,7 +1,11 @@
 .order_progress {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
+  overflow-y: auto;
   background: linear-gradient(180deg, #fff 34.11%, #ffe2ed 100%);
-  padding-bottom: 5rem;
 }
 
 .order_progress__header {
@@ -133,6 +137,10 @@
   letter-spacing: -0.01rem;
 }
 
+/* 주문상세 주문 취소 */
+.order_progress__wrapper {
+  position: relative;
+}
 .order_progress__detail {
   display: flex;
   justify-content: center;
@@ -152,9 +160,13 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 4rem;
+  margin-bottom: 10.25rem;
 }
 
 .order_progress__cancel {
+  position: absolute;
+  top: 6.0675rem;
+  width: 100%;
   color: #838383;
   text-align: center;
   font-family: "Pretendard Variable";
@@ -163,11 +175,14 @@
   font-weight: 700;
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
-  margin-top: 4.25rem;
-  /* margin-bottom: 3.63rem; */
 }
 
 .order_progress__point {
+  position: absolute;
+  /* 수평 가운데 정렬 */
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.3775rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,7 +191,6 @@
   background: url(../../../assets/images/bg_earn_point_info.png) no-repeat
     center center;
   background-size: cover;
-  margin: 0.69rem auto 0 auto;
 }
 
 .order_progress__point_text {
@@ -188,5 +202,4 @@
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
   margin-top: 0.96rem;
-  margin-bottom: 0.48rem;
 }
