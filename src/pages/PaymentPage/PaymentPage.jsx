@@ -26,7 +26,7 @@ const PaymentPage = () => {
   const point = useGetPoint();
   const paymentRequest = () => {
     const paymentWidget = paymentWidgetRef.current;
-    requestPayment(cartId, couponId, paymentWidget);
+    requestPayment(cartId, couponId, paymentWidget, usedPoint);
   };
   const handleSetPoint = () => {
     if (usedPoint !== 0) {
