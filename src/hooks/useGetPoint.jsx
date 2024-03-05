@@ -11,7 +11,9 @@ const useGetPoint = () => {
     const getPoint = async () => {
       try {
         const response = await axios.get(apiUrl, { withCredentials: true });
-        setPoint(response.data.point);
+        const pointValue =
+          response.data.point === null ? 0 : response.data.point;
+        setPoint(pointValue);
       } catch (error) {
         console.error("Error fetching events data:", error);
       }
