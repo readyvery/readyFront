@@ -220,7 +220,7 @@ const PaymentPage = () => {
                 style={{ textDecoration: "none" }}
                 onClick={handleSetPoint}
               >
-                {usedPoint === 0 ? "적용" : "적용 취소"}
+                {usedPoint === 0 ? "최대 적용" : "적용 취소"}
               </div>
             </span>
           </span>
@@ -261,7 +261,6 @@ const PaymentPage = () => {
               Math.max(totalPrice - salePrice - usedPoint, 0)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
-            {console.log(totalPrice, salePrice, usedPoint)}
           </span>
         </div>
 
