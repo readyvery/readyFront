@@ -74,7 +74,7 @@ function Mypage() {
           className="mypage_profile_category"
           onClick={() => navigate(isAuth ? `/membership` : `/login`)}
         >
-          멤버쉽 내역
+          멤버십 내역
         </div>
       </div>
 
