@@ -138,6 +138,8 @@
   gap: 0.6875rem;
   height: 7rem;
   overflow-x: auto;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .home_individual_quick_order_container::-webkit-scrollbar {
