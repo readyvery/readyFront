@@ -3,6 +3,12 @@ import { IMAGES } from "../../constants/images";
 import React from "react";
 
 function Login() {
+  const handleGoogleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_GOOGLE_LOGIN}`;
+  };
+  const handleAppleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_APPLE_LOGIN}`;
+  };
   const handleKakaoLogin = () => {
     window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
   };
@@ -33,8 +39,16 @@ function Login() {
       <div className="login_content">
         준비는 빠르게 혜택은 다르게
         <div className="login_btn">
-          <img src={IMAGES.googleLogin} alt="googleLogin" />
-          <img src={IMAGES.appleLogin} alt="appleLogin" />
+          <img
+            src={IMAGES.googleLogin}
+            alt="googleLogin"
+            onClick={handleGoogleLogin}
+          />
+          <img
+            src={IMAGES.appleLogin}
+            alt="appleLogin"
+            onClick={handleAppleLogin}
+          />
           <img
             src={IMAGES.kakaoLogin}
             alt="kakaoLogin"
