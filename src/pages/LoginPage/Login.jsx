@@ -18,7 +18,7 @@ function Login() {
 
       <img src={IMAGES.berryLogo} alt="ReadyVery" className="login_logo" />
 
-      <div className="login_slogan">
+      {/* <div className="login_slogan">
         <span className="login_slogan_text">준비는 빠르게 혜택은 다르게</span>
       </div>
 
@@ -28,7 +28,20 @@ function Login() {
         className="login_kakao"
         onClick={handleKakaoLogin}
       />
-      <img src={IMAGES.appleLogin} alt="appleLogin" className="login_apple" />
+      <img src={IMAGES.appleLogin} alt="appleLogin" className="login_apple" /> */}
+
+      <div className="login_content">
+        준비는 빠르게 혜택은 다르게
+        <div className="login_btn">
+          <img src={IMAGES.googleLogin} alt="googleLogin" />
+          <img src={IMAGES.appleLogin} alt="appleLogin" />
+          <img
+            src={IMAGES.kakaoLogin}
+            alt="kakaoLogin"
+            onClick={handleKakaoLogin}
+          />
+        </div>
+      </div>
     </div>
   );
 }
