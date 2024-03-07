@@ -26,12 +26,7 @@ const Banner = () => {
         <Slider {...settings}>
           {eventBanners.map((item) => {
             return (
-              <div
-                className="home_event_slider_benner"
-                // couponCode
-                onClick={() => navigate(item.redirectUrl)}
-                key={item}
-              >
+              <div className="home_event_slider_benner" key={item}>
                 <img src={item.bannerImg} alt={`Banner ${item}`} />
               </div>
             );
