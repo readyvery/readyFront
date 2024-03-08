@@ -3,15 +3,17 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useSetRecoilState } from "recoil";
 import MyPage from "../src/pages/MyPage/MyPage";
 import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
 // import loading from "./assets/animation/loading.json";
 import MembershipPage from "../src/pages/MembershipPage/MembershipPage";
+import { isAuthenticatedState } from "./Atom/status";
 import ic_berry from "./assets/images/ic_berry.png";
 import Auth from "./hoc/auth";
 import useInterval from "./hooks/useInterval";
+import AuthenticationPage from "./pages/Authentication/AuthenticationPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CouponPage from "./pages/CouponPage/CouponPage";
 import HomePage from "./pages/HomePage/Homepage";
@@ -36,7 +38,8 @@ import Splash from "./pages/Splash/Splash";
 import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 
 function App() {
-  const [cookies, , removeCookies] = useCookies();
+  const [, , removeCookies] = useCookies(["accessToken"]);
+  const setIsAuth = useSetRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const apiVer = "api/v1";
@@ -67,30 +70,41 @@ function App() {
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   const minute = 1000 * 60 * 60 * 24; // 24시간
+  //const minute = 1000 * 60 * 10; // 10분
   // const minute = 1000 * 60;
   // 주기적으로 실행되는 함수
   useInterval(() => {
+    const token = localStorage.getItem("accessToken");
+    console.log('cookie: ', token);
     // 리프레시 토큰이 존재하고, 비어 있지 않은 경우
-    if (
-      cookies.refreshToken !== "undefined" &&
-      cookies.refreshToken !== undefined &&
-      cookies.refreshToken
-    ) {
+    if (token) {
       // http 요청에 사용될 헤더 설정과 함께 서버에 토큰 갱신 요청
       let config = {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       };
+      console.log('AT 재발급');
       axios
         .get(apiUrl, config)
         .then((response) => {
+          console.log(response);
           // 현재 쿠키 삭제
-          if (!response.data) {
+          if (response.status !== 200 ) {
             message.info("다시 로그인해주세요.");
             removeCookies();
+            localStorage.clear();
+            setIsAuth(false);
             navigate("/login");
+          } else {
+            console.log("AT 재발급 성공! ");
+            // localStorage.setItem("accessToken", cookies.accessToken);
+            // removeCookies();
           }
         })
         .catch((error) => {
+          console.error(error);
           message.info("다시 로그인해주세요.");
           navigate("/login");
         });
@@ -121,6 +135,8 @@ function App() {
             <Route path="/search" element={<StoreSearchPage />} />
             {/* 로그인*/}
             <Route path="/login" element={<NewLoginPage />} />
+            {/* 번호인증 페이지 */}
+            <Route path="/authentication" element={<AuthenticationPage/>} />
             {/* 쿠폰 및 포인트  faq페이지*/}
             <Route path="/faq" element={<FrequentlyAskedQuestionPage />} />
             {/* 마이페이지-약관정책 페이지 */}
