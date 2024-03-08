@@ -7,17 +7,19 @@ import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import "./Homepage.css";
 // import usePostCoupon from "../../hooks/usePostCoupons";
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { isAuthenticatedState } from "../../Atom/status";
 import Banner from "../../components/views/Home/Banner/Banner";
 import StoreList from "../../components/views/StoreList/StoreList";
 import useGetPoint from "../../hooks/useGetPoint";
 
 const HomePage = () => {
-  // const isAuth = useRecoilValue(isAuthenticatedState);
-  const token = localStorage.getItem("accessToken");
-  const { name: userName } = useFetchUserInfo();
+  // const token = localStorage.getItem("accessToken");
   const navigate = useNavigate();
+  const isAuth = useRecoilValue(isAuthenticatedState);
+  const { name: userName } = useFetchUserInfo();
   const quickOrder = useFetchQuickOrder();
   const point = useGetPoint();
   // const postCoupon = usePostCoupon();
@@ -36,7 +38,7 @@ const HomePage = () => {
       <Header headerProps={null} />
 
       <div className="home_individual">
-        {token ? (
+        {isAuth ? (
           <div className="home_individual_login">
             <div className="home_individual_benefits">
               <div className="home_individual_user">
