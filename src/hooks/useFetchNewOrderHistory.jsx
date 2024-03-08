@@ -15,8 +15,8 @@ const useFetchNewOrderHistory = () => {
               Authorization: `Bearer ${token}`
           }
         });
-        setNewStorageList(response.data.receipts);
-        console.log('new receipt: ', response.data.receipts);
+        setNewStorageList(response.data.receipts.reverse());
+        // console.log('new receipt: ', response.data.receipts);
       } catch (error) {
         console.error("Error fetching new order history:", error);
       }

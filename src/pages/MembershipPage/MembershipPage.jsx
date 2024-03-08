@@ -25,7 +25,7 @@ function MembershipPage() {
         }}
       />
       <main className="membershippage-point-box-container">
-        {/* 멤버쉽 박스 */}
+        {/* 멤버십 박스 */}
         <div className="membershippage-point-box-wrapper">
           {/* 맵버쉽 박스 윗부분_로고&포인트 */}
           <div className="membershippage-point-box-top-wrapper">
@@ -36,7 +36,7 @@ function MembershipPage() {
               {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
             </div>
           </div>
-          {/* 멤버쉽 박스 아랫부분_쿠폰함&FAQ */}
+          {/*멤버십 박스 아랫부분_쿠폰함&FAQ */}
           <div className="membershippage-point-box-bottom-wrapper">
             <ul>
               <li onClick={() => navigate(`/coupon`)}>쿠폰함</li>|

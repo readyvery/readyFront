@@ -140,7 +140,7 @@
 .store-detail-page__menuCategory {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
+  /* border-bottom: 1px solid rgba(216, 35, 86, 0.6); */
 }
 
 .store-detail-page__menuCategory-scroll {
@@ -189,6 +189,7 @@
   padding-left: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(216, 35, 86, 0.6);
 }
 
 .store-detail-page__menuCategory__item.selected {

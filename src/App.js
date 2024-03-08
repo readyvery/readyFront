@@ -167,7 +167,7 @@ function App() {
             <Route path="/order" element={<NewOrderProcessPage />} />
             {/* 마이페이지-쿠폰 확인 페이지 */}
             <Route path="/coupon" element={<NewCouponPage />} />
-            {/* 멤버쉽 포인트 페이지 */}
+            {/* 멤버십 포인트 페이지 */}
             <Route path="/membership" element={<NewMembershipPage />} />
             {/* 장바구니 페이지 */}
             <Route path="/cart" element={<NewCartPage />} />
