@@ -134,12 +134,10 @@
   display: flex;
   flex-direction: row;
   height: 5.75rem;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.6875rem;
   height: 7rem;
   overflow-x: auto;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
 }
 
 .home_individual_quick_order_container::-webkit-scrollbar {
@@ -151,10 +149,9 @@
   flex-direction: row;
   width: 10.375rem;
   height: 5.75rem;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   text-decoration: none;
-  flex-direction: row;
 }
 
 .first-item {
