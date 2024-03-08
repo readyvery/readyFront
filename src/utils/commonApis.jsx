@@ -26,7 +26,6 @@ commonApis.interceptors.request.use(
     }
 );
 
-
 commonApis.interceptors.response.use(
     (res) => { return res },
     async (err) => {
@@ -39,39 +38,35 @@ commonApis.interceptors.response.use(
         
         const loginStateValue = localStorage.getItem('accessToken');
         console.log('commonApi: ', loginStateValue);
+        console.log(response);
 
         // if(!loginStateValue){
         //     // 로그인 안 되어 있는 경우
         //     setIsAuth(true);
         // }
         try{
-        if (response?.status === 403 && loginStateValue) {
+            if (response?.status === 403 && loginStateValue) {
             console.log("로그인 O, 403");
             const res = await axios.get(process.env.REACT_APP_API_ROOT + "/api/v1/refresh/token", {
-                withCredentials: true
-            })
-            // .then((res) => {
-                console.log(res);
-                const accessToken = res.data.accessToken;
-                // console.log('accessToken: ', accessToken);
-                if(accessToken){
-                    console.log("access token 재설정!");
-                    console.log(accessToken);
-                    localStorage.setItem('accessToken', accessToken);
-                    axios.defaults.headers.common.Authorization = "Bearer " + accessToken;
-                    config.headers.common["Authorization"] = "Bearer " + accessToken;
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${loginStateValue}`
                 }
+            })
+                console.log(res);
+                localStorage.clear();
+                    // removeCookie("accessToken");
+                    // axios.defaults.headers.common.Authorization = "Bearer " + accessToken;
+                    // config.headers.common["Authorization"] = "Bearer " + accessToken;
                 return axios(config);
             }
         } catch (e) {
-            // })
-            // .catch((e) => {
-                if (e?.response?.status === 401 || e?.response?.status === 403){
-                    // 로그인 페이지로 이동
-                    localStorage.removeItem("accessToken");
-                    window.location.href = "/login";
-                }
-            // });
+            if (e?.response?.status === 401 || e?.response?.status === 403){
+                // 로그인 페이지로 이동
+                console.log(e);
+                localStorage.removeItem("accessToken");
+                window.location.href = "/login";
+            }
             return config;
         }
         return Promise.reject(err);

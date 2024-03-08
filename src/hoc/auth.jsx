@@ -2,7 +2,7 @@ import { message } from "antd";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../Atom/status";
 import commonApis from "../utils/commonApis";
 
@@ -11,13 +11,16 @@ function Auth(SpecificComponent, option, adminRoute = null) {
     const navigate = useNavigate();
     const location = useLocation();
     const [cookies, , removeCookie] = useCookies(["accessToken"]);
-    const setIsAuth = useSetRecoilState(isAuthenticatedState)
     const token = localStorage.getItem("accessToken");
+    const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState)
 
     useEffect(() => {
       function fetchAuth() {
         commonApis.get("/auth", {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token ? token : cookies?.accessToken}`
+          }
         }).then((response) => {
             console.log(response);
             const { auth } = response.data; // 로그인 여부
@@ -28,13 +31,16 @@ function Auth(SpecificComponent, option, adminRoute = null) {
             // 로그인 후 첫 접속
             console.log('auth에서 첫 접속: ', cookies.accessToken);
             localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-            setIsAuth(true); // 로그인 여부 변경
+            // setIsAuth(true); // 로그인 여부 변경
             message.success("로그인에 성공하셨습니다.");
             removeCookie("accessToken"); // AT 쿠키 삭제
+            return;
           }
           if (!auth) {
             // 로그인 안 되어 있는 경우
-            setIsAuth(false);
+            if(isAuth){
+              setIsAuth(false);
+            }
             if(option && location.pathname !== '/'){
               navigate('/login');
               return;
@@ -42,6 +48,9 @@ function Auth(SpecificComponent, option, adminRoute = null) {
           }
           else {
             // 로그인이 된 경우
+            if(!isAuth){
+              setIsAuth(true);
+            }
             if(!option){
               // 로그인하면 갈 수 없는 페이지
               navigate('/');
@@ -49,7 +58,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
             }
             if(role === 'GUEST'){
               // 번호인증 안 한 유저
-              if(adminRoute !== 1){
+              if(adminRoute === 2){
                 navigate('/authentication');
               }
               return;
@@ -74,7 +83,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
                 // 서버 오류 또는 네트워크 오류 등의 다른 오류 처리
             }
           })
-      }
+        }
       fetchAuth();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
@@ -10,7 +10,8 @@ import useGetPoint from "../../hooks/useGetPoint";
 import "./MyPage.css";
 function Mypage() {
   const navigate = useNavigate();
-  const [isAuth] = useRecoilState(isAuthenticatedState);
+  // const token = localStorage.getItem("accessToken");
+  const isAuth = useRecoilValue(isAuthenticatedState);
   const { name: userName } = useFetchUserInfo();
   const point  = useGetPoint();
 
