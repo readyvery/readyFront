@@ -1,8 +1,5 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchStoreInfo = (storeId) => {
   const [address, setAddress] = useState(null);
@@ -16,8 +13,8 @@ const useFetchStoreInfo = (storeId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/store/${storeId}`
+        const response = await commonApis.get(
+          `/store/${storeId}`
         );
         setAddress(response.data.address);
         setImgs(response.data.imgs);

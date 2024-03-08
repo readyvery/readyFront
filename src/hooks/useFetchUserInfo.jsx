@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/user/info`;
+const apiUrl = `/user/info`;
 
 const useFetchUserInfo = () => {
+  const token = localStorage.getItem("accessToken");
   // const [userInfo, setUserInfo] = useState({ name: "", phone: "", email: "" });
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -13,15 +12,22 @@ const useFetchUserInfo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(apiUrl, {
-          withCredentials: true,
+      if(token){
+        try {
+          const response = await commonApis.get(apiUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
-        setEmail(response.data.email);
-        setName(response.data.name);
-        setPhone(response.data.phone);
-      } catch (error) {
-        console.error("Error fetching user info:", error);
+          setEmail(response.data.email);
+          setName(response.data.name);
+          setPhone(response.data.phone);
+        } catch (error) {
+          console.error("Error fetching user info:", error);
+        }
+      } else {
+        console.log('fetching user info is diabled')
+        return null;
       }
     };
 

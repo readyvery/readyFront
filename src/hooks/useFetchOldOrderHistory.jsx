@@ -1,18 +1,20 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
 
 const useFetchOldOrderHistory = () => {
   const [oldStorageList, setOldStorageList] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchOldOrderHistory = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/order/history/old`,
-          { withCredentials: true }
+        const response = await commonApis.get(
+          `/order/history/old`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
         );
         setOldStorageList(response.data.receipts?.reverse());
       } catch (error) {

@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/event/main`;
+const apiUrl = `/event/main`;
 
 const useFetchEvents = () => {
   const [events, setEvents] = useState([]);
@@ -11,7 +9,7 @@ const useFetchEvents = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl, { withCredentials: true });
+        const response = await commonApis.get(apiUrl);
         setEvents(response.data.mainEvents);
       } catch (error) {
         console.error("Error fetching events data:", error);

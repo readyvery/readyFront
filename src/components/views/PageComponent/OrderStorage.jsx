@@ -5,8 +5,8 @@ import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import StateBox from "../StateBox/StateBox";
-import "./OrderStorage.css";
 import Empty from "./Empty";
+import "./OrderStorage.css";
 
 function OrderStorage() {
   const navigate = useNavigate();
@@ -14,12 +14,11 @@ function OrderStorage() {
   const oldStorageList = useFetchOldOrderHistory();
 
   const progressList = {
-    ORDER: 0,
-    MAKE: 1,
-    COMPLETE: 2,
-    PICKUP: 3,
-    CANCEL: 4,
-    FAIL: 5,
+    ORDER: 0, // 진행중
+    MAKE: 1, // 제조중
+    COMPLETE: 2, // 제조완료
+    CANCEL: 4, // 주문취소
+    FAIL: 5, // 결제실패
   };
 
   const handleNavigation = (e, orderId, progress) => {

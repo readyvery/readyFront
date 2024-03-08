@@ -1,10 +1,10 @@
 // 장바구니 확인
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchCartData = (cartId) => {
+  const token = localStorage.getItem("accessToken");
+  
   const [cartIdApi, setCartIdApi] = useState(0);
   const [carts, setCarts] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -19,9 +19,13 @@ const useFetchCartData = (cartId) => {
     const fetchData = async () => {
       try {
         const apiUrl = cartId
-          ? `${apiRoot}/api/v1/order/cart?cartId=${cartId}`
-          : `${apiRoot}/api/v1/order/cart`;
-        const response = await axios.get(apiUrl, { withCredentials: true });
+          ? `/order/cart?cartId=${cartId}`
+          : `/order/cart`;
+        const response = await commonApis.get(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setCartIdApi(response.data.cartId);
         setCarts(response.data.carts);
         setEdit(response.data.edit);

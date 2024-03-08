@@ -7,18 +7,28 @@ const apiUrl = `${apiRoot}/${apiVer}/order/cart/count`;
 
 const useFetchCartCount = () => {
   const [totalCount, setTotalCount] = useState(0);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchCartCount = async () => {
       try {
-        const response = await axios.get(apiUrl, { withCredentials: true });
+        const response = await axios.get(apiUrl, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setTotalCount(response.data.count);
       } catch (error) {
-        console.error("장바구니 갯수 조회 중 오류 발생:", error);
+        if(error.response.status === 404){
+          setTotalCount(0);
+        }
+        console.log(error);
       }
     };
 
     fetchCartCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return totalCount;

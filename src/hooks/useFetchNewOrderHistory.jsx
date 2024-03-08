@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/history/new`;
+const apiUrl = `/order/history/new`;
 
 const useFetchNewOrderHistory = () => {
   const [newStorageList, setNewStorageList] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchNewOrderHistory = async () => {
       try {
-        const response = await axios.get(apiUrl, { withCredentials: true });
+        const response = await commonApis.get(apiUrl, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+        });
         setNewStorageList(response.data.receipts);
+        console.log('new receipt: ', response.data.receipts);
       } catch (error) {
         console.error("Error fetching new order history:", error);
       }

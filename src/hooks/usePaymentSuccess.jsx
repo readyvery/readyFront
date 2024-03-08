@@ -1,18 +1,21 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const usePaymentSuccess = (paymentType, orderId, paymentKey, amount) => {
+  const token = localStorage.getItem("accessToken");
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [paymentMessage, setPaymentMessage] = useState("");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  const apiVer = "api/v1";
 
   useEffect(() => {
     const fetchPaymentResult = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/order/toss/success?paymentType=${paymentType}&orderId=${orderId}&paymentKey=${paymentKey}&amount=${amount}`,
-          { withCredentials: true }
+        const response = await commonApis.get(
+          `/order/toss/success?paymentType=${paymentType}&orderId=${orderId}&paymentKey=${paymentKey}&amount=${amount}`,
+          {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
         );
         setPaymentStatus(response.status);
         setPaymentMessage(response.data.message);

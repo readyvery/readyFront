@@ -1,8 +1,5 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchStoreMenu = (storeId, inout) => {
   const [menu, setMenu] = useState([]);
@@ -10,8 +7,8 @@ const useFetchStoreMenu = (storeId, inout) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/store/${storeId}/menu?inout=${inout}`
+        const response = await commonApis.get(
+          `/store/${storeId}/menu?inout=${inout}`
         );
         setMenu(response.data);
       } catch (error) {

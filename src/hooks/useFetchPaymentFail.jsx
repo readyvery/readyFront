@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import axios from "axios";
+import commonApis from "../utils/commonApis";
 
 const useFetchPaymentFail = (message, orderId, code) => {
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  const apiVer = "api/v1";
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    axios
+    commonApis
       .get(
-        `${apiRoot}/${apiVer}/order/toss/fail?message=${message}&orderId=${orderId}&code=${code}`,
-        { withCredentials: true }
+        `/order/toss/fail?message=${message}&orderId=${orderId}&code=${code}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      }
       )
       .then((response) => {
         console.log(response);

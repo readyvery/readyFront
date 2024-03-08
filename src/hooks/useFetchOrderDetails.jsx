@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchOrderDetails = (orderId) => {
+  const token = localStorage.getItem("accessToken");
+
   const [cancelReason, setCancelReason] = useState("");
   const [cart, setCart] = useState([]);
   const [inout, setInout] = useState(0);
@@ -20,9 +19,12 @@ const useFetchOrderDetails = (orderId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/order/receipt?orderId=${orderId}`,
-          { withCredentials: true }
+        const response = await commonApis.get(
+          `/order/receipt?orderId=${orderId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
         );
         setCancelReason(response.data.cancelReason);
         setCart(response.data.cart);
@@ -35,6 +37,7 @@ const useFetchOrderDetails = (orderId) => {
         setSalePrice(response.data.salePrice);
         setStoreName(response.data.storeName);
         setStorePhone(response.data.storePhone);
+        console.log('order detail: ', response.data);
       } catch (error) {
         console.error("Error fetching order details:", error);
       }

@@ -1,11 +1,10 @@
-import axios from "axios";
 import { message } from "antd";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/coupon`;
+const apiUrl = `/coupon`;
 
 const usePostCoupon = () => {
+  const token = localStorage.getItem("accessToken");
   const postCoupon = async (
     couponCode,
     couponId,
@@ -18,10 +17,13 @@ const usePostCoupon = () => {
     }
 
     try {
-      const response = await axios.post(
+      const response = await commonApis.post(
         apiUrl,
-        { couponCode, couponId },
-        { withCredentials: true }
+        { couponCode, couponId }, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      }
       );
       console.log(response);
       message.success("쿠폰 받기 완료!");

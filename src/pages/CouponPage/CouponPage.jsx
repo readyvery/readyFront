@@ -1,8 +1,8 @@
-import Header from "../../components/views/Header/Header";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./CouponPage.css";
-import useFetchCoupons from "../../hooks/useFetchCoupons";
+import Header from "../../components/views/Header/Header";
 import Empty from "../../components/views/PageComponent/Empty";
+import useFetchCoupons from "../../hooks/useFetchCoupons";
+import "./CouponPage.css";
 
 const CouponPage = () => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const CouponPage = () => {
                   {item.publisher}
                 </div>
                 <div className="coupon-page__coupon-item__expirationDate">
-                  {item.expirationDate}
+                  유효기간: {item.expirationDate?.split("T")[0]}
                 </div>
                 <div className="coupon-page__coupon-item__description">
                   {item.description}
