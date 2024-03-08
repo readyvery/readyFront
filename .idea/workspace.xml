@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1005cf39-5767-40c2-9269-ebaf55ab9096" name="Changes" comment="" />
+    <list default="true" id="1005cf39-5767-40c2-9269-ebaf55ab9096" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hoc/auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/likes/Documents/readyBusinessBack",
+    "last_opened_file_path": "C:/Users/likes/Documents/레디베리/ReadyBack/readyBack",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -41,6 +45,7 @@
       <workItem from="1700647352010" duration="106000" />
       <workItem from="1701410454295" duration="122000" />
       <workItem from="1701414533385" duration="17000" />
+      <workItem from="1709772203710" duration="54000" />
     </task>
     <servers />
   </component>
