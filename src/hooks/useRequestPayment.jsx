@@ -1,16 +1,17 @@
-import axios from "axios";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/toss`;
+const apiUrl = `/order/toss`;
 
 const useRequestPayment = () => {
+  const token = localStorage.getItem("accessToken");
   const requestPayment = async (cartId, couponId, paymentWidget, point) => {
     try {
       const body = { cartId, couponId, point };
-      const response = await axios.post(apiUrl, body, {
-        withCredentials: true,
-      });
+      const response = await commonApis.post(apiUrl, body,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 
       if (response.data.amount <= 0) {
         window.location.href =

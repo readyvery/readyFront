@@ -1,15 +1,16 @@
-import axios from "axios";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/cart/reset`;
+const apiUrl = `/order/cart/reset`;
 
 const useResetCart = () => {
+  const token = localStorage.getItem("accessToken");
   const resetCart = async () => {
     try {
-      const response = await axios.delete(apiUrl, {
-        withCredentials: true,
-      });
+      const response = await commonApis.delete(apiUrl, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
       return response;
     } catch (error) {
       console.error("Error resetting cart:", error);

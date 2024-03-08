@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { isAuthenticatedState } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import { IMAGES } from "../../constants/images";
@@ -16,10 +14,11 @@ import StoreList from "../../components/views/StoreList/StoreList";
 import useGetPoint from "../../hooks/useGetPoint";
 
 const HomePage = () => {
-  const isAuth = useRecoilValue(isAuthenticatedState);
+  // const isAuth = useRecoilValue(isAuthenticatedState);
+  const token = localStorage.getItem("accessToken");
   const { name: userName } = useFetchUserInfo();
   const navigate = useNavigate();
-  const quickOrder = useFetchQuickOrder(isAuth);
+  const quickOrder = useFetchQuickOrder();
   const point = useGetPoint();
   // const postCoupon = usePostCoupon();
   // const [couponIssued, setCouponIssued] = useState(false);
@@ -37,7 +36,7 @@ const HomePage = () => {
       <Header headerProps={null} />
 
       <div className="home_individual">
-        {isAuth ? (
+        {token ? (
           <div className="home_individual_login">
             <div className="home_individual_benefits">
               <div className="home_individual_user">

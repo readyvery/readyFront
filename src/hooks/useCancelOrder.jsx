@@ -1,17 +1,20 @@
-import axios from "axios";
 import { message } from "antd";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/toss/cancel`;
+const apiUrl = `/order/toss/cancel`;
 
 const useCancelOrder = () => {
+  const token = localStorage.getItem("accessToken");
+
   const cancelOrder = async (orderId) => {
     try {
-      const response = await axios.post(
+      const response = await commonApis.post(
         apiUrl,
-        { orderId },
-        { withCredentials: true }
+        { orderId }, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      }
       );
       if (response.status === 200 && response.data.message === "취소 성공") {
         message.success("주문 취소되었습니다.");

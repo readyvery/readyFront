@@ -1,14 +1,16 @@
-import axios from "axios";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
 
 const useDeleteCartItem = () => {
+  const token = localStorage.getItem("accessToken");
+
   const deleteCartItem = async (itemId, paymentData, setPaymentData) => {
     try {
-      await axios.delete(`${apiRoot}/${apiVer}/order/cart?idx=${itemId}`, {
-        withCredentials: true,
-      });
+      await commonApis.delete(`/order/cart?idx=${itemId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 
       // 로컬 상태 갱신
       const updatedCarts = paymentData.carts.filter(

@@ -3,23 +3,27 @@ import { useEffect, useState } from "react";
 import "./CartItemCount.css";
 const CartItemCount = () => {
   const [count, setCount] = useState(0); // 장바구니 개수
+  const token = localStorage.getItem("accessToken");
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const apiVer = "api/v1";
+  const apiUrl = `${apiRoot}/${apiVer}/order/cart/count`
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(`${apiRoot}/api/v1/order/cart/count`, {
-          withCredentials: true,
-        });
-        setCount(response.data.count);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const err = error.response?.data.status;
-          if (err === 404) {
+      if(token){
+        try {
+          const response = await axios.get(apiUrl, {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          setCount(response.data.count);
+        } catch (error) {
+          if(error.response.status === 404){
             setCount(0);
-          } else {
-            console.error(error);
           }
+          console.log(error);
         }
       }
     };

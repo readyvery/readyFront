@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchCurrentOrder = (orderId, refreshKey) => {
   // const [cancels, setCancels] = useState(null);
@@ -13,12 +10,17 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
   const [orderNum, setOrderNum] = useState("");
   const [progress, setProgress] = useState("");
 
+  const token = localStorage.getItem("accessToken");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${apiVer}/order/current?orderId=${orderId}`,
-          { withCredentials: true }
+        const response = await commonApis.get(
+          `/order/current?orderId=${orderId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
         );
         // setCancels(response.data.cancels);
         setEstimatedTime(response.data.estimatedTime);

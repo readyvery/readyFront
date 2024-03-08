@@ -54,7 +54,7 @@ const CouponPage = () => {
                   {item.publisher}
                 </div>
                 <div className="coupon-page__coupon-item__expirationDate">
-                  {item.expirationDate}
+                  유효기간: {item.expirationDate?.split("T")[0]}
                 </div>
                 <div className="coupon-page__coupon-item__description">
                   {item.description}

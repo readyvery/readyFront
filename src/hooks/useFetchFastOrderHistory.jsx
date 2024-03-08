@@ -1,17 +1,20 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/history/fast`;
+const apiUrl = `/order/history/fast`;
 
 const useFetchFastOrderHistory = () => {
   const [storageList, setStorageList] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchFastOrderHistory = async () => {
       try {
-        const response = await axios.get(apiUrl, { withCredentials: true });
+        const response = await commonApis.get(apiUrl, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+        });
         setStorageList(response.data.receipts?.reverse());
       } catch (error) {
         console.error("Error fetching fast order history:", error);
@@ -19,6 +22,7 @@ const useFetchFastOrderHistory = () => {
     };
 
     fetchFastOrderHistory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return storageList;

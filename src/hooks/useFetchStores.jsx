@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/board/store`;
+const apiUrl = `/board/store`;
 
 const useFetchStores = () => {
   const [stores, setStores] = useState([]);
@@ -11,9 +9,7 @@ const useFetchStores = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl, {
-          withCredentials: true,
-        });
+        const response = await commonApis.get(apiUrl);
         setStores(response.data.stores);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -1,15 +1,16 @@
-import axios from "axios";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/cart`;
+const apiUrl = `/order/cart`;
 
 const useUpdateCart = () => {
+  const token = localStorage.getItem("accessToken");
   const updateCart = async (body) => {
     try {
-      const response = await axios.post(apiUrl, body, {
-        withCredentials: true,
-      });
+      const response = await commonApis.post(apiUrl, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
       return response;
     } catch (error) {
       console.error("Error updating cart:", error);

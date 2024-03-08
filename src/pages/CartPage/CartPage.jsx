@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
-import "./CartPage.css";
-import { IMAGES } from "../../constants/images";
 import Empty from "../../components/views/PageComponent/Empty";
+import { IMAGES } from "../../constants/images";
+import commonApis from "../../utils/commonApis";
+import "./CartPage.css";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const CartPage = () => {
   const [Count, setCount] = useState(1);
   const [Idx, setIdx] = useState(0);
   const apiRoot = process.env.REACT_APP_API_ROOT;
+  const token = localStorage.getItem("accessToken");
 
   const handleDecrease = (item) => {
     if (item?.count > 1) {
@@ -50,8 +51,10 @@ const CartPage = () => {
   const handleRemoveItem = async (itemId) => {
     try {
       // 서버에 아이템 삭제 요청 보내기
-      await axios.delete(`${apiRoot}/api/v1/order/cart?idx=${itemId}`, {
-        withCredentials: true,
+      await commonApis.delete(`/order/cart?idx=${itemId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
 
       // 로컬 상태 및 렌더링 갱신
@@ -74,9 +77,13 @@ const CartPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
-          { withCredentials: true }
+        const response = await commonApis.get(
+          `/order/cart?cartId=${cartId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
         );
         setPaymentData(response.data);
         setPrice(response.data.totalPrice);
@@ -87,9 +94,14 @@ const CartPage = () => {
 
     const noneCartData = async () => {
       try {
-        const response = await axios.get(`${apiRoot}/api/v1/order/cart`, {
-          withCredentials: true,
-        });
+        const response = await commonApis.get(
+          `/order/cart`, 
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+          );
         setPaymentData(response.data);
         setPrice(response.data.totalPrice);
       } catch (error) {
@@ -102,15 +114,20 @@ const CartPage = () => {
   }, []);
 
   useEffect(() => {
-    axios
+    commonApis
       .put(
-        `${apiRoot}/api/v1/order/cart?idx=${Idx}&count=${Count}`,
+        `/order/cart?idx=${Idx}&count=${Count}`,
         { price: price },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       )
       .catch((error) => {
         console.error(error);
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Idx, price, Count, apiRoot]);
 
   const totalQuantity = paymentData?.carts.reduce(

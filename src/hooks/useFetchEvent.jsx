@@ -1,17 +1,14 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
 const useFetchEvent = (storeId) => {
   const [eventImgUrl, setEventImgUrl] = useState("");
-  // const [takeOutEvent, setTakeOutEvent] = useState("");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
-  const version = "api/v1";
 
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await axios.get(
-          `${apiRoot}/${version}/store/${storeId}/event`
+        const response = await commonApis.get(
+          `/store/${storeId}/event`, 
         );
         setEventImgUrl(response.data.eventImgUrl);
         // setTakeOutEvent(response.data.takeOutEvent);

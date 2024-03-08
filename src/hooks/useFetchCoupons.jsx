@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/coupon`;
+const apiUrl = `/coupon`;
 
 const useFetchCoupons = () => {
   const [coupons, setCoupons] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchCoupons = async () => {
       try {
-        const response = await axios.get(apiUrl, {
-          withCredentials: true,
+        const response = await commonApis.get(apiUrl, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
         });
         setCoupons(response.data.coupons);
       } catch (error) {

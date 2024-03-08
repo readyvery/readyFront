@@ -1,8 +1,10 @@
-import "./Login.css";
-import { IMAGES } from "../../constants/images";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { IMAGES } from "../../constants/images";
+import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
   const handleGoogleLogin = () => {
     window.location.href = `${process.env.REACT_APP_GOOGLE_LOGIN}`;
   };
@@ -19,22 +21,14 @@ function Login() {
         src={IMAGES.headerClose}
         alt="X"
         className="login_close"
-        onClick={() => window.history.back()}
+        onClick={() => navigate('/')}
       />
 
       <img src={IMAGES.berryLogo} alt="ReadyVery" className="login_logo" />
 
       {/* <div className="login_slogan">
         <span className="login_slogan_text">준비는 빠르게 혜택은 다르게</span>
-      </div>
-
-      <img
-        src={IMAGES.kakaoLogin}
-        alt="kakaoLogin"
-        className="login_kakao"
-        onClick={handleKakaoLogin}
-      />
-      <img src={IMAGES.appleLogin} alt="appleLogin" className="login_apple" /> */}
+      </div> */}
 
       <div className="login_content">
         준비는 빠르게 혜택은 다르게

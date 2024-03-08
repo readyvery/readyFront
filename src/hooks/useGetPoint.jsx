@@ -1,21 +1,29 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/point/`;
+const apiUrl = `/point/`;
 
 const useGetPoint = () => {
+  const token = localStorage.getItem("accessToken");
   const [point, setPoint] = useState(0);
   useEffect(() => {
     const getPoint = async () => {
-      try {
-        const response = await axios.get(apiUrl, { withCredentials: true });
-        const pointValue =
-          response.data.point === null ? 0 : response.data.point;
-        setPoint(pointValue);
-      } catch (error) {
-        console.error("Error fetching events data:", error);
+      if (token){
+        try {
+          const response = await commonApis.get(apiUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+          });
+          const pointValue =
+            response.data.point === null ? 0 : response.data.point;
+          setPoint(pointValue);
+        } catch (error) {
+          console.error("Error fetching events data:", error);
+        }
+      } else {
+        console.log('getting point is disabled');
+        return null;
       }
     };
 

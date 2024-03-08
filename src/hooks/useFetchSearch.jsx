@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/board/search`;
+const apiUrl = `/board/search`;
 
 const useFetchSearch = () => {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(apiUrl, { withCredentials: true })
+    commonApis
+      .get(apiUrl)
       .then((response) => {
         setStores(response.data.stores);
       })

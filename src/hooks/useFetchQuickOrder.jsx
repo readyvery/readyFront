@@ -1,35 +1,35 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import commonApis from "../utils/commonApis";
 
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
-const apiUrl = `${apiRoot}/${apiVer}/order/history/fast`;
+const apiUrl = `/order/history/fast`;
 
-const useFetchQuickOrder = (isAuth) => {
+const useFetchQuickOrder = () => {
   const [quickOrder, setQuickOrder] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchData = async () => {
-      if (isAuth) {
+      if (token) {
         try {
-          const response = await axios.get(apiUrl, { withCredentials: true });
+          const response = await commonApis.get(apiUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+          });
           setQuickOrder(response.data.receipts?.reverse());
-          console.log(isAuth);
         } catch (error) {
-          console.log("isAuth0" + isAuth);
           console.error("Error fetching quick order data:", error);
         }
       } else {
         // isAuth가 false일 때 quickOrder 상태를 초기화합니다.
-        console.log(isAuth);
-
+        console.log('fetching quick order is diabled');
         setQuickOrder([]);
       }
     };
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth]);
+  }, []);
 
   return quickOrder;
 };

@@ -1,28 +1,29 @@
-import axios from "axios";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
-
-const apiRoot = process.env.REACT_APP_API_ROOT;
-const apiVer = "api/v1";
+import commonApis from "../utils/commonApis";
 
 const useLogout = (removeCookie, setIsAuth) => {
+  const token = localStorage.getItem("accessToken");
   const navigate = useNavigate();
 
   const logout = async () => {
-    try {
-      const response = await axios.get(`${apiRoot}/${apiVer}/user/logout`, {
-        withCredentials: true,
+    if(token){
+      try {
+        const response = await commonApis.get(`/user/logout`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
       });
-      console.log(response);
-      removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
-      removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
-      setIsAuth(false);
-      message.success("로그아웃에 성공하셨습니다.");
-      navigate("/");
-    } catch (error) {
-      console.error("Error during logout:", error);
-      message.error("로그아웃 실패. 관리자에게 문의하세요.");
-      navigate("/");
+        console.log(response);
+        localStorage.clear();
+        setIsAuth(false);
+        message.success("로그아웃에 성공하셨습니다.");
+        navigate("/");
+      } catch (error) {
+        console.error("Error during logout:", error);
+        message.error("로그아웃 실패. 관리자에게 문의하세요.");
+        // navigate("/");
+      }
     }
   };
 
