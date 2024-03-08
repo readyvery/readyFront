@@ -1,7 +1,7 @@
 import { message } from "antd";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { isAuthenticatedState } from "../Atom/status";
 import commonApis from "../utils/commonApis";
@@ -9,6 +9,7 @@ import commonApis from "../utils/commonApis";
 function Auth(SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [cookies, , removeCookie] = useCookies(["accessToken"]);
     const setIsAuth = useSetRecoilState(isAuthenticatedState)
     const token = localStorage.getItem("accessToken");
@@ -16,9 +17,6 @@ function Auth(SpecificComponent, option, adminRoute = null) {
     useEffect(() => {
       function fetchAuth() {
         commonApis.get("/auth", {
-            // headers: {
-            //     Authorization: `Bearer ${token.accessToken}`
-            // },
             withCredentials: true
         }).then((response) => {
             console.log(response);
@@ -37,7 +35,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
           if (!auth) {
             // 로그인 안 되어 있는 경우
             setIsAuth(false);
-            if(option){
+            if(option && location.pathname !== '/'){
               navigate('/login');
               return;
             }
@@ -57,9 +55,10 @@ function Auth(SpecificComponent, option, adminRoute = null) {
               return;
             } else if (role === 'USER'){
               // 번호인증 한 유저
-              if(adminRoute !== 2){
+              if(adminRoute === 1){
                 navigate('/');
               }
+              return;
             }
           }}).catch((error) => {
             console.log(error);

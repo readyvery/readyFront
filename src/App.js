@@ -53,10 +53,10 @@ function App() {
 
   //false : 로그인 한 유저 못들어감
   const NewLoginPage = Auth(LoginPage, false); // 로그인 페이지
-
+  
   //true : 로그인 한 유저 들어감
+  const NewHomePage = Auth(HomePage, true); // 홈페이지
   const NewAuthentication = Auth(AuthenticationPage, true, 1);
-  // const NewHomePage = Auth(HomePage, true, 2);
   const NewOrderHistory = Auth(OrderHistory, true, 2);
   const NewOrderDetail = Auth(OrderDetail, true, 2);
   const NewMyprofilePage = Auth(MyprofilePage, true, 2);
@@ -129,7 +129,7 @@ function App() {
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             <Route path="/splash" element={<Splash />} />
             {/* 메인페이지 */}
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<NewHomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
             <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
             {/* 카페검색*/}
