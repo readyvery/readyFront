@@ -55,18 +55,19 @@ function App() {
   const NewLoginPage = Auth(LoginPage, false); // 로그인 페이지
 
   //true : 로그인 한 유저 들어감
-  const NewHomePage = Auth(HomePage, true);
-  const NewOrderHistory = Auth(OrderHistory, true);
-  const NewOrderDetail = Auth(OrderDetail, true);
-  const NewMyprofilePage = Auth(MyprofilePage, true);
+  const NewAuthentication = Auth(AuthenticationPage, true, 1);
+  // const NewHomePage = Auth(HomePage, true, 2);
+  const NewOrderHistory = Auth(OrderHistory, true, 2);
+  const NewOrderDetail = Auth(OrderDetail, true, 2);
+  const NewMyprofilePage = Auth(MyprofilePage, true, 2);
 
-  const NewOrderProcessPage = Auth(OrderProcessPage, true);
-  const NewMembershipPage = Auth(MembershipPage, true);
-  const NewCouponPage = Auth(CouponPage, true);
-  const NewCartPage = Auth(CartPage, true);
-  const NewPaymentPage = Auth(PaymentPage, true);
-  const NewPaymentLoadingPage = Auth(PaymentLoadingPage, true);
-  const NewPaymentFailPage = Auth(PaymentFailPage, true);
+  const NewOrderProcessPage = Auth(OrderProcessPage, true, 2);
+  const NewMembershipPage = Auth(MembershipPage, true, 2);
+  const NewCouponPage = Auth(CouponPage, true, 2);
+  const NewCartPage = Auth(CartPage, true, 2);
+  const NewPaymentPage = Auth(PaymentPage, true, 2);
+  const NewPaymentLoadingPage = Auth(PaymentLoadingPage, true, 2);
+  const NewPaymentFailPage = Auth(PaymentFailPage, true, 2);
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   const minute = 1000 * 60 * 60 * 24; // 24시간
@@ -128,7 +129,7 @@ function App() {
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             <Route path="/splash" element={<Splash />} />
             {/* 메인페이지 */}
-            <Route path="/" element={<NewHomePage />} />
+            <Route path="/" element={<HomePage />} />
             {/* 없는 경로로 갈 경우 메인페이지로 강제 이동 */}
             <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
             {/* 카페검색*/}
@@ -136,7 +137,7 @@ function App() {
             {/* 로그인*/}
             <Route path="/login" element={<NewLoginPage />} />
             {/* 번호인증 페이지 */}
-            <Route path="/authentication" element={<AuthenticationPage/>} />
+            <Route path="/authentication" element={<NewAuthentication/>} />
             {/* 쿠폰 및 포인트  faq페이지*/}
             <Route path="/faq" element={<FrequentlyAskedQuestionPage />} />
             {/* 마이페이지-약관정책 페이지 */}

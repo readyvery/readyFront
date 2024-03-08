@@ -6,7 +6,7 @@ import { useSetRecoilState } from "recoil";
 import { isAuthenticatedState } from "../Atom/status";
 import commonApis from "../utils/commonApis";
 
-function Auth(SpecificComponent, option) {
+function Auth(SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
     const navigate = useNavigate();
     const [cookies, , removeCookie] = useCookies(["accessToken"]);
@@ -44,14 +44,22 @@ function Auth(SpecificComponent, option) {
           }
           else {
             // 로그인이 된 경우
-            if(role === 'GUEST'){
-              // 번호인증 안 한 유저
-              navigate('/authentication');
-              return;
-            }
             if(!option){
+              // 로그인하면 갈 수 없는 페이지
               navigate('/');
               return;
+            }
+            if(role === 'GUEST'){
+              // 번호인증 안 한 유저
+              if(adminRoute !== 1){
+                navigate('/authentication');
+              }
+              return;
+            } else if (role === 'USER'){
+              // 번호인증 한 유저
+              if(adminRoute !== 2){
+                navigate('/');
+              }
             }
           }}).catch((error) => {
             console.log(error);
@@ -62,7 +70,7 @@ function Auth(SpecificComponent, option) {
             ) {
                 // 클라이언트 오류 발생 (400번대 오류)
                 // 로그인 페이지로 되돌아가는 조건문 추가
-                // navigate('/login');
+                navigate('/login');
             } else {
                 // 서버 오류 또는 네트워크 오류 등의 다른 오류 처리
             }
