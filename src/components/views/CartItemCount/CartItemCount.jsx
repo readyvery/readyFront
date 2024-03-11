@@ -1,26 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./CartItemCount.css";
+import { useNavigate } from "react-router-dom";
 const CartItemCount = () => {
   const [count, setCount] = useState(0); // 장바구니 개수
   const token = localStorage.getItem("accessToken");
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const apiVer = "api/v1";
-  const apiUrl = `${apiRoot}/${apiVer}/order/cart/count`
+  const apiUrl = `${apiRoot}/${apiVer}/order/cart/count`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      if(token){
+      if (token) {
         try {
           const response = await axios.get(apiUrl, {
             withCredentials: true,
             headers: {
-              Authorization: `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           });
           setCount(response.data.count);
         } catch (error) {
-          if(error.response.status === 404){
+          if (error.response.status === 404) {
             setCount(0);
           }
           console.log(error);
@@ -33,7 +35,13 @@ const CartItemCount = () => {
   }, []);
 
   return (
-    <>{count === 0 ? null : <div className="cart-item-count">{count}</div>}</>
+    <>
+      {count === 0 ? null : (
+        <div className="cart-item-count" onClick={() => navigate(`/cart`)}>
+          {count}
+        </div>
+      )}
+    </>
   );
 };
 
