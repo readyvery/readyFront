@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isAuthenticatedState } from "../../Atom/status";
+import { useCookies } from "react-cookie";
+import { useSetRecoilState } from "recoil";
+import { getAuthenticatedSelector } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import { IMAGES } from "../../constants/images";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import useGetPoint from "../../hooks/useGetPoint";
 import "./MyPage.css";
+import useLogout from "../../hooks/useLogout";
+import useDeleteAccount from "../../hooks/useDeleteAccount";
+import Modal from "../../components/views/Modal/Modal";
+
 function Mypage() {
   const navigate = useNavigate();
   // const token = localStorage.getItem("accessToken");
   const isAuth = useRecoilValue(isAuthenticatedState);
   const { name: userName } = useFetchUserInfo();
-  const point  = useGetPoint();
+  const point = useGetPoint();
+  const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
+  const setIsAuth = useSetRecoilState(getAuthenticatedSelector);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isBye, setIsBye] = useState(false);
+  const logout = useLogout(removeCookie, setIsAuth);
+  const deleteAccount = useDeleteAccount(removeCookie, setIsAuth);
+  const byeText =
+    "계정탈퇴 시, 개인정보 및 레디베리에 저장된 데이터는<br />약관에 따라 3개월 이후 삭제됩니다. 계속하겠습니까?";
 
   return (
     <div className="mypage">
@@ -103,6 +118,36 @@ function Mypage() {
         </div>
         <div className="mypage_profile_category">레디베리 리서치 참여</div>
       </div>
+
+      <div className="mypage_profile_category_manage">
+        계정관리
+        <div
+          className="mypage_profile_category"
+          onClick={() => setIsOpen(true)}
+        >
+          로그아웃
+        </div>
+        <div className="mypage_profile_category" onClick={() => setIsBye(true)}>
+          계정탈퇴
+        </div>
+      </div>
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancel={logout}
+          title="로그아웃 하시겠습니까?"
+          subtitle=""
+        />
+      )}
+      {isBye && (
+        <Modal
+          setIsOpen={setIsBye}
+          handleCancel={deleteAccount}
+          title="계정탈퇴"
+          subtitle={<div dangerouslySetInnerHTML={{ __html: byeText }} />}
+        />
+      )}
 
       <NavBar />
     </div>
