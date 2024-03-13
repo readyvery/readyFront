@@ -1,0 +1,21 @@
+.signup-page-content-phone-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  @media screen and (min-width: 480px) {
+    .signup-page-content-phone-container {
+      width: 28rem;
+      margin-top: 5.19rem;
+    }
+  }
+  
+  /* w:480, h:800일 때 */
+  @media screen and (max-width: 480px) {
+    .signup-page-content-phone-container {
+      width: 18.8rem;
+      margin-top: 4.26rem;
+    }
+  }
+  

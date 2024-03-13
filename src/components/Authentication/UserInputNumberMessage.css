@@ -1,0 +1,40 @@
+.user-input-number-message-wrapper {
+    position: relative;
+    align-items: center;
+    display: flex;
+  }
+  
+  .user-input-number-message-input {
+    border-radius: 0.3125rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    font-size: 1rem;
+    height: 3.125rem;
+    padding: 0.8rem 0rem 0.7rem 1rem;
+    font-family: "Pretendard Variable";
+  }
+  
+  .user-input-number-message-timer {
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    top: 35%;
+    font-family: "Pretendard Variable";
+    font-size: 0.8rem;
+    color: #838383;
+  }
+  
+  @media screen and (min-width: 480px) {
+    .user-input-number-message-input {
+      width: 28rem;
+      margin-bottom: 0.31rem;
+    }
+  }
+  
+  /* w:480, h:800일 때 */
+  @media screen and (max-width: 480px) {
+    .user-input-number-message-input {
+      width: 18.75rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+  

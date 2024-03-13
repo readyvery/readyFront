@@ -62,4 +62,9 @@ export const IMAGES = {
 
   // 마이페이지
   profile: require("../assets/images/ic_profile.png"),
+
+  // 번호 인증 페이지
+  check_red: require("../assets/images/check_red.png"),
+  check_x_red: require("../assets/images/check_x_red.png"),
+  find_logo: require("../assets/images/ic_find_logo.png"),
 };

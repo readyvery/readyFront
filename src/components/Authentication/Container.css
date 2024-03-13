@@ -1,0 +1,72 @@
+.container-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f4f7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container-wrapper-inner {
+    background-color: #fff;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  
+    border-radius: 0.25rem;
+    box-shadow: 0rem 1.5rem 3rem 0rem rgba(0, 0, 0, 0.03),
+      0rem 1.525rem 3.5rem 0rem rgba(216, 216, 216, 0.3);
+  }
+  
+  .container-wrapper-inner::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .container-wrapper-wrapper {
+    font-family: "Pretendard Variable";
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: #2e2d2d;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .container-wrapper-wrapper img {
+    height: 1.5625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loginpage-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  /* w:768, h:1024 이상일 때 */
+  @media screen and (min-width: 480px) {
+    .container-wrapper-inner {
+      height: 100%;
+    }
+  }
+  
+  /* w:480, h:800일 때 */
+  @media screen and (max-width: 480px) {
+    .container-wrapper-inner {
+      height: 100%;
+    }
+    .container-wrapper-wrapper {
+      font-size: 1.5rem;
+    }
+    .container-wrapper-wrapper img {
+      margin-bottom: 0.31rem;
+    }
+  }
+  
