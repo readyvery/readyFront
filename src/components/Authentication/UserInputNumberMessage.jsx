@@ -14,6 +14,7 @@ const Timer = ({ minutes, seconds }) => (
 
 
 function UserInputNumberMessage( { phoneNumber }){
+  const token = localStorage.getItem("accessToken");
   const [chkNum, setChkNum] = useState("");
   const [timer, setTimer] = useState(TIMER_DURATION);
   const [isAuth, setIsAuth] = useState();
@@ -36,7 +37,9 @@ function UserInputNumberMessage( { phoneNumber }){
         const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
           phoneNumber: phoneNumber,
           verifyNumber: newChkNum,
-        });
+        }, {headers: {
+          Authorization: `Bearer ${token}`,
+        }});
   
         if (response.data.success) {
           console.log("인증성공", response.data);
