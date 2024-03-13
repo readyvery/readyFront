@@ -1,21 +1,29 @@
 import { message } from "antd";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RedButton from "./RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage";
 
+//TODO: 훅 분리
 function PhoneCertificationInput({ id, type, placeholder, requiredname, text, buttonText }) {
   const [inputNum, setInputNum] = useState(false);
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
-  // const [operationMode, setOperationMode] = useState('join');
-  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const navigate = useNavigate();
+  const apiRoot = process.env.REACT_APP_API_ROOT;
+  const apiVer = "api/v1";
+  const apiUrl1 = `${apiRoot}/${apiVer}/sms/send`;
+  const apiUrl2 = `${apiRoot}/${apiVer}/sms/authority`;
+  const token = localStorage.getItem("accessToken");
 
   const handleButtonClick = () => {
     if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
       setInputNum(true);
       handlePostmessage();
+      // console.log("번호전송")
+      // setChkButton(true);
     } else {
       setInputNum(false);
       message.info("전화번호를 올바르게 입력해주세요.");
@@ -25,9 +33,11 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
   const handlePostmessage = async () => {
     try {
       setChkButton(true);
-      const response = await axios.post(`${apiUrl}/api/v1/sms/send`, {
+      const response = await axios.post(apiUrl1, {
         phoneNumber: Phonenumber,
-      })
+      }, {headers: {
+        Authorization: `Bearer ${token}`,
+      }})
       console.log(response);
 
       if (response.data.success) {
@@ -52,8 +62,26 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
     setPhonenumber(event.target.value);
   }
 
-  const handleJoinClick = async () => {
-    console.log("hi")
+  const handleRegisterClick = async () => {
+    try {
+      const response = await axios.post(apiUrl2, {
+        phoneNumber: Phonenumber,
+      }, {headers: {
+        Authorization: `Bearer ${token}`,
+      }})
+      console.log(response);
+
+      if (response.data.success) {
+        console.log("전화번호 등록 성공");
+        navigate('/');
+      } else {
+        console.log("전화번호 등록 실패", response.data);
+        message.info("전화번호 등록에 실패하셨습니다.");
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -78,7 +106,7 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
       </div>
       {renderUserInputNumberMessage()}
       <div className="user-input-phone-number-auth-button">
-        <RedButton type="submit" onClick={handleJoinClick}>{buttonText}</RedButton>
+        <RedButton type="submit" onClick={handleRegisterClick}>{buttonText}</RedButton>
       </div>
     </>
   );
@@ -89,7 +117,6 @@ const UserInputNumber = () => {
 
     return(
         <div className="user-input-phone-number-content-number-wrapper">
-            <label className="user-input-phone-number-content-number-label-style">전화번호 인증</label>
             <PhoneCertificationInput 
                 id="userid" 
                 type="tel"

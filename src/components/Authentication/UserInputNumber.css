@@ -19,18 +19,18 @@
   }
   
   .user-input-phone-number-input {
-    border-radius: 0.3125rem;
+    border-radius: 0.24788rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
-    padding: 0.8rem 1rem 0.7rem 1rem;
-    font-size: 1rem;
+    /* padding: 0.8rem 1rem 0.7rem 1rem; */
+    font-size: 0.75rem;
   }
   
   .user-input-phone-number-button {
-    border-radius: 0.3125rem;
+    border-radius: 0.24788rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
     background-color: white;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
   
   .user-input-phone-number-button-clicked {
