@@ -1,36 +1,29 @@
-import { useEffect, useState } from "react";
-import Container from "../../components/Authentication/Container";
 import UserInputNumber from "../../components/Authentication/UserInputNumber";
-
+import { IMAGES } from "../../constants/images";
+import "./AuthenticationPage.css";
 const AuthenticationPage = () => {
-    const [is480, setIs480] = useState(window.innerWidth <= 480);
-    const containerSize = is480
-    ? ["25rem", "37.5rem", "2.56rem", "2.31rem"]
-    : ["37.5rem", "50rem", "5.63rem", "3.88rem"];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIs480(window.innerWidth <= 480);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
-    <Container
-      title="전화번호 인증"
-      containerWidth={containerSize[0]}
-      containerHeight={containerSize[1]}
-      logoMarginTop={containerSize[2]}
-      logoMarginBottom={containerSize[3]}
-    >
-      <div className="signup-page-content-phone-container">
+    <div className="authentication-page">
+      <header>
+        <img
+          src={IMAGES.headerBack}
+          alt="back"
+          className="authentication-page-header_back"
+          onClick={() => {
+            window.history.back();
+          }}
+        />
+      </header>
+      <main className="authentication-page-container">
+        <img
+          src={IMAGES.find_logo}
+          alt="logo"
+          className="authentication-page-top-logo"
+        />
+        <div className="authentication-page-top-text">전화번호 인증</div>
         <UserInputNumber />
-      </div>
-    </Container>
+      </main>
+    </div>
   );
 };
 
