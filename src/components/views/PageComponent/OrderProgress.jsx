@@ -106,19 +106,25 @@ const OrderProgress = () => {
           <div className="order_progress__pick_up_time">
             <img src={IMAGES.progressClock} alt="clock" />
             <span>
-              <span style={{ color: "#D82356" }}>
-                {moment(estimatedTime, "HH:mm:ss.SSS").diff(
-                  moment(),
-                  "minutes"
-                ) < 0
-                  ? 0
-                  : moment(estimatedTime, "HH:mm:ss.SSS").diff(
+              {moment(estimatedTime, "HH:mm:ss.SSS").diff(
+                moment(),
+                "minutes"
+              ) <= 0 ? (
+                <span>
+                  <span style={{ color: "D82356" }}>지금&nbsp;</span>수령 가능!
+                </span>
+              ) : (
+                <span>
+                  <span style={{ color: "#D82356" }}>
+                    {moment(estimatedTime, "HH:mm:ss.SSS").diff(
                       moment(),
                       "minutes"
                     )}
-                분 후&nbsp;
-              </span>
-              수령 가능!
+                    분 후&nbsp;
+                  </span>
+                  수령 가능!
+                </span>
+              )}
             </span>
           </div>
         )}
