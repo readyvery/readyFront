@@ -181,6 +181,7 @@ const OrderProcessPage = () => {
         ?.filter((el) => el?.essential)
         .map((e) => `${e?.options[0]?.name}`)
     );
+
     setTotalAmount(
       orderCnt &&
         orderCnt *
@@ -192,9 +193,11 @@ const OrderProcessPage = () => {
                 .reduce((prev, curr) => prev + curr, 0)
             ))
     );
+
     setPrevRadioPrice(
       category?.filter((el) => el?.essential)?.map((e) => e?.options[0]?.price)
     );
+
     setEssentialOptionIdx(
       category
         ?.filter((e) => e?.essential)
