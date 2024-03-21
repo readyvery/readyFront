@@ -214,6 +214,7 @@ const OrderProcessPage = () => {
     setPrevRadioPrice(
       category?.filter((el) => el?.essential)?.map((e) => e?.options[0]?.price)
     );
+
     setEssentialOptionIdx(
       category
         ?.filter((e) => e?.essential)
@@ -238,7 +239,7 @@ const OrderProcessPage = () => {
 
       <img
         className="order-process-page__menu__img"
-        src={imgUrl}
+        src={imgUrl || IMAGES.orderItemImgNull}
         alt="menuImg"
       />
 

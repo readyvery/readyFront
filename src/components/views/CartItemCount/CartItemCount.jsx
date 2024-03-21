@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import commonApis from "../../../utils/commonApis";
 import "./CartItemCount.css";
 const CartItemCount = () => {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0); // 장바구니 개수
   const token = localStorage.getItem("accessToken");
-  const apiUrl = `/order/cart/count`
+  const apiUrl = `/order/cart/count`;
 
   useEffect(() => {
     const fetchData = async () => {
-      if(token){
+      if (token) {
         try {
           const response = await commonApis.get(
             apiUrl, 
@@ -20,7 +22,7 @@ const CartItemCount = () => {
           );
           setCount(response.data.count);
         } catch (error) {
-          if(error.response.status === 404){
+          if (error.response.status === 404) {
             setCount(0);
           }
         }
@@ -32,7 +34,13 @@ const CartItemCount = () => {
   }, []);
 
   return (
-    <>{count === 0 ? null : <div className="cart-item-count">{count}</div>}</>
+    <>
+      {count === 0 ? null : (
+        <div className="cart-item-count" onClick={() => navigate(`/cart`)}>
+          {count}
+        </div>
+      )}
+    </>
   );
 };
 

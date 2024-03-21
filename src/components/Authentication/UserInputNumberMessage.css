@@ -1,0 +1,31 @@
+.user-input-number-message-wrapper {
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard Variable";
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  border-radius: 0.3125rem;
+  width: 100%;
+  height: 2.5rem;
+}
+.user-input-number-message-wrapper:focus-within {
+  outline: 1px solid var(--title, #2e2d2d);
+}
+.user-input-number-message-wrapper input {
+  padding-left: 0.94rem;
+  border: none;
+  font-size: 0.75rem;
+}
+.user-input-number-message-wrapper input:focus {
+  border: none;
+  outline: none;
+}
+
+.timer {
+  display: flex;
+  margin-right: 0.81rem;
+  margin-left: auto;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  color: #838383;
+}
+

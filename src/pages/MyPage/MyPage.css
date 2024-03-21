@@ -1,6 +1,5 @@
 .mypage {
   width: 100%;
-  height: 94vh;
   background-color: #ffffff;
   padding-top: 4.44rem;
   padding-bottom: 5.0625rem;
@@ -110,4 +109,20 @@
   stroke-width: 1px;
   background: #dadada;
   margin: 0 1.5rem 0.5rem 1.5rem;
+}
+
+.mypage_profile_category_manage {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  color: #4f4f4f;
+  font-family: "Pretendard Variable";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%; /* 1.21875rem */
+  padding-top: 0.87rem;
+  padding-bottom: 0.81rem;
+  margin-left: 1.81rem;
+  margin-right: 1.81rem;
 }
