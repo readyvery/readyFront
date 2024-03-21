@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import Modal from "../../components/views/Modal/Modal";
-import TEXT from "../../constants/text";
-import "./OrderProcess.css";
-import useFetchFoodOptionInfo from "../../hooks/useFetchFoodOptionInfo";
-import useUpdateCart from "../../hooks/useUpdateCart";
-import useResetCart from "../../hooks/useResetCart";
 import { IMAGES } from "../../constants/images";
+import TEXT from "../../constants/text";
+import useFetchFoodOptionInfo from "../../hooks/useFetchFoodOptionInfo";
+import useResetCart from "../../hooks/useResetCart";
+import useUpdateCart from "../../hooks/useUpdateCart";
+import "./OrderProcess.css";
 
 const OrderProcessPage = () => {
   let navigate = useNavigate();
@@ -108,6 +108,7 @@ const OrderProcessPage = () => {
     setIsOpen((prev) => !prev);
   };
 
+  // toggle 변경
   const handleToggle = (index) => {
     setActiveToggles((prevToggles) => {
       const toggles = [...prevToggles];
@@ -120,13 +121,16 @@ const OrderProcessPage = () => {
     // }
   };
 
+  // 필수 옵션 변경
   const handleRadioChange = (index, text, price, idx) => {
+    
     setSelectedRadioTexts((prevTexts) => {
       const texts = [...prevTexts];
       texts[index] = text;
       return texts;
     });
 
+    console.log('totalAmount: ', totalAmount - prevRadioPrice[index] + price);
     setTotalAmount((prevAmount) => prevAmount - prevRadioPrice[index] + price);
 
     setPrevRadioPrice((prevPrices) => {
@@ -142,7 +146,12 @@ const OrderProcessPage = () => {
     });
   };
 
+  // 선택 옵션 변경
   const handleOptionChange = (idx, price, e) => {
+    const tmpOptionIdx = [...optionIdx, idx];
+    e.target.checked && console.log('옵션 변경 후 totalAmount: ', totalAmount + price, '옵션 변경 후 idx: ', tmpOptionIdx);
+    !e.target.checked && console.log('옵션 변경 후 totalAmount: ', totalAmount - price, '옵션 변경 후 idx: ', optionIdx.filter((e) => e !== idx));
+
     e.target.checked
       ? setTotalAmount((prevAmount) => prevAmount + price)
       : setTotalAmount((prevAmount) => prevAmount - price);
@@ -151,47 +160,55 @@ const OrderProcessPage = () => {
       : setOptionIdx((prev) => prev.filter((e) => e !== idx));
   };
 
+  // 수량 증가
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
+    console.log('count: ', newOrderCnt);
     setOrderCnt(newOrderCnt);
   };
 
+  // 수량 감소
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
+    console.log('count: ', newOrderCnt);
     setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
   };
-
-  useEffect(() => {
-    setTotalAmount(price);
-  }, [price]);
 
   useEffect(() => {
     if (category && category.length > 0) {
       const essentialOptions = category
         .filter((el) => el?.essential)
         .map((e) => e.options[0]?.name);
+
+      console.log('essentialOptions: ', essentialOptions);
       setSelectedRadioTexts(essentialOptions);
     }
-  }, [category]);
 
-  useEffect(() => {
-    setActiveToggles(category?.filter((e) => e?.essential).map(() => false));
-    setSelectedRadioTexts(
+    console.log('orderCount: ', orderCnt)
+    console.log('price: ', price);
+    console.log('category: ', parseInt(
       category
         ?.filter((el) => el?.essential)
-        .map((e) => `${e?.options[0]?.name}`)
-    );
+        .map((e) => parseInt(e?.options[0]?.price))
+        .reduce((prev, curr) => prev + curr, 0)));
+    console.log('totalPrice: ', 
+    (price +
+      parseInt(
+        category
+          ?.filter((el) => el?.essential)
+          .map((e) => parseInt(e?.options[0]?.price))
+          .reduce((prev, curr) => prev + curr, 0)
+      )));
 
     setTotalAmount(
-      orderCnt &&
-        orderCnt *
-          (price +
-            parseInt(
-              category
-                ?.filter((el) => el?.essential)
-                .map((e) => parseInt(e?.options[0]?.price))
-                .reduce((prev, curr) => prev + curr, 0)
-            ))
+      price && 
+      price +
+        parseInt(
+          category
+            ?.filter((el) => el?.essential)
+            .map((e) => parseInt(e?.options[0]?.price))
+            .reduce((prev, curr) => prev + curr, 0)
+        )
     );
 
     setPrevRadioPrice(
@@ -203,8 +220,13 @@ const OrderProcessPage = () => {
         ?.filter((e) => e?.essential)
         ?.map((cate) => cate?.options[0]?.idx)
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
+
+  useEffect(() => {
+    setActiveToggles(category?.filter((e) => e?.essential).map(() => false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, price, orderCnt]);
+  }, [price])
 
   return (
     <div className="order-process-page">
@@ -421,8 +443,9 @@ const OrderProcessPage = () => {
         <text className="order-process-page__total-amount__price">
           {isNaN(totalAmount * orderCnt)
             ? "0원"
-            : (totalAmount * orderCnt)
-                .toString()
+            : (orderCnt * 
+              totalAmount)
+                ?.toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
         </text>
       </div>
