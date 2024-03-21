@@ -9,6 +9,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
   // const [orderName, setOrderName] = useState("");
   const [orderNum, setOrderNum] = useState("");
   const [progress, setProgress] = useState("");
+  const [expectPoint, setExpectPoint] = useState(0);
 
   const token = localStorage.getItem("accessToken");
 
@@ -29,6 +30,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
         // setOrderName(response.data.orderName);
         setOrderNum(response.data.orderNum);
         setProgress(response.data.progress);
+        setExpectPoint(response.data.expectPoint);
       } catch (error) {
         console.error("Error fetching current order status:", error);
       }
@@ -38,7 +40,7 @@ const useFetchCurrentOrder = (orderId, refreshKey) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId, refreshKey]); // refreshKey를 의존성 배열에 추가
 
-  return { estimatedTime, orderNum, progress };
+  return { estimatedTime, orderNum, progress, expectPoint };
 };
 
 export default useFetchCurrentOrder;
