@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import commonApis from "../utils/commonApis";
 
 const apiUrl = `/order/history/fast`;
 
 const useFetchQuickOrder = () => {
+  const [cookies, , ] = useCookies(["accessToken"]);
   const [quickOrder, setQuickOrder] = useState([]);
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchData = async () => {
-      if (token) {
+      if (token || cookies?.accessToken) {
         try {
           const response = await commonApis.get(apiUrl, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token ? token : cookies?.accessToken}`
             }
           });
           setQuickOrder(response.data.receipts?.reverse());

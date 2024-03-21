@@ -1,10 +1,11 @@
 import { message } from "antd";
+import moment from "moment";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../Atom/status";
-import commonApis from "../utils/commonApis";
+import authApi from "../utils/authApi";
 
 function Auth(SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
@@ -16,30 +17,46 @@ function Auth(SpecificComponent, option, adminRoute = null) {
 
     useEffect(() => {
       function fetchAuth() {
-        commonApis.get("/auth", {
+        authApi.get("/auth", {
             withCredentials: true,
             headers: {
               Authorization: `Bearer ${token ? token : cookies?.accessToken}`
           }
         }).then((response) => {
             console.log(response);
+            // debugger;
             const { auth } = response.data; // 로그인 여부
             const { role } = response.data; // GUEST, USER, CEO
             console.log(auth, role, option);
-          console.log(cookies?.accessToken);
-          if (cookies.accessToken && auth && !token) {
-            // 로그인 후 첫 접속
-            console.log('auth에서 첫 접속: ', cookies.accessToken);
-            localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-            // setIsAuth(true); // 로그인 여부 변경
-            message.success("로그인에 성공하셨습니다.");
-            removeCookie("accessToken"); // AT 쿠키 삭제
-            return;
+          console.log(cookies);
+          if (cookies.accessToken) {
+            if(!token && auth) {
+              // 로그인 후 첫 접속
+              console.log('auth에서 첫 접속: ', cookies.accessToken);
+              localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
+              localStorage.setItem("expiredTime", moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+              setIsAuth(true); // 로그인 여부 변경
+              message.success("로그인에 성공하셨습니다.");
+              removeCookie("accessToken"); // AT 쿠키 삭제
+              return;
+            } else if(token) {
+              localStorage.clear();
+              localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
+              localStorage.setItem("expiredTime", moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+              setIsAuth(true); // 로그인 여부 변경
+              removeCookie("accessToken"); // AT 쿠키 삭제
+              return;
+            }
           }
           if (!auth) {
             // 로그인 안 되어 있는 경우
             if(isAuth){
               setIsAuth(false);
+            }
+            if(cookies?.accessToken){
+              // 로그인 안 되어 있는데 쿠키 담겨있는 경우
+              localStorage.setItem("accessToken", cookies.accessToken);
+              removeCookie("accessToken");
             }
             if(option && location.pathname !== '/'){
               navigate('/login');

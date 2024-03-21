@@ -27,10 +27,9 @@ export const getAuthenticatedSelector = selector({
 });
 
 // 사용자의 로그인 상태 및 토큰 정보를 저장하는 상태
-export const loginState = atom({
-  key: "loginState",
+export const tokenState = atom({
+  key: "tokenState",
   default: {
-    accessToken: null,
     expiredTime: null,
   },
   effects_UNSTABLE: [persistAtom],

@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import commonApis from "../utils/commonApis";
 
 const apiUrl = `/point/`;
 
 const useGetPoint = () => {
   const token = localStorage.getItem("accessToken");
+  const [cookies, , ] = useCookies(["accessToken"]);
   const [point, setPoint] = useState(0);
   useEffect(() => {
     const getPoint = async () => {
-      if (token){
+      if (token || cookies?.accessToken){
         try {
           const response = await commonApis.get(apiUrl, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token ? token : cookies?.accessToken}`
             }
           });
           const pointValue =
