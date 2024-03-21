@@ -1,0 +1,48 @@
+.user-input-phone-number-content-number-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  font-family: "Pretendard Variable";
+}
+
+.user-input-phone-number-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.user-input-phone-number-input {
+  border-radius: 0.24788rem;
+  border: 1px solid rgba(131, 131, 131, 1);
+  padding-left: 0.94rem;
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  width: 11.153rem;
+  height: 2.47844rem;
+}
+
+.user-input-phone-number-button {
+  border-radius: 0.24788rem;
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  background-color: white;
+  font-weight: 500;
+  font-size: 0.75rem;
+  width: 3.46981rem;
+  height: 2.48rem;
+}
+
+.user-input-phone-number-button-clicked {
+  background-color: #ffeaef;
+}
+
+.user-input-phone-number-auth-button {
+  margin-left: 3.31rem;
+  margin-right: 3.31rem;
+  margin-top: auto;
+  margin-bottom: 6.56rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

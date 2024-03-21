@@ -1,92 +1,57 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Kakaologo from "../../assets/images/kakao_logo.svg";
-import loginpagelogo from "../../assets/images/login_logo.svg";
-import Header from "../../components/views/Header/Header";
+import { IMAGES } from "../../constants/images";
+import "./Login.css";
 
-const Container = styled.div`
-  width: 100%;
-  height: 94vh;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const LogoImage = styled.img`
-  margin: 35% 0 10% 0;
-`;
-
-const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const KakaoButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
-`;
-
-const PolicyContainter = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-`;
-
-function KaKaoLoginBtn() {
+function Login() {
   const navigate = useNavigate();
+  const handleGoogleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_GOOGLE_LOGIN}`;
+  };
+  const handleAppleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_APPLE_LOGIN}`;
+  };
   const handleKakaoLogin = () => {
     window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
   };
-  const handlePolicyClick = () => {
-    navigate("/policyinlogin"); // 페이지 이동 추가
-  };
-  const handlePrivacyClick = () => {
-    navigate("/privacypolicyinlogin");
-  };
+
   return (
-    <div className="login-div">
-      <Header
-        headerProps={{
-          pageName: "",
-          isClose: true,
-          linkTo: "/",
-        }}
+    <div className="login">
+      <img
+        src={IMAGES.headerClose}
+        alt="X"
+        className="login_close"
+        onClick={() => navigate('/')}
       />
 
-      <Container>
-        <LogoContainer>
-          <LogoImage src={loginpagelogo} alt="로고" />
-        </LogoContainer>
-        <LoginContainer>
-          <KakaoButton onClick={handleKakaoLogin}>
-            <img src={Kakaologo} alt="카카오로그인" />
-          </KakaoButton>
-        </LoginContainer>
-        <PolicyContainter onClick={handlePolicyClick}>
-          <div style={{ borderBottom: "0.5px solid #000" }}>
-            레디베리 이용약관
-          </div>
-        </PolicyContainter>
-        <PolicyContainter onClick={handlePrivacyClick}>
-          <div style={{ borderBottom: "0.5px solid #000" }}>
-            레디베리 개인정보 처리방침
-          </div>
-        </PolicyContainter>
-      </Container>
+      <img src={IMAGES.berryLogo} alt="ReadyVery" className="login_logo" />
+
+      {/* <div className="login_slogan">
+        <span className="login_slogan_text">준비는 빠르게 혜택은 다르게</span>
+      </div> */}
+
+      <div className="login_content">
+        준비는 빠르게 혜택은 다르게
+        <div className="login_btn">
+          <img
+            src={IMAGES.googleLogin}
+            alt="googleLogin"
+            onClick={handleGoogleLogin}
+          />
+          <img
+            src={IMAGES.appleLogin}
+            alt="appleLogin"
+            onClick={handleAppleLogin}
+          />
+          <img
+            src={IMAGES.kakaoLogin}
+            alt="kakaoLogin"
+            onClick={handleKakaoLogin}
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default KaKaoLoginBtn;
+export default Login;

@@ -1,0 +1,15 @@
+.splash {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #d82356 -2.76%, #eecda3 199.75%);
+}
+
+.splash_logo {
+  width: 6.18469rem;
+  height: 6.27119rem;
+  transform: rotate(0.028deg);
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.3));
+}

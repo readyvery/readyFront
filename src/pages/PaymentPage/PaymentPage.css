@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  padding-top: 4.44rem;
 }
 
 .payment-page__cafe-info {
@@ -157,6 +158,8 @@
 }
 
 .payment-page__packaging-status__img {
+  width: 1.25rem;
+  height: 1.26144rem;
   margin-right: 1rem;
   margin-left: 1rem;
 }
@@ -169,6 +172,26 @@
 .payment-page__coupone {
   display: flex;
   margin-bottom: 1.37rem;
+}
+/* 포인트 */
+.payment-page__point {
+  display: flex;
+  margin-bottom: 0.31rem;
+}
+.payment-page__point__available {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.75rem;
+}
+.payment-page__point__available span {
+  color: var(--kakao-logo, #000);
+  text-align: right;
+  font-family: "Pretendard Variable";
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.65rem */
+  letter-spacing: -0.005rem;
 }
 
 .payment-page__coupone__apply {
@@ -183,6 +206,9 @@
   font-size: 0.9375rem;
   line-height: 130%; /* 1.21875rem */
   letter-spacing: -0.00938rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .payment-page__coupone-btn {
@@ -197,7 +223,10 @@
   font-size: 0.6875rem;
   line-height: 130%; /* 0.89375rem */
   letter-spacing: -0.00688rem;
-  padding: 0.31rem 0.69rem;
+  /* padding: 0.31rem 0.69rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 0.5rem;
 }
 

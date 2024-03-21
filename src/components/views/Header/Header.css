@@ -5,11 +5,16 @@
   left: 0;
   right: 0;
   left: 0;
-  height: 6rem;
+  height: 11.5625rem;
   background-color: #d82356;
+  border-radius: 0rem 0rem 1.5625rem 1.5625rem;
+  background: linear-gradient(
+    180deg,
+    #d82356 0.1%,
+    rgba(216, 35, 86, 0.05) 174.64%
+  );
   display: flex;
-  z-index: 100;
-  align-items: center;
+  z-index: -1;
   border-radius: 0rem 0rem 2rem 2rem;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -17,37 +22,48 @@
 .top_header_page {
   position: absolute;
   top: 0;
-  height: 4rem;
+  height: 3.5rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.94rem;
+  padding-left: 1.56rem;
+  padding-right: 1.59rem;
 }
 
-.header-link {
-  margin-top: 1rem;
-  margin-left: 2rem;
+.top_header_page span {
+  position: absolute; /* 절대 위치 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 1.25rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
 }
 
-.close-link {
+.header_back {
+  width: 0.8125rem;
+  height: 1.5625rem;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: auto;
-  margin-left: 1.56rem;
 }
 
-.header-cart {
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: 2rem;
-}
-
-/* home-link 및 homeIcon 스타일 조정 */
 .home-link {
   display: inline-block;
 }
 
-.homeIcon {
-  margin-left: 1rem; /* 간격을 주기 위한 마진 값 설정 */
+.header_cart {
+  width: 1.94019rem;
+  height: 1.94019rem;
+}
+
+.header_home1 {
+  width: 1.94019rem;
+  height: 1.94019rem;
+  margin-left: 0.58rem;
 }
 
 .home-link2 {
@@ -55,42 +71,47 @@
   margin-right: 2rem;
 }
 
-.homeIcon2 {
-  margin: 0 2rem;
-  /* margin-left: 2rem; */
-  /* 간격을 주기 위한 마진 값 설정 */
+.header_home2 {
+  width: 1.94019rem;
+  height: 1.94019rem;
+  margin-left: 0 2rem;
 }
 
-/* cart-link 및 bagIcon 스타일 조정 */
-.cart-link {
-  display: inline-block;
-}
-
-.bagIcon {
-  margin-right: 1rem; /* 간격을 주기 위한 마진 값 설정 */
-}
-
-/* homeAndCart 간격 조정 */
 .homeAndCart {
   display: flex;
   align-items: center;
 }
 
-.header-main__warpper {
+.header_cart1 {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 86%;
-  margin: auto;
+  align-items: center;
+  position: relative;
 }
 
-.header-main__warpper span {
-  color: #000;
-  font-size: 1.25rem;
-  font-family: "Pretendard Variable";
-  font-weight: 700;
+.top_header_img_wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 4.065rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 2.625rem;
+  width: 100%;
 }
 
-.header-main__warpper div {
-  width: 4rem;
+.header_logo {
+  width: 10.5rem;
 }
+
+.header_cart_home {
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+}
+
+/* 이거 왜 걸어놓으신건가요..?! 
+  @media only screen and (min-width: 400px) and (max-width: 800px) {
+    .top_header {
+      left: calc(50% - 215px);
+      right: calc(50% - 215px);
+    }
+  } */

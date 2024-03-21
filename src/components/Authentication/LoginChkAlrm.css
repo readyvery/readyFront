@@ -1,0 +1,12 @@
+.check-message {
+  display: flex;
+  align-items: center;
+  color: #d82356;
+  font-family: "Pretendard Variable";
+  font-size: 0.5rem;
+  font-weight: 500;
+}
+.check-message img {
+  height: 0.85rem;
+  width: 0.85rem;
+}

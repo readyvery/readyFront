@@ -1,83 +1,203 @@
-.homepage {
+.home {
   width: 100%;
-  padding-top: 2rem;
+  padding-top: 7.25rem;
   z-index: 1;
 }
 
-.homepage::-webkit-scrollbar {
+.home::-webkit-scrollbar {
   display: none;
 }
 
-/* 바로 주문 */
-.quick-order {
-  width: 90%;
-  /* height: 13%; */
-  margin: 0 auto;
+.home_individual_benefits {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 9.4375rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 1.13rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
-.quick-order-text {
-  /* 글자 */
+.home_individual_user {
+  color: var(--title, #2e2d2d);
   font-family: "Pretendard Variable";
-  font-weight: bold;
+  font-size: 0.875rem;
   font-style: normal;
-  font-size: 1.25rem;
-  margin-top: 1rem;
-  /* 위쪽, 오른쪽, 아래쪽, 왼쪽*/
+  font-weight: 500;
+  line-height: 1.0625rem; /* 121.429% */
+  margin-top: 2.44rem;
+  margin-left: 2.19rem;
 }
 
-.quick-order-list {
-  width: 100%;
-  /* height: 80%; */
+.home_individual_user_name {
+  font-weight: 800;
+}
+
+.home_individual_point {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
-  gap: 3%;
-  white-space: nowrap;
-  padding: 1rem 0.15rem;
+  align-items: center;
+  color: #2e2d2d;
+  font-family: "Pretendard Variable";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 1.06rem;
+  margin-left: 2.19rem;
 }
 
-.quick-order-list::-webkit-scrollbar {
+.home_individual_coupon_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.25rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  background: #ffeaef;
+  color: var(--signature, #d82356);
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+  margin-left: auto;
+  margin-right: 2.19rem;
+}
+
+.home_individual_quick_order {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 3%;
+  white-space: nowrap;
+  margin-top: 2rem;
+}
+
+.home_individual_quick_order_title {
+  display: flex;
+  align-items: center;
+  color: var(--title, #2e2d2d);
+  font-family: "Pretendard Variable";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  margin-left: 1.5rem;
+}
+
+.home_individual_quick_order_guide_btn {
+  width: 1.32181rem;
+  height: 1.32181rem;
+  margin-left: 0.31rem;
+}
+
+.home_individual_quick_order_guide {
+  position: absolute; /* 절대 위치 설정 */
+  left: 5rem;
+  bottom: 8.5rem;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  width: 8.6875rem;
+  height: 2.90338rem;
+  background: url(../../assets/images/bg_quick_order_guide.png) no-repeat center
+    center;
+  background-size: contain;
+}
+
+.home_individual_quick_order_guide span {
+  color: #fff;
+  font-family: "Pretendard Variable";
+  font-size: 0.4375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.6875rem; /* 157.143% */
+  margin: 0.5rem 0.87rem 1.03rem 0.62rem;
+}
+
+.home_individual_quick_order_guide img {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  flex-shrink: 0;
+  margin-top: 0.44rem;
+  margin-right: 0.38rem;
+}
+
+.home_individual_quick_order_container {
+  display: flex;
+  flex-direction: row;
+  height: 5.75rem;
+  align-items: center;
+  gap: 0.6875rem;
+  height: 7rem;
+  overflow-x: auto;
+}
+
+.home_individual_quick_order_container::-webkit-scrollbar {
   display: none;
 }
 
-/* 로그인 되어 있을 때 */
-.login-box {
+.home_individual_quick_order_list {
+  display: flex;
+  flex-direction: row;
   width: 10.375rem;
-  height: 7rem;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  height: 5.75rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   text-decoration: none;
 }
-.quick-order-item {
-  padding: 0 4rem 0 0;
+
+.first-item {
+  margin-left: 1.5rem;
+}
+
+.last-item {
+  margin-right: 1.5rem;
+}
+
+.home_individual_quick_order_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 10.375rem;
 }
 
-.item-name {
+.home_individual_quick_order_item_name {
   color: #4f4f4f;
   font-family: "Pretendard Variable";
-  font-weight: bold;
-  font-style: normal;
   font-size: 0.9375rem;
-  margin: 1rem 7% 0 7%;
-  white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
-  overflow: hidden; /* 텍스트가 넘어갈 경우 숨기기 */
-  text-overflow: ellipsis; /* 생략 부호(...) 표시 */
-}
-
-.item-detail {
-  font-family: "Pretendard Variable";
-  font-weight: 400;
   font-style: normal;
-  font-size: 0.75rem;
-  color: black;
-  margin: 2rem 7% 0 7%;
+  font-weight: 700;
+  line-height: 130%; /* 1.21875rem */
+  letter-spacing: -0.00938rem;
   white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
   overflow: hidden; /* 텍스트가 넘어갈 경우 숨기기 */
   text-overflow: ellipsis; /* 생략 부호(...) 표시 */
+  margin-left: 0.87rem;
 }
 
-.item-price {
+.home_individual_quick_order_item_name_detail {
+  color: #000;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+  white-space: nowrap; /* 텍스트를 한 줄에 나타내기 */
+  overflow: hidden; /* 텍스트가 넘어갈 경우 숨기기 */
+  text-overflow: ellipsis; /* 생략 부호(...) 표시 */
+  margin-left: 0.94rem;
+}
+
+.home_individual_quick_order_item_name_price {
   font-family: "Pretendard Variable";
   font-weight: 400;
   font-style: normal;
@@ -86,168 +206,131 @@
   margin: 0 7% 0 7%;
 }
 
-/* 로그인 되어있지 않을 때 */
-.not-login-box {
-  width: 99%;
-  height: 7rem;
-  display: flex; /* Flexbox를 사용해 가로 정렬 */
-  align-items: center;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: black;
-  font-size: 1.25rem;
-  font-family: "Pretendard Variable";
-  font-weight: bold;
-  font-style: normal;
-}
-
-.profile-icon {
-  margin: 0 5%;
-}
-
-/* event */
-.event {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.event-icon {
-  width: 100%;
-}
-
-/* very pick */
-.very-pick {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.very-pick-text {
-  width: 100%;
-  font-family: "Pretendard Variable";
-  font-weight: bold;
-  font-style: normal;
-  margin-top: 4%;
-  margin-bottom: 2.5%;
-  font-size: 1.25rem;
-}
-
-.very-pick-list {
-  width: 100%;
-}
-
-.very-pick-item {
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-}
-
-.pick-detail-wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0.25px 0.25rem 0.2rem rgba(0, 0, 0, 0.2); /* 그림자 추가 */
-  border-radius: 0.5rem;
-  margin: 0 0 1rem 0;
-}
-
-/* 가게 이미지 */
-.pick-detail {
-  width: 100%;
-  height: 7.625rem;
-  border-radius: 0.5rem 0.5rem 0 0;
-  object-fit: cover;
-}
-
-.closed-image-div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  height: 7.625rem;
-  z-index: 1;
+.home_individual_quick_order_none {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.closed-image {
-  position: absolute;
-  width: 50px; /* 원하는 가로 크기 */
-  height: 50px;
-  background-size: cover;
-  background-position: center;
-}
-
-.pick-info {
-  height: 5rem;
-  margin: 0.62rem 0.69rem;
-}
-
-.pick-name {
   width: 100%;
-  font-size: 1.0625rem;
+  height: 5.75rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: #4f4f4f;
   font-family: "Pretendard Variable";
-  font-weight: 600;
+  font-size: 0.875rem;
   font-style: normal;
-  color: black;
+  font-weight: 700;
+  line-height: 1.0625rem; /* 121.429% */
 }
 
-.pick-address {
-  width: 100%;
-  font-size: 0.75rem;
-  margin-top: 0.2rem;
+.home_individual_welcome {
+  color: #eb8fa9;
   font-family: "Pretendard Variable";
-  font-weight: 500;
+  font-size: 1rem;
   font-style: normal;
-  color: #838383;
+  font-weight: 700;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
 }
 
-.pick-event-info {
+.home_individual_not_login {
   display: flex;
-  margin-top: 0.7rem;
+  align-items: center;
+  color: #4f4f4f;
+  font-family: "Pretendard Variable";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+  margin-top: 0.38rem;
+  margin-left: 2rem;
 }
 
-.pick-eventTextIcon {
-  width: 1rem; /* Set a fixed width for the icon if needed */
-  height: 1.125rem;
-  margin-right: 0.5rem; /* Adjust margin as needed */
+.home_individual_login_btn {
+  width: 2rem;
+  height: 2rem;
+  margin-left: auto;
+  margin-right: 2rem;
 }
 
-.pick-eventText {
+/* 배너 카운팅 */
+.home_event_slide_index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.8125rem;
+  height: 0.6875rem;
+  border-radius: 0.3125rem;
+  background: rgba(131, 131, 131, 0.5);
+  position: absolute;
+  top: 0.3rem;
+  right: 2.3rem;
+  color: var(--title, #2e2d2d);
+  text-align: right;
+  font-family: "Pretendard Variable";
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.65rem */
+  letter-spacing: -0.005rem;
+}
+
+@media (min-width: 800px) {
+  .home_event_slide_index {
+    right: 7.5rem;
+  }
+}
+
+.home_event_slide_index_now {
+  color: #d9d9d9;
+}
+
+.home_berry_pick {
+  margin: 2.5rem auto 0.5rem;
+  color: var(--title, #2e2d2d);
+  font-family: "Pretendard Variable";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
+  margin-left: 1.44rem;
+}
+
+.home_business_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8.81rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5.0625rem;
   width: 100%;
-  font-size: 0.75rem;
-  margin-top: 0.1rem;
-  font-family: "Pretendard Variable";
-  font-weight: bold;
-  font-style: normal;
-  color: #d82356;
+  height: 11.9375rem;
+  background: #f5f5f5;
 }
 
-/* 사업자 정보 */
-.business-info {
-  /* text-align: center; */
-  width: 100%;
-  height: 10%;
-  margin: 0 auto;
+.home_business_info_name {
+  color: var(--frame-text, #838383);
+  font-family: "Pretendard Variable";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 2.25rem;
+  margin-left: 2.12rem;
+  margin-bottom: 1.19rem;
 }
 
-.business-name {
-  /* 위쪽, 오른쪽, 아래쪽, 왼쪽 */
-  margin: 10% 3% 1% 3%;
+.home_business_info_content {
+  color: var(--frame-text, #838383);
   font-family: "Pretendard Variable";
-  font-weight: 400;
+  font-size: 0.5rem;
   font-style: normal;
-}
-
-.business-list {
-  margin: 0 3% 0 3%;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-style: normal;
-  font-size: 10px;
-  padding-bottom: 6rem;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 2.12rem;
+  margin-bottom: 2.31rem;
 }

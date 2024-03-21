@@ -1,77 +1,102 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import cart_icon from "../../../assets/images/cart_icon.svg";
-import home_logo from "../../../assets/images/home_logo.svg";
-import home_logo_bk from "../../../assets/images/home_logo_bk.svg";
-import arrow from "../../../assets/images/icon_arrow.svg";
-import icon_bag from "../../../assets/images/icon_bag.svg";
-import close from "../../../assets/images/icon_close.svg";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { isAuthenticatedState } from "../../../Atom/status";
+import { IMAGES } from "../../../constants/images";
+import TEXT from "../../../constants/text";
+import CartItemCount from "../CartItemCount/CartItemCount";
+import Modal from "../Modal/Modal";
 import "./Header.css";
 
 const Header = ({ headerProps }) => {
+  const isAuth = useRecoilValue(isAuthenticatedState);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const storeId = params.get("storeId");
+  const inout = params.get("inout");
   const isCartPage = location.pathname === "/cart";
+
+  useEffect(() => {
+    // 모달 상태가 변경될 때만 실행
+    if (isOpen && !isAuth) {
+      setIsOpen(true);
+    }
+  }, [isOpen, isAuth]);
+
+  const handleCartClick = () => {
+    if (!isAuth) {
+      setIsOpen(!isOpen);
+    } else {
+      navigate(`/cart`);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsOpen(false);
+    navigate("/login");
+  };
 
   return (
     <>
       {/* headerProps가 주어진 경우 */}
       {headerProps ? (
         <header className="top_header_page">
-          <div className="header-main__warpper">
-            {/* isClosed가 false인 경우 */}
-            {!headerProps.isClose ? (
-              <div>
-                {/* 링크를 가지는 화살표 이미지 */}
-                <Link
-                  to={headerProps.linkTo}
-                  style={{ textDecoration: "none" }}
-                  className="arrow-link"
-                >
-                  <img src={arrow} alt="arrow" />
-                </Link>
-              </div>
-            ) : (
-              // isClosed가 true인 경우면 빈 div
-              <div></div>
-            )}
-            {/* 페이지 이름 표시 */}
-            <span>{headerProps.pageName}</span>
-            {/* isClosed가 true인 경우 */}
-            {headerProps.isClose ? (
-              <div>
-                {/* 링크를 가지는 닫기 아이콘 이미지 */}
-                <Link to={headerProps.linkTo} className="close-link">
-                  <img src={close} alt="close" />
-                </Link>
-              </div>
-            ) : (
-              //  isClosed가 false인 경우
+          <img
+            src={IMAGES.headerBack}
+            alt="back"
+            className="header_back"
+            // onClick={() => handleGoBack()}
+            // onClick={() => navigate(headerProps.linkTo, { replace: true })}
+            onClick={() => {
+              if (headerProps.linkTo) {
+                navigate(headerProps.linkTo, { replace: true });
+              } else {
+                window.history.back();
+              }
+            }}
+          />
+          <span>{headerProps.pageName}</span>
+          <div className="homeAndCart">
+            {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
+            {!isCartPage ? (
               <div className="homeAndCart">
-                {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
-                {!isCartPage ? (
-                  <div>
-                    <Link to="/cart" className="cart-link">
-                      <img src={icon_bag} alt="bagIcon" className="bag-icon" />
-                    </Link>
+                <div className="header_cart1">
+                  <img
+                    src={IMAGES.headerCart}
+                    alt="cart"
+                    className="header_cart"
+                    onClick={() => {
+                      let path = `/cart`; // 기본 경로 설정
+                      if (storeId && !isNaN(parseInt(storeId, 10))) {
+                        // storeId가 유효한 경우
+                        path += `?storeId=${storeId}`; // 기본적으로 storeId만 사용하여 경로 설정
+                        if (inout && !isNaN(parseInt(inout, 10))) {
+                          // inout도 유효한 경우
+                          path += `&inout=${inout}`; // inout 값을 경로에 추가
+                        }
+                      }
 
-                    <Link to="/" className="home-link">
-                      <img
-                        src={home_logo_bk}
-                        alt="homeIcon"
-                        className="homeIcon"
-                      />
-                    </Link>
-                  </div>
-                ) : (
-                  <Link to="/" className="home-link-2">
-                    <img
-                      src={home_logo_bk}
-                      alt="homeIcon"
-                      className="homeIcon2"
-                    />
-                  </Link>
-                )}
+                      navigate(path, { replace: true }); // 조건에 따른 경로로 이동
+                    }}
+                  />
+                  <CartItemCount />
+                </div>
+                <img
+                  src={IMAGES.headerHome}
+                  alt="home"
+                  className="header_home1"
+                  onClick={() => navigate(`/`, { replace: true })}
+                />
               </div>
+            ) : (
+              <img
+                src={IMAGES.headerHome}
+                alt="home"
+                className="header_home2"
+                onClick={() => navigate(`/`, { replace: true })}
+              />
             )}
           </div>
         </header>
@@ -79,14 +104,36 @@ const Header = ({ headerProps }) => {
         // headerProps가 주어지지 않은 경우
         <header className="top_header">
           {/* 홈 로고 (흰) */}
-          <Link to="/" className="header-link">
-            <img src={home_logo} alt="Logo" className="header-logo" />
-          </Link>
-          {/* 장바구니 (흰) */}
-          <Link to="/cart" className="header-cart">
-            <img src={cart_icon} alt="CartIcon" className="cart-icon" />
-          </Link>
+          <div className="top_header_img_wrapper">
+            <img
+              src={IMAGES.logoWhite}
+              alt="Logo"
+              className="header_logo"
+              onClick={() => navigate(`/`, { replace: true })}
+            />
+            {/* 장바구니 (흰) */}
+            <img
+              src={IMAGES.homeCart}
+              alt="cart"
+              className="header_cart_home"
+              onClick={handleCartClick}
+            />
+          </div>
         </header>
+      )}
+
+      {isOpen && (
+        <Modal
+          setIsOpen={setIsOpen}
+          handleCancel={handleCancel}
+          title={TEXT.cartModal.split("\n").map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+          subtitle={"로그인 후 장바구니를 담아주세요."}
+        />
       )}
     </>
   );

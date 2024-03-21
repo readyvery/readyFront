@@ -1,201 +1,128 @@
-.mypage-div {
+.mypage {
   width: 100%;
-  height: 94vh;
   background-color: #ffffff;
+  padding-top: 4.44rem;
+  padding-bottom: 5.0625rem;
 }
 
-.mypage-profile-head {
-  width: 90%;
-  height: 13%;
-  margin: 0 auto;
-  border-bottom: 10px solid #f3f3f3;
-}
-
-.mypage-profile-list {
-  margin-top: 1rem;
-  height: 100%;
-}
-/* 로그인 한 경우 */
-.myprofile-link {
-  text-decoration: none;
-}
-
-.login-box2 {
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex; /* Flexbox를 사용해 가로 정렬 */
+.mypage_profile {
+  display: flex;
   align-items: center;
-  text-decoration: none;
+  width: auto;
+  height: 6rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
-.profile-icon2 {
-  margin: 0 5%;
+.mypage_profile_img {
+  width: 3.75rem;
+  height: 3.75rem;
 }
 
-.profile-name {
-  width: 40%;
-  margin: 0 1%;
+.mypage_profile_name {
+  color: var(--kakao-logo, #000);
+  font-family: "Pretendard Variable";
   font-size: 1.25rem;
-  font-family: "Pretendard Variable";
+  font-style: normal;
   font-weight: 700;
-  text-decoration: none;
-  color: black;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: 0.025rem;
+  margin-left: 0.94rem;
 }
 
-.profile-detailBtn {
-  width: 40%;
-  margin: 0 18%;
-  border: 1px solid #838383;
-  border-radius: 2rem;
-  font-size: 0.8125rem;
-  font-family: "Pretendard Variable";
-  font-weight: 200;
-  color: #838383;
-  padding: 0 1px;
-  text-decoration: none;
-}
-
-/* 로그인하지 않은 경우 */
-.not-login-box2 {
-  width: 100%;
-  height: 100%;
-  display: flex; /* Flexbox를 사용해 가로 정렬 */
+.mypage_profile_management {
+  display: flex;
   align-items: center;
-  text-decoration: none;
-  color: black;
+  justify-content: center;
+  width: 4.0625rem;
+  height: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid #bababa;
+  color: var(--frame-text, #838383);
+  font-family: "Pretendard Variable";
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 0.8125rem */
+  letter-spacing: 0.0125rem;
+  margin-left: auto;
 }
 
-.not-loggedIn2 {
-  margin: 0 0.87rem 0 0.87rem;
-  font-size: 1.25rem;
+.mypage_profile_point {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: auto;
+  height: 5rem;
+  border-radius: 0.625rem;
+  background: #d82356;
+  box-shadow: 0px 0px 8px 2px rgba(216, 35, 86, 0.3);
+  color: #fff;
+  text-align: right;
   font-family: "Pretendard Variable";
+  font-size: 2rem;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
+  margin: 0.5rem 1.5rem 1.13rem 1.5rem;
 }
 
-/* 주문 및 결제 */
-.mypage-order {
-  width: 90%;
-  margin: 0 auto;
-  border-bottom: 10px solid #f3f3f3;
+.mypage_profile_point img {
+  width: 6.125rem;
+  /* height: 1.5rem; */
 }
 
-.mypage-order-text {
-  margin: 1rem 0;
-  width: 100%;
-  font-family: "Pretendard Variable";
-  font-weight: 200;
-  font-size: 0.9375rem;
+.mypage_profile_category_title {
+  display: flex;
+  flex-direction: column;
+  width: auto;
   color: #4f4f4f;
-}
-
-.mypage-order-list-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-order-list {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
   font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-size: 1.125rem;
-}
-
-.mypage-order-type-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-order-type {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-size: 1.125rem;
-}
-
-.mypage-order-coupon-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-order-coupon {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-size: 1.125rem;
-}
-
-/* 문의 및 알림 */
-.mypage-etc {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.mypage-etc-text {
-  margin: 1rem 0;
-  width: 100%;
-  font-family: "Pretendard Variable";
-  font-weight: 200;
   font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%; /* 1.21875rem */
+  padding-top: 0.87rem;
+  padding-bottom: 0.81rem;
+  margin-left: 1.81rem;
+  margin-right: 1.81rem;
+}
+
+.mypage_profile_category {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.8125rem;
+  background: #fff;
+  color: var(--kakao-logo, #000);
+  font-family: "Pretendard Variable";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.4625rem */
+}
+
+.mypage_profile_line {
+  display: flex;
+  width: auto;
+  height: 0.01rem;
+  stroke-width: 1px;
+  background: #dadada;
+  margin: 0 1.5rem 0.5rem 1.5rem;
+}
+
+.mypage_profile_category_manage {
+  display: flex;
+  flex-direction: column;
+  width: auto;
   color: #4f4f4f;
-}
-
-.mypage-etc-event-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-etc-event {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
   font-family: "Pretendard Variable";
+  font-size: 0.9375rem;
+  font-style: normal;
   font-weight: 300;
-  font-size: 1.125rem;
-}
-
-.mypage-etc-policy-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-etc-policy {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-size: 1.125rem;
-}
-
-.mypage-etc-sos-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-}
-
-.mypage-etc-sos {
-  width: 70%;
-  height: 100%;
-  margin: 3% auto;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  font-size: 1.125rem;
+  line-height: 130%; /* 1.21875rem */
+  padding-top: 0.87rem;
+  padding-bottom: 0.81rem;
+  margin-left: 1.81rem;
+  margin-right: 1.81rem;
 }

@@ -16,6 +16,7 @@ function useInterval(callback, delay) {
       const intervalId = setInterval(tick, delay);
       return () => clearInterval(intervalId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delay]);
 }
 

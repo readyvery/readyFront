@@ -1,0 +1,72 @@
+/* 디스플레이값 주면 안되여 */
+.home_event {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* height값은 반응형으로 주기 */
+  height: 6.25rem;
+  margin-top: 2.81rem;
+}
+
+/* 슬라이드 구성 요소 조정 */
+.home_event_slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_event_slider_benner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 22.0625rem;
+}
+
+.home_event_slider_benner {
+  height: 6.25rem;
+}
+/* 여기가 배너요소 크기 수정하는 곳입니다 */
+.home_event_slider_benner_wrapper .slick-slide {
+  width: 22.0625rem; /* 배너 요소의 너비 조정 */
+  height: 6.25rem;
+  padding: 0 0.25rem;
+  /* 지금은 요소의 가로 크기 21.5625rem에 디자인상 거리값 0.5를 더하고
+     slick-slide의width로 준 뒤 padding을 그 반절정도씩 하여 값을 넣음 */
+}
+.home_event_slider_benner img {
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  width: 21.5625rem;
+  height: 6.25rem;
+}
+
+/* 배너 카운팅 */
+.home_event_slide_index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 15%;
+  right: 7%;
+  transform: translate(-50%, -50%);
+/* 배너 크기 수정없으면 위 그대로  */
+
+  width: 1.8125rem;
+  height: 0.6875rem;
+  border-radius: 0.3125rem;
+  background: rgba(131, 131, 131, 0.5);
+  color: var(--title, #2e2d2d);
+  text-align: right;
+  font-family: "Pretendard Variable";
+  font-size: 0.5rem;
+  font-weight: 500;
+  line-height: 130%; /* 0.65rem */
+  letter-spacing: -0.005rem;
+}
+
+@media (min-width: 800px) {
+  .home_event_slide_index {
+    right: 7.5rem;
+  }
+}

@@ -1,77 +1,68 @@
-.myprofile-div {
+.myprofile {
   width: 100%;
-  height: 94vh;
-  background-color: #ffe2ed;
+  padding-top: 4.44rem;
 }
 
-.myprofile-head {
-  width: 100%;
-  height: 18.9%;
-  margin: 0 auto;
-  display: flex; /* 내부 요소를 가로로 정렬하기 위한 Flexbox 사용 */
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-}
-
-.myprofile-icon {
-  margin: 0 auto;
-}
-
-/* 프로필 내용 */
-.myprofile-list {
-  width: 100%;
-  height: 78%;
-  margin: 0 auto;
-  padding: 2rem 0 0 0;
-  border-radius: 1.875rem 1.875rem 0rem 0rem;
-  background-color: white;
-}
-
-.myprofile-text {
-  width: 90%;
-  font-size: 1.125rem;
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  margin: 0 2rem 2rem 2rem;
-}
-
-.myprofile-detail {
-  width: 100%;
-  font-size: 1.125rem;
-  font-family: "Pretendard Variable";
-  font-weight: 400;
+.myprofile_management {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-}
-
-.detail-box {
-  width: 90%;
-  display: flex; /* 내부 요소를 가로로 배치 */
-  margin: 0.75rem 2rem; /* 위아래 간격을 조절 (원하는 간격으로 조절 가능) */
-}
-
-.detail-item-name {
-  display: flex;
-  width: 10rem;
-}
-
-.detail-item {
-  display: flex;
-  width: 20rem;
-  font-size: 0.9375rem;
-  font-family: "Pretendard Variable";
-  font-weight: 300;
-  margin: 0 3rem 0 0;
-}
-
-.myprofile-bye {
   width: 100%;
+  border-top: 0.3rem solid #d82356;
+  padding-top: 3.12rem;
+  margin-top: 1.5rem;
+}
+
+.myprofile_info {
+  color: var(--kakao-logo, #000);
+  font-family: "Pretendard Variable";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: 0.0225rem;
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.myprofile_info_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: 4.56rem;
+  border-bottom: 0.01rem solid #dadada;
+  color: #4f4f4f;
+  font-family: "Pretendard Variable";
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.8125rem */
+  padding-top: 1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.myprofile_info_content {
+  display: flex;
+  align-items: center;
+  color: var(--kakao-logo, #000);
+  font-family: "Pretendard Variable";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.1375rem */
+  padding: 0.63rem 0 1rem 0;
+}
+
+.myprofile_setting {
   display: flex;
   justify-content: center;
-  color: #838383;
-  font-size: 0.9375rem;
+  color: #919191;
   font-family: "Pretendard Variable";
-  font-weight: 400;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   margin-top: 15rem;
+  margin-bottom: 5.25rem;
 }

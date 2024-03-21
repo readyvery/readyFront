@@ -1,11 +1,11 @@
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import noImageMenu from "../../assets/images/no_image_menu.svg";
-import takeIn from "../../assets/images/take_in.svg";
-import takeOut from "../../assets/images/take_out.svg";
 import Header from "../../components/views/Header/Header";
+import { IMAGES } from "../../constants/images";
+import useFetchCartData from "../../hooks/useFetchCartData";
+import useGetPoint from "../../hooks/useGetPoint";
+import useRequestPayment from "../../hooks/useRequestPayment";
 import "./PaymentPage.css";
 
 const clientKey = process.env.REACT_APP_TOSS_CLIENT_KEY;
@@ -14,34 +14,32 @@ const customerKey = "OSlBWOomTvjxwqJTcNtEB";
 const PaymentPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const storeId = params.get("storeId");
-  const inout = params.get("inout");
   const cartId = params.get("cartId");
-  const couponId = params.get("couponId");
-  const salePrice = params.get("salePrice");
-  const apiRoot = process.env.REACT_APP_API_ROOT;
+  const couponId = location.state?.selectedCoupon ?? null;
+  const salePrice = location.state?.salePrice ?? 0;
+  const [usedPoint, setUsedPoint] = useState(0);
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
-  const [paymentData, setPaymentData] = useState(null);
-  const [price, setPrice] = useState(paymentData?.totalPrice);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${apiRoot}/api/v1/order/cart?cartId=${cartId}`,
-          { withCredentials: true }
-        );
-        setPaymentData(response.data);
-        setPrice(response.data.totalPrice);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const { carts, edit, imgUrl, inOut, isOpened, name, storeId, totalPrice } =
+    useFetchCartData(cartId);
+  const requestPayment = useRequestPayment();
+  const point = useGetPoint();
+  const paymentRequest = () => {
+    const paymentWidget = paymentWidgetRef.current;
+    requestPayment(cartId, couponId, paymentWidget, usedPoint);
+  };
+  const handleSetPoint = () => {
+    if (usedPoint !== 0) {
+      setUsedPoint(0);
+      return;
+    }
+    const MiddleSumPrice = totalPrice - salePrice;
+    if (MiddleSumPrice <= 0) {
+      setUsedPoint(0);
+    } else {
+      setUsedPoint(Math.min(point, MiddleSumPrice));
+    }
+  };
   useEffect(() => {
     (async () => {
       // ------  결제위젯 초기화 ------
@@ -55,7 +53,8 @@ const PaymentPage = () => {
       // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
         "#payment-page__payment-widget",
-        { value: price - salePrice },
+        { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
+
         // 렌더링하고 싶은 결제 UI의 variantKey
         // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
         // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
@@ -72,7 +71,7 @@ const PaymentPage = () => {
       paymentWidgetRef.current = paymentWidget;
       paymentMethodsWidgetRef.current = paymentMethodsWidget;
     })();
-  }, [price, salePrice]);
+  }, [totalPrice, salePrice, usedPoint]);
 
   useEffect(() => {
     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
@@ -84,67 +83,37 @@ const PaymentPage = () => {
     // ------ 금액 업데이트 ------
     // 새로운 결제 금액을 넣어주세요.
     // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(price - salePrice);
-  }, [price, salePrice]);
-
-  const paymentRequest = async () => {
-    let body = {
-      cartId: cartId,
-      couponId: couponId,
-    };
-
-    await axios
-      .post(`${process.env.REACT_APP_API_ROOT}/api/v1/order/toss`, body, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        const paymentWidget = paymentWidgetRef.current;
-
-        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-        // 더 많은 결제 정보 파라미터는 결제위젯 SDK에서 확인하세요.
-        // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
-        paymentWidget?.requestPayment(res.data);
-      })
-
-      // 여기에서 상태 업데이트 또는 다른 로직 수행 가능
-      .catch((error) => {
-        // 에러가 발생한 경우에 대한 로직
-        console.error("Error resetting cart", error);
-        // 에러 상태에 대한 처리를 수행하거나 사용자에게 알림 등을 표시할 수 있습니다.
-      });
-  };
+    paymentMethodsWidget.updateAmount(
+      Math.max(totalPrice - salePrice - usedPoint, 0)
+    );
+  }, [totalPrice, salePrice, usedPoint]);
 
   return (
     <div className="payment-page">
       <Header
         headerProps={{
           pageName: "주문결제",
-          isClose: !paymentData?.edit,
-          linkTo: !paymentData?.edit
-            ? "/"
-            : `/cart?storeId=${storeId}&inout=${inout}`,
+          linkTo: !edit ? "/" : `/cart?storeId=${storeId}&inout=${inOut}`,
         }}
       />
 
       <div className="payment-page__cafe-info">
         <img
           className="payment-page__cafe-info__img"
-          src={paymentData?.imgUrl}
+          src={imgUrl}
           alt="cafeImg"
         ></img>
 
-        <text className="payment-page__cafe-info__name">
-          {paymentData?.name}
-        </text>
+        <text className="payment-page__cafe-info__name">{name}</text>
       </div>
 
       <div className="payment-page__order-info">
-        {paymentData?.carts.map((item) => (
+        {carts.map((item) => (
           <div>
             <div className="payment-page__order-info__item">
               <img
                 className="payment-page__order-info__item__img"
-                src={item.imgUrl || noImageMenu}
+                src={item.imgUrl || IMAGES.cartItemImgNull}
                 alt="menuImg"
               ></img>
 
@@ -162,7 +131,10 @@ const PaymentPage = () => {
                 </div>
 
                 <div className="payment-page__order-info__item__price">
-                  {item.totalPrice * item.count}원
+                  {(item.totalPrice * item.count)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
                 </div>
               </div>
 
@@ -182,20 +154,20 @@ const PaymentPage = () => {
         <div className="payment-page__title">수령방식</div>
 
         <div className="payment-page__packaging-status__container">
-          {inout === "1" ? (
+          {inOut === 1 ? (
             <>
               <img
                 className="payment-page__packaging-status__img"
-                src={takeIn}
+                src={IMAGES.takeIn}
                 alt="Take In"
               />
               <span>먹고갈게요</span>
             </>
-          ) : inout === "2" ? (
+          ) : inOut === 2 ? (
             <>
               <img
                 className="payment-page__packaging-status__img"
-                src={takeOut}
+                src={IMAGES.takeOut}
                 alt="Take Out"
               />
               <span>가져갈게요</span>
@@ -219,11 +191,11 @@ const PaymentPage = () => {
             <span className="payment-page__coupone-price">
               {salePrice && (
                 <span className="payment-page__coupone-price">
-                  {salePrice}원
+                  {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
                 </span>
               )}
               <Link
-                to={`/payment/coupon?storeId=${storeId}&inout=${inout}&cartId=${cartId}`}
+                to={`/coupon?storeId=${storeId}&inout=${inOut}&cartId=${cartId}`}
                 className="payment-page__coupone-btn"
                 style={{ textDecoration: "none" }}
               >
@@ -232,29 +204,52 @@ const PaymentPage = () => {
             </span>
           </span>
         </div>
-
+        <div className="payment-page__point">
+          {/* 포인트 적용 */}
+          <span className="payment-page__content">통합 포인트</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {usedPoint && (
+                <span className="payment-page__coupone-price">
+                  {usedPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                </span>
+              )}
+              {/* 적용취소, 적용 금액 한계 설정 */}
+              <div
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+                onClick={handleSetPoint}
+              >
+                {usedPoint === 0 ? "최대 적용" : "적용 취소"}
+              </div>
+            </span>
+          </span>
+        </div>
+        <div className="payment-page__point__available">
+          <span>보유: {point} P</span>
+        </div>
         <div className="payment-page__order-info__pay__line"></div>
 
         <div className="payment-page__title">결제금액</div>
         <div className="payment-page__productAmount">
           <span className="payment-page__content">상품금액</span>
           <span className="payment-page__content-price">
-            {paymentData?.totalPrice &&
-              paymentData.totalPrice
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
+            {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
           </span>
         </div>
 
         <div className="payment-page__discountAmount">
           <span className="payment-page__content">할인금액</span>
-          {salePrice && (
-            <span className="payment-page__content-price">
-              (-)
-              {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                "원"}
-            </span>
-          )}
+          <span className="payment-page__content-price">
+            {salePrice + usedPoint > 0
+              ? "(-)" +
+              // 표시되는 할인 금액 조정
+                Math.min(salePrice + usedPoint, totalPrice)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                "원"
+              : "0원"}
+          </span>
         </div>
 
         <div className="payment-page__order-info__pay__line"></div>
@@ -262,8 +257,8 @@ const PaymentPage = () => {
         <div className="payment-page__payment">
           <span className="payment-page__title">총 결제 금액</span>
           <span className="payment-page__total-price">
-            {paymentData?.totalPrice &&
-              (paymentData.totalPrice - salePrice)
+            {totalPrice &&
+              Math.max(totalPrice - salePrice - usedPoint, 0)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"}
           </span>
@@ -274,7 +269,7 @@ const PaymentPage = () => {
         </div>
       </div>
 
-      {paymentData?.isOpened ? (
+      {isOpened ? (
         <div className="payment-page__payment-btn" onClick={paymentRequest}>
           결제하기
         </div>

@@ -1,100 +1,106 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
+import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
+import Header from "../Header/Header";
+import NavBar from "../NavBar/NavBar";
+import StateBox from "../StateBox/StateBox";
+import Empty from "./Empty";
 import "./OrderStorage.css";
 
-import Header from "../Header/Header";
-import StateBox from "../StateBox/StateBox";
-
-import empty from "../../../assets/images/storage_empty.svg";
-
 function OrderStorage() {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [newStorageList, setNewStorageList] = useState([]);
-  const [oldStorageList, setOldStorageList] = useState([]);
+  const navigate = useNavigate();
+  const newStorageList = useFetchNewOrderHistory();
+  const oldStorageList = useFetchOldOrderHistory();
 
   const progressList = {
-    "ORDER": 0,
-    "MAKE": 1,
-    "COMPLETE": 2,
-    "PICKUP": 3,
-    "CANCEL": 4,
-    "FAIL": 5
+    ORDER: 0, // 진행중
+    MAKE: 1, // 제조중
+    COMPLETE: 2, // 제조완료
+    CANCEL: 4, // 주문취소
+    FAIL: 5, // 결제실패
   };
 
-  useEffect(() => {
-    const config = {
-      withCredentials: true
-    };
+  const handleNavigation = (e, orderId, progress) => {
+    e.preventDefault(); // 기본 이벤트를 막습니다.
 
-    axios.get(`${apiUrl}/api/v1/order/history/new`, config)
-      .then((res) => {
-        setNewStorageList(res.data.receipts);
-      })
-      .catch((err) => {});
+    const path =
+      progressList[progress] === 0 ||
+      progressList[progress] === 1 ||
+      progressList[progress] === 2
+        ? `/status?orderId=${orderId}`
+        : `/orderDetail?orderId=${orderId}`;
 
-    axios.get(`${apiUrl}/api/v1/order/history/old`, config)
-      .then((res) => {
-        setOldStorageList(res.data.receipts?.reverse());
-      })
-      .catch((err) => {});
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    navigate(path, { state: { returnTo: "/status" } });
+  };
 
   return (
-    <section className="main-container">
-      <Header
-        headerProps={{ pageName: "주문내역", isClose: false, linkTo: "/" }}
-      />
-      <main className="content-container">
+    <section className="order_storage">
+      <Header headerProps={{ pageName: "주문내역" }} />
+
+      <main className="order_storage__container">
         {newStorageList?.length || oldStorageList?.length ? (
-          <>
-          {newStorageList?.length ? newStorageList?.map((e, i) => (
-            <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/status?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
-              style={{ textDecoration: "none" }}
-            >
-              <StateBox
-                id=""
-                date={e.dateTime}
-                name={e.name}
-                menu={e.orderName}
-                imgUrl={e.imgUrl}
-                amount={e.amount}
-                isLast={oldStorageList?.length === 0 && newStorageList?.length - 1 === i}
-                state={progressList[e.progress]}
-              />
-          </Link>
-          )) : (<></>)}
-          {oldStorageList?.length ? oldStorageList?.map((e, i) => (
-            <Link
-              to={progressList[e.progress] === 0 || progressList[e.progress] === 1 || progressList[e.progress] === 2 ? `/status?orderId=${e.orderId}` : `/orderDetail?orderId=${e.orderId}`}
-              state={{ returnTo: "/status" }}
-              style={{ textDecoration: "none" }}
-            >
-              <StateBox
-                id=""
-                date={e.dateTime}
-                name={e.name}
-                menu={e.orderName}
-                imgUrl={e.imgUrl}
-                amount={e.amount}
-                isLast={oldStorageList?.length && oldStorageList?.length - 1 === i}
-                state={progressList[e.progress]}
-              />
-            </Link>
-          )) : (<></>)}
-          </>
+          <div className="order_storage__list">
+            {newStorageList?.length ? (
+              newStorageList?.map((e, i) => (
+                <div
+                  onClick={(event) =>
+                    handleNavigation(event, e.orderId, e.progress)
+                  }
+                  style={{ textDecoration: "none" }}
+                >
+                  <StateBox
+                    id=""
+                    date={e.dateTime}
+                    name={e.name}
+                    menu={e.orderName}
+                    imgUrl={e.imgUrl}
+                    amount={e.amount}
+                    isLast={
+                      oldStorageList?.length === 0 &&
+                      newStorageList?.length - 1 === i
+                    }
+                    state={progressList[e.progress]}
+                  />
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
+            {oldStorageList?.length ? (
+              oldStorageList?.map((e, i) => (
+                <div
+                  onClick={(event) =>
+                    handleNavigation(event, e.orderId, e.progress)
+                  }
+                  style={{ textDecoration: "none" }}
+                >
+                  <StateBox
+                    id=""
+                    date={e.dateTime}
+                    name={e.name}
+                    menu={e.orderName}
+                    imgUrl={e.imgUrl}
+                    amount={e.amount}
+                    isLast={
+                      oldStorageList?.length && oldStorageList?.length - 1 === i
+                    }
+                    state={progressList[e.progress]}
+                  />
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
+          </div>
         ) : (
-          <div className="empty-order-wrapper">
-            <div className="empty-img-wrapper">
-              <img src={empty} className="empty-img" alt={empty} />
-            </div>
-            <span className="empty-text">주문 내역이 없습니다</span>
+          <div className="order_storage__empty">
+            <Empty />
           </div>
         )}
       </main>
+
+      <NavBar />
     </section>
   );
 }

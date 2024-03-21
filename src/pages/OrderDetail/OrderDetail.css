@@ -1,178 +1,137 @@
-.detail-container{
-    width: 100%;
-    height: 100%;
-    
+.order_detail {
+  width: 100%;
+  background-color: #ffffff;
+  padding-top: 4.44rem;
 }
 
-.detail-content__wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    width: 100%;
-    height: 100vh;
-    margin-top: 1.5625rem;
+.order_detail__container {
+  width: auto;
+  height: 47.1875rem;
+  border-radius: 1.875rem 1.875rem 0rem 0rem;
+  background: #fff;
+  box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.25);
+  padding: 2.13rem 1.035rem 0rem 1.035rem;
+  margin: 1.63rem 0.6rem 0rem 0.6rem;
 }
 
-.detail-content{
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    box-shadow: 0 1px 12px rgba(0,0,0,0.25);
-    border-radius: 1.875rem 1.875rem 0 0;
-    padding: 1.9375rem 0;
+.order_detail__info {
+  width: auto;
+  padding: 0 1rem 1.37rem 1rem;
+  border-bottom: solid 1px #dadada;
 }
 
-
-.detail-content::-webkit-scrollbar {
-    display: none;
+.order_detail__fail {
+  color: #ec0000;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: 0.0225rem;
 }
 
-.detail-top__wrapper{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
+.order_detail__done {
+  color: #038c56;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: 0.0225rem;
 }
 
-.detail-order-status{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #038C56;
+.order_detail__store {
+  color: #000;
+  font-family: "Pretendard Variable";
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.7875rem */
+  letter-spacing: 0.04125rem;
+  margin-bottom: 0.88rem;
 }
 
-.detail-order-status.fail{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #EC0000;
+.order_detail__list {
+  color: #838383;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: 0.0225rem;
+  margin-bottom: 0.44rem;
 }
 
-.detail-cafe-name{
-    font-size: 1.375rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
-    margin-top: 0.71875rem;
+.order_detail__menu {
+  width: auto;
+  padding: 0.25rem 0.125rem 0 0.125rem;
+  border-bottom: solid 1px #dadada;
 }
 
-.detail-order__wrapper{
-    display: flex;
-    flex-direction: column;
-    margin: 2.3125rem 0;
-    gap: 0.78125rem;
+.order_detail__menu_item {
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding: 0.81rem 0 0.81rem 0;
+  margin-bottom: 0.25rem;
 }
 
-.detail-order__wrapper span{
-    color: #838383;
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
+.order_detail__menu_item img {
+  width: 3.125rem;
+  height: 3.125rem;
+  background: #fff;
 }
 
-.detail-line{
-    width: 90%;
-    height: 0.0625rem;
-    background-color: #dadada;
-    margin: 0 auto;
+.order_detail__menu_item__option {
+  color: #4f4f4f;
+  font-family: "Pretendard Variable";
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.8125rem */
+  letter-spacing: -0.00625rem;
 }
 
-.detail-middle__wrapper{
-    width: 90%;
-    margin: 0 auto;
+.order_detail__menu_item__name {
+  color: #000;
+  font-family: "Pretendard Variable";
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
 }
 
-.detail-order__box{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.8125rem 0;
-    margin: 0.25rem 0;
+.order_detail__menu_item__price {
+  color: #000;
+  font-family: "Pretendard Variable";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 0.975rem */
+  letter-spacing: -0.0075rem;
+  margin-left: auto;
 }
 
-.detail-order-left__box{
-    display: flex;
+.order_detail__price {
+  color: #000;
+  font-family: "Pretendard Variable";
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.05625rem */
+  letter-spacing: -0.00813rem;
+  padding: 1.69rem 0.31rem 0.69rem 1rem;
+  border-bottom: solid 1px #dadada;
 }
 
-.detail-menu-img__wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
-    width: 3.125rem;
-    height: 3.125rem;
+.order_detail__price_list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.detail-menu-img__wrapper img {
-    width: 3.125rem;
-    height: 3.125rem;
-
-}
-
-.detail-order-menu__wrapper{
-    display: flex;
-    flex-direction: column;
-    padding-left: 1rem;
-    padding-top: 0.15rem;
-}
-
-.detail-order-menu__title{
-    font-size: 0.8125rem;
-    font-family: "Pretendard Variable";
-    font-weight: 600;
-    color: #000;
-}
-
-.detail-order-menu-option__wrapper{
-    display: flex;
-    margin-top: 0.25rem;
-    flex-wrap: wrap;
-}
-
-.detail-order-menu-option{
-    margin: 0 0.15rem;
-    font-size: 0.625rem;
-    color: #4f4f4f;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-}
-
-.detail-order-right__box{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    color: #000;
-}
-
-.detail-bottom__wrapper{
-    width: 90%;
-    margin: 0 auto;
-}
-
-.detail-payment__box{
-    display: flex;
-    justify-content: space-between;
-    margin: 1.34375rem 0;
-}
-
-.detail-payment__title{
-    font-size: 0.8125rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
-}
-
-.detail-payment-price{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 700;
-    color: #000;
-}
-
-.detail-payment__txt{
-    font-size: 0.75rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    color: #000;
-
+.order_detail__price_value {
+  font-size: 0.75rem;
+  font-weight: 600;
 }
