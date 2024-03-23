@@ -6,12 +6,13 @@ import RedButton from "./RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage";
 
+const TIMER_DURATION = 600; //타이머 시간 설정(600초)
+
 const UserInputNumber = () => {
-  const [inputNum, setInputNum] = useState(false); //올바른 입력인지 검사
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
   const [verifyState, setVerifyState] = useState(false); //전화번호 인증 상태
-
+  const [postmessage, setPostmessage] = useState(false); // 인증 번호 발송 성공 여부
   const navigate = useNavigate();
   const apiRoot = process.env.REACT_APP_API_ROOT;
   const apiVer = "api/v1";
@@ -21,10 +22,13 @@ const UserInputNumber = () => {
 
   const handleButtonClick = () => {
     if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
-      setInputNum(true);
-      handlePostmessage();
+      if (!postmessage) {
+        handlePostmessage();
+      } else {
+        setPostmessage(false);
+        handlePostmessage();
+      }
     } else {
-      setInputNum(false);
       message.info("전화번호를 올바르게 입력해주세요.");
     }
   };
@@ -47,24 +51,28 @@ const UserInputNumber = () => {
 
       if (response.data.success) {
         message.success("인증번호를 발송했습니다.");
+        setPostmessage(true);
       } else {
         message.error("인증번호를 발송에 실패했습니다.");
+        setPostmessage(false);
       }
     } catch (error) {
       console.error(error);
       message.error("인증번호를 발송에 실패했습니다.");
+      setPostmessage(false);
     }
   };
 
   // 주석 풀기
   const renderUserInputNumberMessage = () => {
-    if (chkButton && inputNum) {
-    return (
-      <UserInputNumberMessage
-        phoneNumber={Phonenumber}
-        onAuthSuccess={handleAuthSuccess}
-      />
-    );
+    if (postmessage) {
+      return (
+        <UserInputNumberMessage
+          phoneNumber={Phonenumber}
+          initialTimer={TIMER_DURATION}
+          onAuthSuccess={handleAuthSuccess}
+        />
+      );
     }
     return null;
   };
