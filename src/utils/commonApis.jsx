@@ -11,14 +11,9 @@ commonApis.interceptors.request.use(
     async (config) => {
         const loginStateValue = localStorage.getItem('accessToken');
         console.log('commonApi: ', loginStateValue);
-        // const expired = Refresh();
-        // console.log('expired: ', expired);
         if (loginStateValue) {
             config.headers['Authorization'] = `Bearer ${loginStateValue}`;
         } 
-        // else {
-        //     window.location.href = '/login';
-        // }
         return config;
     },
     error => {
@@ -37,8 +32,8 @@ commonApis.interceptors.response.use(
         // access token 만료 시
         
         const loginStateValue = localStorage.getItem('accessToken');
-        console.log('commonApi: ', loginStateValue);
-        console.log(response);
+        // console.log('commonApi: ', loginStateValue);
+        // console.log(response);
 
         // if(!loginStateValue){
         //     // 로그인 안 되어 있는 경우

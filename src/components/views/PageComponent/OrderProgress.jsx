@@ -15,12 +15,11 @@ const OrderProgress = () => {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { estimatedTime, orderNum, progress } = useFetchCurrentOrder(
+  const { estimatedTime, orderNum, progress, expectPoint } = useFetchCurrentOrder(
     orderId,
     refreshKey
   );
   const cancelOrder = useCancelOrder();
-  const point = 175;
   const [rotate, setRotate] = useState(false); //새로고침 클릭시 회전용
   const [debounceTimeout, setDebounceTimeout] = useState(null); // 디바운싱 상태
   const progressList = useMemo(
@@ -238,7 +237,7 @@ const OrderProgress = () => {
         {degree === 3 ? (
           <div className="order_progress__point">
             <span className="order_progress__point_text">
-              <span>{point}</span>원 적립되었습니다
+              <span>{expectPoint}</span>원 적립되었습니다
             </span>
           </div>
         ) : null}
