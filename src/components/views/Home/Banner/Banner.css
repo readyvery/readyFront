@@ -26,6 +26,10 @@
 .home_event_slider_benner {
   height: 6.25rem;
 }
+/* 클릭시 테두리 제거 */
+.home_event_slider_benner:focus {
+  outline: none; 
+}
 /* 여기가 배너요소 크기 수정하는 곳입니다 */
 .home_event_slider_benner_wrapper .slick-slide {
   width: 22.0625rem; /* 배너 요소의 너비 조정 */
@@ -34,12 +38,14 @@
   /* 지금은 요소의 가로 크기 21.5625rem에 디자인상 거리값 0.5를 더하고
      slick-slide의width로 준 뒤 padding을 그 반절정도씩 하여 값을 넣음 */
 }
+
 .home_event_slider_benner img {
   margin: 0 auto;
   border-radius: 0.5rem;
   width: 21.5625rem;
   height: 6.25rem;
 }
+
 
 /* 배너 카운팅 */
 .home_event_slide_index {

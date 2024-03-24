@@ -15,12 +15,9 @@ const OrderProgress = () => {
   const [degree, setDegree] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { estimatedTime, orderNum, progress } = useFetchCurrentOrder(
-    orderId,
-    refreshKey
-  );
+  const { estimatedTime, orderNum, progress, expectPoint } =
+    useFetchCurrentOrder(orderId, refreshKey);
   const cancelOrder = useCancelOrder();
-  const point = 175;
   const [rotate, setRotate] = useState(false); //새로고침 클릭시 회전용
   const [debounceTimeout, setDebounceTimeout] = useState(null); // 디바운싱 상태
   const progressList = useMemo(
@@ -35,9 +32,14 @@ const OrderProgress = () => {
 
   useEffect(() => {
     if (progress) {
-      const currentProgress = progressList[progress];
-      setDegree(currentProgress);
+      if (progress === "CANCEL") {
+        navigate(`/orderDetail?orderId=${orderId}`, { replace: true }); // 주문 취소 후 주문 내역 상세 페이지로
+      } else {
+        const currentProgress = progressList[progress];
+        setDegree(currentProgress);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, progressList]);
 
   useEffect(() => {
@@ -64,7 +66,8 @@ const OrderProgress = () => {
     try {
       await cancelOrder(orderId); // 주문 취소 요청
       setDegree(progressList.CANCEL); // 취소 상태로 UI 업데이트
-      navigate(`/status`, { replace: true }); // 주문 취소 후 주문 내역 페이지로 이동
+      // navigate(`/status`, { replace: true });
+      // 주문 취소 후 주문 내역 페이지로 이동
     } catch (error) {
       console.error("주문 취소 중 오류 발생:", error);
       // 오류 처리 로직 (선택적)
@@ -238,7 +241,7 @@ const OrderProgress = () => {
         {degree === 3 ? (
           <div className="order_progress__point">
             <span className="order_progress__point_text">
-              <span>{point}</span>원 적립되었습니다
+              <span>{expectPoint}</span>원 적립되었습니다
             </span>
           </div>
         ) : null}

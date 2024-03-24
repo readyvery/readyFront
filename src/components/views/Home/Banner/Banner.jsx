@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import useFetchEventBanners from "../../../../hooks/useFetchEventBanners";
 import "./Banner.css";
 
 const Banner = () => {
-  const eventBanners = useFetchEventBanners(); //이벤트 배너를 서버에서 받아옴
+  const eventBanners = [
+    { bannerImg: "https://readyvery.com/statics/images/event/ic_home_event1.png" },
+    { bannerImg: "https://readyvery.com/statics/images/event/ic_home_event2.png" },
+    { bannerImg: "https://readyvery.com/statics/images/event/ic_home_event3.png" },
+  ];
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const settings = {
@@ -22,10 +26,13 @@ const Banner = () => {
   return (
     <div className="home_event">
       <div className="home_event_slider_benner_wrapper">
-        <Slider {...settings}>
+        <Slider {...settings} >
           {eventBanners.map((item) => {
             return (
-              <div className="home_event_slider_benner" key={item}>
+              <div
+                className="home_event_slider_benner"
+                key={item}
+              >
                 <img src={item.bannerImg} alt={`Banner ${item}`} />
               </div>
             );

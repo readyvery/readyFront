@@ -26,8 +26,12 @@
 }
 
 .packaging-status-page__event-img {
-    display: flex;
-  margin: 0 auto 2.88rem auto;
+  display: flex;
+  width: 13.125rem;
+  height: 18.3125rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.88rem;
 }
 
 .packaging-status-page__btn {

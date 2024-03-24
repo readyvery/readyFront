@@ -2,31 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import LoginChkAlrm from "./LoginChkAlrm";
 import "./UserInputNumberMessage.css";
-
-// const AUTH_CODE = "1234";//서버에서 받아오는 값
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
-
 const Timer = ({ minutes, seconds }) => (
   <div className="timer">
     {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
   </div>
 );
-
-function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
-  const token = localStorage.getItem("accessToken");
-  const [chkNum, setChkNum] = useState("");
-  const [timer, setTimer] = useState(TIMER_DURATION);
-  const [isAuth, setIsAuth] = useState();
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-
+function useTimer(initialSeconds) {
+  const [timer, setTimer] = useState(initialSeconds);
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
+      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
     }, 1000);
 
     return () => clearInterval(interval);
   }, [setTimer]);
-
+  return { timer };
+}
+function UserInputNumberMessage({ phoneNumber, onAuthSuccess, initialTimer }) {
+  const token = localStorage.getItem("accessToken");
+  const [chkNum, setChkNum] = useState("");
+  const [isAuth, setIsAuth] = useState();
+  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const { timer } = useTimer(initialTimer);
   const handleInputText = async (e) => {
     const newChkNum = e.target.value;
     setChkNum(newChkNum);
@@ -56,6 +53,9 @@ function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
       } catch (error) {
         console.log("통신에러", error);
       }
+    } else {
+      onAuthSuccess(false);
+      setIsAuth(false);
     }
   };
 
@@ -91,9 +91,11 @@ function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
           value={chkNum}
           autocomplete="off" //자동완성 없애기
           onChange={handleInputText}
+          maxLength="6"
+          // readOnly={isAuth}
         />
         {timer > 0 && (
-          <Timer minutes={Math.floor(timer / 60)} seconds={timer % 60} />
+        <Timer minutes={Math.floor(timer / 60)} seconds={timer % 60} />
         )}
       </div>
       <div style={{ width: "100%", marginTop: "0.37rem" }}>
