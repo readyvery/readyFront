@@ -116,8 +116,10 @@ function Mypage() {
         >
           고객센터
         </div>
-        <div className="mypage_profile_category">레디베리 리서치 참여</div>
+        {/* <div className="mypage_profile_category">레디베리 리서치 참여</div> */}
       </div>
+
+      <div className="mypage_profile_line"></div>
 
       <div className="mypage_profile_category_manage">
         계정관리
