@@ -1,28 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import chatIcon from "../../../assets/images/chat_icon.svg";
-// import customerIcon from "../../../assets/images/customer_icon.svg";
 import Header from "../../../components/views/Header/Header";
 import "./CustomerServicePage.css";
+import { IMAGES } from "../../../constants/images";
 
 function CustomerServicePage() {
   return (
-    <div className="service-div">
+    <div className="customer_service">
       <Header
         headerProps={{
           pageName: "고객센터",
           // linkTo: "/mypage",
         }}
       />
-      <div className="service-head">
-        {/* <img src={customerIcon} alt="CustomerIcon" className="service-icon" /> */}
-        <div className="service-text">
-          <div className="service-name">레디베리</div>
-          <div className="service-time">평일 09:00 ~ 18:00</div>
+      <div className="customer_service_list">
+        <div className="kakao_open_chat">
+          <img
+            src={IMAGES.kakaoOpenChatLogo}
+            alt="kakao_open_chat_logo"
+            className="kakao_open_chat_logo"
+          />
+          <div className="kakao_open_chat_text">
+            <div className="kakao_open_chat_name">레디베리</div>
+            <div className="kakao_open_chat_time">평일 09:00 ~ 18:00</div>
+          </div>
+          <Link to="http://pf.kakao.com/_ZxiEjG/chat" className="service-chat">
+            <img
+              src={IMAGES.kakaoOpenChat}
+              alt="kakao_open_chat_btn"
+              className="kakao_open_chat_btn"
+            />
+          </Link>
         </div>
-        <Link to="http://pf.kakao.com/_ZxiEjG/chat" className="service-chat">
-          {/* <img src={chatIcon} alt="ChatIcon" className="chat-icon" /> */}
-        </Link>
       </div>
     </div>
   );
