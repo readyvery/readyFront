@@ -1,34 +1,50 @@
-.service-div {
+.customer_service {
   width: 100%;
   height: 94vh;
   padding-top: 4.44rem;
 }
 
-.service-head {
+.customer_service_list {
   width: 100%;
   border-top: 0.3rem solid #d82356;
   padding-top: 3.12rem;
   margin-top: 1.5rem;
   display: flex;
+  align-items: center;
+}
+
+.kakao_open_chat {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 2rem auto;
+  width: 100%;
+  margin: 0 1.69rem 0 1.44rem;
 }
-.service-name {
+
+.kakao_open_chat_logo {
+  width: 4.49338rem;
+  height: 4.49338rem;
+}
+
+.kakao_open_chat_name {
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1.125rem;
 }
 
-.service-text {
-  margin: 0 auto;
+.kakao_open_chat_text {
+  margin-left: 0.63rem;
+  margin-right: auto;
 }
-.service-time {
+
+.kakao_open_chat_time {
   font-family: "Pretendard Variable";
   font-weight: 500;
   font-size: 1.125rem;
   color: #838383;
 }
-.service-chat {
-  margin: 0 auto;
+
+.kakao_open_chat_btn {
+  width: 3.625rem;
+  height: 2.5rem;
 }
