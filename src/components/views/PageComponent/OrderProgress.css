@@ -35,10 +35,10 @@
 }
 @keyframes rotateAnimation {
   from {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-      transform: rotate(-720deg);
+    transform: rotate(-720deg);
   }
 }
 .rotate-on-click {
