@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import config from "../../../constants/index.js";
 import useFetchNewOrderHistory from "../../../hooks/useFetchNewOrderHistory";
 import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
@@ -13,21 +14,13 @@ function OrderStorage() {
   const newStorageList = useFetchNewOrderHistory();
   const oldStorageList = useFetchOldOrderHistory();
 
-  const progressList = {
-    ORDER: 0, // 진행중
-    MAKE: 1, // 제조중
-    COMPLETE: 2, // 제조완료
-    CANCEL: 4, // 주문취소
-    FAIL: 5, // 결제실패
-  };
-
   const handleNavigation = (e, orderId, progress) => {
     e.preventDefault(); // 기본 이벤트를 막습니다.
 
     const path =
-      progressList[progress] === 0 ||
-      progressList[progress] === 1 ||
-      progressList[progress] === 2
+      config.progressList[progress] === 0 ||
+      config.progressList[progress] === 1 ||
+      config.progressList[progress] === 2
         ? `/status?orderId=${orderId}`
         : `/orderDetail?orderId=${orderId}`;
 
@@ -60,7 +53,7 @@ function OrderStorage() {
                       oldStorageList?.length === 0 &&
                       newStorageList?.length - 1 === i
                     }
-                    state={progressList[e.progress]}
+                    state={config.progressList[e.progress]}
                   />
                 </div>
               ))
@@ -85,7 +78,7 @@ function OrderStorage() {
                     isLast={
                       oldStorageList?.length && oldStorageList?.length - 1 === i
                     }
-                    state={progressList[e.progress]}
+                    state={config.progressList[e.progress]}
                   />
                 </div>
               ))
