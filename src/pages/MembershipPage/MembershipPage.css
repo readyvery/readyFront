@@ -19,6 +19,9 @@
   margin-top: 1.5rem;
   border-top: 0.3rem solid #d82356;
   overflow-y: auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 /* 포인트 박스 */
 .membershippage-point-box-wrapper {
