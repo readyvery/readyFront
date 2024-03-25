@@ -13,16 +13,18 @@ const useLogout = (removeCookie, setIsAuth) => {
           headers: {
               Authorization: `Bearer ${token}`
           }
-      });
-        console.log(response);
-        localStorage.clear();
-        setIsAuth(false);
-        message.success("로그아웃에 성공하셨습니다.");
-        navigate("/");
+        });
+        if(response.status === 200){
+          console.log(response);
+          localStorage.clear();
+          setIsAuth(false);
+          message.success("로그아웃에 성공하셨습니다.");
+          navigate("/");
+        }
       } catch (error) {
         console.error("Error during logout:", error);
         message.error("로그아웃 실패. 관리자에게 문의하세요.");
-        // navigate("/");
+        navigate("/");
       }
     }
   };

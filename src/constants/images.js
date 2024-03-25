@@ -62,6 +62,8 @@ export const IMAGES = {
 
   // 마이페이지
   profile: require("../assets/images/ic_profile.png"),
+  kakaoOpenChatLogo: require("../assets/images/ic_kakao_open_chat_logo.png"),
+  kakaoOpenChat: require("../assets/images/btn_kakao_open_chat.png"),
 
   // 번호 인증 페이지
   check_red: require("../assets/images/check_red.png"),

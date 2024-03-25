@@ -3,13 +3,13 @@ import "./StateBox.css";
 import { Link } from "react-router-dom";
 
 const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
-  const stateList = ["진행중", "수령완료", "취소완료", "결제실패"];
+  const stateList = ["진행중", "제조완료", "수령완료", "취소완료", "결제실패"];
   return (
     <>
       <div
         className={`order-box ${
           state !== undefined &&
-          (state === 0 || state === 1 || state === 2) &&
+          (state === 0 || state === 1) &&
           "selected"
         } ${isLast && "last"}`}
       >
@@ -18,7 +18,7 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
           <div
             className={`status-box ${
               state !== undefined &&
-              (state === 0 || state === 1 || state === 2) &&
+              (state === 0 || state === 1) &&
               "selected"
             }`}
           >
@@ -32,7 +32,7 @@ const StateBox = ({ id, date, name, menu, imgUrl, amount, isLast, state }) => {
               </Link>
             ) : (
               state !== undefined && (
-                <div>{stateList[state - 2 < 0 ? 0 : state - 2]}</div>
+                <div>{stateList[state - 1 < 0 ? 0 : state - 1]}</div>
               )
             )}
           </div>

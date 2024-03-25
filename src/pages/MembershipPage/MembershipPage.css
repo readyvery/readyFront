@@ -10,15 +10,19 @@
   white-space: nowrap;
 
   padding-top: 4.44rem;
-  padding-bottom: 5.0625rem;
+  /* padding-bottom: 5.0625rem; */
 }
 .membershippage-point-box-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-top: 1.5rem;
+  padding-bottom:  5.0625rem;
   border-top: 0.3rem solid #d82356;
   overflow-y: auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 /* 포인트 박스 */
 .membershippage-point-box-wrapper {

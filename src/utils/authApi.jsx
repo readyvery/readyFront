@@ -13,8 +13,8 @@ authApi.interceptors.request.use(
         const token = localStorage.getItem('accessToken');
         const expiredTime = localStorage.getItem('expiredTime');
 
-        console.log('commonApi: ', token);
-        if (token && moment(expiredTime).diff(moment()) <= 10000) {
+        // console.log('commonApi: ', token);
+        if (token && moment(expiredTime).diff(moment()) <= 60000) {
             try{
                 const res = await axios.get(process.env.REACT_APP_API_ROOT + "/api/v1/refresh/token", {
                     withCredentials: true,
@@ -28,7 +28,6 @@ authApi.interceptors.request.use(
                 // localStorage.setItem("expiredTime", moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
                 // config.headers['Authorization'] = `Bearer ${cookies.accessToken}`;
                 // removeCookie("accessToken");
-                return axios(config);
             } catch (e) {
                 if (e?.response?.status === 401 || e?.response?.status === 403){
                     // 로그인 페이지로 이동
@@ -37,12 +36,10 @@ authApi.interceptors.request.use(
                     localStorage.removeItem("expiredTime");
                     window.location.href = "/login";
                 }
-                return config;
             }
+            return config;
         } 
         return config;
-        // } 
-        // return config;
     },
     error => {
         return Promise.reject(error);

@@ -49,9 +49,9 @@ const StoreDetailPage = () => {
         <div className="store-detail-page__caffeeInfo">
           <div className="store-detail-page__caffeeInfo__header">
             <span className="store-detail-page__caffeeInfo__title">{name}</span>
-            <span className="store-detail-page__caffeeInfo__origin">
+            {/* <span className="store-detail-page__caffeeInfo__origin">
               원산지 표시
-            </span>
+            </span> */}
           </div>
 
           <div className="store-detail-page__caffeeInfo__list">

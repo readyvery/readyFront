@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "./OrderDetail.css";
 import Header from "../../components/views/Header/Header";
 import useFetchOrderDetails from "../../hooks/useFetchOrderDetails";
+import "./OrderDetail.css";
 
 const OrderDetail = () => {
   const location = useLocation();
@@ -33,16 +33,17 @@ const OrderDetail = () => {
 
       <div className="order_detail__container">
         <div className="order_detail__info">
-          {orderStatus === "CANCEL" ? (
+          {orderStatus === "CANCEL" && (
             <span className="order_detail__fail">
               주문 취소 ({cancelReason?.split(",")[1]?.split("=")[1]})
-              {/* {cancelReason === null ? (
-              <span></span>
-            ) : (
-              <span>({cancelReason?.split(",")[1]?.split("=")[1]})</span>
-            )} */}
             </span>
-          ) : (
+          )}
+          {orderStatus === "FAIL" && (
+            <span className="order_detail__fail">
+              주문 실패
+            </span>
+          )}
+          {(orderStatus !== "FAIL" && orderStatus !== "CANCEL")&& (
             <span className="order_detail__done">주문 완료</span>
           )}
           <div className="order_detail__store">{storeName}</div>

@@ -25,7 +25,7 @@ const useDeleteAccount = (removeCookie, setIsAuth) => {
       } catch (error) {
         console.error("Error during account deletion:", error);
         message.error("회원탈퇴 실패. 관리자에게 문의하세요.");
-        // navigate("/");
+        navigate("/");
       }
     }
   };
