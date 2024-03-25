@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { isAuthenticatedState } from "../../Atom/status";
 import { useCookies } from "react-cookie";
-import { useSetRecoilState } from "recoil";
-import { getAuthenticatedSelector } from "../../Atom/status";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { getAuthenticatedSelector, isAuthenticatedState } from "../../Atom/status";
 import Header from "../../components/views/Header/Header";
+import Modal from "../../components/views/Modal/Modal";
 import NavBar from "../../components/views/NavBar/NavBar";
 import { IMAGES } from "../../constants/images";
+import useDeleteAccount from "../../hooks/useDeleteAccount";
 import useFetchUserInfo from "../../hooks/useFetchUserInfo";
 import useGetPoint from "../../hooks/useGetPoint";
-import "./MyPage.css";
 import useLogout from "../../hooks/useLogout";
-import useDeleteAccount from "../../hooks/useDeleteAccount";
-import Modal from "../../components/views/Modal/Modal";
+import "./MyPage.css";
 
 function Mypage() {
   const navigate = useNavigate();
@@ -119,20 +117,23 @@ function Mypage() {
         {/* <div className="mypage_profile_category">레디베리 리서치 참여</div> */}
       </div>
 
-      <div className="mypage_profile_line"></div>
-
-      <div className="mypage_profile_category_manage">
-        계정관리
-        <div
-          className="mypage_profile_category"
-          onClick={() => setIsOpen(true)}
-        >
-          로그아웃
+      {isAuth && (
+        <div className="mypage_profile_category_manage">
+          계정관리
+          <div
+            className="mypage_profile_category"
+            onClick={() => setIsOpen(true)}
+          >
+            로그아웃
+          </div>
+          <div 
+            className="mypage_profile_category" 
+            onClick={() => setIsBye(true)}
+          >
+            계정탈퇴
+          </div>
         </div>
-        <div className="mypage_profile_category" onClick={() => setIsBye(true)}>
-          계정탈퇴
-        </div>
-      </div>
+      )}
 
       {isOpen && (
         <Modal

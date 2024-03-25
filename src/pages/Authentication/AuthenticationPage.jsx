@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import UserInputNumber from "../../components/Authentication/UserInputNumber";
 import { IMAGES } from "../../constants/images";
 import "./AuthenticationPage.css";
 const AuthenticationPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="authentication-page">
       <header>
@@ -10,7 +12,7 @@ const AuthenticationPage = () => {
           alt="back"
           className="authentication-page-header_back"
           onClick={() => {
-            window.history.back();
+            navigate('/');
           }}
         />
       </header>

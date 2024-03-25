@@ -14,7 +14,6 @@ const useFetchUserInfo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(token, cookies);
       if(token || cookies?.accessToken){
         try {
           const response = await commonApis.get(apiUrl, {

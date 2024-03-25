@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
-import "./PackagingStatusPage.css";
 import { IMAGES } from "../../constants/images";
 import useFetchEvent from "../../hooks/useFetchEvent";
+import "./PackagingStatusPage.css";
 
 const PackagingStatusPage = () => {
   const navigate = useNavigate();

@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1005cf39-5767-40c2-9269-ebaf55ab9096" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/views/PageComponent/OrderStorage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/views/PageComponent/OrderStorage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hoc/auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useDeleteAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useDeleteAccount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useFetchUserInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useFetchUserInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useLogout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useLogout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MyPage/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MyPage/MyPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/OrderDetail/OrderDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/OrderDetail/OrderDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/PackagingStatusPage/PackagingStatusPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PackagingStatusPage/PackagingStatusPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/PackagingStatusPage/PackagingStatusPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PackagingStatusPage/PackagingStatusPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/authApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/authApi.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/commonApis.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/commonApis.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,18 +30,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/likes/Documents/레디베리/ReadyBack/readyBack",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/likes/Documents/레디베리/ReadyBack/readyBack&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,6 +54,7 @@
       <workItem from="1701410454295" duration="122000" />
       <workItem from="1701414533385" duration="17000" />
       <workItem from="1709772203710" duration="54000" />
+      <workItem from="1711297167130" duration="81000" />
     </task>
     <servers />
   </component>
