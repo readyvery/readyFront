@@ -1,9 +1,11 @@
 import { IMAGES } from "../../../constants/images";
 import "./PointStateBox.css";
 const PointStateBox = ({ point, store, date }) => {
-  const stateText = point >= 0 ? "적립" : "사용";
+  const stateText = point > 0 ? "적립" : "사용";
   return (
-    <div className="membership-box-container">
+    <div className={`membership-box-container
+      ${point === "+0" && "nonDisplay"}
+    `}>
       <div className="membership-box">
         <div
           className={`membership-box-img ${
