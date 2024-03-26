@@ -135,6 +135,9 @@
   flex-direction: row;
   height: 5.75rem;
   align-items: center;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  overflow-x: auto;
   gap: 0.6875rem;
   height: 7rem;
   overflow-x: auto;
