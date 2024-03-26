@@ -1,0 +1,38 @@
+.loading-div {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spinLodingBar-container{
+  position: relative;
+}
+.loading-loader {
+  border: none;
+  background-image: url("../../../assets/images/ic_loading.png");
+  width: 6.25rem;
+  height: 6.25rem;
+  animation: spin 1.35s linear infinite; /* 회전하는 애니메이션을 적용합니다. */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-berry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loading-berry img {
+  width: 2.08431rem;
+  height: 2.08431rem;
+}
