@@ -29,8 +29,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 0.94rem;
-  padding-left: 1.56rem;
-  padding-right: 1.59rem;
+  /* padding-left: 1.56rem;
+  padding-right: 1.59rem; */
 }
 
 .top_header_page span {
@@ -107,11 +107,3 @@
   width: 2rem;
   height: 2rem;
 }
-
-/* 이거 왜 걸어놓으신건가요..?! 
-  @media only screen and (min-width: 400px) and (max-width: 800px) {
-    .top_header {
-      left: calc(50% - 215px);
-      right: calc(50% - 215px);
-    }
-  } */

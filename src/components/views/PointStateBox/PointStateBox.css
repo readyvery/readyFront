@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.membership-box-container.nonDisplay{
+  display: none;
+}
+
 .membership-box {
   display: flex;
   align-items: center;

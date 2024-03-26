@@ -6,14 +6,13 @@ import useFetchOldOrderHistory from "../../../hooks/useFetchOldOrderHistory";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import StateBox from "../StateBox/StateBox";
-import Empty from "./Empty";
+import Empty from "./Empty.jsx";
+import Loading from "./Loading.jsx";
 import "./OrderStorage.css";
-
 function OrderStorage() {
   const navigate = useNavigate();
-  const newStorageList = useFetchNewOrderHistory();
-  const oldStorageList = useFetchOldOrderHistory();
-
+  const { newStorageList, isLoadingNewStorageList } = useFetchNewOrderHistory();
+  const { oldStorageList, isLoadingOldStorageList } = useFetchOldOrderHistory();
   const handleNavigation = (e, orderId, progress) => {
     e.preventDefault(); // 기본 이벤트를 막습니다.
 
@@ -26,13 +25,16 @@ function OrderStorage() {
 
     navigate(path, { state: { returnTo: "/status" } });
   };
-
   return (
     <section className="order_storage">
       <Header headerProps={{ pageName: "주문내역" }} />
 
       <main className="order_storage__container">
-        {newStorageList?.length || oldStorageList?.length ? (
+        {isLoadingNewStorageList && isLoadingOldStorageList ? (
+          <div className="order_storage__empty">
+            <Loading />
+          </div>
+        ) : newStorageList?.length || oldStorageList?.length ? (
           <div className="order_storage__list">
             {newStorageList?.length ? (
               newStorageList?.map((e, i) => (
@@ -87,6 +89,7 @@ function OrderStorage() {
             )}
           </div>
         ) : (
+          // newStorageList.length === 0 && oldStorageList.length === 0 ?
           <div className="order_storage__empty">
             <Empty />
           </div>

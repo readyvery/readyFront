@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
 import Empty from "../../components/views/PageComponent/Empty";
+import Loading from "../../components/views/PageComponent/Loading";
 import { IMAGES } from "../../constants/images";
 import commonApis from "../../utils/commonApis";
 import "./CartPage.css";
@@ -13,6 +14,7 @@ const CartPage = () => {
   const storeId = params.get("storeId");
   const inout = params.get("inout");
   const cartId = params.get("cartId");
+  const [isCartLoading, setIsLoading] = useState(true); //로딩걸기
   const [paymentData, setPaymentData] = useState(null);
   const [price, setPrice] = useState(paymentData?.totalPrice);
   const [Count, setCount] = useState(1);
@@ -51,10 +53,11 @@ const CartPage = () => {
   const handleRemoveItem = async (itemId) => {
     try {
       // 서버에 아이템 삭제 요청 보내기
+      setIsLoading(true);
       await commonApis.delete(`/order/cart?idx=${itemId}`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       // 로컬 상태 및 렌더링 갱신
@@ -71,20 +74,19 @@ const CartPage = () => {
       setPrice(newPrice);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await commonApis.get(
-          `/order/cart?cartId=${cartId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+        const response = await commonApis.get(`/order/cart?cartId=${cartId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setPaymentData(response.data);
         setPrice(response.data.totalPrice);
       } catch (error) {
@@ -94,14 +96,11 @@ const CartPage = () => {
 
     const noneCartData = async () => {
       try {
-        const response = await commonApis.get(
-          `/order/cart`, 
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-          );
+        const response = await commonApis.get(`/order/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setPaymentData(response.data);
         setPrice(response.data.totalPrice);
       } catch (error) {
@@ -120,14 +119,17 @@ const CartPage = () => {
         { price: price },
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       )
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Idx, price, Count, apiRoot]);
 
   const totalQuantity = paymentData?.carts.reduce(
@@ -276,6 +278,10 @@ const CartPage = () => {
           ) : (
             <div className="cart-page__store-close">지금은 준비중입니다.</div>
           )}
+        </div>
+      ) : isCartLoading ? (
+        <div className="cart-page__empty">
+          <Loading />
         </div>
       ) : (
         <div className="cart-page__empty">
