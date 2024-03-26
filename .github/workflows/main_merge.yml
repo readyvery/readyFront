@@ -23,7 +23,7 @@ jobs:
         run: cat .env
       
       - name: Generate wbuild          # React Build
-        run: npm run wbuild
+        run: npm run build
       
   #     - name: file copy
   #       uses: actions/upload-artifact@v3
