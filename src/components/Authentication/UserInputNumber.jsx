@@ -8,6 +8,7 @@ import UserInputNumberMessage from "./UserInputNumberMessage";
 
 const TIMER_DURATION = 180; //타이머 시간 설정(3분)
 
+
 const UserInputNumber = () => {
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
