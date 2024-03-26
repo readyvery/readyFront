@@ -97,7 +97,7 @@ function Mypage() {
         </div>
       </div>
 
-      <div className="mypage_profile_line"></div>
+      <hr className="mypage_profile_line"/>
 
       <div className="mypage_profile_category_title">
         문의 및 알림
@@ -123,21 +123,24 @@ function Mypage() {
       </div>
 
       {isAuth && (
-        <div className="mypage_profile_category_manage">
-          계정관리
-          <div
-            className="mypage_profile_category"
-            onClick={() => setIsOpen(true)}
-          >
-            로그아웃
+        <>
+          <hr className="mypage_profile_line"/>
+          <div className="mypage_profile_category_manage">
+            계정관리
+            <div
+              className="mypage_profile_category"
+              onClick={() => setIsOpen(true)}
+            >
+              로그아웃
+            </div>
+            <div
+              className="mypage_profile_category"
+              onClick={() => setIsBye(true)}
+            >
+              계정탈퇴
+            </div>
           </div>
-          <div
-            className="mypage_profile_category"
-            onClick={() => setIsBye(true)}
-          >
-            계정탈퇴
-          </div>
-        </div>
+        </>
       )}
 
       {isOpen && (
