@@ -4,10 +4,10 @@ import { useSetRecoilState } from "recoil";
 import { getAuthenticatedSelector } from "../../../Atom/status";
 import Header from "../../../components/views/Header/Header";
 import Modal from "../../../components/views/Modal/Modal";
-import "./MyprofilePage.css";
-import useLogout from "../../../hooks/useLogout";
 import useDeleteAccount from "../../../hooks/useDeleteAccount";
 import useFetchUserInfo from "../../../hooks/useFetchUserInfo";
+import useLogout from "../../../hooks/useLogout";
+import "./MyprofilePage.css";
 
 function MyprofilePage() {
   const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
@@ -45,10 +45,10 @@ function MyprofilePage() {
           휴대폰
           <div className="myprofile_info_content">{phone}</div>
         </div>
-        <div className="myprofile_info_title">
+        {/* <div className="myprofile_info_title">
           연동된 소셜 계정
           <div className="myprofile_info_content">카카오</div>
-        </div>
+        </div> */}
 
         <div className="myprofile_setting">
           <span onClick={() => setIsOpen(true)}>로그아웃</span>
