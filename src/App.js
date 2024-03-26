@@ -6,7 +6,7 @@ import StoreDetailPage from "../src/pages/StoreDetailPage/StoreDetailPage";
 import "./App.css";
 // import loading from "./assets/animation/loading.json";
 import MembershipPage from "../src/pages/MembershipPage/MembershipPage";
-import ic_berry from "./assets/images/ic_berry.png";
+import Loading from "./components/views/PageComponent/Loading";
 import Auth from "./hoc/auth";
 import AuthenticationPage from "./pages/Authentication/AuthenticationPage";
 import CartPage from "./pages/CartPage/CartPage";
@@ -31,7 +31,6 @@ import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentLoadingPage from "./pages/PaymentPage/Redirect/PaymentLoadingPage";
 import Splash from "./pages/Splash/Splash";
 import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
-
 function App() {
   // const [cookies, , removeCookies] = useCookies();
   // const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
@@ -40,10 +39,9 @@ function App() {
   // const apiVer = "api/v1";
   // const apiUrl = `${apiRoot}/${apiVer}/refresh/token`;
 
-
   //false : 로그인 한 유저 못들어감
   const NewLoginPage = Auth(LoginPage, false); // 로그인 페이지
-  
+
   //true : 로그인 한 유저 들어감
   const NewHomePage = Auth(HomePage, true); // 홈페이지
   const NewAuthentication = Auth(AuthenticationPage, true, 1);
@@ -108,16 +106,7 @@ function App() {
   return (
     <div className="App">
       <RecoilRoot>
-        <Suspense
-          fallback={
-            <div className="loading-div">
-              <div className="loading-loader" />
-              <div className="loading-berry">
-                <img src={ic_berry} alt="berry" />
-              </div>
-            </div>
-          }
-        >
+        <Suspense fallback={<Loading />}>
           <Routes>
             {/* 로그인 하지 않아도 볼 수 있는 페이지 */}
             <Route path="/splash" element={<Splash />} />
@@ -130,7 +119,7 @@ function App() {
             {/* 로그인*/}
             <Route path="/login" element={<NewLoginPage />} />
             {/* 번호인증 페이지 */}
-            <Route path="/authentication" element={<NewAuthentication/>} />
+            <Route path="/authentication" element={<NewAuthentication />} />
             {/* 쿠폰 및 포인트  faq페이지*/}
             <Route path="/faq" element={<FrequentlyAskedQuestionPage />} />
             {/* 마이페이지-약관정책 페이지 */}

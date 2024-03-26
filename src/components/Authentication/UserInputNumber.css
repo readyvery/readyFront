@@ -15,7 +15,7 @@
 .user-input-phone-number-input {
   border-radius: 0.24788rem;
   border: 1px solid rgba(131, 131, 131, 1);
-  padding-left: 0.94rem;
+  padding: 0 0.94rem;
   margin-right: 0.25rem;
   font-size: 0.75rem;
   font-weight: 500;
@@ -30,7 +30,9 @@
   font-weight: 500;
   font-size: 0.75rem;
   width: 3.46981rem;
-  height: 2.48rem;
+  height: 2.47844rem;
+  color: var(--frame-text, #838383);
+  cursor: pointer;
 }
 
 .user-input-phone-number-button-clicked {
