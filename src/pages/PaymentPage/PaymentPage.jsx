@@ -42,34 +42,40 @@ const PaymentPage = () => {
   };
   useEffect(() => {
     (async () => {
-      // ------  결제위젯 초기화 ------
-      // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
-      const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
-      // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS)  // 비회원 결제
+      try {
+        // ------  결제위젯 초기화 ------
+        // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
+        const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
+        // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS)  // 비회원 결제
 
-      // ------  결제 UI 렌더링 ------
-      // 결제 UI를 렌더링할 위치를 지정합니다. `#payment-method`와 같은 CSS 선택자와 결제 금액 객체를 추가하세요.
-      // DOM이 생성된 이후에 렌더링 메서드를 호출하세요.
-      // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
-      const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-        "#payment-page__payment-widget",
-        { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
+        // ------  결제 UI 렌더링 ------
+        // 결제 UI를 렌더링할 위치를 지정합니다. `#payment-method`와 같은 CSS 선택자와 결제 금액 객체를 추가하세요.
+        // DOM이 생성된 이후에 렌더링 메서드를 호출하세요.
+        // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
+        const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+          "#payment-page__payment-widget",
+          { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
 
-        // 렌더링하고 싶은 결제 UI의 variantKey
-        // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
-        // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
-        { variantKey: "DEFAULT" }
-      );
+          // 렌더링하고 싶은 결제 UI의 variantKey
+          // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
+          // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
+          { variantKey: "DEFAULT" }
+        );
 
-      // ------  이용약관 UI 렌더링 ------
-      // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
-      // https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
-      paymentWidget.renderAgreement(
-        "#payment-page__payment-agreement",
-        { variantKey: "AGREEMENT" } // 기본 이용약관 UI 렌더링
-      );
-      paymentWidgetRef.current = paymentWidget;
-      paymentMethodsWidgetRef.current = paymentMethodsWidget;
+        // ------  이용약관 UI 렌더링 ------
+        // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
+        // https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
+        paymentWidget.renderAgreement(
+          "#payment-page__payment-agreement",
+          { variantKey: "AGREEMENT" } // 기본 이용약관 UI 렌더링
+        );
+        paymentWidgetRef.current = paymentWidget;
+        paymentMethodsWidgetRef.current = paymentMethodsWidget;
+      } catch (error) {
+        alert(error.message);
+        // 여기서는 오류를 콘솔에 로그로 남깁니다.
+        // 필요에 따라 사용자에게 피드백을 주거나 다른 오류 처리 동작을 추가할 수 있습니다.
+      }
     })();
   }, [totalPrice, salePrice, usedPoint]);
 
