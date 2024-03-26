@@ -43,7 +43,10 @@ const HomePage = () => {
             <div className="home_individual_benefits">
               <div className="home_individual_user">
                 오늘도 준비된,&nbsp;
-                <span className="home_individual_user_name">{userName.includes('@') ? userName.split('@')[0] : userName}</span>님
+                <span className="home_individual_user_name">
+                  {userName.includes("@") ? userName.split("@")[0] : userName}
+                </span>
+                님
               </div>
               <div className="home_individual_point">
                 <span onClick={() => navigate(`/membership`)}>
