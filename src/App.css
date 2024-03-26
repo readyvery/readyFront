@@ -15,12 +15,15 @@
     background-color: white;
   }
   .navbar,
-  .top_header,
-  .top_header_page {
+  .top_header{
     width: 100%;
     margin: 0 auto;
   }
   .top_header_page{
+    width: 100%;
+    margin: 0 auto;
+left: 0;
+right: 0;
     top: 0.94rem;
   }
 }
