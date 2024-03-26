@@ -47,6 +47,7 @@ const Header = ({ headerProps }) => {
             src={IMAGES.headerBack}
             alt="back"
             className="header_back"
+            style={{marginLeft:"1.56rem"}}
             // onClick={() => handleGoBack()}
             // onClick={() => navigate(headerProps.linkTo, { replace: true })}
             onClick={() => {
@@ -58,7 +59,7 @@ const Header = ({ headerProps }) => {
             }}
           />
           <span>{headerProps.pageName}</span>
-          <div className="homeAndCart">
+          <div className="homeAndCart" style={{marginRight:"1.56rem"}}>
             {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
             {!isCartPage ? (
               <div className="homeAndCart">
