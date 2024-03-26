@@ -1,11 +1,10 @@
 import { message } from "antd";
-import moment from "moment";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isAuthenticatedState } from "../Atom/status";
-import authApi from "../utils/authApi";
+import commonApis from "../utils/commonApis";
 
 function Auth(SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
@@ -17,7 +16,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
 
     useEffect(() => {
       function fetchAuth() {
-        authApi.get("/auth", {
+        commonApis.get("/auth", {
             withCredentials: true,
             headers: {
               Authorization: `Bearer ${token ? token : cookies?.accessToken}`
@@ -34,7 +33,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
               // 로그인 후 첫 접속
               console.log('auth에서 첫 접속: ', cookies.accessToken);
               localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-              localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+              // localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
               setIsAuth(true); // 로그인 여부 변경
               message.success("로그인에 성공하셨습니다.");
               removeCookie("accessToken"); // AT 쿠키 삭제
@@ -42,7 +41,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {
             } else if(token) {
               localStorage.clear();
               localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-              localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+              // localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
               setIsAuth(true); // 로그인 여부 변경
               removeCookie("accessToken"); // AT 쿠키 삭제
               return;
