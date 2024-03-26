@@ -22,8 +22,8 @@ jobs:
       - name: cat env file
         run: cat .env
       
-      - name: Generate build          # React Build
-        run: npm run build
+      - name: Generate wbuild          # React Build
+        run: npm run wbuild
       
   #     - name: file copy
   #       uses: actions/upload-artifact@v3
