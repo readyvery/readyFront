@@ -4,9 +4,11 @@ const apiUrl = `/order/toss`;
 
 const useRequestPayment = () => {
   const token = localStorage.getItem("accessToken");
-  const requestPayment = async (cartId, couponId, paymentWidget, point) => {
+  const requestPayment = async (cartId, couponId, paymentWidget, paymentMethodsWidget, point) => {
     try {
       const body = { cartId, couponId, point };
+      console.log('body: ', body);
+      console.log('paymentWidget: ', paymentWidget.requestPayment);
       const response = await commonApis.post(apiUrl, body,{
         headers: {
             Authorization: `Bearer ${token}`
@@ -19,6 +21,10 @@ const useRequestPayment = () => {
           `?paymentType=NORMAL&orderId=${response.data.orderId}&paymentKey=membership&amount=${response.data.amount}`;
         return;
       }
+      console.log(response.data);
+      paymentMethodsWidget.updateAmount(
+        Math.max(response.data.amount, 0)
+      );
       paymentWidget?.requestPayment(response.data);
       return;
     } catch (error) {
