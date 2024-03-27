@@ -21,12 +21,23 @@ const useRequestPayment = () => {
           `?paymentType=NORMAL&orderId=${response.data.orderId}&paymentKey=membership&amount=${response.data.amount}`;
         return;
       }
-      console.log(response.data);
+      console.log('paymentMethodsWidget: ', paymentMethodsWidget);
       paymentMethodsWidget.updateAmount(
         Math.max(response.data.amount, 0)
       );
-      paymentWidget?.requestPayment(response.data);
-      return;
+
+      paymentWidget?.requestPayment(response.data)
+      .then(function (data) {return;})
+      .catch(function (error) {
+        if (error.code === 'NOT_SELECTED_PAYMENT_METHOD') {
+          // 결제수단 미선택 오류
+          const method = paymentMethodsWidget.getSelectedPaymentMethod();
+          console.log('hook 내부 method: ', method);
+          console.log('requestPayment error: ', error);
+          alert('토스 페이먼츠 오류로 새로고침을 시도합니다');
+          window.location.reload(true);
+        }
+      });
     } catch (error) {
       console.error("Error during payment request:", error);
     }
