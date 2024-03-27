@@ -26,7 +26,8 @@ const PaymentPage = () => {
   const point = useGetPoint();
   const paymentRequest = () => {
     const paymentWidget = paymentWidgetRef.current;
-    requestPayment(cartId, couponId, paymentWidget, usedPoint);
+    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
+    requestPayment(cartId, couponId, paymentWidget, paymentMethodsWidget, usedPoint);
   };
   const handleSetPoint = () => {
     if (usedPoint !== 0) {
@@ -40,21 +41,21 @@ const PaymentPage = () => {
       setUsedPoint(Math.min(point, MiddleSumPrice));
     }
   };
+
   useEffect(() => {
     (async () => {
       try {
+
         // ------  결제위젯 초기화 ------
         // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
         const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
         // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS)  // 비회원 결제
-
-        // ------  결제 UI 렌더링 ------
-        // 결제 UI를 렌더링할 위치를 지정합니다. `#payment-method`와 같은 CSS 선택자와 결제 금액 객체를 추가하세요.
-        // DOM이 생성된 이후에 렌더링 메서드를 호출하세요.
-        // https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods선택자-결제-금액-옵션
+        
         const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
           "#payment-page__payment-widget",
           { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
+          // { value: 3000 },
+
 
           // 렌더링하고 싶은 결제 UI의 variantKey
           // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
@@ -77,22 +78,9 @@ const PaymentPage = () => {
         // 필요에 따라 사용자에게 피드백을 주거나 다른 오류 처리 동작을 추가할 수 있습니다.
       }
     })();
-  }, [totalPrice, salePrice, usedPoint]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  useEffect(() => {
-    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
-
-    if (paymentMethodsWidget == null) {
-      return;
-    }
-
-    // ------ 금액 업데이트 ------
-    // 새로운 결제 금액을 넣어주세요.
-    // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-    paymentMethodsWidget.updateAmount(
-      Math.max(totalPrice - salePrice - usedPoint, 0)
-    );
-  }, [totalPrice, salePrice, usedPoint]);
 
   return (
     <div className="payment-page">
