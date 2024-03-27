@@ -56,13 +56,13 @@ const PaymentPage = () => {
           { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
           // { value: 3000 },
 
-
+          
           // 렌더링하고 싶은 결제 UI의 variantKey
           // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
           // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
           { variantKey: "DEFAULT" }
         );
-
+          
         // ------  이용약관 UI 렌더링 ------
         // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
         // https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
