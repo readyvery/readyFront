@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import Header from "../../../components/views/Header/Header";
 import useFetchEvents from "../../../hooks/useFetchEvents";
 import "./EventingPage.css";
+import Empty from "../../../components/views/PageComponent/Empty";
 
 function EventingPage() {
   const navigate = useNavigate();
@@ -30,16 +31,23 @@ function EventingPage() {
           // linkTo: "/mypage",
         }}
       />
-      <div className="eventing-img">
-        <Slider className="eventing_slider_benner" {...settings}>
-          {events.map((item) => (
-            <div key={item} onClick={() => navigate(item.redirectUrl)}>
-              <img src={item.imgUrl} alt="eventing" />
-              {console.log(item)}
-            </div>
-          ))}
-        </Slider>
-      </div>
+
+      {events && events?.length > 0 ? (
+        <div className="eventing-img">
+          <Slider className="eventing_slider_benner" {...settings}>
+            {events.map((item) => (
+              <div key={item} onClick={() => navigate(item.redirectUrl)}>
+                <img src={item.imgUrl} alt="eventing" />
+                {console.log(item)}
+              </div>
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <div className="event-empty">
+          <Empty />
+        </div>
+      )}
     </div>
   );
 }

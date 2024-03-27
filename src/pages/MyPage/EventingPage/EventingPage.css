@@ -43,3 +43,12 @@
   height: 20.875rem;
   margin: 3.63rem 0;
 }
+
+.event-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 85vh;
+}
