@@ -97,7 +97,7 @@ function Mypage() {
         </div>
       </div>
 
-      <hr className="mypage_profile_line"/>
+      <hr className="mypage_profile_line" />
 
       <div className="mypage_profile_category_title">
         문의 및 알림
@@ -124,7 +124,7 @@ function Mypage() {
 
       {isAuth && (
         <>
-          <hr className="mypage_profile_line"/>
+          <hr className="mypage_profile_line" />
           <div className="mypage_profile_category_manage">
             계정관리
             <div
@@ -151,6 +151,7 @@ function Mypage() {
           subtitle=""
         />
       )}
+
       {isBye && (
         <Modal
           setIsOpen={setIsBye}
