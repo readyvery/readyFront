@@ -16,7 +16,7 @@ const useGetPointHistory = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setPointHistory(res.data.history);
+        setPointHistory(res.data.history.reverse());
       } catch (error) {
         console.error("Error fetching new order history:", error);
       } finally {
