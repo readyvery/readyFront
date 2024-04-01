@@ -49,7 +49,14 @@ const HomePage = () => {
                 님
               </div>
               <div className="home_individual_point">
-                <span onClick={() => navigate(`/membership`)}>
+                <span
+                  className={`${
+                    point.toString().length < 5
+                      ? `home_individual_point_margin`
+                      : ``
+                  }`}
+                  onClick={() => navigate(`/membership`)}
+                >
                   {point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} P
                 </span>
                 <span
