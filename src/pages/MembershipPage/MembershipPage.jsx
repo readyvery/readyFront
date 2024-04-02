@@ -56,7 +56,7 @@ function MembershipPage() {
               <span>멤버십 내역</span>
             </div>
             {pointHistory?.length ? (
-              pointHistory.reverse()?.map((e, i) => (
+              pointHistory.map((e, i) => (
                 // {/* 매핑될 요소 */}
                 <div
                   className="membershippage-use-point-box-content"

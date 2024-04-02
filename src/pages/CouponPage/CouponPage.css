@@ -51,28 +51,28 @@
   line-height: 130%; /* 1.1375rem */
   text-align: left;
   margin-left: 1.25rem;
-  margin-top: 0.81rem;
+  margin-top: 0.44rem;
 }
-
-.coupon-page__coupon-item__expirationDate {
-  color: #838383;
+.coupon-page__coupon-item__Box {
+  margin-top: 0.44rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
   font-family: "Pretendard Variable";
+  text-align: left;
   font-weight: 600;
   font-size: 0.6875rem;
+  color: #838383;
   line-height: 130%; /* 0.89375rem */
-  text-align: left;
-  margin-left: 1.25rem;
-  margin-top: 0.31rem;
+}
+.coupon-page__coupon-item__expirationDate {
+  color: #838383;
+  line-height: 130%; /* 0.89375rem */
 }
 
 .coupon-page__coupon-item__description {
-  color: #838383;
-  font-family: "Pretendard Variable";
-  font-weight: 600;
-  font-size: 0.6875rem;
-  line-height: 130%; /* 0.89375rem */
-  text-align: left;
-  margin-left: 1.25rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .coupon-page__empty {

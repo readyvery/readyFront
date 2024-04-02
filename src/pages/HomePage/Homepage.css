@@ -48,8 +48,16 @@
   line-height: normal;
   margin-top: 1.06rem;
   margin-left: 2.19rem;
+  margin-right: 2.19rem;
+  justify-content: flex-end;
+  white-space: nowrap;
 }
 
+.home_individual_point_margin{
+  display: flex;
+  justify-content: flex-end;
+  width: 7.5rem;
+}
 .home_individual_coupon_box {
   display: flex;
   justify-content: center;
@@ -66,7 +74,6 @@
   line-height: 130%; /* 0.975rem */
   letter-spacing: -0.0075rem;
   margin-left: auto;
-  margin-right: 2.19rem;
 }
 
 .home_individual_quick_order {
