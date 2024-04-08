@@ -4,7 +4,7 @@ import commonApis from "../utils/commonApis";
 const apiUrl = `/coupon`;
 
 const useFetchCoupons = () => {
-  const [coupons, setCoupons] = useState([]);
+  const [coupons, setCoupons] = useState(null); // null || []
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
@@ -12,8 +12,8 @@ const useFetchCoupons = () => {
       try {
         const response = await commonApis.get(apiUrl, {
           headers: {
-              Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setCoupons(response.data.coupons);
       } catch (error) {
