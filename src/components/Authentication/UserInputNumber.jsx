@@ -35,7 +35,19 @@ const UserInputNumber = () => {
   };
 
   const handlePhoneChange = (event) => {
-    setPhonenumber(event.target.value);
+    const HyphenNumber = event.target.value.replace(/[^0-9]/g, "");
+    setPhonenumber(HyphenNumber);
+  };
+  const displayFormattedPhoneNumber = (numbers) => {
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(
+        7
+      )}`;
+    }
   };
   // 번호 인증 성공 여부 확인
   const handleAuthSuccess = (success) => {
@@ -55,9 +67,12 @@ const UserInputNumber = () => {
       <div className="user-input-phone-number-wrapper">
         <input
           type="tel"
+          inputmode="numeric"
+          pattern="[0-9]*"
           placeholder="전화번호"
-          value={Phonenumber}
+          value={displayFormattedPhoneNumber(Phonenumber)}
           onChange={handlePhoneChange}
+          maxLength="13"
           className="user-input-phone-number-input"
         />
         <button
