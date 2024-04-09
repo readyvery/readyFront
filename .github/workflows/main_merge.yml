@@ -22,7 +22,7 @@ jobs:
       - name: cat env file
         run: cat .env
       
-      - name: Generate build          # React Build
+      - name: Generate wbuild          # React Build
         run: npm run build
       
   #     - name: file copy
