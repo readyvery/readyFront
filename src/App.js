@@ -31,6 +31,7 @@ import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentLoadingPage from "./pages/PaymentPage/Redirect/PaymentLoadingPage";
 import Splash from "./pages/Splash/Splash";
 import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
+import FestivalBoothSearch from "./pages/StoreSearch/FestivalBoothSearch";
 function App() {
   // const [cookies, , removeCookies] = useCookies();
   // const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
@@ -163,6 +164,9 @@ function App() {
             />
             {/* 결제 실패 리다이렉트 페이지 */}
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
+
+            {/* 축제 부스 검색 페이지 */}
+            <Route path="/booth" element={<FestivalBoothSearch />} />
           </Routes>
         </Suspense>
       </RecoilRoot>
