@@ -10,9 +10,9 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
   let displayStores = [];
 
   if (cafe) {
-    displayStores = stores.filter((item) => item.idx < 5);
+    displayStores = stores.filter((item) => item.idx < 4);
   } else if (booth) {
-    displayStores = stores.filter((item) => item.idx >= 5);
+    displayStores = stores.filter((item) => item.idx >= 4);
   }
   // 검색어에 따라 필터링된 목록을 반환하는 로직
   const filteredStores = stores.filter((item) => {
