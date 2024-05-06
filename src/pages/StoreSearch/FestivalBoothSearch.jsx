@@ -5,7 +5,7 @@ import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import StoreList from "../../components/views/StoreList/StoreList";
 
-function StoreSearch() {
+function FestivalBoothSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const debounceDelay = 500; // 디바운스 지연 시간
@@ -32,7 +32,7 @@ function StoreSearch() {
 
   return (
     <div className="store_search">
-      <Header headerProps={{ pageName: "매장검색" }} />
+      <Header headerProps={{ pageName: "축제 주점 검색" }} />
 
       <form className="store_search_form" onSubmit={(e) => e.preventDefault()}>
         <img src={IMAGES.search} alt="search" />
@@ -47,11 +47,11 @@ function StoreSearch() {
       </form>
 
       {/* Debounced search term을 사용하여 StoreList에 prop으로 전달 */}
-      <StoreList searchTerm={debouncedSearchTerm} cafe={true} />
+      <StoreList searchTerm={debouncedSearchTerm} booth={true} />
 
       <NavBar />
     </div>
   );
 }
 
-export default StoreSearch;
+export default FestivalBoothSearch;

@@ -4,17 +4,23 @@ import { IMAGES } from "../../../constants/images";
 import { useNavigate } from "react-router-dom";
 import useFetchSearch from "../../../hooks/useFetchSearch";
 
-const StoreList = ({ searchTerm = "" }) => {
+const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
   const navigate = useNavigate();
   const stores = useFetchSearch();
+  let displayStores = [];
 
+  if (cafe) {
+    displayStores = stores.filter((item) => item.idx < 5);
+  } else if (booth) {
+    displayStores = stores.filter((item) => item.idx >= 5);
+  }
   // 검색어에 따라 필터링된 목록을 반환하는 로직
   const filteredStores = stores.filter((item) => {
     return item.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   // 검색어가 있을 경우 filteredStores를 사용하고, 없을 경우 기존 stores를 사용
-  const displayStores = searchTerm ? filteredStores : stores;
+  displayStores = searchTerm ? filteredStores : displayStores;
 
   return (
     <div className="store_list">
@@ -22,7 +28,13 @@ const StoreList = ({ searchTerm = "" }) => {
         <div
           key={item.idx}
           className="store_list_item"
-          onClick={() => navigate(`/packagingStatus?storeId=${item.idx}`)}
+          onClick={() => {
+            if (item.idx >= 5) {
+              navigate(`/packagingStatus?storeId=${item.idx}&inout=2`);
+            } else {
+              navigate(`/packagingStatus?storeId=${item.idx}`);
+            }
+          }}
         >
           <img
             src={item.imgUrl}
