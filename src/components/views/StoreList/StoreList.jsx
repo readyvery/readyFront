@@ -1,8 +1,8 @@
 import React from "react";
-import "./StoreList.css";
-import { IMAGES } from "../../../constants/images";
 import { useNavigate } from "react-router-dom";
+import { IMAGES } from "../../../constants/images";
 import useFetchSearch from "../../../hooks/useFetchSearch";
+import "./StoreList.css";
 
 const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
           className="store_list_item"
           onClick={() => {
             if (item.idx >= 10) {
-              navigate(`/store?storeId=${item.idx}&inout=2`);
+              navigate(`/store?storeId=${item.idx}&inout=2/booth`);
             } else {
               navigate(`/packagingStatus?storeId=${item.idx}`);
             }
