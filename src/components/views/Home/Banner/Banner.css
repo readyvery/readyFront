@@ -7,6 +7,12 @@
   height: 6.25rem;
   margin-top: 2.81rem;
 }
+/* 축제용 */
+.home_event_slider_benner_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 /* 슬라이드 구성 요소 조정 */
 .home_event_slider {
@@ -28,7 +34,7 @@
 }
 /* 클릭시 테두리 제거 */
 .home_event_slider_benner:focus {
-  outline: none; 
+  outline: none;
 }
 /* 여기가 배너요소 크기 수정하는 곳입니다 */
 .home_event_slider_benner_wrapper .slick-slide {
@@ -46,7 +52,6 @@
   height: 6.25rem;
 }
 
-
 /* 배너 카운팅 */
 .home_event_slide_index {
   display: flex;
@@ -56,7 +61,7 @@
   top: 15%;
   right: 7%;
   transform: translate(-50%, -50%);
-/* 배너 크기 수정없으면 위 그대로  */
+  /* 배너 크기 수정없으면 위 그대로  */
 
   width: 1.8125rem;
   height: 0.6875rem;
