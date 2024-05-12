@@ -32,7 +32,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
           key={item.idx}
           className="store_list_item"
           onClick={() => {
-            if (item.idx >= 5) {
+            if (item.idx >= 10) {
               navigate(`/packagingStatus?storeId=${item.idx}&inout=2`);
             } else {
               navigate(`/packagingStatus?storeId=${item.idx}`);
