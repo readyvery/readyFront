@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
-import "./StoreDetailPage.css";
+import useFetchCartCount from "../../hooks/useFetchCartCount";
+import useFetchCartData from "../../hooks/useFetchCartData";
 import useFetchStoreInfo from "../../hooks/useFetchStoreInfo";
 import useFetchStoreMenu from "../../hooks/useFetchStoreMenu";
-import useFetchCartData from "../../hooks/useFetchCartData";
-import useFetchCartCount from "../../hooks/useFetchCartCount";
+import "./StoreDetailPage.css";
 
 const StoreDetailPage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,11 @@ const StoreDetailPage = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
+  // 축제용
+  const boothLinkTo = location.search.includes("/booth")
+    ? "/booth"
+    : `/packagingStatus?storeId=${storeIdParam}`;
+  
   useEffect(() => {
     if (menu && menu.menu && menu.menu.length > 0) {
       setSelectedCategory(menu.menu[0]);
@@ -35,7 +39,7 @@ const StoreDetailPage = () => {
       <Header
         headerProps={{
           pageName: "",
-          linkTo: `/packagingStatus?storeId=${storeIdParam}`,
+          linkTo: boothLinkTo,
         }}
       />
 
