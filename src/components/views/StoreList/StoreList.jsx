@@ -33,7 +33,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
           className="store_list_item"
           onClick={() => {
             if (item.idx >= 10) {
-              navigate(`/packagingStatus?storeId=${item.idx}&inout=2`);
+              navigate(`/store?storeId=${item.idx}&inout=2`);
             } else {
               navigate(`/packagingStatus?storeId=${item.idx}`);
             }
