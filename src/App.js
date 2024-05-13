@@ -57,6 +57,7 @@ function App() {
   const NewPaymentPage = Auth(PaymentPage, true, 2);
   const NewPaymentLoadingPage = Auth(PaymentLoadingPage, true, 2);
   const NewPaymentFailPage = Auth(PaymentFailPage, true, 2);
+  const NewFestivalBoothSearch = Auth(FestivalBoothSearch, true, 2);
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
   // const minute = 1000 * 60 * 60 * 24; // 24시간
@@ -166,7 +167,7 @@ function App() {
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
 
             {/* 축제 부스 검색 페이지 */}
-            <Route path="/booth" element={<FestivalBoothSearch />} />
+            <Route path="/booth" element={<NewFestivalBoothSearch />} />
           </Routes>
         </Suspense>
       </RecoilRoot>
