@@ -57,7 +57,8 @@ function Auth(SpecificComponent, option, adminRoute = null) {
               localStorage.setItem("accessToken", cookies.accessToken);
               removeCookie("accessToken");
             }
-            if(option && location.pathname !== '/'){
+            if(option && location.pathname !== '/' && location.pathname !== '/booth' && location.pathname.split("?")[0] !== '/store'){
+              console.log("부스 & 홈 & 상세에서 나오지 마라");
               navigate('/login');
               return;
             }
