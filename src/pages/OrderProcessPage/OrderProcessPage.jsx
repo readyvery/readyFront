@@ -14,7 +14,7 @@ const OrderProcessPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
-  const inout = params.get("inout");
+  const inout = params.get("inout").split("/")[0];
   const foodieId = params.get("foodie_id");
   const status = params.get("status");
   const { category, imgUrl, name, price } = useFetchFoodOptionInfo(
