@@ -24,10 +24,10 @@ const StoreDetailPage = () => {
     setSelectedCategory(category);
   };
   // 축제용
-  const boothLinkTo = location.search.includes("/booth")
-    ? "/booth"
-    : `/packagingStatus?storeId=${storeIdParam}`;
-  
+  const boothLinkTo = params.get("storeId") >= 10 
+  ? "/booth"
+  : `/packagingStatus?storeId=${storeIdParam}`;
+
   useEffect(() => {
     if (menu && menu.menu && menu.menu.length > 0) {
       setSelectedCategory(menu.menu[0]);
