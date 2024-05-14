@@ -31,7 +31,6 @@ function Auth(SpecificComponent, option, adminRoute = null) {
           if (cookies.accessToken) {
             if(!token && auth) {
               // 로그인 후 첫 접속
-              console.log('auth에서 첫 접속: ', cookies.accessToken);
               localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
               // localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
               setIsAuth(true); // 로그인 여부 변경
