@@ -22,17 +22,14 @@ function Auth(SpecificComponent, option, adminRoute = null) {
               Authorization: `Bearer ${token ? token : cookies?.accessToken}`
           }
         }).then((response) => {
-            console.log(response);
             // debugger;
             const { auth } = response.data; // 로그인 여부
             const { role } = response.data; // GUEST, USER, CEO
             console.log(auth, role, option);
-          console.log(cookies);
           if (cookies.accessToken) {
             if(!token && auth) {
               // 로그인 후 첫 접속
               localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-              // localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
               setIsAuth(true); // 로그인 여부 변경
               message.success("로그인에 성공하셨습니다.");
               removeCookie("accessToken"); // AT 쿠키 삭제
@@ -40,7 +37,6 @@ function Auth(SpecificComponent, option, adminRoute = null) {
             } else if(token) {
               localStorage.clear();
               localStorage.setItem("accessToken", cookies.accessToken); // 로컬 스토리지에 AT 저장
-              // localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
               setIsAuth(true); // 로그인 여부 변경
               removeCookie("accessToken"); // AT 쿠키 삭제
               return;
@@ -57,7 +53,6 @@ function Auth(SpecificComponent, option, adminRoute = null) {
               removeCookie("accessToken");
             }
             if(option && location.pathname !== '/' && location.pathname !== '/booth' && location.pathname.split("?")[0] !== '/store'){
-              console.log("부스 & 홈 & 상세에서 나오지 마라");
               navigate('/login');
               return;
             }

@@ -17,7 +17,6 @@ const useFetchFoodOptionInfo = (storeId, foodieId, inout) => {
         setImgUrl(response.data?.imgUrl);
         setName(response.data?.name);
         setPrice(response.data?.price);
-        console.log("메뉴 데이터: ", response.data);
       } catch (error) {
         console.error("Error fetching food option info:", error);
       }
