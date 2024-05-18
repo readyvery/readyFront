@@ -27,13 +27,7 @@ const PaymentPage = () => {
   const paymentRequest = () => {
     const paymentWidget = paymentWidgetRef.current;
     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
-    requestPayment(
-      cartId,
-      couponId,
-      paymentWidget,
-      paymentMethodsWidget,
-      usedPoint
-    );
+    requestPayment(cartId, couponId, paymentWidget, paymentMethodsWidget, usedPoint);
   };
   const handleSetPoint = () => {
     if (usedPoint !== 0) {
@@ -51,22 +45,24 @@ const PaymentPage = () => {
   useEffect(() => {
     (async () => {
       try {
+
         // ------  결제위젯 초기화 ------
         // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
         const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
         // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS)  // 비회원 결제
-
+        
         const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
           "#payment-page__payment-widget",
           { value: Math.max(totalPrice - salePrice - usedPoint, 0) },
           // { value: 3000 },
 
+          
           // 렌더링하고 싶은 결제 UI의 variantKey
           // 아래 variantKey는 문서용 테스트키와 연동되어 있습니다. 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
           // https://docs.tosspayments.com/guides/payment-widget/admin#멀티-결제-ui
           { variantKey: "DEFAULT" }
         );
-
+          
         // ------  이용약관 UI 렌더링 ------
         // 이용약관 UI를 렌더링할 위치를 지정합니다. `#agreement`와 같은 CSS 선택자를 추가하세요.
         // https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
@@ -84,6 +80,7 @@ const PaymentPage = () => {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   return (
     <div className="payment-page">
@@ -180,66 +177,51 @@ const PaymentPage = () => {
 
       <div className="payment-page__line"></div>
 
-      {/* 할인 적용내역 */}
       <div className="payment-page__pay-info">
         <div className="payment-page__title">할인적용</div>
-        {storeId >= 10 && inOut === 2 ? (
-          <span className="payment-page__content">
-            축제 상품에는 적용되지 않습니다
+        <div className="payment-page__coupone">
+          <span className="payment-page__content">쿠폰</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {salePrice && (
+                <span className="payment-page__coupone-price">
+                  {salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                </span>
+              )}
+              <Link
+                to={`/coupon?storeId=${storeId}&inout=${inOut}&cartId=${cartId}`}
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+              >
+                쿠폰적용
+              </Link>
+            </span>
           </span>
-        ) : (
-          <>
-            <div className="payment-page__coupone">
-              <span className="payment-page__content">쿠폰</span>
-              <span className="payment-page__coupone__apply">
+        </div>
+        <div className="payment-page__point">
+          {/* 포인트 적용 */}
+          <span className="payment-page__content">통합 포인트</span>
+          <span className="payment-page__coupone__apply">
+            <span className="payment-page__coupone-price">
+              {usedPoint && (
                 <span className="payment-page__coupone-price">
-                  {salePrice && (
-                    <span className="payment-page__coupone-price">
-                      {salePrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                      원
-                    </span>
-                  )}
-                  <Link
-                    to={`/coupon?storeId=${storeId}&inout=${inOut}&cartId=${cartId}`}
-                    className="payment-page__coupone-btn"
-                    style={{ textDecoration: "none" }}
-                  >
-                    쿠폰적용
-                  </Link>
+                  {usedPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
                 </span>
-              </span>
-            </div>
-            <div className="payment-page__point">
-              {/* 포인트 적용 */}
-              <span className="payment-page__content">통합 포인트</span>
-              <span className="payment-page__coupone__apply">
-                <span className="payment-page__coupone-price">
-                  {usedPoint && (
-                    <span className="payment-page__coupone-price">
-                      {usedPoint
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                      원
-                    </span>
-                  )}
-                  {/* 적용취소, 적용 금액 한계 설정 */}
-                  <div
-                    className="payment-page__coupone-btn"
-                    style={{ textDecoration: "none" }}
-                    onClick={handleSetPoint}
-                  >
-                    {usedPoint === 0 ? "최대 적용" : "적용 취소"}
-                  </div>
-                </span>
-              </span>
-            </div>
-            <div className="payment-page__point__available">
-              <span>보유: {point} P</span>
-            </div>
-          </>
-        )}
+              )}
+              {/* 적용취소, 적용 금액 한계 설정 */}
+              <div
+                className="payment-page__coupone-btn"
+                style={{ textDecoration: "none" }}
+                onClick={handleSetPoint}
+              >
+                {usedPoint === 0 ? "최대 적용" : "적용 취소"}
+              </div>
+            </span>
+          </span>
+        </div>
+        <div className="payment-page__point__available">
+          <span>보유: {point} P</span>
+        </div>
         <div className="payment-page__order-info__pay__line"></div>
 
         <div className="payment-page__title">결제금액</div>
@@ -255,7 +237,7 @@ const PaymentPage = () => {
           <span className="payment-page__content-price">
             {salePrice + usedPoint > 0
               ? "(-)" +
-                // 표시되는 할인 금액 조정
+              // 표시되는 할인 금액 조정
                 Math.min(salePrice + usedPoint, totalPrice)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
