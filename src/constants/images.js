@@ -72,4 +72,5 @@ export const IMAGES = {
 
   // 축제 배너 이미지 하드
   banner_img: require("../assets/images/banner_readybarry.png"),
+  banner2_img: require("../assets/images/banner2_readybarry.png"),
 };
