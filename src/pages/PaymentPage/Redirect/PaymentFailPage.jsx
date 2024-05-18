@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import "./PaymentFailPage.css";
-import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
 import { IMAGES } from "../../../constants/images";
+import useFetchPaymentFail from "../../../hooks/useFetchPaymentFail";
+import "./PaymentFailPage.css";
 
 const PaymentFailPage = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const PaymentFailPage = () => {
       <div className="payment-fail-page__title">결제 실패</div>
 
       <div className="payment-fail-page__notice">
-        네트워크 및 통장 잔액를 확인해주세요
+        네트워크 및 통장 잔액을 확인해주세요
       </div>
 
       <div
