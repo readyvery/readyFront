@@ -15,7 +15,6 @@ const useLogout = (removeCookie, setIsAuth) => {
           }
         });
         if(response.status === 200){
-          console.log(response);
           localStorage.clear();
           setIsAuth(false);
           message.success("로그아웃에 성공하셨습니다.");

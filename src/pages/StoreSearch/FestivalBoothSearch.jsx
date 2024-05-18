@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import { IMAGES } from "../../constants/images";
-import "./StoreSearch.css";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import StoreList from "../../components/views/StoreList/StoreList";
+import { IMAGES } from "../../constants/images";
+import "./StoreSearch.css";
 
 function FestivalBoothSearch() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,7 +21,6 @@ function FestivalBoothSearch() {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-      console.log("디바운싱:", searchTerm);
     }, debounceDelay);
 
     // 컴포넌트가 unmount되거나 다음 useEffect가 실행되기 전에 타이머를 정리

@@ -30,8 +30,8 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import PaymentFailPage from "./pages/PaymentPage/Redirect/PaymentFailPage";
 import PaymentLoadingPage from "./pages/PaymentPage/Redirect/PaymentLoadingPage";
 import Splash from "./pages/Splash/Splash";
-import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 import FestivalBoothSearch from "./pages/StoreSearch/FestivalBoothSearch";
+import StoreSearchPage from "./pages/StoreSearch/StoreSearch";
 function App() {
   // const [cookies, , removeCookies] = useCookies();
   // const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
@@ -60,50 +60,6 @@ function App() {
   const NewFestivalBoothSearch = Auth(FestivalBoothSearch, true, 2);
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
-  // const minute = 1000 * 60 * 60 * 24; // 24시간
-  //const minute = 1000 * 60 * 10; // 10분
-  // const minute = 1000 * 10; // 10초
-  // // 주기적으로 실행되는 함수
-  // useInterval(() => {
-  //   const token = localStorage.getItem("accessToken");
-  //   console.log('local token: ', token);
-  //   console.log('isAuth: ', isAuth);
-  //   // 리프레시 토큰이 존재하고, 비어 있지 않은 경우
-  //   if (token) {
-  //     // http 요청에 사용될 헤더 설정과 함께 서버에 토큰 갱신 요청
-  //     let config = {
-  //       withCredentials: true,
-  //       headers: {
-  //         Authorization: `Bearer ${token ? token : cookies?.accessToken}`
-  //       }
-  //     };
-  //     console.log('AT 재발급');
-  //     axios
-  //       .get(apiUrl, config)
-  //       .then((response) => {
-  //         console.log(response);
-  //         // 현재 쿠키 삭제
-  //         if (response.status !== 200 ) {
-  //           message.info("다시 로그인해주세요.");
-  //           removeCookies();
-  //           localStorage.clear();
-  //           setIsAuth(false);
-  //           navigate("/login");
-  //         } else {
-  //           console.log("AT 재발급 성공! ");
-  //           console.log(cookies);
-  //           debugger;
-  //           cookies?.accessToken && localStorage.setItem("accessToken", cookies?.accessToken); // 로컬 스토리지에 AT 저장
-  //           removeCookies("accessToken"); // AT 쿠키 삭제
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         message.info("다시 로그인해주세요.");
-  //         navigate("/login");
-  //       });
-  //   }
-  // }, minute - 1000); // 24시간 주기에서 1분을 뺀 주기로 주기적 실행
 
   return (
     <div className="App">

@@ -24,7 +24,6 @@ const useFetchQuickOrder = () => {
         }
       } else {
         // isAuth가 false일 때 quickOrder 상태를 초기화합니다.
-        console.log('fetching quick order is diabled');
         setQuickOrder([]);
       }
     };
