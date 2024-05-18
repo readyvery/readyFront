@@ -25,11 +25,12 @@ const Header = ({ headerProps }) => {
     }
   }, [isOpen, isAuth]);
 
-  const handleCartClick = () => {
+  const handleCartClick = (path) => {
     if (!isAuth) {
       setIsOpen(!isOpen);
     } else {
-      navigate(`/cart`);
+      // navigate(`/cart`);
+      navigate(path, { replace: true }); // 조건에 따른 경로로 이동
     }
   };
 
@@ -47,7 +48,7 @@ const Header = ({ headerProps }) => {
             src={IMAGES.headerBack}
             alt="back"
             className="header_back"
-            style={{marginLeft:"1.56rem"}}
+            style={{ marginLeft: "1.56rem" }}
             // onClick={() => handleGoBack()}
             // onClick={() => navigate(headerProps.linkTo, { replace: true })}
             onClick={() => {
@@ -59,7 +60,7 @@ const Header = ({ headerProps }) => {
             }}
           />
           <span>{headerProps.pageName}</span>
-          <div className="homeAndCart" style={{marginRight:"1.56rem"}}>
+          <div className="homeAndCart" style={{ marginRight: "1.56rem" }}>
             {/* 현재 페이지가 홈이 아니고 장바구니 페이지가 아닌 경우에만 장바구니 아이콘 표시 */}
             {!isCartPage ? (
               <div className="homeAndCart">
@@ -113,12 +114,26 @@ const Header = ({ headerProps }) => {
               onClick={() => navigate(`/`, { replace: true })}
             />
             {/* 장바구니 (흰) */}
-            <img
-              src={IMAGES.homeCart}
-              alt="cart"
-              className="header_cart_home"
-              onClick={handleCartClick}
-            />
+            <div className="header_cart_home">
+              <img
+                src={IMAGES.homeCart}
+                alt="cart"
+                className="header_cart_home"
+                onClick={() => {
+                  let path = `/cart`; // 기본 경로 설정
+                  if (storeId && !isNaN(parseInt(storeId, 10))) {
+                    // storeId가 유효한 경우
+                    path += `?storeId=${storeId}`; // 기본적으로 storeId만 사용하여 경로 설정
+                    if (inout && !isNaN(parseInt(inout, 10))) {
+                      // inout도 유효한 경우
+                      path += `&inout=${inout}`; // inout 값을 경로에 추가
+                    }
+                  }
+                  handleCartClick(path);
+                }}
+              />
+              <CartItemCount />
+            </div>
           </div>
         </header>
       )}
