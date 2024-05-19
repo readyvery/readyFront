@@ -44,6 +44,7 @@ const OrderProcessPage = () => {
   const handleCartUpdate = () => {
     // 주점 포장/매장 옵션 선택 여부 확인
     const pickupIdx = category.filter((item) => item.name === "포장/매장")[0]?.options[0]?.idx;
+    console.log(pickupIdx, essentialOptionIdx);
     if (pickupIdx && essentialOptionIdx.includes(pickupIdx)) {
       setIsBoothOpen(true);
       return;

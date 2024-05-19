@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/views/Header/Header";
+import { Skeleton } from "../../components/views/Skeleton/Skeleton";
 import useFetchCartCount from "../../hooks/useFetchCartCount";
 import useFetchCartData from "../../hooks/useFetchCartData";
 import useFetchStoreInfo from "../../hooks/useFetchStoreInfo";
@@ -111,7 +112,9 @@ const StoreDetailPage = () => {
                 </span>
               ))
             ) : (
-              <p>Loading category...</p>
+              <Skeleton 
+                size="sm"
+              />
             )}
           </div>
 
@@ -171,7 +174,14 @@ const StoreDetailPage = () => {
               </div>
             ))
           ) : (
-            <p>Loading menu...</p>
+            <>
+              <div className="store-detail-page__menuList__item">
+                <Skeleton></Skeleton>
+              </div>
+              <div className="store-detail-page__menuList__item">
+                <Skeleton></Skeleton>
+              </div>
+            </>
           )}
         </div>
 

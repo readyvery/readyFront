@@ -1,0 +1,86 @@
+@keyframes loading {
+    0% {
+      transform: translateX(0);
+    }
+    50%,
+    100% {
+      transform: translateX(460px);
+    }
+}
+
+.skeleton-item {
+    width: 100%;
+    height: 100%;
+}
+
+.skeleton-item.sm {
+    width: 10%;
+    height: 100%;
+}
+
+.skeleton-info {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skeleton-info.sm {
+    padding: 0.5rem 1.5rem;
+}
+
+.skeleton-name {
+    width: 50%;
+    height: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-name::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+    animation: loading 2s infinite linear;
+}
+
+.skeleton-email {
+    width: 20%;
+    height: 15px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-email.sm {
+    width: 100%;
+    height: 15px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-email::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+    animation: loading 2s infinite linear;
+}
+
+
+.element {
+    overflow: hidden;
+    position: relative;
+}
