@@ -35,9 +35,20 @@ const OrderProcessPage = () => {
   const [totalAmount, setTotalAmount] = useState(price);
   const [prevRadioPrice, setPrevRadioPrice] = useState(category?.map(() => 0));
   const [optionIdx, setOptionIdx] = useState([]);
-  const [essentialOptionIdx, setEssentialOptionIdx] = useState({});
+  const [essentialOptionIdx, setEssentialOptionIdx] = useState([]);
+
+  // 축제용 모달
+  const [isBoothOpen, setIsBoothOpen] = useState(false);
+  const boothModalTitle = ["포장/매장 옵션을 선택하셔야 합니다."]
 
   const handleCartUpdate = () => {
+    // 주점 포장/매장 옵션 선택 여부 확인
+    const pickupIdx = category.filter((item) => item.name === "포장/매장")[0]?.options[0]?.idx;
+    if (pickupIdx && essentialOptionIdx.includes(pickupIdx)) {
+      setIsBoothOpen(true);
+      return;
+    }
+
     let body = {
       storeId: storeId,
       foodieId: foodieId,
@@ -450,6 +461,22 @@ const OrderProcessPage = () => {
             </React.Fragment>
           ))}
           subtitle={"확인 버튼을 누르시면, 이전에 담은 메뉴가 삭제됩니다."}
+        />
+      )}
+
+      {/* 축제용 모달 */}
+      {isBoothOpen && (
+        <Modal
+          setIsOpen={setIsBoothOpen}
+          handleCancel={() => setIsBoothOpen(false)}
+          title={boothModalTitle.map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+          // subtitle={"확인 버튼을 누르시면, 이전에 담은 메뉴가 삭제됩니다."}
+          isOk={true}
         />
       )}
     </div>
