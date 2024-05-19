@@ -37,7 +37,6 @@ const useFetchOrderDetails = (orderId) => {
         setSalePrice(response.data.salePrice);
         setStoreName(response.data.storeName);
         setStorePhone(response.data.storePhone);
-        console.log('order detail: ', response.data);
       } catch (error) {
         console.error("Error fetching order details:", error);
       }

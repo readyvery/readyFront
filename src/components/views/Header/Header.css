@@ -103,6 +103,7 @@
 }
 
 .header_cart_home {
+  position: relative;
   margin-left: auto;
   width: 2rem;
   height: 2rem;

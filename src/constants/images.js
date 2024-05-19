@@ -69,4 +69,8 @@ export const IMAGES = {
   check_red: require("../assets/images/check_red.png"),
   check_x_red: require("../assets/images/check_x_red.png"),
   find_logo: require("../assets/images/ic_find_logo.png"),
+
+  // 축제 배너 이미지 하드
+  banner_img: require("../assets/images/banner_readybarry.png"),
+  banner2_img: require("../assets/images/banner2_readybarry.png"),
 };

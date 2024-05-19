@@ -14,7 +14,7 @@ const OrderProcessPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const storeId = params.get("storeId");
-  const inout = params.get("inout");
+  const inout = params.get("inout").split("/")[0];
   const foodieId = params.get("foodie_id");
   const status = params.get("status");
   const { category, imgUrl, name, price } = useFetchFoodOptionInfo(
@@ -130,7 +130,6 @@ const OrderProcessPage = () => {
       return texts;
     });
 
-    console.log('totalAmount: ', totalAmount - prevRadioPrice[index] + price);
     setTotalAmount((prevAmount) => prevAmount - prevRadioPrice[index] + price);
 
     setPrevRadioPrice((prevPrices) => {
@@ -148,10 +147,6 @@ const OrderProcessPage = () => {
 
   // 선택 옵션 변경
   const handleOptionChange = (idx, price, e) => {
-    const tmpOptionIdx = [...optionIdx, idx];
-    e.target.checked && console.log('옵션 변경 후 totalAmount: ', totalAmount + price, '옵션 변경 후 idx: ', tmpOptionIdx);
-    !e.target.checked && console.log('옵션 변경 후 totalAmount: ', totalAmount - price, '옵션 변경 후 idx: ', optionIdx.filter((e) => e !== idx));
-
     e.target.checked
       ? setTotalAmount((prevAmount) => prevAmount + price)
       : setTotalAmount((prevAmount) => prevAmount - price);
@@ -163,14 +158,12 @@ const OrderProcessPage = () => {
   // 수량 증가
   const handleCntUp = () => {
     const newOrderCnt = orderCnt + 1;
-    console.log('count: ', newOrderCnt);
     setOrderCnt(newOrderCnt);
   };
 
   // 수량 감소
   const handleCntDown = () => {
     const newOrderCnt = orderCnt === 1 ? 1 : orderCnt - 1;
-    console.log('count: ', newOrderCnt);
     setOrderCnt((prev) => (prev === 1 ? 1 : newOrderCnt));
   };
 
@@ -180,25 +173,8 @@ const OrderProcessPage = () => {
         .filter((el) => el?.essential)
         .map((e) => e.options[0]?.name);
 
-      console.log('essentialOptions: ', essentialOptions);
       setSelectedRadioTexts(essentialOptions);
     }
-
-    console.log('orderCount: ', orderCnt)
-    console.log('price: ', price);
-    console.log('category: ', parseInt(
-      category
-        ?.filter((el) => el?.essential)
-        .map((e) => parseInt(e?.options[0]?.price))
-        .reduce((prev, curr) => prev + curr, 0)));
-    console.log('totalPrice: ', 
-    (price +
-      parseInt(
-        category
-          ?.filter((el) => el?.essential)
-          .map((e) => parseInt(e?.options[0]?.price))
-          .reduce((prev, curr) => prev + curr, 0)
-      )));
 
     setTotalAmount(
       price && 
