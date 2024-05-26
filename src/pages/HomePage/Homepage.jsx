@@ -148,7 +148,7 @@ const HomePage = () => {
       <Banner />
 
       <div className="home_berry_pick">베리 PICK</div>
-      <StoreList cafe={true} />
+      <StoreList />
 
       <div className="home_business_info">
         <div className="home_business_info_name">ReadyVery</div>
