@@ -60,7 +60,6 @@ function App() {
   const NewFestivalBoothSearch = Auth(FestivalBoothSearch, true, 2);
   // const NewPackagingStatusPage = Auth(PackagingStatusPage, true);
 
-
   return (
     <div className="App">
       <RecoilRoot>
@@ -121,9 +120,6 @@ function App() {
             />
             {/* 결제 실패 리다이렉트 페이지 */}
             <Route path="/payment/fail" element={<NewPaymentFailPage />} />
-
-            {/* 축제 부스 검색 페이지 */}
-            <Route path="/booth" element={<NewFestivalBoothSearch />} />
           </Routes>
         </Suspense>
       </RecoilRoot>
