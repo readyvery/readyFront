@@ -15,7 +15,7 @@ const StoreList = ({ searchTerm = "" }) => {
   });
 
   // 검색어가 있을 경우 filteredStores를 사용하고, 없을 경우 기존 stores를 사용
-  displayStores = searchTerm ? filteredStores : displayStores;
+  displayStores = searchTerm ? filteredStores : stores;
 
   return (
     <div className="store_list">
