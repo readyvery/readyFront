@@ -16,7 +16,7 @@ const OrderProgress = () => {
   const [degree, setDegree] = useState(-1);
   const [isOpen, setIsOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { estimatedTime, orderNum, progress } = 
+  const { estimatedTime, orderNum, progress, expectPoint } = 
     useFetchCurrentOrder(orderId, refreshKey); // expectPoint 일시 삭제
   const cancelOrder = useCancelOrder();
   const [rotate, setRotate] = useState(false); //새로고침 클릭시 회전용
@@ -234,13 +234,13 @@ const OrderProgress = () => {
               </div>
             )}
 
-            {/* {degree === 3 ? (
+            {degree === 3 ? (
               <div className="order_progress__point">
                 <span className="order_progress__point_text">
                   <span>{expectPoint}</span>원 적립되었습니다
                 </span>
               </div>
-            ) : null} */}
+            ) : null}
           </div>
 
           {isOpen && (
