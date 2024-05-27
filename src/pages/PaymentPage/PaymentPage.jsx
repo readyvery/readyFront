@@ -22,7 +22,7 @@ const PaymentPage = () => {
   const paymentMethodsWidgetRef = useRef(null);
   const { carts, edit, imgUrl, inOut, isOpened, name, storeId, totalPrice } =
     useFetchCartData(cartId);
-  const requestPayment = useRequestPayment();
+  const requestPayment = useRequestPayment(); 
   const point = useGetPoint();
   const paymentRequest = () => {
     const paymentWidget = paymentWidgetRef.current;
