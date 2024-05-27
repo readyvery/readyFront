@@ -46,7 +46,7 @@ function StoreSearch() {
       </form>
 
       {/* Debounced search term을 사용하여 StoreList에 prop으로 전달 */}
-      <StoreList searchTerm={debouncedSearchTerm} cafe={true} booth={true} />
+      <StoreList searchTerm={debouncedSearchTerm} />
 
       <NavBar />
     </div>
