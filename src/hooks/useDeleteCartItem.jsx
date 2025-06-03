@@ -13,7 +13,7 @@ const useDeleteCartItem = () => {
     });
 
       // 로컬 상태 갱신
-      const updatedCarts = paymentData.carts.filter(
+      const updatedCarts = paymentData.carts?.filter(
         (cartItem) => cartItem.idx !== itemId
       );
       setPaymentData({ ...paymentData, carts: updatedCarts });

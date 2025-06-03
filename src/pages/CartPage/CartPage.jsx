@@ -61,7 +61,7 @@ const CartPage = () => {
       });
 
       // 로컬 상태 및 렌더링 갱신
-      const updatedCarts = paymentData.carts.filter(
+      const updatedCarts = paymentData.carts?.filter(
         (cartItem) => cartItem.idx !== itemId
       );
       setPaymentData({ ...paymentData, carts: updatedCarts });
