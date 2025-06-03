@@ -35,7 +35,7 @@ function EventingPage() {
       {events && events?.length > 0 ? (
         <div className="eventing-img">
           <Slider className="eventing_slider_benner" {...settings}>
-            {events.map((item) => (
+            {events?.map((item) => (
               <div key={item} onClick={() => navigate(item.redirectUrl)}>
                 <img src={item.imgUrl} alt="eventing" />
                 {console.log(item)}

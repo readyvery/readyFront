@@ -29,7 +29,7 @@ const OrderProcessPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [activeToggles, setActiveToggles] = useState(
-    category?.filter((el) => el?.essential).map(() => false)
+    category?.filter((el) => el?.essential)?.map(() => false)
   );
   const [selectedRadioTexts, setSelectedRadioTexts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(price);
@@ -43,7 +43,7 @@ const OrderProcessPage = () => {
 
   const handleCartUpdate = () => {
     // 주점 포장/매장 옵션 선택 여부 확인
-    const pickupIdx = category.filter((item) => item.name === "포장/매장")[0]?.options[0]?.idx;
+    const pickupIdx = category?.filter((item) => item.name === "포장/매장")[0]?.options[0]?.idx;
     console.log(pickupIdx, essentialOptionIdx);
     if (pickupIdx && essentialOptionIdx.includes(pickupIdx)) {
       setIsBoothOpen(true);
@@ -164,7 +164,7 @@ const OrderProcessPage = () => {
       : setTotalAmount((prevAmount) => prevAmount - price);
     e.target.checked
       ? setOptionIdx((prev) => [...prev, idx])
-      : setOptionIdx((prev) => prev.filter((e) => e !== idx));
+      : setOptionIdx((prev) => prev?.filter((e) => e !== idx));
   };
 
   // 수량 증가
@@ -182,8 +182,8 @@ const OrderProcessPage = () => {
   useEffect(() => {
     if (category && category.length > 0) {
       const essentialOptions = category
-        .filter((el) => el?.essential)
-        .map((e) => e.options[0]?.name);
+        ?.filter((el) => el?.essential)
+        ?.map((e) => e.options[0]?.name);
 
       setSelectedRadioTexts(essentialOptions);
     }
@@ -194,7 +194,7 @@ const OrderProcessPage = () => {
         parseInt(
           category
             ?.filter((el) => el?.essential)
-            .map((e) => parseInt(e?.options[0]?.price))
+            ?.map((e) => parseInt(e?.options[0]?.price))
             .reduce((prev, curr) => prev + curr, 0)
         )
     );
@@ -212,7 +212,7 @@ const OrderProcessPage = () => {
   }, [category]);
 
   useEffect(() => {
-    setActiveToggles(category?.filter((e) => e?.essential).map(() => false));
+    setActiveToggles(category?.filter((e) => e?.essential)?.map(() => false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price])
 
@@ -236,8 +236,8 @@ const OrderProcessPage = () => {
       <div className="order-process-page__toggle">
         {category?.length ? (
           category
-            .filter((c, i) => c?.essential)
-            .map((category, index) => (
+            ?.filter((c, i) => c?.essential)
+            ?.map((category, index) => (
               <div
                 className="order-process-page__toggle__container"
                 key={index}
@@ -350,8 +350,8 @@ const OrderProcessPage = () => {
               {optionOpen &&
                 category?.length &&
                 category
-                  .filter((c, i) => !c.essential)
-                  .map((category, index) => (
+                  ?.filter((c, i) => !c.essential)
+                  ?.map((category, index) => (
                     <React.Fragment key={index}>
                       {index !== 0 && <div className="option__line"></div>}
                       <span className="order-process-page__option__title__wrapper">
@@ -455,7 +455,7 @@ const OrderProcessPage = () => {
         <Modal
           setIsOpen={setIsOpen}
           handleCancel={handleCancel}
-          title={modalTitle.split("\n").map((line, index) => (
+          title={modalTitle.split("\n")?.map((line, index) => (
             <React.Fragment key={index}>
               {line}
               <br />
@@ -470,7 +470,7 @@ const OrderProcessPage = () => {
         <Modal
           setIsOpen={setIsBoothOpen}
           handleCancel={() => setIsBoothOpen(false)}
-          title={boothModalTitle.map((line, index) => (
+          title={boothModalTitle?.map((line, index) => (
             <React.Fragment key={index}>
               {line}
               <br />

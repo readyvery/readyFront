@@ -21,7 +21,7 @@ const Progressbar = ({ degree }) => {
         </div>
       </div>
       <div className="status-explain-wrapper">
-        {statusList.map((e, i) => (
+        {statusList?.map((e, i) => (
           <div
             key={i}
             className={`status-explain ${i <= degree ? "selected" : ""}`}

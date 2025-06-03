@@ -33,7 +33,7 @@ const CouponPage = () => {
           </div>
         ) : coupons && coupons.length > 0 ? (
           <div className="coupon-page__coupon-list">
-            {coupons.map((item) => (
+            {coupons?.map((item) => (
               <div
                 className="coupon-page__coupon-item"
                 key={item.couponId}

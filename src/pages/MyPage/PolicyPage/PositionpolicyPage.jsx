@@ -12,7 +12,7 @@ function PositionpolicyPage() {
         }}
       />
 
-      {TEXT.positionPolicyTitle.split("\n").map((title, index) => (
+      {TEXT.positionPolicyTitle.split("\n")?.map((title, index) => (
         <React.Fragment key={index}>
           <span
             style={{ fontSize: "14px", fontFamily: "Bold", marginTop: "5px" }}
@@ -27,7 +27,7 @@ function PositionpolicyPage() {
                 {TEXT.positionPolicy
                   .split("#")
                   [index].split("\n")
-                  .map((e) => (
+                  ?.map((e) => (
                     <div>{e}</div>
                   ))}
               </span>

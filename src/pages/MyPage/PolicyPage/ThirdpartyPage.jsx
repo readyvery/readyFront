@@ -12,7 +12,7 @@ function ThirdpartyPage() {
         }}
       />
       <div style={{ fontSize: "12px", fontFamily: "Regular" }}>
-        {TEXT.thirdPartyTitle.split("\n").map((title, index) => (
+        {TEXT.thirdPartyTitle.split("\n")?.map((title, index) => (
           <React.Fragment key={index}>
             <span
               style={{ fontSize: "14px", fontFamily: "Bold", marginTop: "5px" }}
@@ -27,7 +27,7 @@ function ThirdpartyPage() {
                   {TEXT.thirdParty
                     .split("#")
                     [index].split("\n")
-                    .map((e) => (
+                    ?.map((e) => (
                       <div>{e}</div>
                     ))}
                 </span>

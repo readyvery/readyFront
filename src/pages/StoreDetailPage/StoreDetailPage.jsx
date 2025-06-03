@@ -77,7 +77,7 @@ const StoreDetailPage = () => {
             <span className="store-detail-page__caffeeInfo__list__title">
               영업 시간
             </span>
-            {openTime.split("\n").map((line, index) => (
+            {openTime.split("\n")?.map((line, index) => (
               <React.Fragment key={index}>
                 {line}
                 <br />
@@ -98,7 +98,7 @@ const StoreDetailPage = () => {
 
           <div className="store-detail-page__menuCategory-scroll">
             {menu && menu.menu && Array.isArray(menu.menu) ? (
-              menu.menu.map((category, index) => (
+              menu.menu?.map((category, index) => (
                 <span
                   key={index}
                   className={`store-detail-page__menuCategory__item ${
@@ -130,7 +130,7 @@ const StoreDetailPage = () => {
           {selectedCategory &&
           selectedCategory.menuItems &&
           Array.isArray(selectedCategory.menuItems) ? (
-            selectedCategory.menuItems.map((item, index) => (
+            selectedCategory.menuItems?.map((item, index) => (
               <div
                 className="store-detail-page__menuList__item"
                 key={index}

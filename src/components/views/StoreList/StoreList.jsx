@@ -12,13 +12,13 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
   if (cafe && booth) {
     displayStores = stores;
   } else if (cafe) {
-    displayStores = stores.filter((item) => item.idx < 10);
+    displayStores = stores?.filter((item) => item.idx < 10);
   } else if (booth) {
-    displayStores = stores.filter((item) => item.idx >= 10);
+    displayStores = stores?.filter((item) => item.idx >= 10);
   }
 
   // 검색어에 따라 필터링된 목록을 반환하는 로직
-  const filteredStores = stores.filter((item) => {
+  const filteredStores = stores?.filter((item) => {
     return item.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
@@ -27,7 +27,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
 
   return (
     <div className="store_list">
-      {displayStores.map((item) => (
+      {displayStores?.map((item) => (
         <div
           key={item.idx}
           className="store_list_item"

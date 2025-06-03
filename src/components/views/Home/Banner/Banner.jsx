@@ -32,7 +32,7 @@ const Banner = () => {
     <div className="home_event">
       <div className="home_event_slider_benner_wrapper">
          <Slider {...settings} >
-          {eventBanners.map((item) => {
+          {eventBanners?.map((item) => {
             return (
               <div
                 className="home_event_slider_benner"
