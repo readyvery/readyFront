@@ -14,7 +14,7 @@ function FrequentlyAskedQuestionPage() {
       />
       <main className="faq-container">
         <div className="faq-box">
-          {TEXT.faqQuestionTitle.split("\n").map((title, index) => (
+          {TEXT.faqQuestionTitle.split("\n")?.map((title, index) => (
             <React.Fragment key={index}>
               <span className="faq-title">{title}</span>
               <br />
@@ -25,7 +25,7 @@ function FrequentlyAskedQuestionPage() {
                     {TEXT.faqQuestion
                       .split("#")
                       [index].split("\n")
-                      .map((e, i) =>
+                      ?.map((e, i) =>
                         e.trim().startsWith("-") ? (
                           <li key={i}>{e.trim().slice(1)}</li>
                         ) : (

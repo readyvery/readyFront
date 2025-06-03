@@ -11,7 +11,7 @@ function TermsofusePage() {
           // linkTo: "/policy",
         }}
       />
-      {TEXT.tuermsoTitle.split("\n").map((title, index) => (
+      {TEXT.tuermsoTitle.split("\n")?.map((title, index) => (
         <React.Fragment key={index}>
           <span
             style={{ fontSize: "14px", fontFamily: "Bold", marginTop: "5px" }}
@@ -26,7 +26,7 @@ function TermsofusePage() {
                 {TEXT.termsofuse
                   .split("#")
                   [index].split("\n")
-                  .map((e) => (
+                  ?.map((e) => (
                     <div>{e}</div>
                   ))}
               </span>

@@ -95,7 +95,7 @@ const HomePage = () => {
 
               <div className="home_individual_quick_order_container">
                 {quickOrder.length > 0 ? (
-                  quickOrder.map((item, index) => (
+                  quickOrder?.map((item, index) => (
                     <div
                       className={`home_individual_quick_order_list ${
                         index === 0 ? "first-item" : ""

@@ -12,7 +12,7 @@ function PrivacypolicyPage() {
         }}
       />
 
-      {TEXT.privacyPolicyTitle.split("\n").map((title, index) => (
+      {TEXT.privacyPolicyTitle.split("\n")?.map((title, index) => (
         <React.Fragment key={index}>
           <span
             style={{
@@ -32,7 +32,7 @@ function PrivacypolicyPage() {
                 {TEXT.privacyPolicy
                   .split("#")
                   [index].split("\n")
-                  .map((e) => (
+                  ?.map((e) => (
                     <div>{e}</div>
                   ))}
               </span>

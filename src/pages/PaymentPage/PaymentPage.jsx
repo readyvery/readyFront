@@ -102,7 +102,7 @@ const PaymentPage = () => {
       </div>
 
       <div className="payment-page__order-info">
-        {carts.map((item) => (
+        {carts?.map((item) => (
           <div>
             <div className="payment-page__order-info__item">
               <img
@@ -117,7 +117,7 @@ const PaymentPage = () => {
                 </div>
 
                 <div className="payment-page__order-info__item__option">
-                  {item.options.map((option) => (
+                  {item.options?.map((option) => (
                     <div>
                       •{option.name} (+{option.price}원)
                     </div>

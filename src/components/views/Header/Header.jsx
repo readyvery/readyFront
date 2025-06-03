@@ -142,7 +142,7 @@ const Header = ({ headerProps }) => {
         <Modal
           setIsOpen={setIsOpen}
           handleCancel={handleCancel}
-          title={TEXT.cartModal.split("\n").map((line, index) => (
+          title={TEXT.cartModal.split("\n")?.map((line, index) => (
             <React.Fragment key={index}>
               {line}
               <br />

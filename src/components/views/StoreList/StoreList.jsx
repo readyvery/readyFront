@@ -27,7 +27,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
 
   return (
     <div className="store_list">
-      {displayStores.map((item) => (
+      {displayStores?.map((item) => (
         <div
           key={item.idx}
           className="store_list_item"

@@ -24,7 +24,7 @@ const CartPage = () => {
 
   const handleDecrease = (item) => {
     if (item?.count > 1) {
-      const updatedCarts = paymentData.carts.map((cartItem) =>
+      const updatedCarts = paymentData.carts?.map((cartItem) =>
         cartItem.idx === item.idx
           ? { ...cartItem, count: cartItem?.count - 1 }
           : cartItem
@@ -38,7 +38,7 @@ const CartPage = () => {
   };
 
   const handleIncrease = (item) => {
-    const updatedCarts = paymentData.carts.map((cartItem) =>
+    const updatedCarts = paymentData.carts?.map((cartItem) =>
       cartItem.idx === item.idx
         ? { ...cartItem, count: cartItem?.count + 1 }
         : cartItem
@@ -180,7 +180,7 @@ const CartPage = () => {
           </div>
 
           <div className="cart-page__order-info">
-            {paymentData?.carts.map((item) => (
+            {paymentData?.carts?.map((item) => (
               <div>
                 <div className="cart-page__order-info__item">
                   <img
@@ -195,7 +195,7 @@ const CartPage = () => {
                     </div>
 
                     <div className="cart-page__order-info__item__option">
-                      {item.options.map((option) => (
+                      {item.options?.map((option) => (
                         <div key={option.optionId}>
                           •[{option.categoryName}] {option.name} (+
                           {option.price
