@@ -39,7 +39,7 @@ const PackagingStatusPage = () => {
 
       <img
         className="packaging-status-page__event-img"
-        src={eventImgUrl}
+        src={`${process.env.REACT_APP_ASSET_URL}${eventImgUrl}`}
         alt="promotion"
       />
 
