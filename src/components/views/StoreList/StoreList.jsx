@@ -40,7 +40,7 @@ const StoreList = ({ searchTerm = "", cafe = false, booth = false }) => {
           }}
         >
           <img
-            src={item.imgUrl}
+            src={`${process.env.REACT_APP_ASSET_URL}${item.imgUrl}`}
             alt="storeImage"
             className="store_list_cafe_img"
           />
