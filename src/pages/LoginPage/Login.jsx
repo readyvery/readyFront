@@ -33,16 +33,16 @@ function Login() {
       <div className="login_content">
         준비는 빠르게 혜택은 다르게
         <div className="login_btn">
-          <img
+          {/* <img
             src={IMAGES.googleLogin}
             alt="googleLogin"
             onClick={handleGoogleLogin}
-          />
-          <img
+          /> */}
+          {/* <img
             src={IMAGES.appleLogin}
             alt="appleLogin"
             onClick={handleAppleLogin}
-          />
+          /> */}
           <img
             src={IMAGES.kakaoLogin}
             alt="kakaoLogin"
